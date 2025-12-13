@@ -134,7 +134,17 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
   const activeImage = heroImages[currentSlide];
+
+  // Navigation functions for portfolio section
+  const goToPreviousProject = () => {
+    setCurrentProjectSlide((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const goToNextProject = () => {
+    setCurrentProjectSlide((prev) => (prev + 1) % projects.length);
+  };
 
   return (
     <main className="bg-white text-foreground">
@@ -559,7 +569,10 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="projects-carousel" style={{ margin: '48px 0' }}>
+
+
+
+        <div className="projects-carousel" style={{ margin: '48px 0', position: 'relative' }}>
           <div
             className="projects-track"
             style={{
@@ -587,6 +600,7 @@ export default function Home() {
                   </div>
                 </div>
                 <h3 className="project-title" style={{ margin: '20px 24px 12px 24px', fontSize: '20px' }}>{project.title}</h3>
+
                 <p style={{ margin: '0 24px 12px 24px', fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
                   {idx === 0 && "Premium high-rise living with world-class amenities"}
                   {idx === 1 && "Exclusive gated communities with signature villas"}
@@ -597,6 +611,80 @@ export default function Home() {
               </div>
             ))}
           </div>
+
+          {/* Mobile Navigation Buttons - Only visible on mobile, positioned at section bottom corners */}
+
+          <button
+            onClick={goToPreviousProject}
+            className="md:hidden"
+            style={{
+              position: 'absolute',
+              left: '20px',
+              bottom: '-40px',
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #caa44a, #f6e7b3)',
+              border: '2px solid #e8d7a3',
+              color: '#1a1207',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.4)',
+              zIndex: 10,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(199, 154, 74, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(199, 154, 74, 0.4)';
+            }}
+            aria-label="Previous project"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+
+          <button
+            onClick={goToNextProject}
+            className="md:hidden"
+            style={{
+              position: 'absolute',
+              right: '20px',
+              bottom: '-40px',
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #caa44a, #f6e7b3)',
+              border: '2px solid #e8d7a3',
+              color: '#1a1207',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.4)',
+              zIndex: 10,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(199, 154, 74, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 16px rgba(199, 154, 74, 0.4)';
+            }}
+            aria-label="Next project"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
         </div>
 
        
