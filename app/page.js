@@ -4,46 +4,52 @@
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  "Home",
-  "About Us",
-  "Projects",
-  "Contact Us",
+  { name: "Home", href: "#home" },
+  { name: "About Us", href: "#about" },
+  { name: "Portfolio", href: "#portfolio" },
+  { name: "What We Offer", href: "#what-we-offer" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact Us", href: "#contact" },
 ];
 
 const heroImages = [
   "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1629236714859-3a1ec2d8f6c3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1621293954908-907159247fc8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
 const projects = [
   {
-    title: "SpaceSphere Club Towers",
+    title: "Luxury Residential Apartments & High-Rise Towers",
     images: [
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&auto=format&fit=crop",
     ],
   },
   {
-    title: "SpaceSphere",
+    title: "Signature Villas & Gated Communities",
     images: [
-      "https://images.unsplash.com/photo-1629236714859-3a1ec2d8f6c3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1621293954908-907159247fc8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1629236714859-3a1ec2d8f6c3?w=800&auto=format&fit=crop",
     ],
   },
   {
-    title: "SpaceSphere",
+    title: "Premium Open Plots with Future Growth Vision",
     images: [
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&auto=format&fit=crop",
     ],
   },
   {
-    title: "Luxury Villas",
+    title: "Commercial Spaces for High-Return Investors",
     images: [
-      "https://images.unsplash.com/photo-1629236714859-3a1ec2d8f6c3?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1621293954908-907159247fc8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1621293954908-907159247fc8?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&auto=format&fit=crop",
     ],
   },
 ];
@@ -55,9 +61,9 @@ const poolImages = [
 ];
 
 const experienceCenterImages = [
-  "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1497366754035-f200368a1e55?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&auto=format&fit=crop",
 ];
 
 export default function Home() {
@@ -68,6 +74,9 @@ export default function Home() {
   );
   const [poolImageIndex, setPoolImageIndex] = useState(0);
   const [experienceImageIndex, setExperienceImageIndex] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const id = setInterval(
@@ -87,9 +96,17 @@ export default function Home() {
   useEffect(() => {
     const id = setInterval(() => {
       setProjectImageIndices((prev) =>
-        prev.map((idx, i) => (idx + 1) % projects[i].images.length)
+        prev.map((idx, i) => {
+          const nextIdx = idx + 1;
+          // Cycle through all images, reset to 0 after showing all
+          if (nextIdx >= projects[i].images.length) {
+            // Wait a bit longer before resetting to avoid immediate repeat
+            return 0;
+          }
+          return nextIdx;
+        })
       );
-    }, 3500);
+    }, 4000); // Slightly longer interval to avoid rapid repeats
     return () => clearInterval(id);
   }, []);
 
@@ -107,11 +124,106 @@ export default function Home() {
     return () => clearInterval(id);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const activeImage = heroImages[currentSlide];
 
   return (
     <main className="bg-white text-foreground">
-      <section className="relative min-h-screen hero-bg text-white">
+      {/* Sticky Navbar that appears on scroll */}
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 transition-all duration-300 ${
+          isScrolled ? 'translate-y-0 opacity-100 backdrop-blur-md shadow-lg' : '-translate-y-full opacity-0'
+        }`}
+        style={{
+          background: isScrolled ? 'rgba(245, 245, 240, 0.95)' : 'transparent',
+        }}
+      >
+        <div className="flex items-center gap-2 text-xl md:text-2xl">
+          <span className="font-semibold tracking-tight" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>Space</span>
+          <span className="text-base font-medium md:text-lg" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>| sphere</span>
+        </div>
+
+        <nav className="hidden items-center gap-10 mr-10 text-sm uppercase tracking-[0.08em] md:flex">
+          {navLinks.map((item) => (
+            <a 
+              key={item.name} 
+              className="nav-link" 
+              href={item.href}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                const element = document.querySelector(item.href);
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer', color: isScrolled ? '#1a1a1a' : '#f0ede6' }}
+            >
+              {item.name}
+            </a>
+          ))}
+        </nav>
+
+        {/* Mobile Menu Button - Only visible on mobile */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="block md:hidden p-2 z-50"
+          aria-label="Toggle menu"
+          style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}
+        >
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isMobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+
+        {/* Mobile Menu - Only visible on mobile */}
+        {isMobileMenuOpen && (
+          <div 
+            className="md:hidden absolute top-full left-0 right-0 backdrop-blur-md shadow-lg z-40"
+            style={{ 
+              background: 'rgba(245, 245, 240, 0.98)',
+              animation: 'slideDown 0.3s ease-out',
+              transformOrigin: 'top'
+            }}
+          >
+            <nav className="flex flex-col px-4 py-4 gap-4">
+              {navLinks.map((item) => (
+                <a 
+                  key={item.name} 
+                  className="nav-link text-sm uppercase tracking-wide py-2" 
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    const element = document.querySelector(item.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  style={{ cursor: 'pointer', color: '#1a1a1a' }}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
+      <section id="home" className="relative min-h-screen hero-bg text-white">
         <div
           className="hero-image"
           style={{
@@ -122,55 +234,104 @@ export default function Home() {
         <div className="hero-overlay" />
 
         <div className="relative z-10 flex min-h-screen flex-col">
-          <header className="flex items-center justify-between px-6 py-5 md:px-12 md:py-8">
+          <header className="flex items-center justify-between px-6 py-5 md:px-12 md:py-8 relative z-20">
             <div className="flex items-center gap-2 text-xl md:text-2xl">
               <span className="font-semibold tracking-tight">Space</span>
               <span className="text-base font-medium md:text-lg">| sphere</span>
             </div>
 
-            <nav className="hidden items-center gap-10 -mr-129 text-sm uppercase tracking-[0.08em] md:flex">
+            <nav className="hidden items-center gap-10 mr-10 text-sm uppercase tracking-[0.08em] md:flex">
               {navLinks.map((item) => (
-                <a key={item} className="nav-link" href="#" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                  {item}
-                  {item !== "Home"}
+                <a 
+                  key={item.name} 
+                  className="nav-link" 
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    const element = document.querySelector(item.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+                >
+                  {item.name}
                 </a>
               ))}
             </nav>
 
-            <div className="hidden items-center gap-3 md:flex" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '3px' }}>
-              <div className="contact-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                >
-                  <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24 11.72 11.72 0 0 0 3.68.59 1 1 0 0 1 1 1v3.75a1 1 0 0 1-1 1A17 17 0 0 1 3 5a1 1 0 0 1 1-1h3.75a1 1 0 0 1 1 1 11.72 11.72 0 0 0 .59 3.68 1 1 0 0 1-.24 1.01z" />
+            {/* Mobile Menu Button - Only visible on mobile */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="block md:hidden text-white p-2 relative z-50"
+              aria-label="Toggle menu"
+            >
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
                 </svg>
+            </button>
+
+            {/* Mobile Menu - Only visible on mobile */}
+            {isMobileMenuOpen && (
+              <div 
+                className="md:hidden absolute top-full left-0 right-0 backdrop-blur-md shadow-lg z-50"
+                style={{ 
+                  background: 'rgba(245, 245, 240, 0.98)',
+                  animation: 'slideDown 0.3s ease-out',
+                  transformOrigin: 'top'
+                }}
+              >
+                <nav className="flex flex-col px-4 py-4 gap-4">
+                  {navLinks.map((item) => (
+                    <a 
+                      key={item.name} 
+                      className="nav-link text-sm uppercase tracking-wide py-2" 
+                      href={item.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsMobileMenuOpen(false);
+                        const element = document.querySelector(item.href);
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                      }}
+                      style={{ cursor: 'pointer', color: '#1a1a1a' }}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </nav>
               </div>
-              <div className="contact-icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg
-                  aria-hidden="true"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                >
-                  <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 2v.51l-8 5-8-5V6Zm0 12H4V9.17l8 5 8-5Z" />
-                </svg>
-              </div>
-            </div>
+            )}
           </header>
 
           <div className="relative flex flex-1 flex-col justify-end md:flex-row md:items-center md:justify-between md:gap-8 md:px-12 md:pb-16">
             <div className="max-w-3xl px-6 pb-14 md:px-0 md:pb-0">
               <h1 className="serif-heading text-4xl font-bold leading-tight md:text-6xl">
-                real estate  Club Towers
+                SPACE SPHERE
               </h1>
-              <p className="serif-subheading mt-3 text-2xl text-[#e8e3d9] md:text-3xl">
-                A Grand Way of Life
+              <p className="serif-subheading mt-3 text-xl text-[#e8e3d9] md:text-2xl" style={{ fontWeight: 500 }}>
+                Where Luxury Meets Location. Where Investments Become Legacies.
+              </p>
+              <p className="serif-subheading mt-4 text-lg text-[#e8e3d9] md:text-xl" style={{ fontWeight: 400 }}>
+                Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
+              </p>
+              <p className="serif-subheading mt-2 text-base text-[#e8e3d9] md:text-lg italic">
+                Not just choices - curated excellence.
               </p>
 
-              <button className="cta-button gold-shadow" style={{ marginTop: '28px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '14px 26px' }}>Experience More</button>
+              <button 
+                className="cta-button gold-shadow" 
+                style={{ marginTop: '28px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '14px 26px' }}
+                onClick={() => setIsModalOpen(true)}
+              >
+                Book a Private Consultation
+              </button>
             </div>
           </div>
         </div>
@@ -189,54 +350,212 @@ export default function Home() {
         </div>
 
         <a
-          href="#"
-          className="floating-whatsapp gold-shadow"
-          aria-label="Chat on WhatsApp"
-          style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
+          href="#contact"
+          className="floating-whatsapp cta-button gold-shadow"
+          aria-label="Enquire Now"
+          onClick={(e) => {
+            e.preventDefault();
+            setIsModalOpen(true);
+          }}
+          style={{ textDecoration: 'none', marginTop: 0 }}
         >
-          <svg
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-            className="h-6 w-6"
-          >
-            <path d="M20.52 3.48a5.6 5.6 0 0 0-9.15 4.44c0 1 .26 2 .77 2.85l-.58 2.13 2.18-.57A5.55 5.55 0 0 0 14.95 13a5.6 5.6 0 0 0 5.57-5.58 5.57 5.57 0 0 0-1.66-3.94zm-11 15.28L4 21l2.26-5.61a8.1 8.1 0 0 1-1-3.88 8.27 8.27 0 1 1 8.26 8.27 8.07 8.07 0 0 1-3.86-1.02z" />
-          </svg>
+          Enquire
         </a>
       </section>
 
-      <section className="about-section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center', padding: '96px 24px' }}>
+      <section id="about" className="about-section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center', padding: '96px 24px' }}>
         <div className="about-content" style={{ display: 'grid', gap: '18px' }}>
-          <p className="eyebrow">
-            SpaceSphere- A Trusted Real Estate Developer
+          <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600 }}>
+            Welcome To Space Sphere
           </p>
-          <p className="body-copy">
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.bwbfaibijebijbi fwanifnonwqonfoiqwn f foqwnfioniowqnfionqwiofnw ffqiownfioqnwionqwionfoiqwnf  nfioqwnoifnqiownfio fnonfioniofnioanf ionfiiofnq
+          <h2 style={{ fontSize: '32px', fontWeight: 700, color: '#1a1a1a', marginTop: '8px', fontFamily: "'Playfair Display', serif" }}>
+            A Trusted Partner in Indian Real Estate
+          </h2>
+          <p className="body-copy" style={{ fontSize: '16px', lineHeight: '1.8', color: '#4a4a4a' }}>
+            Space Sphere stands at the intersection of <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>expert advisory</strong>, <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>premium property sourcing</strong>, and <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>seamless ownership experience</strong>. At Space Sphere, we believe a property is more than real estate - it is a <em style={{ color: '#c79a4a' }}>statement, an asset, a lifetime belonging</em>.
           </p>
-          <p className="body-copy">
-          lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.bwbfaibijebijbi fwanifnonwqonfoiqwn f foqwnfioniowqnfionqwiofnw ffqiownfioqnwionqwionfoiqwnf  nfioqwnoifnqiownfio fnonfioniofnioanf ionfiiofnq
+          <p className="body-copy" style={{ fontSize: '16px', lineHeight: '1.8', color: '#4a4a4a' }}>
+            With <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>elite partnerships</strong> across premium developers in <span style={{ color: '#c79a4a', fontWeight: 600 }}>Pune, Hyderabad and surrounding regions</span>, we bring you access to refined spaces built for those who desire more.
           </p>
-          <p className="body-copy">
-          lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.bwbfaibijebijbi fwanifnonwqonfoiqwn f foqwnfioniowqnfionqwiofnw ffqiownfioqnwionqwionfoiqwnf  nfioqwnoifnqiownfio fnonfioniofnioanf ionfiiofnq
+          <p className="body-copy" style={{ fontSize: '16px', lineHeight: '1.8', color: '#4a4a4a' }}>
+            Our strength lies in <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>trust-driven relationships</strong>, <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>transparent deals</strong>, and <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>deep market expertise</strong>. We deal only in spaces worthy of legacy.
           </p>
-          <button className="link-button" style={{ marginTop: '6px', display: 'inline-flex', gap: '6px', alignItems: 'center', padding: '10px 0' }}>Experience More &gt;&gt;</button>
+          <div style={{ marginTop: '24px', padding: '20px', background: 'rgba(199, 154, 74, 0.05)', borderRadius: '8px', borderLeft: '4px solid #c79a4a' }}>
+            <p style={{ fontSize: '15px', fontWeight: 600, color: '#1a1a1a', marginBottom: '12px' }}>Every project we represent is hand-evaluated for:</p>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '10px' }}>
+              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
+                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
+                <span><strong>Design & Architecture Value</strong></span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
+                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
+                <span><strong>Location Advantage & Appreciation</strong></span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
+                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
+                <span><strong>Builder Credibility & Delivery History</strong></span>
+              </li>
+              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
+                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
+                <span><strong>Lifestyle Amenities & Luxury Quotient</strong></span>
+              </li>
+            </ul>
+          </div>
+          <button 
+            className="link-button" 
+            style={{ marginTop: '6px', display: 'inline-flex', gap: '6px', alignItems: 'center', padding: '10px 0' }}
+            onClick={() => setIsModalOpen(true)}
+          >
+            Schedule a Site Experience &gt;&gt;
+          </button>
         </div>
         
-        <div className="about-visual" style={{ display: 'flex', justifyContent: 'center' }}>
-          <div className="about-frame ml-23" style={{ padding: '16px' }}>
-            <img
-              src="1.png"
-              alt="Modern highway interchange aerial view"
-            />
+        <div className="about-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+          {/* Decorative background element */}
+          <div style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.08) 0%, transparent 50%)',
+            borderRadius: '20px',
+            transform: 'rotate(-2deg)',
+            zIndex: 0
+          }}></div>
+          
+          {/* Main image container with layered frames */}
+          <div style={{ 
+            position: 'relative', 
+            zIndex: 2,
+            padding: '24px',
+            background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+            borderRadius: '20px',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(199, 154, 74, 0.2)',
+            border: '2px solid rgba(199, 154, 74, 0.2)',
+            transform: 'rotate(1deg)',
+            transition: 'transform 0.3s ease',
+            marginLeft: '40px'
+          }}>
+            {/* Inner decorative border */}
+            <div style={{
+              position: 'absolute',
+              top: '12px',
+              left: '12px',
+              right: '12px',
+              bottom: '12px',
+              border: '1px solid rgba(199, 154, 74, 0.3)',
+              borderRadius: '12px',
+              pointerEvents: 'none',
+              zIndex: 1
+            }}></div>
+            
+            {/* Image with overlay effect */}
+            <div style={{
+              position: 'relative',
+              overflow: 'hidden',
+              borderRadius: '12px',
+              boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.1)'
+            }}>
+              <img
+                src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Space Sphere premium properties"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  borderRadius: '12px',
+                  transition: 'transform 0.5s ease'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              />
+              {/* Subtle gradient overlay */}
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '40%',
+                background: 'linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent)',
+                pointerEvents: 'none',
+                borderRadius: '0 0 12px 12px'
+              }}></div>
           </div>
+            
+            {/* Decorative corner accents */}
+            <div style={{
+              position: 'absolute',
+              top: '-8px',
+              right: '-8px',
+              width: '60px',
+              height: '60px',
+              background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.4)',
+              zIndex: 3
+            }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            
+            <div style={{
+              position: 'absolute',
+              bottom: '-8px',
+              left: '-8px',
+              width: '50px',
+              height: '50px',
+              background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.8), rgba(199, 154, 74, 0.6))',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.3)',
+              zIndex: 3
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" opacity="0.9">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+          </div>
+          
+          {/* Floating decorative elements */}
+          <div style={{
+            position: 'absolute',
+            top: '10%',
+            right: '-20px',
+            width: '100px',
+            height: '100px',
+            background: 'radial-gradient(circle, rgba(199, 154, 74, 0.1) 0%, transparent 70%)',
+            borderRadius: '50%',
+            zIndex: 1,
+            filter: 'blur(20px)'
+          }}></div>
+          
+          <div style={{
+            position: 'absolute',
+            bottom: '15%',
+            left: '-30px',
+            width: '120px',
+            height: '120px',
+            background: 'radial-gradient(circle, rgba(199, 154, 74, 0.08) 0%, transparent 70%)',
+            borderRadius: '50%',
+            zIndex: 1,
+            filter: 'blur(25px)'
+          }}></div>
         </div>
       </section>
 
-      <section className="projects-section" style={{ padding: '20px 24px 40px' }}>
+      <section id="portfolio" className="projects-section" style={{ padding: '20px 24px 40px' }}>
         <div className="projects-header" style={{ marginBottom: '48px' }}>
-          <h2 className="projects-title">SpaceSphere Projects</h2>
-          <p className="projects-subtitle" style={{ margin: '0', marginLeft: 'auto', marginRight: 'auto' }}>
-            Luxury has a new name — discover the landmark projects by SpaceSphere.
+          <h2 className="projects-title">Our Portfolio</h2>
+          <p className="projects-subtitle" style={{ margin: '12px auto 0', fontSize: '18px', color: '#4a4a4a', fontStyle: 'italic' }}>
+            A Selection Reserved for the Discerning Buyer
+          </p>
+          <p style={{ margin: '16px auto 0', fontSize: '16px', color: '#666', maxWidth: '800px', lineHeight: '1.7' }}>
+            Whether you seek a <strong style={{ color: '#1a1a1a' }}>prestigious home address</strong> or a <strong style={{ color: '#1a1a1a' }}>strategic asset</strong> - Space Sphere curates only the finest opportunities.
           </p>
         </div>
 
@@ -267,10 +586,14 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
-                <h3 className="project-title" style={{ margin: '20px 24px 12px 24px' }}>{project.title}</h3>
-                <a href="#" className="project-link" style={{ margin: '0 24px 24px 24px' }}>
-                  Experience More &gt;&gt;
-                </a>
+                <h3 className="project-title" style={{ margin: '20px 24px 12px 24px', fontSize: '20px' }}>{project.title}</h3>
+                <p style={{ margin: '0 24px 12px 24px', fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
+                  {idx === 0 && "Premium high-rise living with world-class amenities"}
+                  {idx === 1 && "Exclusive gated communities with signature villas"}
+                  {idx === 2 && "Strategic land investments with high appreciation potential"}
+                  {idx === 3 && "Prime commercial spaces for maximum returns"}
+                </p>
+               
               </div>
             ))}
           </div>
@@ -292,12 +615,49 @@ export default function Home() {
       <section className="why-choose-section" style={{ gap: '0', padding: '80px 0' }}>
         <div className="why-choose-content" style={{ alignItems: 'center', padding: '0 60px' }}>
           <div className="content-wrapper">
-            <h2 className="why-choose-title" style={{ margin: '0 0 24px 0' }}>Why Choose SpaceSphere</h2>
-            <p className="why-choose-text" style={{ margin: '0 0 20px 0' }}>
-              Our luxury projects span across 10+ acres, where we focus on quality, aesthetics, and building hopes and lasting partnerships. We believe in creating spaces that resonate with your dreams and aspirations.
+            <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '12px' }}>
+              The Space Sphere Edge
             </p>
-            <p className="why-choose-text" style={{ margin: '0 0 20px 0' }}>
-              At SpaceSphere, we are committed to transparency, RERA compliance, and assisting homebuyers at every step. We invite you to trust SpaceSphere for your next real estate investment and experience the difference that quality and integrity make.
+            <h2 className="why-choose-title" style={{ margin: '0 0 8px 0', fontSize: '28px', fontFamily: "'Playfair Display', serif" }}>Because Luxury Deserves Precision.</h2>
+            <div style={{ marginTop: '32px', display: 'grid', gap: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
+                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
+                <div>
+                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Personalized Property Curation</strong>
+                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Tailored to taste & investment vision</span>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
+                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
+                <div>
+                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Access to Elite Developers</strong>
+                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>across Pune & Hyderabad</span>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
+                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
+                <div>
+                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Transparent Deals</strong>
+                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>No grey lines, no inflated numbers</span>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
+                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
+                <div>
+                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>End-to-end Assistance</strong>
+                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Till the moment you hold your keys</span>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
+                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
+                <div>
+                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Investment-Led Advisory</strong>
+                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Growth, rental yield & appreciation insights</span>
+                </div>
+              </div>
+            </div>
+            <p style={{ marginTop: '32px', fontSize: '16px', color: '#1a1a1a', fontStyle: 'italic', fontWeight: 500 }}>
+              Luxury begins with clarity. We deliver both.
             </p>
           </div>
           <div className="vertical-divider-right"></div>
@@ -323,7 +683,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="experience-center-section" style={{ gap: '0', padding: '80px 0' }}>
+      <section id="what-we-offer" className="experience-center-section" style={{ gap: '0', padding: '80px 0' }}>
         <div className="experience-center-visual">
           <div className="image-slider-container">
             <div
@@ -336,7 +696,7 @@ export default function Home() {
                 <img
                   key={idx}
                   src={img}
-                  alt={`Experience center ${idx + 1}`}
+                  alt={`Premium property showcase ${idx + 1}`}
                   className="slider-image"
                 />
               ))}
@@ -346,46 +706,382 @@ export default function Home() {
         <div className="experience-center-content" style={{ alignItems: 'center', padding: '0 60px' }}>
           <div className="vertical-divider-left"></div>
           <div className="content-wrapper">
-            <h2 className="experience-center-title" style={{ margin: '0 0 24px 0' }}>
-              Grandest Experience Centre in Lucknow
+            <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '12px' }}>
+              What We Offer?
+            </p>
+            <h2 className="experience-center-title" style={{ margin: '0 0 8px 0', fontSize: '28px', fontFamily: "'Playfair Display', serif" }}>
+              A Seamless Ownership Journey
             </h2>
-            <p className="experience-center-text" style={{ margin: '0' }}>
-              . Explore our sample flats, models, floor plans, and visual representations to understand the overall appeal of SpaceSphere Elevate. Our team is ready to guide you through every detail and help you make an informed decision.
+            <div style={{ marginTop: '28px', display: 'grid', gap: '18px' }}>
+              <div>
+                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Discovery Consultation</strong>
+                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Define requirements, expectations & aspirations</span>
+              </div>
+              <div>
+                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Curated Project Showcase</strong>
+                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Only premium & value-aligned options</span>
+              </div>
+              <div>
+                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Guided Site Tours</strong>
+                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Experience spaces before deciding</span>
+              </div>
+              <div>
+                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Closure & Negotiation Support</strong>
+                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Transparent & confident pricing</span>
+              </div>
+              <div>
+                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Paperwork + Loan Assistance</strong>
+                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>We simplify everything</span>
+              </div>
+            </div>
+            <p style={{ marginTop: '28px', fontSize: '16px', color: '#1a1a1a', fontStyle: 'italic' }}>
+              Your journey is effortless.<br />
+              <strong style={{ color: '#c79a4a' }}>The destination - exceptional.</strong>
+            </p>
+            <p style={{ marginTop: '16px', fontSize: '15px', color: '#4a4a4a', fontStyle: 'italic' }}>
+              Crafted for Comfort, Precision & Peace of Mind
             </p>
           </div>
         </div>
       </section>
 
-      <section className="contact-section" style={{ padding: '80px 24px 100px' }}>
-        <h2 className="contact-title" style={{ marginBottom: '48px' }}>Get In Touch</h2>
-        <div className="contact-grid" style={{ gap: '32px', alignItems: 'start', marginTop: '80px' }}>
+      <section id="projects" style={{ padding: '80px 24px', background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.05) 0%, rgba(199, 154, 74, 0.02) 100%)' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#1a1a1a', marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>
+            Featured Premium Properties
+          </h2>
+          <p style={{ fontSize: '18px', color: '#4a4a4a', marginBottom: '40px', fontStyle: 'italic' }}>
+            Invest with confidence. Live with pride.
+          </p>
+          <div style={{ padding: '0', background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
+            <div style={{ position: 'relative' }}>
+              <img
+                src="/avinea.png"
+                alt="Avinea Project Preview"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'cover'
+                }}
+              />
+              <div style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                background: 'linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent)',
+                padding: '40px',
+                color: 'white'
+              }}>
+                <p style={{ fontSize: '18px', color: '#F2C66E', marginBottom: '8px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Featured Project</p>
+                <p style={{ fontSize: '32px', color: '#ffffff', fontWeight: 700, marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>Avinea Project Preview</p>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)' }}>Premium gated community with luxury amenities</p>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style={{ padding: '100px 24px', background: 'linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%)', position: 'relative', overflow: 'hidden' }}>
+        {/* Decorative background elements */}
+        <div style={{ 
+          position: 'absolute', 
+          top: '10%', 
+          left: '-5%', 
+          fontSize: '200px', 
+          color: 'rgba(199, 154, 74, 0.03)', 
+          fontFamily: "'Playfair Display', serif",
+          fontWeight: 700,
+          lineHeight: 1,
+          transform: 'rotate(-15deg)',
+          zIndex: 0
+        }}>"</div>
+        <div style={{ 
+          position: 'absolute', 
+          bottom: '10%', 
+          right: '-5%', 
+          fontSize: '200px', 
+          color: 'rgba(199, 154, 74, 0.03)', 
+          fontFamily: "'Playfair Display', serif",
+          fontWeight: 700,
+          lineHeight: 1,
+          transform: 'rotate(15deg)',
+          zIndex: 0
+        }}>"</div>
+        
+        <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+            <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '12px' }}>
+              Client Impressions
+            </p>
+            <h2 style={{ fontSize: '42px', fontWeight: 700, color: '#1a1a1a', marginBottom: '12px', fontFamily: "'Playfair Display', serif", lineHeight: '1.2' }}>
+              Real Words. Refined Experiences.
+            </h2>
+            <div style={{ width: '80px', height: '3px', background: 'linear-gradient(90deg, #c79a4a, #d4af6a)', margin: '20px auto 0' }}></div>
+          </div>
+          
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '40px', 
+            alignItems: 'stretch', 
+            position: 'relative'
+          }}>
+            {/* Featured Testimonial - Left Side */}
+            <div style={{ 
+              padding: '48px 40px', 
+              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)', 
+              borderRadius: '20px', 
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(199, 154, 74, 0.1)',
+              border: '1px solid rgba(199, 154, 74, 0.15)',
+              position: 'relative',
+              zIndex: 2
+            }}>
+              {/* Decorative corner accent */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                right: 0,
+                width: '120px',
+                height: '120px',
+                background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1) 0%, transparent 70%)',
+                borderRadius: '0 20px 0 100%',
+                zIndex: 0
+              }}></div>
+              
+              {/* Large quote mark */}
+              <div style={{ 
+                fontSize: '120px', 
+                color: 'rgba(199, 154, 74, 0.15)', 
+                fontFamily: "'Playfair Display', serif",
+                fontWeight: 700,
+                lineHeight: 0.8,
+                marginBottom: '20px',
+                position: 'relative',
+                zIndex: 1
+              }}>"</div>
+              
+              {/* Star rating */}
+              <div style={{ display: 'flex', gap: '6px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#c79a4a" style={{ filter: 'drop-shadow(0 1px 2px rgba(199, 154, 74, 0.3))' }}>
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              
+              <p style={{ 
+                fontSize: '20px', 
+                lineHeight: '1.8', 
+                color: '#1a1a1a', 
+                fontStyle: 'italic', 
+                marginBottom: '32px',
+                position: 'relative',
+                zIndex: 1,
+                fontWeight: 500
+              }}>
+                "More than property guidance - it felt like <strong style={{ color: '#c79a4a', fontStyle: 'normal' }}>concierge service</strong>."
+              </p>
+              
+              <div style={{ 
+                borderTop: '2px solid rgba(199, 154, 74, 0.2)', 
+                paddingTop: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                position: 'relative',
+                zIndex: 1
+              }}>
+                <div style={{
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  flexShrink: 0
+                }}>SC</div>
+                <div>
+                  <p style={{ fontSize: '16px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Satisfied Client</p>
+                  <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Premium Property Owner</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Second Testimonial - Right Side (Smaller, Offset) */}
+            <div style={{ 
+              padding: '40px 36px', 
+              background: 'white', 
+              borderRadius: '20px', 
+              boxShadow: '0 6px 24px rgba(0,0,0,0.06)',
+              border: '1px solid rgba(199, 154, 74, 0.1)',
+              position: 'relative',
+              transform: 'translateY(40px)',
+              zIndex: 1
+            }}>
+              {/* Decorative line accent */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '4px',
+                height: '100%',
+                background: 'linear-gradient(180deg, #c79a4a, #d4af6a)',
+                borderRadius: '20px 0 0 20px'
+              }}></div>
+              
+              {/* Decorative corner accent */}
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '120px',
+                height: '120px',
+                background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1) 0%, transparent 70%)',
+                borderRadius: '20px 0 0 0',
+                zIndex: 0
+              }}></div>
+              
+              {/* Large quote mark */}
+              <div style={{ 
+                fontSize: '120px', 
+                color: 'rgba(199, 154, 74, 0.15)', 
+                fontFamily: "'Playfair Display', serif",
+                fontWeight: 700,
+                lineHeight: 0.8,
+                marginBottom: '20px',
+                position: 'relative',
+                zIndex: 1
+              }}>"</div>
+              
+              {/* Star rating */}
+              <div style={{ display: 'flex', gap: '6px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#c79a4a" style={{ filter: 'drop-shadow(0 1px 2px rgba(199, 154, 74, 0.3))' }}>
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  </svg>
+                ))}
+              </div>
+              
+              <p style={{ 
+                fontSize: '20px', 
+                lineHeight: '1.8', 
+                color: '#1a1a1a', 
+                fontStyle: 'italic', 
+                marginBottom: '32px',
+                position: 'relative',
+                zIndex: 1,
+                fontWeight: 500
+              }}>
+                "Luxury curated to precision. <strong style={{ color: '#c79a4a', fontStyle: 'normal' }}>Transparent, tasteful, trustworthy</strong>."
+              </p>
+              
+              <div style={{ 
+                borderTop: '2px solid rgba(199, 154, 74, 0.2)', 
+                paddingTop: '24px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '16px',
+                position: 'relative',
+                zIndex: 1
+              }}>
+                <div style={{
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '50%',
+                  background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  flexShrink: 0
+                }}>VC</div>
+                <div>
+                  <p style={{ fontSize: '16px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Valued Customer</p>
+                  <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Investment Partner</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Decorative bottom accent */}
+          <div style={{ 
+            marginTop: '60px', 
+            textAlign: 'center',
+            position: 'relative'
+          }}>
+            <div style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '12px',
+              padding: '16px 32px',
+              background: 'rgba(199, 154, 74, 0.05)',
+              borderRadius: '50px',
+              border: '1px solid rgba(199, 154, 74, 0.15)'
+            }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#c79a4a' }}></div>
+              <p style={{ fontSize: '14px', color: '#666', margin: 0, fontStyle: 'italic' }}>
+                Trusted by discerning clients across Pune & Hyderabad
+              </p>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#c79a4a' }}></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="contact-section" style={{ padding: '80px 24px 100px' }}>
+        <h2 className="contact-title" style={{ marginBottom: '12px' }}>Connect With Us</h2>
+        <p style={{ textAlign: 'center', fontSize: '18px', color: '#4a4a4a', marginBottom: '48px', fontStyle: 'italic' }}>
+          Let's Discover Your Next Address of Prestige.
+        </p>
+        <div className="contact-grid" style={{ gap: '32px', alignItems: 'start', marginTop: '60px' }}>
           <div className="contact-info" style={{ display: 'grid', gap: '22px', marginTop: '30px' }}>
             <div className="contact-block" style={{ display: 'grid', gap: '6px' }}>
-              <h3 className="contact-heading" style={{ margin: '0' }}>Head office</h3>
-              <p className="contact-text" style={{ margin: '0' }}>
-                B 124, South I, Sector 34, Gurugram, Haryana 122001
+              <h3 className="contact-heading" style={{ margin: '0', color: '#c79a4a', fontWeight: 600 }}>📍 Hyderabad</h3>
+              <p className="contact-text" style={{ margin: '0', fontSize: '14px' }}>
+                Registered Headquarters
               </p>
             </div>
             <div className="contact-block" style={{ display: 'grid', gap: '6px' }}>
-              <h3 className="contact-heading" style={{ margin: '0' }}>Branch office</h3>
-              <p className="contact-text" style={{ margin: '0' }}>
-                Office No.525, Felix Square, Sushant Golf City, Lucknow - 226030
+              <h3 className="contact-heading" style={{ margin: '0', color: '#c79a4a', fontWeight: 600 }}>📍 Pune</h3>
+              <p className="contact-text" style={{ margin: '0', fontSize: '14px' }}>
+                CP Network & Operations
               </p>
             </div>
-            <div className="contact-block" style={{ display: 'grid', gap: '6px' }}>
-              <h3 className="contact-heading" style={{ margin: '0' }}>Site address</h3>
-              <p className="contact-text" style={{ margin: '0' }}>
-                GH-3B, Sector-F, Pocket-52, Sushant Golf City, Lucknow - 226030
-              </p>
-            </div>
-            <div className="contact-block contact-inline" style={{ display: 'grid', gap: '12px' }}>
+            <div className="contact-block contact-inline" style={{ display: 'grid', gap: '12px', marginTop: '8px' }}>
               <div>
-                <span className="contact-label" style={{ marginRight: '8px' }}>Call</span>
-                <span className="contact-text" style={{ margin: '0' }}>+91 1234567885</span>
+                <span className="contact-label" style={{ marginRight: '8px', fontWeight: 600 }}>📱</span>
+                <span className="contact-text" style={{ margin: '0' }}>+91 XXXXX XXXXX</span>
               </div>
               <div>
-                <span className="contact-label" style={{ marginRight: '8px' }}>Email</span>
-                <span className="contact-text" style={{ margin: '0' }}>info@spacesphere.com</span>
+                <span className="contact-label" style={{ marginRight: '8px', fontWeight: 600 }}>📩</span>
+                <span className="contact-text" style={{ margin: '0' }}>contact@spacesphere.com</span>
+              </div>
+            </div>
+            <div style={{ marginTop: '24px', padding: '20px', background: 'rgba(199, 154, 74, 0.05)', borderRadius: '8px' }}>
+              <p style={{ fontSize: '15px', fontWeight: 600, color: '#1a1a1a', marginBottom: '12px' }}>Quick Actions:</p>
+              <div style={{ display: 'grid', gap: '10px' }}>
+                <button 
+                  className="cta-button" 
+                  style={{ padding: '12px 20px', fontSize: '14px', width: '100%' }}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Book a Private Consultation
+                </button>
+                <button 
+                  className="cta-button" 
+                  style={{ padding: '12px 20px', fontSize: '14px', width: '100%', background: 'transparent', border: '2px solid #c79a4a', color: '#c79a4a' }}
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Schedule a Site Experience
+                </button>
               </div>
             </div>
           </div>
@@ -474,8 +1170,11 @@ export default function Home() {
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '28px', fontWeight: 700, color: '#c79a4a', margin: '0 0 20px 0' }}>
                 SpaceSphere
               </h3>
-              <p style={{ fontSize: '15px', lineHeight: '1.7', color: '#b8b3a8', margin: '0 0 24px 0' }}>
-                Redefining luxury living through future-forward residential spaces. Building dreams, one home at a time.
+              <p style={{ fontSize: '15px', lineHeight: '1.7', color: '#b8b3a8', margin: '0 0 16px 0' }}>
+                Where Luxury Meets Location. Where Investments Become Legacies.
+              </p>
+              <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#8a857a', margin: '0 0 24px 0', fontStyle: 'italic' }}>
+                Your Trusted Partner for Smart Real Estate Choices.
               </p>
               <div style={{ display: 'flex', gap: '12px' }}>
                 <a href="#" style={{ width: '40px', height: '40px', borderRadius: '50%', background: 'rgba(199, 154, 74, 0.1)', border: '1px solid rgba(199, 154, 74, 0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#c79a4a', transition: 'all 0.3s ease' }}>
@@ -506,10 +1205,50 @@ export default function Home() {
                 Quick Links
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '12px' }}>
-                <li><a href="#" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease' }}>Home</a></li>
-                <li><a href="#" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease' }}>About Us</a></li>
-                <li><a href="#" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease' }}>Projects</a></li>
-                <li><a href="#" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease' }}>Contact Us</a></li>
+                <li><a 
+                  href="#home" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#home');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                >Home</a></li>
+                <li><a 
+                  href="#about" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#about');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                >About Us</a></li>
+                <li><a 
+                  href="#projects" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#projects');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                >Projects</a></li>
+                <li><a 
+                  href="#contact" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#contact');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                >Contact Us</a></li>
               </ul>
             </div>
 
@@ -518,9 +1257,17 @@ export default function Home() {
                 Projects
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '12px' }}>
-                <li><a href="#" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease' }}>SpaceSphere Club Towers</a></li>
-                <li><a href="#" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease' }}>SpaceSphere</a></li>
-                <li><a href="#" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease' }}>Luxury Villas</a></li>
+                <li><a 
+                  href="#projects" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector('#projects');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                >Avinea by Vyom-Sigma</a></li>
               </ul>
             </div>
 
@@ -533,25 +1280,243 @@ export default function Home() {
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ marginTop: '2px', flexShrink: 0 }}>
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                   </svg>
-                  <span style={{ color: '#b8b3a8', fontSize: '15px', lineHeight: '1.6' }}>
-                    B 124, South I, Sector 34,<br />Gurugram, Haryana 122001
-                  </span>
+                  <div>
+                    <div style={{ color: '#b8b3a8', fontSize: '15px', lineHeight: '1.6', marginBottom: '8px' }}>
+                      <strong style={{ color: '#F2C66E' }}>Hyderabad</strong> – Registered Headquarters
+                    </div>
+                    <div style={{ color: '#b8b3a8', fontSize: '15px', lineHeight: '1.6' }}>
+                      <strong style={{ color: '#F2C66E' }}>Pune</strong> – CP Network & Operations
+                    </div>
+                  </div>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                   </svg>
-                  <a href="tel:+911234567885" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>+91 1234567885</a>
+                  <a href="tel:+91XXXXXXXXXX" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>+91 XXXXX XXXXX</a>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                   </svg>
-                  <a href="mailto:info@spacesphere.com" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>info@spacesphere.com</a>
+                  <a href="mailto:contact@spacesphere.com" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>contact@spacesphere.com</a>
                 </li>
               </ul>
             </div>
           </div>
+
+      {/* Popup Modal Form */}
+      {isModalOpen && (
+        <div 
+          className="modal-overlay"
+          onClick={() => setIsModalOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            padding: '20px',
+            animation: 'fadeIn 0.3s ease-out'
+          }}
+        >
+          <div 
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '40px',
+              maxWidth: '500px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+              animation: 'slideUp 0.3s ease-out',
+              position: 'relative'
+            }}
+          >
+            <button
+              onClick={() => setIsModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: 'transparent',
+                border: 'none',
+                fontSize: '24px',
+                cursor: 'pointer',
+                color: '#666',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                transition: 'background 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+            >
+              ×
+            </button>
+            
+            <h2 style={{ 
+              fontSize: '28px', 
+              fontWeight: 700, 
+              color: '#1a1a1a', 
+              marginBottom: '8px',
+              fontFamily: "'Playfair Display', serif"
+            }}>
+              Get In Touch
+            </h2>
+            <p style={{ fontSize: '16px', color: '#666', marginBottom: '32px' }}>
+              Fill out the form below and we'll get back to you shortly.
+            </p>
+            
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                // Handle form submission here
+                alert('Thank you for your inquiry! We will contact you soon.');
+                setIsModalOpen(false);
+              }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+            >
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                />
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                />
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                />
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Interested In
+                </label>
+                <select
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box',
+                    background: '#fff',
+                    color: '#000000'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                >
+                  <option value="" style={{ color: '#000000' }}>Select an option</option>
+                  <option value="residential" style={{ color: '#000000' }}>Luxury Residential Apartments</option>
+                  <option value="villas" style={{ color: '#000000' }}>Signature Villas & Gated Communities</option>
+                  <option value="plots" style={{ color: '#000000' }}>Premium Open Plots</option>
+                  <option value="commercial" style={{ color: '#000000' }}>Commercial Spaces</option>
+                  <option value="consultation" style={{ color: '#000000' }}>General Consultation</option>
+                </select>
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Message
+                </label>
+                <textarea
+                  rows={4}
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box',
+                    resize: 'vertical',
+                    fontFamily: 'inherit'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                />
+              </div>
+              
+              <button
+                type="submit"
+                className="cta-button"
+                style={{ 
+                  width: '100%', 
+                  padding: '14px 26px', 
+                  marginTop: '8px',
+                  fontSize: '16px'
+                }}
+              >
+                Submit Inquiry
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
           <div style={{ borderTop: '1px solid rgba(199, 154, 74, 0.2)', paddingTop: '40px', display: 'flex', flexDirection: 'column', gap: '20px', alignItems: 'center', textAlign: 'center' }}>
             <p style={{ color: '#8a857a', fontSize: '14px', margin: 0 }}>
