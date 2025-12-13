@@ -599,17 +599,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="project-dots" style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '32px' }}>
-          {projects.map((_, idx) => (
-            <span
-              key={idx}
-              className={`project-dot ${idx === currentProjectSlide ? "active" : ""}`}
-              onClick={() => setCurrentProjectSlide(idx)}
-              role="button"
-              tabIndex={0}
-            />
-          ))}
-        </div>
+       
       </section>
 
       <section className="why-choose-section" style={{ gap: '0', padding: '80px 0' }}>
