@@ -804,30 +804,78 @@ body {
 
   /* Portfolio Section Mobile */
   .projects-section {
-    padding: 20px 16px 40px !important;
+    padding: 20px 12px 40px !important;
+    overflow: hidden !important;
+  }
+
+  .projects-header {
+    margin-bottom: 32px !important;
+    padding: 0 8px !important;
   }
 
   .projects-title {
-    font-size: 28px !important;
+    font-size: 24px !important;
+    text-align: center !important;
+    padding: 0 8px !important;
   }
 
   .projects-subtitle {
     font-size: 14px !important;
     padding: 0 16px !important;
+    text-align: center !important;
+  }
+
+  .projects-section > div > p {
+    font-size: 14px !important;
+    padding: 0 12px !important;
+    text-align: center !important;
+    margin: 12px auto 0 !important;
+  }
+
+  .projects-carousel {
+    margin: 32px 0 !important;
+    overflow: visible !important;
+  }
+
+  .projects-track {
+    gap: 16px !important;
   }
 
   .project-card {
     min-width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+  }
+
+  .project-image-container {
+    width: 100% !important;
+    height: 250px !important;
+    overflow: hidden !important;
+  }
+
+  .project-images-track {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .project-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
   }
 
   .project-title {
     font-size: 16px !important;
-    margin: 16px 20px 10px 20px !important;
+    margin: 16px 16px 8px 16px !important;
+    line-height: 1.4 !important;
   }
 
   .project-card p {
     font-size: 13px !important;
-    margin: 0 20px 12px 20px !important;
+    margin: 0 16px 16px 16px !important;
+    line-height: 1.6 !important;
   }
 
   /* Why Choose & What We Offer Mobile */
@@ -965,12 +1013,15 @@ body {
     gap: 32px !important;
   }
 
-  /* Floating WhatsApp Mobile */
+  /* Floating WhatsApp Mobile - Make Enquire Button Bigger */
   .floating-whatsapp {
-    width: 48px !important;
-    height: 48px !important;
+    min-width: 140px !important;
+    height: 56px !important;
     right: 16px !important;
     bottom: 16px !important;
+    padding: 14px 28px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
   }
 
   /* Slider dots Mobile */
