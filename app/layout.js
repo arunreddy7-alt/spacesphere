@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Jashn Realty | Elevate Club Towers",
-  description: "Discover a grand way of life with Jashn Elevate Club Towers.",
+  title: "Space Sphere | Luxury Real Estate Channel Partner in Pune & Hyderabad",
+  description: "Space Sphere is a premium real estate channel partner offering luxury homes, villas, commercial spaces & high-ROI investment plots across Pune and Hyderabad. Curated listings, trusted builders & seamless property buying assistance.",
 };
 
 export default function RootLayout({ children }) {
