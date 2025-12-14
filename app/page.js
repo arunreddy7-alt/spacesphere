@@ -922,7 +922,8 @@ export default function Home() {
 
 
 
-      <section className="what-we-offer-timeline-section" style={{ padding: '60px 0', position: 'relative', overflow: 'hidden', background: '#F6F7F5' }}>
+
+      <section id="what-we-offer" className="what-we-offer" style={{ padding: '60px 0', position: 'relative', overflow: 'hidden', background: '#F6F7F5' }}>
         {/* Background Decorative Elements */}
         <div style={{ 
           position: 'absolute', 
