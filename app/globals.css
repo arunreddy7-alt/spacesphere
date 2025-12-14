@@ -32,6 +32,18 @@ body {
   position: relative;
   overflow: hidden;
 }
+/* Luxury text gradient */
+.lux-text {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #e8edf3 40%,
+    #cfd8e3 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+}
 
 .hero-bg::before {
   content: '';
@@ -46,8 +58,30 @@ body {
   pointer-events: none;
 }
 
+
 .gold-gradient {
   background: linear-gradient(135deg, #ffd700, #ffed4e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.blue-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.silver-gradient {
+  background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.teal-gradient {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

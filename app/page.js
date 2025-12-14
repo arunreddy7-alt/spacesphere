@@ -13,10 +13,10 @@ const navLinks = [
 ];
 
 const heroImages = [
-  "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1612637968894-660373e23b03?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1461175827210-5ceac3e39dd2?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "/villa.jpg",
+  "/apartment.jpg",
+  "/GalleryDown.jpg",
+  "/commercial.jpg",
 ];
 
 const projects = [
@@ -314,18 +314,26 @@ export default function Home() {
           <div className="relative flex flex-1 flex-col justify-end md:flex-row md:items-center md:justify-between md:gap-8 md:px-12 md:pb-16">
             <div className="max-w-3xl px-6 pb-14 md:px-0 md:pb-0">
 
-              <h1 className="serif-heading text-4xl font-bold leading-tight md:text-6xl" style={{ background: 'linear-gradient(135deg, #e8e3d9 0%, #f5f3f0 50%, #d4d0c8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.3)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.3)' }}>
-                SPACE SPHERE
-              </h1>
-              <p className="serif-subheading mt-3 text-xl md:text-2xl" style={{ fontWeight: 500, background: 'linear-gradient(135deg, #e8e3d9 0%, #f0ede6 50%, #d0ccc3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)' }}>
-                Where Luxury Meets Location. Where Investments Become Legacies.
-              </p>
-              <p className="serif-subheading mt-4 text-lg md:text-xl" style={{ fontWeight: 400, background: 'linear-gradient(135deg, #e8e3d9 0%, #f0ede6 50%, #d0ccc3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)' }}>
-                Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
-              </p>
-              <p className="serif-subheading mt-2 text-base md:text-lg italic" style={{ background: 'linear-gradient(135deg, #e8e3d9 0%, #f0ede6 50%, #d0ccc3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.2)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.2)' }}>
-                Not just choices - curated excellence.
-              </p>
+
+            <h1 className="font-cinzel text-4xl md:text-6xl font-semibold leading-tight tracking-[0.15em] lux-text">
+  SPACE SPHERE
+</h1>
+
+<p className="font-playfair mt-3 text-xl md:text-2xl tracking-wide lux-text">
+  Where Luxury Meets Location. Where Investments Become Legacies.
+</p>
+
+
+<p className="font-cormorant mt-4 text-lg md:text-xl tracking-wide lux-text">
+  Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
+</p>
+
+
+<p className="font-cormorant italic mt-2 text-base md:text-lg tracking-wider lux-text">
+  Not just choices – curated excellence.
+</p>
+
+
 
               <button 
                 className="cta-button gold-shadow" 
@@ -550,7 +558,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="portfolio" className="projects-section" style={{ padding: '20px 24px 40px' }}>
+
+      <section id="portfolio" className="projects-section" style={{ padding: '20px 24px 40px', background: '#F6F7F5' }}>
         <div className="projects-header" style={{ marginBottom: '48px' }}>
           <h2 className="projects-title">Our Portfolio</h2>
           <p className="projects-subtitle" style={{ margin: '12px auto 0', fontSize: '18px', color: '#4a4a4a', fontStyle: 'italic' }}>
@@ -775,7 +784,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ padding: '100px 24px', background: 'linear-gradient(180deg, #fafafa 0%, #ffffff 50%, #fafafa 100%)', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ padding: '100px 24px', background: '', position: 'relative', overflow: 'hidden' }}>
         {/* Decorative background elements */}
         <div style={{ 
           position: 'absolute', 
