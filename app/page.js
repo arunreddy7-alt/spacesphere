@@ -14,9 +14,9 @@ const navLinks = [
 
 const heroImages = [
   "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1612637968894-660373e23b03?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1461175827210-5ceac3e39dd2?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
 const projects = [
@@ -134,17 +134,7 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
   const activeImage = heroImages[currentSlide];
-
-  // Navigation functions for portfolio section
-  const goToPreviousProject = () => {
-    setCurrentProjectSlide((prev) => (prev - 1 + projects.length) % projects.length);
-  };
-
-  const goToNextProject = () => {
-    setCurrentProjectSlide((prev) => (prev + 1) % projects.length);
-  };
 
   return (
     <main className="bg-white text-foreground">
@@ -320,18 +310,20 @@ export default function Home() {
             )}
           </header>
 
+
           <div className="relative flex flex-1 flex-col justify-end md:flex-row md:items-center md:justify-between md:gap-8 md:px-12 md:pb-16">
             <div className="max-w-3xl px-6 pb-14 md:px-0 md:pb-0">
-              <h1 className="serif-heading text-4xl font-bold leading-tight md:text-6xl">
+
+              <h1 className="serif-heading text-4xl font-bold leading-tight md:text-6xl" style={{ background: 'linear-gradient(135deg, #e8e3d9 0%, #f5f3f0 50%, #d4d0c8 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.3)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.3)' }}>
                 SPACE SPHERE
               </h1>
-              <p className="serif-subheading mt-3 text-xl text-[#e8e3d9] md:text-2xl" style={{ fontWeight: 500 }}>
+              <p className="serif-subheading mt-3 text-xl md:text-2xl" style={{ fontWeight: 500, background: 'linear-gradient(135deg, #e8e3d9 0%, #f0ede6 50%, #d0ccc3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)' }}>
                 Where Luxury Meets Location. Where Investments Become Legacies.
               </p>
-              <p className="serif-subheading mt-4 text-lg text-[#e8e3d9] md:text-xl" style={{ fontWeight: 400 }}>
+              <p className="serif-subheading mt-4 text-lg md:text-xl" style={{ fontWeight: 400, background: 'linear-gradient(135deg, #e8e3d9 0%, #f0ede6 50%, #d0ccc3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.25)' }}>
                 Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
               </p>
-              <p className="serif-subheading mt-2 text-base text-[#e8e3d9] md:text-lg italic">
+              <p className="serif-subheading mt-2 text-base md:text-lg italic" style={{ background: 'linear-gradient(135deg, #e8e3d9 0%, #f0ede6 50%, #d0ccc3 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', textShadow: '1px 1px 0 rgba(0, 0, 0, 0.2)', WebkitTextShadow: '1px 1px 0 rgba(0, 0, 0, 0.2)' }}>
                 Not just choices - curated excellence.
               </p>
 
@@ -569,10 +561,7 @@ export default function Home() {
           </p>
         </div>
 
-
-
-
-        <div className="projects-carousel" style={{ margin: '48px 0', position: 'relative' }}>
+        <div className="projects-carousel" style={{ margin: '48px 0' }}>
           <div
             className="projects-track"
             style={{
@@ -600,7 +589,6 @@ export default function Home() {
                   </div>
                 </div>
                 <h3 className="project-title" style={{ margin: '20px 24px 12px 24px', fontSize: '20px' }}>{project.title}</h3>
-
                 <p style={{ margin: '0 24px 12px 24px', fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
                   {idx === 0 && "Premium high-rise living with world-class amenities"}
                   {idx === 1 && "Exclusive gated communities with signature villas"}
@@ -611,80 +599,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-
-          {/* Mobile Navigation Buttons - Only visible on mobile, positioned at section bottom corners */}
-
-          <button
-            onClick={goToPreviousProject}
-            className="md:hidden"
-            style={{
-              position: 'absolute',
-              left: '20px',
-              bottom: '-40px',
-              width: '44px',
-              height: '44px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #caa44a, #f6e7b3)',
-              border: '2px solid #e8d7a3',
-              color: '#1a1207',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.4)',
-              zIndex: 10,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(199, 154, 74, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(199, 154, 74, 0.4)';
-            }}
-            aria-label="Previous project"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-
-          <button
-            onClick={goToNextProject}
-            className="md:hidden"
-            style={{
-              position: 'absolute',
-              right: '20px',
-              bottom: '-40px',
-              width: '44px',
-              height: '44px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #caa44a, #f6e7b3)',
-              border: '2px solid #e8d7a3',
-              color: '#1a1207',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.4)',
-              zIndex: 10,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(199, 154, 74, 0.5)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 16px rgba(199, 154, 74, 0.4)';
-            }}
-            aria-label="Next project"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 18l6-6-6-6"/>
-            </svg>
-          </button>
         </div>
 
        
