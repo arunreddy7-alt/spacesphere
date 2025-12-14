@@ -23,33 +23,33 @@ const projects = [
   {
     title: "Luxury Residential Apartments & High-Rise Towers",
     images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&auto=format&fit=crop",
+      "/apartment1.jpg",
+      "/apartment2.jpg",
+      "/apartment3.jpg",
     ],
   },
   {
     title: "Signature Villas & Gated Communities",
     images: [
-      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1629236714859-3a1ec2d8f6c3?w=800&auto=format&fit=crop",
+      "/villas1.jpg",
+      "/villas2.jpg",
+      "/villas3.jpg",
     ],
   },
   {
     title: "Premium Open Plots with Future Growth Vision",
     images: [
-      "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=800&auto=format&fit=crop",
+      "/plot1.jpg",
+      "/plot2.jpg",
+      "/plot3.jpg",
     ],
   },
   {
     title: "Commercial Spaces for High-Return Investors",
     images: [
-      "https://images.unsplash.com/photo-1621293954908-907159247fc8?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&auto=format&fit=crop",
+      "/commercial1.jpg",
+      "/commercial2.jpg",
+      "/commercial3.jpg",
     ],
   },
 ];
@@ -315,23 +315,28 @@ export default function Home() {
             <div className="max-w-3xl px-6 pb-14 md:px-0 md:pb-0">
 
 
-            <h1 className="font-cinzel text-4xl md:text-6xl font-semibold leading-tight tracking-[0.15em] lux-text">
+            <h1 className="font-satoshi text-4xl md:text-6xl font-semibold tracking-[0.12em] soft-light-gradient">
   SPACE SPHERE
 </h1>
 
-<p className="font-playfair mt-3 text-xl md:text-2xl tracking-wide lux-text">
-  Where Luxury Meets Location. Where Investments Become Legacies.
-</p>
 
 
-<p className="font-cormorant mt-4 text-lg md:text-xl tracking-wide lux-text">
+            <p className="font-general mt-3 text-xl md:text-2xl tracking-wide soft-light-gradient zoom-animation">
+              Where Luxury Meets Location. Where Investments Become Legacies.
+            </p>
+
+
+
+<p className="font-general mt-4 text-lg md:text-xl tracking-wide soft-light-gradient zoom-animation ">
   Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
 </p>
 
 
-<p className="font-cormorant italic mt-2 text-base md:text-lg tracking-wider lux-text">
+
+<p className="font-general italic mt-2 text-base md:text-lg tracking-wider soft-light-gradient zoom-animation">
   Not just choices – curated excellence.
 </p>
+
 
 
 
@@ -375,7 +380,8 @@ export default function Home() {
 
       <section id="about" className="about-section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center', padding: '96px 24px' }}>
         <div className="about-content" style={{ display: 'grid', gap: '18px' }}>
-          <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600 }}>
+
+          <p className="eyebrow font-satoshi" style={{ fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600}}>
             Welcome To Space Sphere
           </p>
           <h2 style={{ fontSize: '32px', fontWeight: 700, color: '#1a1a1a', marginTop: '8px', fontFamily: "'Playfair Display', serif" }}>
@@ -466,7 +472,7 @@ export default function Home() {
               boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.1)'
             }}>
               <img
-                src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="/about.png"
                 alt="Space Sphere premium properties"
                 style={{
                   width: '100%',
@@ -613,134 +619,753 @@ export default function Home() {
        
       </section>
 
-      <section className="why-choose-section" style={{ gap: '0', padding: '80px 0' }}>
-        <div className="why-choose-content" style={{ alignItems: 'center', padding: '0 60px' }}>
-          <div className="content-wrapper">
-            <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '12px' }}>
+
+
+      <section className="space-sphere-edge-section" style={{ padding: '60px 0', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)' }}>
+        {/* Geometric Background Elements */}
+        <div style={{ 
+          position: 'absolute', 
+          top: '-50px', 
+          right: '-50px', 
+          width: '250px', 
+          height: '250px', 
+          background: 'radial-gradient(circle, rgba(199, 154, 74, 0.08) 0%, transparent 70%)',
+          borderRadius: '50%',
+          zIndex: 1
+        }}></div>
+        
+        <div style={{ 
+          position: 'absolute', 
+          bottom: '-25px', 
+          left: '-25px', 
+          width: '200px', 
+          height: '200px', 
+          background: 'conic-gradient(from 0deg, rgba(199, 154, 74, 0.06) 0deg, transparent 120deg, rgba(199, 154, 74, 0.08) 240deg, transparent 360deg)',
+          zIndex: 1,
+          animation: 'rotate 20s linear infinite'
+        }}></div>
+        
+        {/* Floating Geometric Shapes */}
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          left: '10%',
+          width: '50px',
+          height: '50px',
+          background: 'linear-gradient(45deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))',
+          transform: 'rotate(45deg)',
+          borderRadius: '8px',
+          zIndex: 1,
+          animation: 'float 6s ease-in-out infinite'
+        }}></div>
+        
+        <div style={{
+          position: 'absolute',
+          bottom: '25%',
+          right: '15%',
+          width: '40px',
+          height: '40px',
+          background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.12), rgba(199, 154, 74, 0.08))',
+          borderRadius: '50%',
+          zIndex: 1,
+          animation: 'float 8s ease-in-out infinite reverse'
+        }}></div>
+
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <p className="eyebrow" style={{ fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '8px' }}>
               The Space Sphere Edge
             </p>
-            <h2 className="why-choose-title" style={{ margin: '0 0 8px 0', fontSize: '28px', fontFamily: "'Playfair Display', serif" }}>Because Luxury Deserves Precision.</h2>
-            <div style={{ marginTop: '32px', display: 'grid', gap: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
-                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
-                <div>
-                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Personalized Property Curation</strong>
-                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Tailored to taste & investment vision</span>
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
-                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
-                <div>
-                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Access to Elite Developers</strong>
-                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>across Pune & Hyderabad</span>
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
-                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
-                <div>
-                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Transparent Deals</strong>
-                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>No grey lines, no inflated numbers</span>
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
-                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
-                <div>
-                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>End-to-end Assistance</strong>
-                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Till the moment you hold your keys</span>
-                </div>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
-                <span style={{ color: '#c79a4a', fontSize: '20px', lineHeight: '1', marginTop: '2px' }}>💠</span>
-                <div>
-                  <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '4px' }}>Investment-Led Advisory</strong>
-                  <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Growth, rental yield & appreciation insights</span>
-                </div>
-              </div>
-            </div>
-            <p style={{ marginTop: '32px', fontSize: '16px', color: '#1a1a1a', fontStyle: 'italic', fontWeight: 500 }}>
-              Luxury begins with clarity. We deliver both.
+            <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontFamily: "'Playfair Display', serif", fontWeight: 700, color: '#1a1a1a', margin: '0 0 12px 0', lineHeight: '1.2' }}>
+              Because Luxury Deserves Precision
+            </h2>
+            <p style={{ fontSize: '16px', color: '#4a4a4a', maxWidth: '500px', margin: '0 auto', fontStyle: 'italic' }}>
+              Where excellence meets innovation, and precision creates perfection.
             </p>
           </div>
-          <div className="vertical-divider-right"></div>
-        </div>
-        <div className="why-choose-visual">
-          <div className="image-slider-container">
-            <div
-              className="image-slider-track"
-              style={{
-                transform: `translateX(-${poolImageIndex * 100}%)`,
-              }}
-            >
-              {poolImages.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`Luxury pool ${idx + 1}`}
-                  className="slider-image"
-                />
-              ))}
+
+          {/* Floating Cards Grid */}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            gap: '30px',
+            position: 'relative',
+            marginTop: '40px'
+          }}>
+
+            {/* Card 1 - Top Left */}
+            <div className="floating-card" style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+              padding: '25px 20px',
+              borderRadius: '16px',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
+              border: '1px solid rgba(199, 154, 74, 0.2)',
+              position: 'relative',
+              transform: 'translateY(0)',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              zIndex: 3
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-10px',
+                left: '20px',
+                width: '35px',
+                height: '35px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
+                animation: 'pulse 3s ease-in-out infinite'
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              
+              <div style={{ marginTop: '20px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  Personalized Curation
+                </h3>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  Tailored to your taste & investment vision, every property is hand-selected for your unique lifestyle.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 2 - Top Right */}
+            <div className="floating-card" style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+              padding: '25px 20px',
+              borderRadius: '16px',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
+              border: '1px solid rgba(199, 154, 74, 0.2)',
+              position: 'relative',
+              transform: 'translateY(-15px)',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              zIndex: 3
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-10px',
+                left: '20px',
+                width: '35px',
+                height: '35px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
+                animation: 'pulse 3s ease-in-out infinite 0.5s'
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              
+              <div style={{ marginTop: '20px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  Elite Developer Network
+                </h3>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  Exclusive partnerships across premium developers in Pune & Hyderabad region.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3 - Bottom Left */}
+            <div className="floating-card" style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+              padding: '25px 20px',
+              borderRadius: '16px',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
+              border: '1px solid rgba(199, 154, 74, 0.2)',
+              position: 'relative',
+              transform: 'translateY(15px)',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              zIndex: 3
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-10px',
+                left: '20px',
+                width: '35px',
+                height: '35px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
+                animation: 'pulse 3s ease-in-out infinite 1s'
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              
+              <div style={{ marginTop: '20px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  Complete Transparency
+                </h3>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  No hidden costs, no inflated numbers. Pure, honest dealings with crystal-clear pricing.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 4 - Bottom Right */}
+            <div className="floating-card" style={{
+              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+              padding: '25px 20px',
+              borderRadius: '16px',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
+              border: '1px solid rgba(199, 154, 74, 0.2)',
+              position: 'relative',
+              transform: 'translateY(0)',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              zIndex: 3
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-10px',
+                left: '20px',
+                width: '35px',
+                height: '35px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
+                animation: 'pulse 3s ease-in-out infinite 1.5s'
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </div>
+              
+              <div style={{ marginTop: '20px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  End-to-End Support
+                </h3>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  From search to keys, we guide you through every step of your property journey.
+                </p>
+              </div>
+            </div>
+
+            {/* Central Feature Card */}
+            <div className="floating-card central-card" style={{
+              background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
+              padding: '35px 30px',
+              borderRadius: '20px',
+              boxShadow: '0 20px 60px rgba(199, 154, 74, 0.3), 0 10px 25px rgba(199, 154, 74, 0.4)',
+              border: '2px solid rgba(255, 255, 255, 0.2)',
+              position: 'relative',
+              transform: 'scale(1.02)',
+              zIndex: 4,
+              margin: '15px auto',
+              gridColumn: '1 / -1',
+              maxWidth: '450px'
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-15px',
+                right: '30px',
+                width: '45px',
+                height: '45px',
+                background: 'linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.9))',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.2)',
+                animation: 'pulse 2s ease-in-out infinite'
+              }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#c79a4a">
+                  <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
+                </svg>
+              </div>
+              
+              <div>
+                <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>
+                  Investment-Led Advisory
+                </h3>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.5', margin: 0 }}>
+                  Data-driven insights on growth potential, rental yields & market appreciation trends.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Quote */}
+          <div style={{ textAlign: 'center', marginTop: '50px', position: 'relative' }}>
+            <div style={{
+              display: 'inline-block',
+              padding: '20px 35px',
+              background: 'rgba(255, 255, 255, 0.8)',
+              borderRadius: '16px',
+              border: '1px solid rgba(199, 154, 74, 0.2)',
+              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08)',
+              backdropFilter: 'blur(10px)'
+            }}>
+              <p style={{ fontSize: '16px', color: '#1a1a1a', fontStyle: 'italic', fontWeight: 500, margin: 0, fontFamily: "'Playfair Display', serif" }}>
+                "Luxury begins with clarity. We deliver both."
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="what-we-offer" className="experience-center-section" style={{ gap: '0', padding: '80px 0' }}>
-        <div className="experience-center-visual">
-          <div className="image-slider-container">
-            <div
-              className="image-slider-track"
-              style={{
-                transform: `translateX(-${experienceImageIndex * 100}%)`,
-              }}
-            >
-              {experienceCenterImages.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`Premium property showcase ${idx + 1}`}
-                  className="slider-image"
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="experience-center-content" style={{ alignItems: 'center', padding: '0 60px' }}>
-          <div className="vertical-divider-left"></div>
-          <div className="content-wrapper">
-            <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '12px' }}>
+
+
+      <section className="what-we-offer-timeline-section" style={{ padding: '60px 0', position: 'relative', overflow: 'hidden', background: '#F6F7F5' }}>
+        {/* Background Decorative Elements */}
+        <div style={{ 
+          position: 'absolute', 
+          top: '-100px', 
+          left: '-100px', 
+          width: '300px', 
+          height: '300px', 
+          background: 'radial-gradient(circle, rgba(199, 154, 74, 0.05) 0%, transparent 70%)',
+          borderRadius: '50%',
+          zIndex: 1
+        }}></div>
+        
+        <div style={{ 
+          position: 'absolute', 
+          bottom: '-80px', 
+          right: '-80px', 
+          width: '250px', 
+          height: '250px', 
+          background: 'conic-gradient(from 180deg, rgba(199, 154, 74, 0.04) 0deg, transparent 90deg, rgba(199, 154, 74, 0.06) 180deg, transparent 270deg, rgba(199, 154, 74, 0.04) 360deg)',
+          zIndex: 1,
+          animation: 'rotate 25s linear infinite reverse'
+        }}></div>
+
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <p className="eyebrow" style={{ fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '8px' }}>
               What We Offer?
             </p>
-            <h2 className="experience-center-title" style={{ margin: '0 0 8px 0', fontSize: '28px', fontFamily: "'Playfair Display', serif" }}>
+            <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontFamily: "'Playfair Display', serif", fontWeight: 700, color: '#1a1a1a', margin: '0 0 12px 0', lineHeight: '1.2' }}>
               A Seamless Ownership Journey
             </h2>
-            <div style={{ marginTop: '28px', display: 'grid', gap: '18px' }}>
-              <div>
-                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Discovery Consultation</strong>
-                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Define requirements, expectations & aspirations</span>
+            <p style={{ fontSize: '16px', color: '#4a4a4a', maxWidth: '600px', margin: '0 auto', fontStyle: 'italic' }}>
+              From first consultation to keys in hand, we make your property journey effortless and exceptional.
+            </p>
+          </div>
+
+          {/* Timeline Process Flow */}
+          <div style={{ position: 'relative', marginTop: '50px' }}>
+            {/* Central Timeline Line */}
+            <div style={{
+              position: 'absolute',
+              left: '50%',
+              top: '0',
+              bottom: '0',
+              width: '4px',
+              background: 'linear-gradient(180deg, #c79a4a 0%, #d4af6a 50%, #c79a4a 100%)',
+              transform: 'translateX(-50%)',
+              borderRadius: '2px',
+              zIndex: 1
+            }}></div>
+
+
+
+            {/* Step 1 - Discovery Consultation */}
+            <div className="timeline-step" style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '80px',
+              position: 'relative',
+              zIndex: 2
+            }}>
+              <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
+                <div className="timeline-card" style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  padding: '35px 20px',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  maxWidth: '350px',
+                  position: 'relative',
+                  transform: 'translateX(0)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}>
+                  
+                  
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                    Discovery Consultation
+                  </h3>
+                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                    We understand your lifestyle, investment goals, and preferences to create a personalized property roadmap.
+                  </p>
+                </div>
               </div>
-              <div>
-                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Curated Project Showcase</strong>
-                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Only premium & value-aligned options</span>
-              </div>
-              <div>
-                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Guided Site Tours</strong>
-                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Experience spaces before deciding</span>
-              </div>
-              <div>
-                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Closure & Negotiation Support</strong>
-                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>Transparent & confident pricing</span>
-              </div>
-              <div>
-                <strong style={{ color: '#1a1a1a', fontSize: '16px', display: 'block', marginBottom: '6px' }}>Paperwork + Loan Assistance</strong>
-                <span style={{ color: '#4a4a4a', fontSize: '15px' }}>We simplify everything</span>
+              
+              {/* Timeline Node */}
+              <div style={{
+                width: '16px',
+                height: '16px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                border: '3px solid #ffffff',
+                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                zIndex: 3
+              }}></div>
+              
+              <div style={{ flex: '1', paddingLeft: '50px' }}>
+                <div style={{
+                  width: '350px',
+                  height: '180px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  margin: '0 auto',
+                  position: 'relative'
+                }}>
+                  <img 
+                    src="/1.jpg" 
+                    alt="Consultation Meeting"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: 'brightness(1.1) contrast(1.05)'
+                    }}
+                  />
+                 
+                </div>
               </div>
             </div>
-            <p style={{ marginTop: '28px', fontSize: '16px', color: '#1a1a1a', fontStyle: 'italic' }}>
-              Your journey is effortless.<br />
-              <strong style={{ color: '#c79a4a' }}>The destination - exceptional.</strong>
-            </p>
-            <p style={{ marginTop: '16px', fontSize: '15px', color: '#4a4a4a', fontStyle: 'italic' }}>
-              Crafted for Comfort, Precision & Peace of Mind
+
+
+
+            {/* Step 2 - Curated Showcase */}
+            <div className="timeline-step" style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '80px',
+              position: 'relative',
+              zIndex: 2
+            }}>
+              <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
+                <div style={{
+                  width: '350px',
+                  height: '180px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  margin: '0 auto',
+                  position: 'relative'
+                }}>
+                  <img 
+                    src="/2.jpg" 
+                    alt="Premium Villa Properties"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: 'brightness(1.1) contrast(1.05)'
+                    }}
+                  />
+                  
+                </div>
+              </div>
+              
+              {/* Timeline Node */}
+              <div style={{
+                width: '16px',
+                height: '16px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                border: '3px solid #ffffff',
+                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                zIndex: 3
+              }}></div>
+              
+              <div style={{ flex: '1', paddingLeft: '50px' }}>
+                <div className="timeline-card" style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  padding: '35px 20px',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  maxWidth: '350px',
+                  position: 'relative',
+                  transform: 'translateX(0)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}>
+                  
+                  
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                    Curated Project Showcase
+                  </h3>
+                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                    Exclusive access to handpicked premium properties that align perfectly with your vision and investment strategy.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+            {/* Step 3 - Guided Site Tours */}
+            <div className="timeline-step" style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '80px',
+              position: 'relative',
+              zIndex: 2
+            }}>
+              <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
+                <div className="timeline-card" style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  padding: '35px 20px',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  maxWidth: '350px',
+                  position: 'relative',
+                  transform: 'translateX(0)',
+
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}>
+                  
+                  
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                    Guided Site Tours
+                  </h3>
+                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                    Experience luxury firsthand with our expert-guided tours of premium developments and lifestyle amenities.
+                  </p>
+                </div>
+              </div>
+              
+              {/* Timeline Node */}
+              <div style={{
+                width: '16px',
+                height: '16px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                border: '3px solid #ffffff',
+                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                zIndex: 3
+              }}></div>
+              
+              <div style={{ flex: '1', paddingLeft: '50px' }}>
+                <div style={{
+                  width: '350px',
+                  height: '180px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  margin: '0 auto',
+                  position: 'relative'
+                }}>
+                  <img 
+                    src="/3.jpg" 
+                    alt="Luxury Apartment Tour"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: 'brightness(1.1) contrast(1.05)'
+                    }}
+                  />
+                  
+                </div>
+              </div>
+            </div>
+
+
+
+            {/* Step 4 - Negotiation & Closure */}
+            <div className="timeline-step" style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '80px',
+              position: 'relative',
+              zIndex: 2
+            }}>
+              <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
+                <div style={{
+                  width: '350px',
+                  height: '180px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  margin: '0 auto',
+                  position: 'relative'
+                }}>
+                  <img 
+                    src="/4.jpg" 
+                    alt="Commercial Property Negotiation"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: 'brightness(1.1) contrast(1.05)'
+                    }}
+                  />
+                  
+                </div>
+              </div>
+              
+              {/* Timeline Node */}
+              <div style={{
+                width: '16px',
+                height: '16px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                border: '3px solid #ffffff',
+                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                zIndex: 3
+              }}></div>
+              
+              <div style={{ flex: '1', paddingLeft: '50px' }}>
+                <div className="timeline-card" style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  padding: '35px 20px',
+                  borderRadius: '16px',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  maxWidth: '350px',
+                  position: 'relative',
+                  transform: 'translateX(0)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}>
+                  
+                  
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                    Negotiation & Closure
+                  </h3>
+                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                    Expert negotiation to secure the best terms, followed by seamless documentation and transparent deal closure.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+
+            {/* Step 5 - Complete Assistance */}
+            <div className="timeline-step" style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginBottom: '60px',
+              position: 'relative',
+              zIndex: 2
+            }}>
+              <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
+                <div className="timeline-card" style={{
+                  display: 'inline-block',
+                  background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
+                  padding: '35px 20px',
+                  borderRadius: '16px',
+                  boxShadow: '0 15px 35px rgba(199, 154, 74, 0.3), 0 8px 20px rgba(199, 154, 74, 0.4)',
+                  border: '2px solid rgba(255, 255, 255, 0.2)',
+                  maxWidth: '350px',
+                  position: 'relative',
+                  transform: 'scale(1.02)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                }}>
+                  
+                  
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                    Complete Assistance
+                  </h3>
+                  <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.5', margin: 0 }}>
+                    End-to-end support including paperwork, loan assistance, and handover until you receive your keys.
+                  </p>
+                </div>
+              </div>
+              
+              {/* Timeline Node */}
+              <div style={{
+                width: '16px',
+                height: '16px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
+                borderRadius: '50%',
+                border: '3px solid #ffffff',
+                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                zIndex: 3,
+                animation: 'pulse 2s ease-in-out infinite'
+              }}></div>
+              
+              <div style={{ flex: '1', paddingLeft: '50px' }}>
+                <div style={{
+                  width: '350px',
+                  height: '180px',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
+                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  margin: '0 auto',
+                  position: 'relative'
+                }}>
+                  <img 
+                    src="/5.jpg" 
+                    alt="Property Handover & Keys"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      filter: 'brightness(1.1) contrast(1.05)'
+                    }}
+                  />
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Impact Statement */}
+          <div style={{ textAlign: 'center', marginTop: '80px', position: 'relative' }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '30px',
+              marginBottom: '50px'
+            }}>
+              <div style={{
+                padding: '30px',
+                background: 'rgba(255, 255, 255, 0.8)',
+                borderRadius: '16px',
+                border: '1px solid rgba(199, 154, 74, 0.2)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                backdropFilter: 'blur(10px)'
+              }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#c79a4a', marginBottom: '8px' }}>Effortless</h3>
+                <p style={{ fontSize: '16px', color: '#4a4a4a', margin: 0 }}>Your journey is seamless</p>
+              </div>
+              <div style={{
+                padding: '30px',
+                background: 'rgba(255, 255, 255, 0.8)',
+                borderRadius: '16px',
+                border: '1px solid rgba(199, 154, 74, 0.2)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                backdropFilter: 'blur(10px)'
+              }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#c79a4a', marginBottom: '8px' }}>Exceptional</h3>
+                <p style={{ fontSize: '16px', color: '#4a4a4a', margin: 0 }}>The destination is extraordinary</p>
+              </div>
+            </div>
+            
+            <p style={{ fontSize: '18px', color: '#1a1a1a', fontStyle: 'italic', fontWeight: 500, fontFamily: "'Playfair Display', serif" }}>
+              "Crafted for Comfort, Precision & Peace of Mind"
             </p>
           </div>
         </div>
@@ -776,21 +1401,62 @@ export default function Home() {
                 color: 'white'
               }}>
                 <p style={{ fontSize: '18px', color: '#F2C66E', marginBottom: '8px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Featured Project</p>
+
                 <p style={{ fontSize: '32px', color: '#ffffff', fontWeight: 700, marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>Avinea Project Preview</p>
-                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)' }}>Premium gated community with luxury amenities</p>
+                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '24px' }}>Premium gated community with luxury amenities</p>
+
+                <a 
+                  href="https://www.google.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ 
+                    background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
+                    border: 'none',
+                    color: 'white',
+                    padding: '14px 32px',
+                    borderRadius: '50px',
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    boxShadow: '0 6px 20px rgba(199, 154, 74, 0.4)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(199, 154, 74, 0.6)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(199, 154, 74, 0.4)';
+                  }}
+                >
+                  Explore More
+                  <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transition: 'transform 0.3s ease' }}>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
             </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section style={{ padding: '100px 24px', background: '', position: 'relative', overflow: 'hidden' }}>
+
+      <section style={{ padding: '60px 24px', background: '', position: 'relative', overflow: 'hidden' }}>
         {/* Decorative background elements */}
         <div style={{ 
           position: 'absolute', 
           top: '10%', 
           left: '-5%', 
-          fontSize: '200px', 
+          fontSize: '120px', 
           color: 'rgba(199, 154, 74, 0.03)', 
           fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
@@ -802,7 +1468,7 @@ export default function Home() {
           position: 'absolute', 
           bottom: '10%', 
           right: '-5%', 
-          fontSize: '200px', 
+          fontSize: '120px', 
           color: 'rgba(199, 154, 74, 0.03)', 
           fontFamily: "'Playfair Display', serif",
           fontWeight: 700,
@@ -812,29 +1478,29 @@ export default function Home() {
         }}>"</div>
         
         <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-            <p className="eyebrow" style={{ fontSize: '14px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '12px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <p className="eyebrow" style={{ fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '10px' }}>
               Client Impressions
             </p>
-            <h2 style={{ fontSize: '42px', fontWeight: 700, color: '#1a1a1a', marginBottom: '12px', fontFamily: "'Playfair Display', serif", lineHeight: '1.2' }}>
+            <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif", lineHeight: '1.2' }}>
               Real Words. Refined Experiences.
             </h2>
-            <div style={{ width: '80px', height: '3px', background: 'linear-gradient(90deg, #c79a4a, #d4af6a)', margin: '20px auto 0' }}></div>
+            <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #c79a4a, #d4af6a)', margin: '15px auto 0' }}></div>
           </div>
           
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '40px', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '24px', 
             alignItems: 'stretch', 
             position: 'relative'
           }}>
             {/* Featured Testimonial - Left Side */}
             <div style={{ 
-              padding: '48px 40px', 
+              padding: '32px 28px', 
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)', 
-              borderRadius: '20px', 
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(199, 154, 74, 0.1)',
+              borderRadius: '16px', 
+              boxShadow: '0 6px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(199, 154, 74, 0.1)',
               border: '1px solid rgba(199, 154, 74, 0.15)',
               position: 'relative',
               zIndex: 2
@@ -844,40 +1510,40 @@ export default function Home() {
                 position: 'absolute',
                 top: 0,
                 right: 0,
-                width: '120px',
-                height: '120px',
+                width: '80px',
+                height: '80px',
                 background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1) 0%, transparent 70%)',
-                borderRadius: '0 20px 0 100%',
+                borderRadius: '0 16px 0 100%',
                 zIndex: 0
               }}></div>
               
               {/* Large quote mark */}
               <div style={{ 
-                fontSize: '120px', 
+                fontSize: '80px', 
                 color: 'rgba(199, 154, 74, 0.15)', 
                 fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 lineHeight: 0.8,
-                marginBottom: '20px',
+                marginBottom: '15px',
                 position: 'relative',
                 zIndex: 1
               }}>"</div>
               
               {/* Star rating */}
-              <div style={{ display: 'flex', gap: '6px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+              <div style={{ display: 'flex', gap: '4px', marginBottom: '18px', position: 'relative', zIndex: 1 }}>
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#c79a4a" style={{ filter: 'drop-shadow(0 1px 2px rgba(199, 154, 74, 0.3))' }}>
+                  <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ filter: 'drop-shadow(0 1px 2px rgba(199, 154, 74, 0.3))' }}>
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
               </div>
               
               <p style={{ 
-                fontSize: '20px', 
-                lineHeight: '1.8', 
+                fontSize: '16px', 
+                lineHeight: '1.7', 
                 color: '#1a1a1a', 
                 fontStyle: 'italic', 
-                marginBottom: '32px',
+                marginBottom: '24px',
                 position: 'relative',
                 zIndex: 1,
                 fontWeight: 500
@@ -887,42 +1553,42 @@ export default function Home() {
               
               <div style={{ 
                 borderTop: '2px solid rgba(199, 154, 74, 0.2)', 
-                paddingTop: '24px',
+                paddingTop: '18px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '16px',
+                gap: '12px',
                 position: 'relative',
                 zIndex: 1
               }}>
                 <div style={{
-                  width: '60px',
-                  height: '60px',
+                  width: '48px',
+                  height: '48px',
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: 'white',
-                  fontSize: '24px',
+                  fontSize: '18px',
                   fontWeight: 700,
                   flexShrink: 0
                 }}>SC</div>
                 <div>
-                  <p style={{ fontSize: '16px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Satisfied Client</p>
-                  <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Premium Property Owner</p>
+                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Satisfied Client</p>
+                  <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>Premium Property Owner</p>
                 </div>
               </div>
             </div>
             
             {/* Second Testimonial - Right Side (Smaller, Offset) */}
             <div style={{ 
-              padding: '40px 36px', 
+              padding: '28px 24px', 
               background: 'white', 
-              borderRadius: '20px', 
-              boxShadow: '0 6px 24px rgba(0,0,0,0.06)',
+              borderRadius: '16px', 
+              boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
               border: '1px solid rgba(199, 154, 74, 0.1)',
               position: 'relative',
-              transform: 'translateY(40px)',
+              transform: 'translateY(30px)',
               zIndex: 1
             }}>
               {/* Decorative line accent */}
@@ -930,10 +1596,10 @@ export default function Home() {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '4px',
+                width: '3px',
                 height: '100%',
                 background: 'linear-gradient(180deg, #c79a4a, #d4af6a)',
-                borderRadius: '20px 0 0 20px'
+                borderRadius: '16px 0 0 16px'
               }}></div>
               
               {/* Decorative corner accent */}
@@ -941,40 +1607,40 @@ export default function Home() {
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '120px',
-                height: '120px',
+                width: '80px',
+                height: '80px',
                 background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1) 0%, transparent 70%)',
-                borderRadius: '20px 0 0 0',
+                borderRadius: '16px 0 0 0',
                 zIndex: 0
               }}></div>
               
               {/* Large quote mark */}
               <div style={{ 
-                fontSize: '120px', 
+                fontSize: '80px', 
                 color: 'rgba(199, 154, 74, 0.15)', 
                 fontFamily: "'Playfair Display', serif",
                 fontWeight: 700,
                 lineHeight: 0.8,
-                marginBottom: '20px',
+                marginBottom: '15px',
                 position: 'relative',
                 zIndex: 1
               }}>"</div>
               
               {/* Star rating */}
-              <div style={{ display: 'flex', gap: '6px', marginBottom: '24px', position: 'relative', zIndex: 1 }}>
+              <div style={{ display: 'flex', gap: '4px', marginBottom: '18px', position: 'relative', zIndex: 1 }}>
                 {[...Array(5)].map((_, i) => (
-                  <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#c79a4a" style={{ filter: 'drop-shadow(0 1px 2px rgba(199, 154, 74, 0.3))' }}>
+                  <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ filter: 'drop-shadow(0 1px 2px rgba(199, 154, 74, 0.3))' }}>
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                 ))}
               </div>
               
               <p style={{ 
-                fontSize: '20px', 
-                lineHeight: '1.8', 
+                fontSize: '16px', 
+                lineHeight: '1.7', 
                 color: '#1a1a1a', 
                 fontStyle: 'italic', 
-                marginBottom: '32px',
+                marginBottom: '24px',
                 position: 'relative',
                 zIndex: 1,
                 fontWeight: 500
@@ -984,29 +1650,29 @@ export default function Home() {
               
               <div style={{ 
                 borderTop: '2px solid rgba(199, 154, 74, 0.2)', 
-                paddingTop: '24px',
+                paddingTop: '18px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '16px',
+                gap: '12px',
                 position: 'relative',
                 zIndex: 1
               }}>
                 <div style={{
-                  width: '60px',
-                  height: '60px',
+                  width: '48px',
+                  height: '48px',
                   borderRadius: '50%',
                   background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: 'white',
-                  fontSize: '24px',
+                  fontSize: '18px',
                   fontWeight: 700,
                   flexShrink: 0
                 }}>VC</div>
                 <div>
-                  <p style={{ fontSize: '16px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Valued Customer</p>
-                  <p style={{ fontSize: '13px', color: '#666', margin: 0 }}>Investment Partner</p>
+                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Valued Customer</p>
+                  <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>Investment Partner</p>
                 </div>
               </div>
             </div>
@@ -1014,30 +1680,30 @@ export default function Home() {
           
           {/* Decorative bottom accent */}
           <div style={{ 
-            marginTop: '60px', 
+            marginTop: '40px', 
             textAlign: 'center',
             position: 'relative'
           }}>
             <div style={{ 
               display: 'inline-flex', 
               alignItems: 'center', 
-              gap: '12px',
-              padding: '16px 32px',
+              gap: '10px',
+              padding: '12px 24px',
               background: 'rgba(199, 154, 74, 0.05)',
               borderRadius: '50px',
               border: '1px solid rgba(199, 154, 74, 0.15)'
             }}>
-              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#c79a4a' }}></div>
-              <p style={{ fontSize: '14px', color: '#666', margin: 0, fontStyle: 'italic' }}>
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c79a4a' }}></div>
+              <p style={{ fontSize: '12px', color: '#666', margin: 0, fontStyle: 'italic' }}>
                 Trusted by discerning clients across Pune & Hyderabad
               </p>
-              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#c79a4a' }}></div>
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c79a4a' }}></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" className="contact-section" style={{ padding: '80px 24px 100px' }}>
+      <section id="contact" className="contact-section" style={{ padding: '80px 24px 100px', background: '#F6F7F5' }}>
         <h2 className="contact-title" style={{ marginBottom: '12px' }}>Connect With Us</h2>
         <p style={{ textAlign: 'center', fontSize: '18px', color: '#4a4a4a', marginBottom: '48px', fontStyle: 'italic' }}>
           Let's Discover Your Next Address of Prestige.
