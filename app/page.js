@@ -4,13 +4,14 @@
 import { useEffect, useState } from "react";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About Us", href: "#about" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "What We Offer", href: "#what-we-offer" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact Us", href: "#contact" },
+  { name: "HOME", href: "#home" },
+  { name: "ABOUT US", href: "#about" },
+  { name: "PORTFOLIO", href: "#portfolio" },
+  { name: "WHAT WE OFFER", href: "#what-we-offer" },
+  { name: "PROJECTS", href: "#projects" },
+  { name: "CONTACT US", href: "#contact" },
 ];
+
 
 const heroImages = [
   "/villa.jpg",
@@ -199,26 +200,37 @@ export default function Home() {
               transformOrigin: 'top'
             }}
           >
-            <nav className="flex flex-col px-4 py-4 gap-4">
-              {navLinks.map((item) => (
-                <a 
-                  key={item.name} 
-                  className="nav-link text-sm uppercase tracking-wide py-2" 
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsMobileMenuOpen(false);
-                    const element = document.querySelector(item.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
-                  style={{ cursor: 'pointer', color: '#1a1a1a' }}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
+           <nav
+  className="flex flex-row flex-nowrap px-6 py-4 gap-6 overflow-x-auto w-full"
+>
+  {navLinks.map((item) => (
+    <a
+      key={item.name}
+      href={item.href}
+      onClick={(e) => {
+        e.preventDefault();
+        setIsMobileMenuOpen(false);
+        const element = document.querySelector(item.href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }}
+      className="
+        nav-link 
+        text-sm 
+        uppercase 
+        tracking-wide 
+        px-6 
+        py-2 
+        whitespace-nowrap
+      "
+      style={{ cursor: "pointer", color: "#1a1a1a" }}
+    >
+      {item.name}
+    </a>
+  ))}
+</nav>
+
           </div>
         )}
       </header>
@@ -234,119 +246,70 @@ export default function Home() {
         <div className="hero-overlay" />
 
         <div className="relative z-10 flex min-h-screen flex-col">
-          <header className="flex items-center justify-between px-6 py-5 md:px-12 md:py-8 relative z-20">
-            <div className="flex items-center gap-2 text-xl md:text-2xl">
-              <span className="font-semibold tracking-tight">Space</span>
-              <span className="text-base font-medium md:text-lg">| sphere</span>
+          <div className="hero-shell">
+            <div className="hero-topbar">
+              <div className="hero-brand">
+                <span className="font-semibold">Space</span>
+                <span className="opacity-80">| sphere</span>
+              </div>
+
+              <nav className="hero-nav">
+                {navLinks.map((item) => (
+                  <a
+                    key={item.name}
+                    className="hero-nav-link"
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      const element = document.querySelector(item.href);
+                      if (element) {
+                        element.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                      }
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="hero-actions">
+                
+                <button
+                  className="hero-chat"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Enquire Now
+                </button>
+              </div>
             </div>
 
-            <nav className="hidden items-center gap-10 mr-10 text-sm uppercase tracking-[0.08em] md:flex">
-              {navLinks.map((item) => (
-                <a 
-                  key={item.name} 
-                  className="nav-link" 
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsMobileMenuOpen(false);
-                    const element = document.querySelector(item.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
+            <div className="hero-main">
+              <div className="hero">
+                <h1 className="hero-heading">
+                SPACE SPHERE
 
-            {/* Mobile Menu Button - Only visible on mobile */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="block md:hidden text-white p-2 relative z-50"
-              aria-label="Toggle menu"
-            >
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {isMobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-                </svg>
-            </button>
-
-            {/* Mobile Menu - Only visible on mobile */}
-            {isMobileMenuOpen && (
-              <div 
-                className="md:hidden absolute top-full left-0 right-0 backdrop-blur-md shadow-lg z-50"
-                style={{ 
-                  background: 'rgba(245, 245, 240, 0.98)',
-                  animation: 'slideDown 0.3s ease-out',
-                  transformOrigin: 'top'
-                }}
-              >
-                <nav className="flex flex-col px-4 py-4 gap-4">
-                  {navLinks.map((item) => (
-                    <a 
-                      key={item.name} 
-                      className="nav-link text-sm uppercase tracking-wide py-2" 
-                      href={item.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setIsMobileMenuOpen(false);
-                        const element = document.querySelector(item.href);
-                        if (element) {
-                          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-                      }}
-                      style={{ cursor: 'pointer', color: '#1a1a1a' }}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </nav>
+                </h1>
+                <p className="hero-subhead">
+                  Where Luxury Meets Location. Where Investments Become Legacies.
+                </p>
+                <p className="hero-subhead alt">
+                  Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
+                  <br />
+                  Not just choices – curated excellence.
+                </p>
+                <div className="hero-cta-row">
+                  <button
+                    className="hero-primary"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Book a Private Consultation
+                  </button>
+                </div>
               </div>
-            )}
-          </header>
-
-
-          <div className="relative flex flex-1 flex-col justify-end md:flex-row md:items-center md:justify-between md:gap-8 md:px-12 md:pb-16">
-            <div className="max-w-3xl px-6 pb-14 md:px-0 md:pb-0">
-
-
-            <h1 className="font-satoshi text-4xl md:text-6xl font-semibold tracking-[0.12em] soft-light-gradient">
-  SPACE SPHERE
-</h1>
-
-
-
-            <p className="font-general mt-3 text-xl md:text-2xl tracking-wide soft-light-gradient zoom-animation">
-              Where Luxury Meets Location. Where Investments Become Legacies.
-            </p>
-
-
-
-<p className="font-general mt-4 text-lg md:text-xl tracking-wide soft-light-gradient zoom-animation ">
-  Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
-</p>
-
-
-
-<p className="font-general italic mt-2 text-base md:text-lg tracking-wider soft-light-gradient zoom-animation">
-  Not just choices – curated excellence.
-</p>
-
-
-
-
-              <button 
-                className="cta-button gold-shadow" 
-                style={{ marginTop: '28px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', padding: '14px 26px' }}
-                onClick={() => setIsModalOpen(true)}
-              >
-                Book a Private Consultation
-              </button>
             </div>
           </div>
         </div>
@@ -378,250 +341,89 @@ export default function Home() {
         </a>
       </section>
 
-      <section id="about" className="about-section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center', padding: '96px 24px' }}>
-        <div className="about-content" style={{ display: 'grid', gap: '18px' }}>
-
-          <p className="eyebrow font-satoshi" style={{ fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600}}>
-            Welcome To Space Sphere
-          </p>
-          <h2 style={{ fontSize: '32px', fontWeight: 700, color: '#1a1a1a', marginTop: '8px', fontFamily: "'Playfair Display', serif" }}>
-            A Trusted Partner in Indian Real Estate
-          </h2>
-          <p className="body-copy" style={{ fontSize: '16px', lineHeight: '1.8', color: '#4a4a4a' }}>
-            Space Sphere stands at the intersection of <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>expert advisory</strong>, <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>premium property sourcing</strong>, and <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>seamless ownership experience</strong>. At Space Sphere, we believe a property is more than real estate - it is a <em style={{ color: '#c79a4a' }}>statement, an asset, a lifetime belonging</em>.
-          </p>
-          <p className="body-copy" style={{ fontSize: '16px', lineHeight: '1.8', color: '#4a4a4a' }}>
-            With <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>elite partnerships</strong> across premium developers in <span style={{ color: '#c79a4a', fontWeight: 600 }}>Pune, Hyderabad and surrounding regions</span>, we bring you access to refined spaces built for those who desire more.
-          </p>
-          <p className="body-copy" style={{ fontSize: '16px', lineHeight: '1.8', color: '#4a4a4a' }}>
-            Our strength lies in <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>trust-driven relationships</strong>, <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>transparent deals</strong>, and <strong style={{ color: '#1a1a1a', fontWeight: 600 }}>deep market expertise</strong>. We deal only in spaces worthy of legacy.
-          </p>
-          <div style={{ marginTop: '24px', padding: '20px', background: 'rgba(199, 154, 74, 0.05)', borderRadius: '8px', borderLeft: '4px solid #c79a4a' }}>
-            <p style={{ fontSize: '15px', fontWeight: 600, color: '#1a1a1a', marginBottom: '12px' }}>Every project we represent is hand-evaluated for:</p>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '10px' }}>
-              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
-                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
-                <span><strong>Design & Architecture Value</strong></span>
-              </li>
-              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
-                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
-                <span><strong>Location Advantage & Appreciation</strong></span>
-              </li>
-              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
-                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
-                <span><strong>Builder Credibility & Delivery History</strong></span>
-              </li>
-              <li style={{ display: 'flex', alignItems: 'start', gap: '10px', fontSize: '15px', color: '#4a4a4a' }}>
-                <span style={{ color: '#c79a4a', fontSize: '18px', lineHeight: '1' }}>🔸</span>
-                <span><strong>Lifestyle Amenities & Luxury Quotient</strong></span>
-              </li>
-            </ul>
-          </div>
-          <button 
-            className="link-button" 
-            style={{ marginTop: '6px', display: 'inline-flex', gap: '6px', alignItems: 'center', padding: '10px 0' }}
-            onClick={() => setIsModalOpen(true)}
-          >
-            Schedule a Site Experience &gt;&gt;
-          </button>
-        </div>
-        
-        <div className="about-visual" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-          {/* Decorative background element */}
-          <div style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.08) 0%, transparent 50%)',
-            borderRadius: '20px',
-            transform: 'rotate(-2deg)',
-            zIndex: 0
-          }}></div>
-          
-          {/* Main image container with layered frames */}
-          <div style={{ 
-            position: 'relative', 
-            zIndex: 2,
-            padding: '24px',
-            background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
-            borderRadius: '20px',
-            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(199, 154, 74, 0.2)',
-            border: '2px solid rgba(199, 154, 74, 0.2)',
-            transform: 'rotate(1deg)',
-            transition: 'transform 0.3s ease',
-            marginLeft: '40px'
-          }}>
-            {/* Inner decorative border */}
-            <div style={{
-              position: 'absolute',
-              top: '12px',
-              left: '12px',
-              right: '12px',
-              bottom: '12px',
-              border: '1px solid rgba(199, 154, 74, 0.3)',
-              borderRadius: '12px',
-              pointerEvents: 'none',
-              zIndex: 1
-            }}></div>
-            
-            {/* Image with overlay effect */}
-            <div style={{
-              position: 'relative',
-              overflow: 'hidden',
-              borderRadius: '12px',
-              boxShadow: 'inset 0 2px 8px rgba(0, 0, 0, 0.1)'
-            }}>
-              <img
-                src="/about.png"
-                alt="Space Sphere premium properties"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  borderRadius: '12px',
-                  transition: 'transform 0.5s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
-              />
-              {/* Subtle gradient overlay */}
-              <div style={{
-                position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: '40%',
-                background: 'linear-gradient(to top, rgba(0, 0, 0, 0.1), transparent)',
-                pointerEvents: 'none',
-                borderRadius: '0 0 12px 12px'
-              }}></div>
-          </div>
-            
-            {/* Decorative corner accents */}
-            <div style={{
-              position: 'absolute',
-              top: '-8px',
-              right: '-8px',
-              width: '60px',
-              height: '60px',
-              background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.4)',
-              zIndex: 3
-            }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
-            </div>
-            
-            <div style={{
-              position: 'absolute',
-              bottom: '-8px',
-              left: '-8px',
-              width: '50px',
-              height: '50px',
-              background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.8), rgba(199, 154, 74, 0.6))',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 16px rgba(199, 154, 74, 0.3)',
-              zIndex: 3
-            }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white" opacity="0.9">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
-            </div>
-          </div>
-          
-          {/* Floating decorative elements */}
-          <div style={{
-            position: 'absolute',
-            top: '10%',
-            right: '-20px',
-            width: '100px',
-            height: '100px',
-            background: 'radial-gradient(circle, rgba(199, 154, 74, 0.1) 0%, transparent 70%)',
-            borderRadius: '50%',
-            zIndex: 1,
-            filter: 'blur(20px)'
-          }}></div>
-          
-          <div style={{
-            position: 'absolute',
-            bottom: '15%',
-            left: '-30px',
-            width: '120px',
-            height: '120px',
-            background: 'radial-gradient(circle, rgba(199, 154, 74, 0.08) 0%, transparent 70%)',
-            borderRadius: '50%',
-            zIndex: 1,
-            filter: 'blur(25px)'
-          }}></div>
-        </div>
-      </section>
-
-
-      <section id="portfolio" className="projects-section" style={{ padding: '20px 24px 40px', background: '#F6F7F5' }}>
-        <div className="projects-header" style={{ marginBottom: '48px' }}>
-          <h2 className="projects-title">Our Portfolio</h2>
-          <p className="projects-subtitle" style={{ margin: '12px auto 0', fontSize: '18px', color: '#4a4a4a', fontStyle: 'italic' }}>
-            A Selection Reserved for the Discerning Buyer
-          </p>
-          <p style={{ margin: '16px auto 0', fontSize: '16px', color: '#666', maxWidth: '800px', lineHeight: '1.7' }}>
-            Whether you seek a <strong style={{ color: '#1a1a1a' }}>prestigious home address</strong> or a <strong style={{ color: '#1a1a1a' }}>strategic asset</strong> - Space Sphere curates only the finest opportunities.
-          </p>
-        </div>
-
-        <div className="projects-carousel" style={{ margin: '48px 0' }}>
-          <div
-            className="projects-track"
-            style={{
-              transform: `translateX(-${currentProjectSlide * 100}%)`,
-              gap: '24px',
-            }}
-          >
-            {projects.map((project, idx) => (
-              <div key={idx} className="project-card" style={{ padding: '0' }}>
-                <div className="project-image-container">
-                  <div
-                    className="project-images-track"
-                    style={{
-                      transform: `translateX(-${projectImageIndices[idx] * 100}%)`,
-                    }}
-                  >
-                    {project.images.map((img, imgIdx) => (
-                      <img
-                        key={imgIdx}
-                        src={img}
-                        alt={`${project.title} - Image ${imgIdx + 1}`}
-                        className="project-image"
-                      />
-                    ))}
-                  </div>
-                </div>
-                <h3 className="project-title" style={{ margin: '20px 24px 12px 24px', fontSize: '20px' }}>{project.title}</h3>
-                <p style={{ margin: '0 24px 12px 24px', fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
-                  {idx === 0 && "Premium high-rise living with world-class amenities"}
-                  {idx === 1 && "Exclusive gated communities with signature villas"}
-                  {idx === 2 && "Strategic land investments with high appreciation potential"}
-                  {idx === 3 && "Prime commercial spaces for maximum returns"}
+      <section id="about" className="about-slab">
+        <div className="about-wrap">
+          <h2 className="about-hero-title">Welcome To Space Sphere</h2>
+          <div className="about-grid">
+            <div className="about-copy">
+              <p>
+                A Trusted Partner in Indian Real Estate, Space Sphere stands at the
+                intersection of expert advisory, premium property sourcing, and seamless
+                ownership experience. At Space Sphere, we believe a property is more than
+                real estate - it is a statement, an asset, a lifetime belonging. With elite
+                partnerships across premium developers in Pune, Hyderabad and surrounding
+                regions, we bring you access to refined spaces built for those who desire more.
+              </p>
+              <p>
+                Our strength lies in trust-driven relationships, transparent deals, and deep
+                market expertise. We deal only in spaces worthy of legacy.
+              </p>
+              <div style={{ display: 'grid', gap: '8px' }}>
+                <p style={{ margin: 0, fontWeight: 600 }}>
+                  Every project we represent is hand-evaluated for:
                 </p>
-               
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '6px' }}>
+                  <li>🔸 Design &amp; Architecture Value</li>
+                  <li>🔸 Location Advantage &amp; Appreciation</li>
+                  <li>🔸 Builder Credibility &amp; Delivery History</li>
+                  <li>🔸 Lifestyle Amenities &amp; Luxury Quotient</li>
+                </ul>
               </div>
-            ))}
+              <button
+                className="about-button"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Schedule a Site Experience 
+              </button>
+            </div>
+            <div className="about-image-frame">
+              <img src="/villas1.jpg" alt="Luxury estate poolside" />
+            </div>
           </div>
         </div>
+      </section>
 
-       
+
+      <section id="portfolio" className="office-section">
+        <div className="office-wrap">
+          <div className="office-header">
+            <h2>Portfolio</h2>
+            <h4 className="office-subheading">
+    A Selection Reserved for the Discerning Buyer
+  </h4>
+          </div>
+          <div className="office-grid">
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/apartment1.jpg" alt="Montecito coastline" />
+              </div>
+              <h3>Luxury Residential Apartments & High-Rise Towers</h3>
+            </div>
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/villas2.jpg" alt="Santa Barbara city view" />
+              </div>
+              <h3>Signature Villas & Gated Communities</h3>
+            </div>
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/plot1.jpg" alt="Santa Ynez vineyards" />
+              </div>
+              <h3>Premium Open Plots with Future Growth Vision</h3>
+            </div>
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/commercial2.jpg" alt="Napa Valley estates" />
+              </div>
+              <h3>Commercial Spaces for High-Return Investors</h3>
+            </div>
+          </div>
+        </div>
       </section>
 
 
 
-      <section className="space-sphere-edge-section" style={{ padding: '60px 0', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)' }}>
+      <section className="space-sphere-edge-section" style={{ display: 'none', padding: '60px 0', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)' }}>
         {/* Geometric Background Elements */}
         <div style={{ 
           position: 'absolute', 
@@ -919,8 +721,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
 
 
       <section id="what-we-offer" className="what-we-offer" style={{ padding: '60px 0', position: 'relative', overflow: 'hidden', background: '#F6F7F5' }}>
