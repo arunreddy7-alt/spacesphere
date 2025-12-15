@@ -2237,78 +2237,479 @@ body {
   }
 }
 
+
 /* ========================================= */
-/* IMAGE ZOOM ANIMATION EFFECTS */
+/* COMPREHENSIVE IMAGE ZOOM ANIMATION EFFECTS FOR PROJECT SECTIONS */
 /* ========================================= */
 
-/* Portfolio section image hover effects */
+/* Portfolio section image hover effects - Enhanced zoom */
 .office-image img {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
 }
 
 .office-image:hover img {
-  transform: scale(1.08);
+  transform: scale(1.15);
   filter: brightness(1.1) contrast(1.05) saturate(1.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* About section image hover effects */
+/* About section image hover effects - Enhanced zoom */
 .about-image-frame img {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
 }
 
 .about-image-frame:hover img {
-  transform: scale(1.05);
+  transform: scale(1.12);
   filter: brightness(1.1) contrast(1.05) saturate(1.05);
 }
 
-/* Timeline image hover effects for consistency */
+/* Timeline image hover effects - Enhanced zoom */
 .timeline-step img {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
-              filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.timeline-step img:hover {
-  transform: scale(1.03);
-  filter: brightness(1.05) contrast(1.02);
-}
-
-/* Mobile responsive - disable zoom on touch devices */
-@media (max-width: 768px) {
-  .office-image:hover img,
-  .about-image-frame:hover img,
-  .timeline-step img:hover {
-    transform: none;
-    filter: none;
-  }
-}
-
-/* Additional hover effects for better visual feedback */
-.office-image,
-.about-image-frame {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
 }
 
-.office-image:hover,
-.about-image-frame:hover {
-  transform: translateY(-2px);
-  transition: transform 0.3s ease;
+.timeline-step:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.about-image-frame:hover {
-  transform: translate(56px, -22px) scale(1.02);
+
+/* ========================================= */
+/* PROJECT SECTION SPECIFIC ZOOM EFFECTS */
+/* ========================================= */
+
+/* Featured Properties Section - Hero Image Zoom */
+section[id="projects"] [style*="position: 'relative'"] {
+  cursor: pointer;
+  overflow: hidden;
 }
+
+section[id="projects"] [style*="position: 'relative'"]:hover {
+  transform: scale(1.02);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] [style*="backgroundImage"] {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] [style*="position: 'relative'"]:hover [style*="backgroundImage"] {
+  transform: scale(1.05);
+  filter: brightness(1.02) contrast(1.02);
+}
+
+
+
+/* ========================================= */
+/* SPECIFIC ZOOM FOR FEATURED PREMIUM PROPERTIES SECTION */
+/* ========================================= */
+
+/* Target the specific Avinea Estate hero section */
+section[id="projects"] > div > div:first-of-type {
+  cursor: pointer;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  z-index: 1;
+}
+
+section[id="projects"] > div > div:first-of-type:hover {
+  transform: scale(1.03);
+  box-shadow: 0 35px 120px rgba(0,0,0,0.25), 0 20px 60px rgba(199, 154, 74, 0.15);
+}
+
+/* Target the background image container within Featured Properties */
+section[id="projects"] > div > div:first-of-type > div[style*="position: absolute"][style*="inset: 0"] {
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] > div > div:first-of-type:hover > div[style*="position: absolute"][style*="inset: 0"] {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.08) saturate(1.15);
+}
+
+/* Fallback selectors using CSS attribute matching */
+section[id="projects"] div[style*="aspectRatio: 16/9"] {
+  cursor: pointer;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] div[style*="aspectRatio: 16/9"]:hover {
+  transform: scale(1.03);
+  box-shadow: 0 35px 120px rgba(0,0,0,0.25), 0 20px 60px rgba(199, 154, 74, 0.15);
+}
+
+/* Target the Avinea background image specifically */
+section[id="projects"] div[style*="aspectRatio: 16/9"] div[style*="backgroundImage: url(\"/avinea.png\")"] {
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] div[style*="aspectRatio: 16/9"]:hover div[style*="backgroundImage: url(\"/avinea.png\")"] {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.08) saturate(1.15);
+}
+
+/* Mobile responsive zoom for Featured Properties */
+@media (max-width: 768px) {
+  section[id="projects"] > div > div:first-of-type:hover {
+    transform: scale(1.02);
+  }
+  
+  section[id="projects"] > div > div:first-of-type:hover > div[style*="position: absolute"][style*="inset: 0"] {
+    transform: scale(1.04);
+  }
+}
+
+
+/* ========================================= */
+/* DIRECT AVINEA BACKGROUND IMAGE ZOOM */
+/* ========================================= */
+
+/* Target the specific Avinea background image in Featured Properties */
+section[id="projects"] div[style*="backgroundImage: url(\"/avinea.png\")"] {
+  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+section[id="projects"] div[style*="backgroundImage: url(\"/avinea.png\")"]:hover {
+  transform: scale(1.1);
+  filter: brightness(1.05) contrast(1.08) saturate(1.2);
+}
+
+/* Parent container hover effect for Avinea section */
+section[id="projects"] div[style*="borderRadius: '20px'"]:hover {
+  transform: scale(1.02);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] div[style*="borderRadius: '20px'"]:hover div[style*="backgroundImage: url(\"/avinea.png\")"] {
+  transform: scale(1.08);
+  filter: brightness(1.04) contrast(1.06) saturate(1.15);
+}
+
+/* Direct selector for minHeight container */
+section[id="projects"] div[style*="minHeight: '600px'"] {
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] div[style*="minHeight: '600px'"]:hover {
+  transform: scale(1.01);
+}
+
+section[id="projects"] div[style*="minHeight: '600px'"]:hover div[style*="backgroundImage: url(\"/avinea.png\")"] {
+  transform: scale(1.05);
+  filter: brightness(1.03) contrast(1.05) saturate(1.1);
+}
+
+/* ========================================= */
+/* COMPREHENSIVE AVINEA SECTION ZOOM SOLUTION */
+/* ========================================= */
+
+/* Target all divs within projects section that contain background images */
+section[id="projects"] div[style*="backgroundImage"] {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+section[id="projects"] div[style*="backgroundImage"]:hover {
+  transform: scale(1.08);
+  filter: brightness(1.04) contrast(1.06) saturate(1.1);
+}
+
+/* Target the main Avinea container with boxShadow */
+section[id="projects"] div[style*="boxShadow: '0 25px 80px"] {
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] div[style*="boxShadow: '0 25px 80px"]:hover {
+  transform: scale(1.02);
+  box-shadow: 0 35px 120px rgba(0,0,0,0.25), 0 20px 60px rgba(0,0,0,0.2);
+}
+
+section[id="projects"] div[style*="boxShadow: '0 25px 80px"] div[style*="backgroundImage"] {
+  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] div[style*="boxShadow: '0 25px 80px"]:hover div[style*="backgroundImage"] {
+  transform: scale(1.06);
+  filter: brightness(1.05) contrast(1.08) saturate(1.15);
+}
+
+
+/* Generic selector for any background image in projects section */
+section[id="projects"] [style*="backgroundSize: 'cover'"] {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+section[id="projects"] [style*="backgroundSize: 'cover'"]:hover {
+  transform: scale(1.05);
+  filter: brightness(1.03) contrast(1.05) saturate(1.1);
+}
+
+/* ========================================= */
+/* COMPREHENSIVE FEATURED PROPERTIES ZOOM SOLUTION */
+/* ========================================= */
+
+/* Target the entire Featured Premium Properties section */
+section[id="projects"] {
+  position: relative;
+}
+
+/* Target all interactive elements within the Featured Properties section */
+section[id="projects"] > div:first-of-type {
+  position: relative;
+}
+
+/* Comprehensive selector for any div with background image in projects */
+section[id="projects"] div {
+  position: relative;
+}
+
+/* Apply hover effects to any container that might have background images */
+section[id="projects"] div[style*="backgroundImage"] {
+  cursor: pointer;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+section[id="projects"] div[style*="backgroundImage"]:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05) contrast(1.08) saturate(1.15);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+}
+
+/* Target the main hero container in Featured Properties */
+section[id="projects"] > div > div[style*="borderRadius"] {
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+  position: relative;
+}
+
+section[id="projects"] > div > div[style*="borderRadius"]:hover {
+  transform: scale(1.02);
+}
+
+section[id="projects"] > div > div[style*="borderRadius"]:hover div[style*="backgroundImage"] {
+  transform: scale(1.08);
+  filter: brightness(1.05) contrast(1.08) saturate(1.15);
+}
+
+/* Ultra-specific selector for Avinea section */
+section[id="projects"] > div > div[style*="minHeight"] {
+  cursor: pointer;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+section[id="projects"] > div > div[style*="minHeight"]:hover {
+  transform: scale(1.01);
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.25);
+}
+
+section[id="projects"] > div > div[style*="minHeight"]:hover div[style*="backgroundImage"] {
+  transform: scale(1.06);
+  filter: brightness(1.04) contrast(1.07) saturate(1.12);
+}
+
+/* Target any element with avinea background specifically */
+section[id="projects"] *[style*="avinea.png"] {
+  transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  cursor: pointer !important;
+}
+
+section[id="projects"] *[style*="avinea.png"]:hover {
+  transform: scale(1.1) !important;
+  filter: brightness(1.06) contrast(1.09) saturate(1.2) !important;
+}
+
+/* Fallback: Target any element that might be the background container */
+section[id="projects"] [style*="backgroundSize"][style*="backgroundPosition"] {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+section[id="projects"] [style*="backgroundSize"][style*="backgroundPosition"]:hover {
+  transform: scale(1.05);
+  filter: brightness(1.03) contrast(1.05) saturate(1.1);
+}
+
+/* Additional coverage for nested elements */
+section[id="projects"] * {
+  cursor: inherit;
+}
+
+section[id="projects"] div[style*="zIndex"] {
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[id="projects"] div[style*="zIndex"]:hover {
+  transform: scale(1.02);
+}
+
+/* Ensure any overlay elements don't interfere */
+section[id="projects"] div[style*="position: 'absolute'"] {
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+section[id="projects"] div[style*="position: 'relative'"]:hover div[style*="position: 'absolute'"] {
+  opacity: 0.95;
+}
+
+/* Project Card Images in Timeline */
+.timeline-step [style*="width: '350px'"] {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+
+.timeline-step [style*="width: '350px'"]:hover {
+  transform: scale(1.03) translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Testimonial Section Images */
+section[style*="padding: '60px 24px'"] [style*="width: '48px'"] {
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section[style*="padding: '60px 24px'"] [style*="width: '48px'"]:hover {
+  transform: scale(1.1);
+}
+
+/* ========================================= */
+/* ENHANCED HOVER EFFECTS FOR ALL PROJECT IMAGES */
+/* ========================================= */
+
+/* General image container hover effects */
+.office-image,
+.about-image-frame,
+.timeline-step,
+section[id="projects"] [style*="position: 'relative'"] {
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.office-image:hover,
+.about-image-frame:hover,
+.timeline-step:hover {
+  transform: translateY(-3px);
+}
+
+/* Enhanced frame effects */
+.about-image-frame:hover {
+  transform: translate(56px, -24px) scale(1.03);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Floating elements in contact section */
+section[id="contact"] [style*="width: '80px'"],
+section[id="contact"] [style*="width: '60px'"] {
+  transition: transform 0.6s ease-in-out;
+}
+
+section[id="contact"]:hover [style*="width: '80px'"] {
+  transform: scale(1.2) rotate(15deg);
+}
+
+section[id="contact"]:hover [style*="width: '60px'"] {
+  transform: scale(1.15) rotate(-10deg);
+}
+
+/* ========================================= */
+/* MOBILE RESPONSIVE - ENHANCED TOUCH INTERACTIONS */
+/* ========================================= */
 
 @media (max-width: 768px) {
+  /* Disable zoom on touch devices but keep subtle effects */
+  .office-image:hover img,
+  .about-image-frame:hover img,
+  .timeline-step img:hover,
+  section[id="projects"] [style*="position: 'relative'"]:hover [style*="backgroundImage"] {
+    transform: none;
+    filter: none;
+    box-shadow: none;
+  }
+  
+  /* Keep subtle hover effects for mobile */
   .office-image:hover,
+  .about-image-frame:hover,
+  .timeline-step:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Disable frame hover effects on mobile */
   .about-image-frame:hover {
     transform: none;
   }
   
-  .about-image-frame:hover {
+  /* Keep subtle scaling for contact elements */
+  section[id="contact"]:hover [style*="width: '80px'"],
+  section[id="contact"]:hover [style*="width: '60px'"] {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce effects for small screens */
+  .office-image:hover,
+  .about-image-frame:hover,
+  .timeline-step:hover {
     transform: none;
   }
 }
 
+/* ========================================= */
+/* ACCESSIBILITY AND PERFORMANCE OPTIMIZATIONS */
+/* ========================================= */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .office-image img,
+  .about-image-frame img,
+  .timeline-step img,
+  section[id="projects"] [style*="backgroundImage"] {
+    transition: none;
+  }
+  
+  .office-image:hover img,
+  .about-image-frame:hover img,
+  .timeline-step:hover img {
+    transform: none;
+  }
+}
+
+/* Performance optimization - use transform3d for better performance */
+.office-image img,
+.about-image-frame img,
+.timeline-step img {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* High-quality image rendering */
+.office-image img,
+.about-image-frame img,
+.timeline-step img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
