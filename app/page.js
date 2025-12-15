@@ -1,7 +1,9 @@
+
 "use client";
 // Enable client features for hero slideshow
 
-import { useEffect, useState } from "react";
+
+import { useEffect, useState, useRef, useCallback } from "react";
 
 const navLinks = [
   { name: "HOME", href: "#home" },
@@ -75,9 +77,88 @@ export default function Home() {
   );
   const [poolImageIndex, setPoolImageIndex] = useState(0);
   const [experienceImageIndex, setExperienceImageIndex] = useState(0);
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [timelineScrollProgress, setTimelineScrollProgress] = useState(0);
+  const timelineSectionRef = useRef(null);
+  
+  // Contact section animation states
+  const [contactSectionInView, setContactSectionInView] = useState(false);
+  const contactSectionRef = useRef(null);
+
+  // Contact form state management with localStorage
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    countryCode: 'India (+91)',
+    mobileNumber: '',
+    projectName: '',
+    projectType: '',
+    budget: '',
+    consent: true
+  });
+
+  // Load saved form data from localStorage on component mount
+  useEffect(() => {
+    const savedData = localStorage.getItem('spacesphere_contact_form');
+    if (savedData) {
+      try {
+        const parsedData = JSON.parse(savedData);
+        setFormData(parsedData);
+      } catch (error) {
+        console.warn('Failed to parse saved form data:', error);
+      }
+    }
+  }, []);
+
+  // Save form data to localStorage whenever form data changes
+  useEffect(() => {
+    localStorage.setItem('spacesphere_contact_form', JSON.stringify(formData));
+  }, [formData]);
+
+  // Handle form input changes
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  // Clear form data from localStorage
+  const clearFormData = () => {
+    localStorage.removeItem('spacesphere_contact_form');
+    setFormData({
+      name: '',
+      email: '',
+      countryCode: 'India (+91)',
+      mobileNumber: '',
+      projectName: '',
+      projectType: '',
+      budget: '',
+      consent: true
+    });
+  };
+
+  // Handle form submission
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    
+    // Here you would typically send the form data to your backend
+    console.log('Form submitted:', formData);
+    
+    // Show success message
+    alert('Thank you for your inquiry! We will contact you soon.');
+    
+    // Clear form data after successful submission
+    clearFormData();
+    
+    // Close modal if open
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     const id = setInterval(
@@ -125,6 +206,7 @@ export default function Home() {
     return () => clearInterval(id);
   }, []);
 
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
@@ -134,6 +216,129 @@ export default function Home() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+
+
+  // Timeline scroll progress animation
+  useEffect(() => {
+    const handleTimelineScroll = () => {
+      if (!timelineSectionRef.current) return;
+
+      const section = timelineSectionRef.current;
+      const rect = section.getBoundingClientRect();
+      const sectionTop = rect.top + window.scrollY;
+      const sectionHeight = rect.height;
+      const windowHeight = window.innerHeight;
+      const scrollPosition = window.scrollY;
+      
+      // Calculate scroll progress through the timeline section
+      // Start animation when section top reaches 20% of viewport
+      const startPoint = sectionTop - windowHeight * 0.8;
+      // End animation when section bottom reaches 80% of viewport  
+      const endPoint = sectionTop + sectionHeight - windowHeight * 0.2;
+      
+      let progress = 0;
+      
+      if (scrollPosition <= startPoint) {
+        progress = 0;
+      } else if (scrollPosition >= endPoint) {
+        progress = 1;
+      } else {
+        // Calculate progress between start and end points
+        progress = (scrollPosition - startPoint) / (endPoint - startPoint);
+        progress = Math.max(0, Math.min(1, progress)); // Clamp between 0 and 1
+      }
+      
+      // Apply smooth easing
+      const easedProgress = easeInOutCubic(progress);
+      setTimelineScrollProgress(easedProgress);
+    };
+
+
+    // Throttled scroll handler for better performance
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleTimelineScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledHandleScroll, { passive: true });
+    
+    // Initial calculation
+    handleTimelineScroll();
+
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+    };
+  }, []);
+
+  // Parallax effect for contact section background
+  useEffect(() => {
+    const handleParallaxScroll = () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.parallax-bg');
+      
+      parallaxElements.forEach(element => {
+        const speed = 0.5; // Slower than foreground for parallax effect
+        const yPos = -(scrolled * speed);
+        element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+      });
+    };
+
+    // Throttled parallax scroll handler
+    let ticking = false;
+    const throttledParallaxScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleParallaxScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', throttledParallaxScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', throttledParallaxScroll);
+    };
+  }, []);
+
+  // Contact section intersection observer for animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setContactSectionInView(true);
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of section is visible
+      }
+    );
+
+    if (contactSectionRef.current) {
+      observer.observe(contactSectionRef.current);
+    }
+
+    return () => {
+      if (contactSectionRef.current) {
+        observer.unobserve(contactSectionRef.current);
+      }
+    };
+  }, []);
+
+  // Easing function for smooth animation
+  const easeInOutCubic = (t) => {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
 
   const activeImage = heroImages[currentSlide];
 
@@ -148,10 +353,10 @@ export default function Home() {
           background: isScrolled ? 'rgba(245, 245, 240, 0.95)' : 'transparent',
         }}
       >
+
         <div className="flex items-center gap-2 text-xl md:text-2xl">
-          <span className="font-semibold tracking-tight" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>Space</span>
-          <span className="text-base font-medium md:text-lg" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>| sphere</span>
-        </div>
+        <span className="font-semibold" style={{color: 'black'}}>SPACE</span>
+        <span className="opacity-80" style={{color: 'black'}}>| SPHERE</span>  </div>
 
         <nav className="hidden items-center gap-10 mr-10 text-sm uppercase tracking-[0.08em] md:flex">
           {navLinks.map((item) => (
@@ -249,8 +454,8 @@ export default function Home() {
           <div className="hero-shell">
             <div className="hero-topbar">
               <div className="hero-brand">
-                <span className="font-semibold">Space</span>
-                <span className="opacity-80">| sphere</span>
+                <span className="font-semibold">SPACE</span>
+                <span className="opacity-80">| SPHERE</span>
               </div>
 
               <nav className="hero-nav">
@@ -327,18 +532,8 @@ export default function Home() {
           ))}
         </div>
 
-        <a
-          href="#contact"
-          className="floating-whatsapp cta-button gold-shadow"
-          aria-label="Enquire Now"
-          onClick={(e) => {
-            e.preventDefault();
-            setIsModalOpen(true);
-          }}
-          style={{ textDecoration: 'none', marginTop: 0 }}
-        >
-          Enquire
-        </a>
+
+
       </section>
 
       <section id="about" className="about-slab">
@@ -392,6 +587,7 @@ export default function Home() {
     A Selection Reserved for the Discerning Buyer
   </h4>
           </div>
+
           <div className="office-grid">
             <div className="office-card">
               <div className="office-image">
@@ -419,11 +615,40 @@ export default function Home() {
             </div>
           </div>
         </div>
+
       </section>
 
 
+      {/* Blank Section with White Background and Parallax Effect */}
 
-      <section className="space-sphere-edge-section" style={{ display: 'none', padding: '60px 0', position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)' }}>
+      <section 
+        style={{ 
+          padding: '80px 0', 
+          background: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95))', 
+          minHeight: '40vh',
+          backgroundImage: `url('/villa1.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          position: 'relative',
+          color: '#000000'
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+
+
+        <h4 className="office-subheading" style={{ color: 'white', fontSize: '40px', marginTop: '56px', fontWeight: '600'}} >
+        Connecting People With Properties That Matter.
+  </h4>
+          
+        </div>
+
+
+      </section>
+
+    
+      <section className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
         {/* Geometric Background Elements */}
         <div style={{ 
           position: 'absolute', 
@@ -475,15 +700,11 @@ export default function Home() {
 
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <p className="eyebrow" style={{ fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '8px' }}>
-              The Space Sphere Edge
-            </p>
-            <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontFamily: "'Playfair Display', serif", fontWeight: 700, color: '#1a1a1a', margin: '0 0 12px 0', lineHeight: '1.2' }}>
-              Because Luxury Deserves Precision
-            </h2>
-            <p style={{ fontSize: '16px', color: '#4a4a4a', maxWidth: '500px', margin: '0 auto', fontStyle: 'italic' }}>
-              Where excellence meets innovation, and precision creates perfection.
-            </p>
+          <h2 className="about-hero-title">Welcome To Space Sphere</h2>
+          <h4 className="office-subheading">
+    A Selection Reserved for the Discerning Buyer
+  </h4>
+          
           </div>
 
           {/* Floating Cards Grid */}
@@ -723,7 +944,9 @@ export default function Home() {
       </section>
 
 
-      <section id="what-we-offer" className="what-we-offer" style={{ padding: '60px 0', position: 'relative', overflow: 'hidden', background: '#F6F7F5' }}>
+
+
+      <section id="what-we-offer" ref={timelineSectionRef} className="what-we-offer" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#1a1a1a' }}>
         {/* Background Decorative Elements */}
         <div style={{ 
           position: 'absolute', 
@@ -731,7 +954,7 @@ export default function Home() {
           left: '-100px', 
           width: '300px', 
           height: '300px', 
-          background: 'radial-gradient(circle, rgba(199, 154, 74, 0.05) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(199, 154, 74, 0.12) 0%, transparent 70%)',
           borderRadius: '50%',
           zIndex: 1
         }}></div>
@@ -742,38 +965,74 @@ export default function Home() {
           right: '-80px', 
           width: '250px', 
           height: '250px', 
-          background: 'conic-gradient(from 180deg, rgba(199, 154, 74, 0.04) 0deg, transparent 90deg, rgba(199, 154, 74, 0.06) 180deg, transparent 270deg, rgba(199, 154, 74, 0.04) 360deg)',
+          background: 'conic-gradient(from 180deg, rgba(199, 154, 74, 0.08) 0deg, transparent 90deg, rgba(199, 154, 74, 0.1) 180deg, transparent 270deg, rgba(199, 154, 74, 0.08) 360deg)',
           zIndex: 1,
           animation: 'rotate 25s linear infinite reverse'
         }}></div>
 
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <p className="eyebrow" style={{ fontSize: '18px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '8px' }}>
-              What We Offer?
-            </p>
-            <h2 style={{ fontSize: 'clamp(24px, 4vw, 36px)', fontFamily: "'Playfair Display', serif", fontWeight: 700, color: '#1a1a1a', margin: '0 0 12px 0', lineHeight: '1.2' }}>
-              A Seamless Ownership Journey
-            </h2>
-            <p style={{ fontSize: '16px', color: '#4a4a4a', maxWidth: '600px', margin: '0 auto', fontStyle: 'italic' }}>
-              From first consultation to keys in hand, we make your property journey effortless and exceptional.
-            </p>
+          <h2 className="about-hero-title">What We Offer? </h2>
+          <h4 className="office-subheading" style={{color:"white"}} >
+          A Seamless Ownership Journey
+  </h4>
+           
           </div>
+
+
 
           {/* Timeline Process Flow */}
           <div style={{ position: 'relative', marginTop: '50px' }}>
-            {/* Central Timeline Line */}
+            {/* Central Timeline Line - Dynamic Background */}
             <div style={{
               position: 'absolute',
               left: '50%',
               top: '0',
               bottom: '0',
               width: '4px',
-              background: 'linear-gradient(180deg, #c79a4a 0%, #d4af6a 50%, #c79a4a 100%)',
+              background: 'linear-gradient(180deg, rgba(199, 154, 74, 0.2) 0%, rgba(212, 175, 106, 0.15) 50%, rgba(199, 154, 74, 0.2) 100%)',
               transform: 'translateX(-50%)',
               borderRadius: '2px',
-              zIndex: 1
+              zIndex: 1,
+              boxShadow: '0 0 10px rgba(199, 154, 74, 0.1)'
             }}></div>
+
+
+            {/* Central Timeline Line - Dynamic Filled Portion */}
+            <div 
+              style={{
+                position: 'absolute',
+                left: '50%',
+                top: '0',
+                width: '4px',
+                height: `${timelineScrollProgress * 100}%`,
+                background: 'linear-gradient(180deg, rgba(199, 154, 74, 0.8) 0%, rgba(212, 175, 106, 0.9) 50%, rgba(199, 154, 74, 0.8) 100%)',
+                transform: 'translateX(-50%)',
+                borderRadius: '2px',
+                zIndex: 2,
+                boxShadow: timelineScrollProgress > 0 ? '0 0 20px rgba(199, 154, 74, 0.4), 0 0 40px rgba(199, 154, 74, 0.2)' : 'none',
+                transition: 'height 0.1s ease-out',
+                overflow: 'hidden'
+              }}
+            >
+              {/* Animated glow effect */}
+              {timelineScrollProgress > 0.1 && (
+                <div 
+                  style={{
+                    position: 'absolute',
+                    bottom: '-20px',
+                    left: '50%',
+                    width: '20px',
+                    height: '20px',
+                    background: 'radial-gradient(circle, rgba(212, 175, 106, 0.6) 0%, transparent 70%)',
+                    borderRadius: '50%',
+                    transform: 'translateX(-50%)',
+                    animation: 'pulse 2s ease-in-out infinite'
+                  }}
+                />
+              )}
+            </div>
+
 
 
 
@@ -788,22 +1047,23 @@ export default function Home() {
               <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
                 <div className="timeline-card" style={{
                   display: 'inline-block',
-                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  background: 'linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%)',
                   padding: '35px 20px',
                   borderRadius: '16px',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
-                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.3)',
                   maxWidth: '350px',
                   position: 'relative',
                   transform: 'translateX(0)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  backdropFilter: 'blur(10px)'
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Discovery Consultation
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                     We understand your lifestyle, investment goals, and preferences to create a personalized property roadmap.
                   </p>
                 </div>
@@ -815,8 +1075,8 @@ export default function Home() {
                 height: '16px',
                 background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                 borderRadius: '50%',
-                border: '3px solid #ffffff',
-                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                border: '3px solid #1a1a1a',
+                boxShadow: '0 0 15px rgba(199, 154, 74, 0.5), 0 0 25px rgba(199, 154, 74, 0.3)',
                 zIndex: 3
               }}></div>
               
@@ -826,10 +1086,11 @@ export default function Home() {
                   height: '180px',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+                  border: '2px solid rgba(199, 154, 74, 0.4)',
                   margin: '0 auto',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
                     src="/1.jpg" 
@@ -838,13 +1099,14 @@ export default function Home() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'brightness(1.1) contrast(1.05)'
+                      filter: 'brightness(1.05) contrast(1.05) saturate(1.1)'
                     }}
                   />
                  
                 </div>
               </div>
             </div>
+
 
 
 
@@ -862,10 +1124,11 @@ export default function Home() {
                   height: '180px',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+                  border: '2px solid rgba(199, 154, 74, 0.4)',
                   margin: '0 auto',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
                     src="/2.jpg" 
@@ -874,7 +1137,7 @@ export default function Home() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'brightness(1.1) contrast(1.05)'
+                      filter: 'brightness(1.05) contrast(1.05) saturate(1.1)'
                     }}
                   />
                   
@@ -887,35 +1150,37 @@ export default function Home() {
                 height: '16px',
                 background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                 borderRadius: '50%',
-                border: '3px solid #ffffff',
-                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                border: '3px solid #1a1a1a',
+                boxShadow: '0 0 15px rgba(199, 154, 74, 0.5), 0 0 25px rgba(199, 154, 74, 0.3)',
                 zIndex: 3
               }}></div>
               
               <div style={{ flex: '1', paddingLeft: '50px' }}>
                 <div className="timeline-card" style={{
                   display: 'inline-block',
-                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  background: 'linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%)',
                   padding: '35px 20px',
                   borderRadius: '16px',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
-                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.3)',
                   maxWidth: '350px',
                   position: 'relative',
                   transform: 'translateX(0)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  backdropFilter: 'blur(10px)'
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Curated Project Showcase
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                     Exclusive access to handpicked premium properties that align perfectly with your vision and investment strategy.
                   </p>
                 </div>
               </div>
             </div>
+
 
 
 
@@ -930,23 +1195,23 @@ export default function Home() {
               <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
                 <div className="timeline-card" style={{
                   display: 'inline-block',
-                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  background: 'linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%)',
                   padding: '35px 20px',
                   borderRadius: '16px',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
-                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.3)',
                   maxWidth: '350px',
                   position: 'relative',
                   transform: 'translateX(0)',
-
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  backdropFilter: 'blur(10px)'
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Guided Site Tours
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                     Experience luxury firsthand with our expert-guided tours of premium developments and lifestyle amenities.
                   </p>
                 </div>
@@ -958,8 +1223,8 @@ export default function Home() {
                 height: '16px',
                 background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                 borderRadius: '50%',
-                border: '3px solid #ffffff',
-                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                border: '3px solid #1a1a1a',
+                boxShadow: '0 0 15px rgba(199, 154, 74, 0.5), 0 0 25px rgba(199, 154, 74, 0.3)',
                 zIndex: 3
               }}></div>
               
@@ -969,10 +1234,11 @@ export default function Home() {
                   height: '180px',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+                  border: '2px solid rgba(199, 154, 74, 0.4)',
                   margin: '0 auto',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
                     src="/3.jpg" 
@@ -981,13 +1247,14 @@ export default function Home() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'brightness(1.1) contrast(1.05)'
+                      filter: 'brightness(1.05) contrast(1.05) saturate(1.1)'
                     }}
                   />
                   
                 </div>
               </div>
             </div>
+
 
 
 
@@ -1005,10 +1272,11 @@ export default function Home() {
                   height: '180px',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+                  border: '2px solid rgba(199, 154, 74, 0.4)',
                   margin: '0 auto',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
                     src="/4.jpg" 
@@ -1017,7 +1285,7 @@ export default function Home() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'brightness(1.1) contrast(1.05)'
+                      filter: 'brightness(1.05) contrast(1.05) saturate(1.1)'
                     }}
                   />
                   
@@ -1030,35 +1298,37 @@ export default function Home() {
                 height: '16px',
                 background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                 borderRadius: '50%',
-                border: '3px solid #ffffff',
-                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                border: '3px solid #1a1a1a',
+                boxShadow: '0 0 15px rgba(199, 154, 74, 0.5), 0 0 25px rgba(199, 154, 74, 0.3)',
                 zIndex: 3
               }}></div>
               
               <div style={{ flex: '1', paddingLeft: '50px' }}>
                 <div className="timeline-card" style={{
                   display: 'inline-block',
-                  background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+                  background: 'linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%)',
                   padding: '35px 20px',
                   borderRadius: '16px',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(199, 154, 74, 0.15)',
-                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
+                  border: '1px solid rgba(199, 154, 74, 0.3)',
                   maxWidth: '350px',
                   position: 'relative',
                   transform: 'translateX(0)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  backdropFilter: 'blur(10px)'
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Negotiation & Closure
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                     Expert negotiation to secure the best terms, followed by seamless documentation and transparent deal closure.
                   </p>
                 </div>
               </div>
             </div>
+
 
 
 
@@ -1076,12 +1346,13 @@ export default function Home() {
                   background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
                   padding: '35px 20px',
                   borderRadius: '16px',
-                  boxShadow: '0 15px 35px rgba(199, 154, 74, 0.3), 0 8px 20px rgba(199, 154, 74, 0.4)',
-                  border: '2px solid rgba(255, 255, 255, 0.2)',
+                  boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3)',
+                  border: '2px solid rgba(255, 255, 255, 0.25)',
                   maxWidth: '350px',
                   position: 'relative',
                   transform: 'scale(1.02)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3), 0 0 30px rgba(199, 154, 74, 0.2)'
                 }}>
                   
                   
@@ -1100,8 +1371,8 @@ export default function Home() {
                 height: '16px',
                 background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                 borderRadius: '50%',
-                border: '3px solid #ffffff',
-                boxShadow: '0 3px 10px rgba(199, 154, 74, 0.3)',
+                border: '3px solid #1a1a1a',
+                boxShadow: '0 0 20px rgba(199, 154, 74, 0.6), 0 0 30px rgba(199, 154, 74, 0.4)',
                 zIndex: 3,
                 animation: 'pulse 2s ease-in-out infinite'
               }}></div>
@@ -1112,10 +1383,11 @@ export default function Home() {
                   height: '180px',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.15)',
-                  border: '2px solid rgba(199, 154, 74, 0.2)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+                  border: '2px solid rgba(199, 154, 74, 0.4)',
                   margin: '0 auto',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
                     src="/5.jpg" 
@@ -1124,7 +1396,7 @@ export default function Home() {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      filter: 'brightness(1.1) contrast(1.05)'
+                      filter: 'brightness(1.05) contrast(1.05) saturate(1.1)'
                     }}
                   />
                  
@@ -1132,6 +1404,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+
 
           {/* Bottom Impact Statement */}
           <div style={{ textAlign: 'center', marginTop: '80px', position: 'relative' }}>
@@ -1143,29 +1416,29 @@ export default function Home() {
             }}>
               <div style={{
                 padding: '30px',
-                background: 'rgba(255, 255, 255, 0.8)',
+                background: 'linear-gradient(135deg, rgba(42, 42, 42, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%)',
                 borderRadius: '16px',
-                border: '1px solid rgba(199, 154, 74, 0.2)',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                border: '1px solid rgba(199, 154, 74, 0.3)',
+                boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
                 backdropFilter: 'blur(10px)'
               }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#c79a4a', marginBottom: '8px' }}>Effortless</h3>
-                <p style={{ fontSize: '16px', color: '#4a4a4a', margin: 0 }}>Your journey is seamless</p>
+                <p style={{ fontSize: '16px', color: '#b8b3a8', margin: 0 }}>Your journey is seamless</p>
               </div>
               <div style={{
                 padding: '30px',
-                background: 'rgba(255, 255, 255, 0.8)',
+                background: 'linear-gradient(135deg, rgba(42, 42, 42, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%)',
                 borderRadius: '16px',
-                border: '1px solid rgba(199, 154, 74, 0.2)',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                border: '1px solid rgba(199, 154, 74, 0.3)',
+                boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
                 backdropFilter: 'blur(10px)'
               }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#c79a4a', marginBottom: '8px' }}>Exceptional</h3>
-                <p style={{ fontSize: '16px', color: '#4a4a4a', margin: 0 }}>The destination is extraordinary</p>
+                <p style={{ fontSize: '16px', color: '#b8b3a8', margin: 0 }}>The destination is extraordinary</p>
               </div>
             </div>
             
-            <p style={{ fontSize: '18px', color: '#1a1a1a', fontStyle: 'italic', fontWeight: 500, fontFamily: "'Playfair Display', serif" }}>
+            <p style={{ fontSize: '18px', color: '#f5f5f5', fontStyle: 'italic', fontWeight: 500, fontFamily: "'Playfair Display', serif" }}>
               "Crafted for Comfort, Precision & Peace of Mind"
             </p>
           </div>
@@ -1173,78 +1446,280 @@ export default function Home() {
       </section>
 
       <section id="projects" style={{ padding: '80px 24px', background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.05) 0%, rgba(199, 154, 74, 0.02) 100%)' }}>
+
         <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 style={{ fontSize: '36px', fontWeight: 700, color: '#1a1a1a', marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>
-            Featured Premium Properties
-          </h2>
-          <p style={{ fontSize: '18px', color: '#4a4a4a', marginBottom: '40px', fontStyle: 'italic' }}>
-            Invest with confidence. Live with pride.
-          </p>
-          <div style={{ padding: '0', background: 'white', borderRadius: '12px', boxShadow: '0 4px 20px rgba(0,0,0,0.08)', overflow: 'hidden' }}>
-            <div style={{ position: 'relative' }}>
-              <img
-                src="/avinea.png"
-                alt="Avinea Project Preview"
-                style={{
-                  width: '100%',
-                  height: 'auto',
-                  display: 'block',
-                  objectFit: 'cover'
-                }}
-              />
+        <h2 className="about-hero-title" style={{ textAlign: 'center' }}>Featured Premium Properties</h2>
+          <h4 className="office-subheading">
+    Invest with confidence. Live with pride.
+  </h4>
+
+{/* Ultra-Luxury Vineyard Estate Hero Section */}
+          <div style={{ 
+            position: 'relative', 
+            borderRadius: '20px',
+            marginTop: '37px', 
+            overflow: 'hidden',
+            boxShadow: '0 25px 80px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.1)',
+            aspectRatio: '16/9',
+            minHeight: '600px',
+            background: '#1a1a1a'
+          }}>
+            {/* Hero Image with Cinematic Overlay */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'url("/avinea.png")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'brightness(1.02) contrast(1.05) saturate(1.1)'
+            }} />
+            
+            {/* Premium Gradient Overlays - Golden Hour Effect */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.4) 0%, transparent 50%, rgba(199, 154, 74, 0.15) 100%)'
+            }} />
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(to top, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.4) 35%, transparent 60%)'
+            }} />
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '200px',
+              background: 'linear-gradient(to bottom, rgba(26, 26, 26, 0.3) 0%, transparent 100%)'
+            }} />
+            
+            {/* Subtle Warm Light Accent */}
+            <div style={{
+              position: 'absolute',
+              top: '20%',
+              right: '-10%',
+              width: '400px',
+              height: '400px',
+              background: 'radial-gradient(circle, rgba(212, 175, 106, 0.12) 0%, transparent 70%)',
+              pointerEvents: 'none'
+            }} />
+
+
+
+
+            {/* Content Container with Ample Negative Space */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+              padding: '0 0 100px 0',
+              color: 'white'
+            }}>
+
+              {/* Top Badge */}
               <div style={{
                 position: 'absolute',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                background: 'linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent)',
-                padding: '40px',
-                color: 'white'
+                top: '100px',
+                left: '60px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px'
               }}>
-                <p style={{ fontSize: '18px', color: '#F2C66E', marginBottom: '8px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Featured Project</p>
+                <div style={{
+                  width: '40px',
+                  height: '2px',
+                  background: 'linear-gradient(90deg, #c79a4a, #d4af6a)'
+                }} />
+                <span style={{
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.2em',
+                  color: 'rgba(255, 255, 255, 0.7)'
+                }}>
+                  Exclusive Collection
+                </span>
+              </div>
 
-                <p style={{ fontSize: '32px', color: '#ffffff', fontWeight: 700, marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>Avinea Project Preview</p>
-                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '24px' }}>Premium gated community with luxury amenities</p>
 
-                <a 
-                  href="https://www.google.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ 
-                    background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
-                    border: 'none',
-                    color: 'white',
-                    padding: '14px 32px',
-                    borderRadius: '50px',
-                    fontSize: '16px',
+
+              {/* Main Content Area */}
+              <div style={{ 
+                maxWidth: '800px',
+                margin: '0 0 60px 60px',
+                textAlign: 'left'
+              }}>
+                {/* Category Tag */}
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  marginBottom: '20px',
+                  padding: '8px 16px',
+                  background: 'rgba(199, 154, 74, 0.15)',
+                  backdropFilter: 'blur(10px)',
+                  borderRadius: '50px',
+                  border: '1px solid rgba(199, 154, 74, 0.3)'
+                }}>
+                  <div style={{
+                    width: '6px',
+                    height: '6px',
+                    borderRadius: '50%',
+                    background: '#d4af6a',
+                    boxShadow: '0 0 10px rgba(212, 175, 106, 0.5)'
+                  }} />
+                  <span style={{
+                    fontSize: '12px',
                     fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                    boxShadow: '0 6px 20px rgba(199, 154, 74, 0.4)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.05em',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    textDecoration: 'none'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 10px 30px rgba(199, 154, 74, 0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(199, 154, 74, 0.4)';
-                  }}
-                >
-                  Explore More
-                  <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ transition: 'transform 0.3s ease' }}>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
-            </div>
+                    letterSpacing: '0.15em',
+                    color: '#d4af6a'
+                  }}>
+                    Featured Estate
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 style={{
+                  fontSize: 'clamp(36px, 5vw, 52px)',
+                  fontWeight: 700,
+                  color: '#ffffff',
+                  marginBottom: '16px',
+                  fontFamily: "'Playfair Display', serif",
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.02em',
+                  textShadow: '0 2px 20px rgba(0,0,0,0.3)'
+                }}>
+                  Avinea Estate
+                </h3>
+
+                {/* Subtitle */}
+                <p style={{
+                  fontSize: '18px',
+                  color: 'rgba(255, 255, 255, 0.85)',
+                  marginBottom: '12px',
+                  fontWeight: 500,
+                  letterSpacing: '0.01em'
+                }}>
+                  Modern Luxury Living with Premium Amenities
+                </p>
+
+                {/* Description */}
+                <p style={{
+                  fontSize: '15px',
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  marginBottom: '32px',
+                  lineHeight: 1.7,
+                  maxWidth: '500px'
+                }}>
+                  Experience contemporary architecture with thoughtful design, expansive layouts, and world-class amenities in an exclusive gated community.
+                </p>
+
+                {/* CTA Buttons */}
+                <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <a 
+                    href="https://www.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ 
+                      background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
+                      border: 'none',
+                      color: 'white',
+                      padding: '16px 36px',
+                      borderRadius: '4px',
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      boxShadow: '0 8px 25px rgba(199, 154, 74, 0.35)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.12em',
+                      textDecoration: 'none'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-3px)';
+                      e.currentTarget.style.boxShadow = '0 15px 40px rgba(199, 154, 74, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(199, 154, 74, 0.35)';
+                    }}
+                  >
+                    Explore Estate
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </a>
+                  
+                  <a 
+                    href="#contact"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsModalOpen(true);
+                    }}
+                    style={{ 
+                      background: 'rgba(255, 255, 255, 0.08)',
+                      backdropFilter: 'blur(10px)',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      color: 'white',
+                      padding: '16px 32px',
+                      borderRadius: '4px',
+                      fontSize: '13px',
+                      fontWeight: 500,
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.1em',
+                      textDecoration: 'none'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                    }}
+                  >
+                    Schedule Visit
+                  </a>
+                </div>
+              </div>
+
+
+              {/* Bottom Stats Bar */}
+              <div style={{
+                position: 'absolute',
+                bottom: '60px',
+                right: '60px',
+                display: 'flex',
+                gap: '40px',
+                alignItems: 'center'
+              }}>
+                <div style={{ textAlign: 'center' }}>
+                  <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>50+</p>
+                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Units</p>
+                </div>
+                <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
+                <div style={{ textAlign: 'center' }}>
+                  <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>3-5</p>
+                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>BHK</p>
+                </div>
+                <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
+                <div style={{ textAlign: 'center' }}>
+                  <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2024</p>
+                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Ready</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1280,12 +1755,10 @@ export default function Home() {
         
         <div style={{ maxWidth: '1400px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <p className="eyebrow" style={{ fontSize: '12px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c79a4a', fontWeight: 600, marginBottom: '10px' }}>
-              Client Impressions
-            </p>
-            <h2 style={{ fontSize: '28px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif", lineHeight: '1.2' }}>
-              Real Words. Refined Experiences.
-            </h2>
+          <h2 className="about-hero-title" style={{ textAlign: 'center' }}>Client Impressions </h2>
+          <h4 className="office-subheading">
+          Real Words. Refined Experiences.
+  </h4>
             <div style={{ width: '60px', height: '2px', background: 'linear-gradient(90deg, #c79a4a, #d4af6a)', margin: '15px auto 0' }}></div>
           </div>
           
@@ -1504,131 +1977,260 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="contact-section" style={{ padding: '80px 24px 100px', background: '#F6F7F5' }}>
-        <h2 className="contact-title" style={{ marginBottom: '12px' }}>Connect With Us</h2>
-        <p style={{ textAlign: 'center', fontSize: '18px', color: '#4a4a4a', marginBottom: '48px', fontStyle: 'italic' }}>
-          Let's Discover Your Next Address of Prestige.
-        </p>
-        <div className="contact-grid" style={{ gap: '32px', alignItems: 'start', marginTop: '60px' }}>
-          <div className="contact-info" style={{ display: 'grid', gap: '22px', marginTop: '30px' }}>
-            <div className="contact-block" style={{ display: 'grid', gap: '6px' }}>
-              <h3 className="contact-heading" style={{ margin: '0', color: '#c79a4a', fontWeight: 600 }}>📍 Hyderabad</h3>
-              <p className="contact-text" style={{ margin: '0', fontSize: '14px' }}>
-                Registered Headquarters
-              </p>
-            </div>
-            <div className="contact-block" style={{ display: 'grid', gap: '6px' }}>
-              <h3 className="contact-heading" style={{ margin: '0', color: '#c79a4a', fontWeight: 600 }}>📍 Pune</h3>
-              <p className="contact-text" style={{ margin: '0', fontSize: '14px' }}>
-                CP Network & Operations
-              </p>
-            </div>
-            <div className="contact-block contact-inline" style={{ display: 'grid', gap: '12px', marginTop: '8px' }}>
-              <div>
-                <span className="contact-label" style={{ marginRight: '8px', fontWeight: 600 }}>📱</span>
-                <span className="contact-text" style={{ margin: '0' }}>+91 XXXXX XXXXX</span>
-              </div>
-              <div>
-                <span className="contact-label" style={{ marginRight: '8px', fontWeight: 600 }}>📩</span>
-                <span className="contact-text" style={{ margin: '0' }}>contact@spacesphere.com</span>
-              </div>
-            </div>
-            <div style={{ marginTop: '24px', padding: '20px', background: 'rgba(199, 154, 74, 0.05)', borderRadius: '8px' }}>
-              <p style={{ fontSize: '15px', fontWeight: 600, color: '#1a1a1a', marginBottom: '12px' }}>Quick Actions:</p>
-              <div style={{ display: 'grid', gap: '10px' }}>
-                <button 
-                  className="cta-button" 
-                  style={{ padding: '12px 20px', fontSize: '14px', width: '100%' }}
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Book a Private Consultation
-                </button>
-                <button 
-                  className="cta-button" 
-                  style={{ padding: '12px 20px', fontSize: '14px', width: '100%', background: 'transparent', border: '2px solid #c79a4a', color: '#c79a4a' }}
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Schedule a Site Experience
-                </button>
-              </div>
-            </div>
-          </div>
 
-          <div className="contact-card" style={{ padding: '24px' }}>
-            <h3 className="contact-card-title" style={{ margin: '0 0 16px 0' }}>Contact Us</h3>
-            <form className="contact-form" style={{ display: 'grid', gap: '16px' }}>
-              <div className="form-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-                <label className="form-field" style={{ display: 'grid', gap: '6px' }}>
-                  <span>Name</span>
-                  <input type="text" placeholder="Enter your full name" />
-                </label>
-                <label className="form-field" style={{ display: 'grid', gap: '6px' }}>
-                  <span>Email</span>
-                  <input type="email" placeholder="Enter your email" />
-                </label>
-              </div>
 
-              <div className="form-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-                <label className="form-field" style={{ display: 'grid', gap: '6px' }}>
-                  <span>Country Code</span>
-                  <select defaultValue="India (+91)">
-                    <option>India (+91)</option>
-                    <option>UAE (+971)</option>
-                    <option>USA (+1)</option>
-                  </select>
-                </label>
-                <label className="form-field" style={{ display: 'grid', gap: '6px' }}>
-                  <span>Mobile Number</span>
-                  <input type="tel" placeholder="Enter your mobile number" />
-                </label>
-              </div>
+      {/* Luxury Connect With Us Section */}
+      <section 
+        id="contact" 
+        ref={contactSectionRef}
+        className="luxury-connect-section"
+        style={{
+          position: 'relative',
+          minHeight: '70vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundImage: 'url("/contact.jpg")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          overflow: 'hidden'
+        }}
+      >
+        {/* Parallax Background Layer */}
+        <div 
+          className="parallax-bg"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: 'url("/villa1.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+            transform: 'translateZ(0)',
+            willChange: 'transform'
+          }}
+        />
 
-              <div className="form-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-                <label className="form-field" style={{ display: 'grid', gap: '6px' }}>
-                  <span>Project Name</span>
-                  <select defaultValue="">
-                    <option value="" disabled>
-                      Select Project Name
-                    </option>
-                    <option>SpaceSphere Club Towers</option>
-                    <option>SpaceSphere</option>
-                    <option>Luxury Villas</option>
-                  </select>
-                </label>
-                <label className="form-field" style={{ display: 'grid', gap: '6px' }}>
-                  <span>Project Type</span>
-                  <select defaultValue="">
-                    <option value="" disabled>
-                      Select Project Type
-                    </option>
-                    <option>Residential</option>
-                    <option>Commercial</option>
-                    <option>Mixed Use</option>
-                  </select>
-                </label>
-              </div>
+        {/* Dark Glassmorphism Overlay */}
+        <div 
+          className="glassmorphism-overlay"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(15, 15, 15, 0.4)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        />
 
-              <div className="form-row single" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
-                <label className="form-field" style={{ display: 'grid', gap: '6px' }}>
-                  <span>What's your budget?</span>
-                  <input type="text" placeholder="How much would you like to invest?" />
-                </label>
-              </div>
+        {/* Soft Vignette Edges */}
+        <div 
+          className="vignette-overlay"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.3) 100%)',
+            pointerEvents: 'none'
+          }}
+        />
 
-              <label className="consent" style={{ display: 'flex', gap: '10px', alignItems: 'start', marginTop: '2px' }}>
-                <input type="checkbox" defaultChecked style={{ marginTop: '8px' }} />
-                <span>
-                  I authorize SpaceSphere Realty and its representatives to Call, SMS,
-                  Email or WhatsApp me with its products and offers. This will override any registry on DND/NDNC.
-                </span>
-              </label>
 
-              <button type="button" className="submit-button" style={{ marginTop: '8px', padding: '14px' }}>
-                SUBMIT
-              </button>
-            </form>
+        {/* Content Container */}
+        <div 
+          className="connect-content"
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            maxWidth: '900px',
+            width: '100%',
+            padding: '80px 24px',
+            textAlign: 'center',
+            opacity: contactSectionInView ? 1 : 0,
+            transform: contactSectionInView ? 'translateY(0)' : 'translateY(50px)',
+            transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
+          {/* Primary Heading */}
+          <h1 
+            className="connect-heading"
+            style={{
+              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontWeight: 300,
+              color: '#ffffff',
+              textTransform: 'uppercase',
+              letterSpacing: '0.15em',
+              margin: '0 0 32px 0',
+              fontFamily: "'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', sans-serif",
+              textShadow: '0 2px 20px rgba(0, 0, 0, 0.5)',
+              lineHeight: 1.1
+            }}
+          >
+            CONNECT WITH US
+          </h1>
+
+          {/* Subheading */}
+          <p 
+            className="connect-subheading"
+            style={{
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
+              color: 'rgba(255, 255, 255, 0.88)',
+              fontFamily: "'Playfair Display', serif",
+              fontStyle: 'italic',
+              margin: '0 0 64px 0',
+              fontWeight: 400,
+              textShadow: '0 1px 10px rgba(0, 0, 0, 0.3)',
+              lineHeight: 1.4
+            }}
+          >
+            Let's Discover Your Next Address of Prestige.
+          </p>
+
+         
+
+          {/* Premium CTAs */}
+          <div 
+            className="premium-ctas"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '20px',
+              alignItems: 'center',
+              maxWidth: '500px',
+              margin: '0 auto'
+            }}
+          >
+            {/* Primary CTA - Book a Private Consultation */}
+            <button
+              className="primary-cta"
+              onClick={() => setIsModalOpen(true)}
+              style={{
+                background: 'transparent',
+                border: '2px solid #C79A4A',
+                color: '#ffffff',
+                padding: '18px 48px',
+                fontSize: '0.95rem',
+                fontWeight: 300,
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                backdropFilter: 'blur(10px)',
+                position: 'relative',
+                overflow: 'hidden',
+                width: '100%',
+                maxWidth: '350px',
+                fontFamily: "'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', sans-serif"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 15px 40px rgba(199, 154, 74, 0.4)';
+                e.currentTarget.style.borderColor = '#D4AF6A';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = '#C79A4A';
+              }}
+            >
+              <span style={{ position: 'relative', zIndex: 2 }}>Book a Private Consultation</span>
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '-100%',
+                  width: '100%',
+                  height: '100%',
+                  background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.1), transparent)',
+                  transition: 'left 0.6s ease'
+                }}
+                className="cta-shine"
+              />
+            </button>
+
+            {/* Secondary CTA - Schedule a Site Experience */}
+            <button
+              className="secondary-cta"
+              onClick={() => setIsModalOpen(true)}
+              style={{
+                background: 'rgba(255, 255, 255, 0.05)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                color: '#ffffff',
+                padding: '18px 48px',
+                fontSize: '0.95rem',
+                fontWeight: 400,
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                width: '100%',
+                maxWidth: '350px',
+                fontFamily: "'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', sans-serif"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              Schedule a Site Experience
+            </button>
           </div>
         </div>
+
+        {/* Floating Elements for Depth */}
+        <div 
+          className="floating-element"
+          style={{
+            position: 'absolute',
+            top: '20%',
+            left: '10%',
+            width: '80px',
+            height: '80px',
+            background: 'radial-gradient(circle, rgba(199, 154, 74, 0.1) 0%, transparent 70%)',
+            borderRadius: '50%',
+            animation: 'float 6s ease-in-out infinite',
+            zIndex: 1
+          }}
+        />
+        <div 
+          className="floating-element"
+          style={{
+            position: 'absolute',
+            bottom: '25%',
+            right: '15%',
+            width: '60px',
+            height: '60px',
+            background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%)',
+            borderRadius: '50%',
+            animation: 'float 8s ease-in-out infinite reverse',
+            zIndex: 1
+          }}
+        />
       </section>
 
       <footer className="footer" style={{ background: '#111111', color: '#F2C66E', padding: '80px 24px 40px' }}>
@@ -1740,9 +2342,10 @@ export default function Home() {
             </div>
 
             <div>
-              <h4 style={{ fontSize: '18px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                Contact Info
-              </h4>
+  
+              <h4 className="office-subheading" style={{ fontSize: '18px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+    Contact Info
+  </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '16px' }}>
                 <li style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ marginTop: '2px', flexShrink: 0 }}>
