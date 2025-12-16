@@ -648,7 +648,7 @@ export default function Home() {
       </section>
 
     
-      <section className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
+   <section className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
         {/* Geometric Background Elements */}
         <div style={{ 
           position: 'absolute', 
@@ -709,9 +709,15 @@ export default function Home() {
 
           {/* Floating Cards Grid */}
           <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            display: 'grid',
+            gridTemplateColumns: 'repeat(5, auto)',
+            gridTemplateAreas: `
+              "card1 . card2 . card3"
+              ". card4 . card5 ."
+            `,
             gap: '30px',
+            justifyContent: 'center',
+            justifyItems: 'center',
             position: 'relative',
             marginTop: '40px'
           }}>
@@ -724,9 +730,15 @@ export default function Home() {
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(0)',
+              width: '320px',
+              minHeight: '140px',
+              marginRight: '-250px',
+              height: '160px',
+              transform: 'translateX(190px)',
+              alignSelf: 'center',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              zIndex: 3
+              zIndex: 3,
+              flex: '0 1 calc((100% - 60px) / 3)'
             }}>
               <div style={{
                 position: 'absolute',
@@ -759,13 +771,17 @@ export default function Home() {
 
             {/* Card 2 - Top Right */}
             <div className="floating-card" style={{
+              gridArea: 'card2',
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
               padding: '25px 20px',
               borderRadius: '16px',
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(-15px)',
+              width: '320px',
+              minHeight: '140px',
+              height: '160px',
+              transform: 'none',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               zIndex: 3
             }}>
@@ -800,13 +816,18 @@ export default function Home() {
 
             {/* Card 3 - Bottom Left */}
             <div className="floating-card" style={{
+              gridArea: 'card3',
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
               padding: '25px 20px',
               borderRadius: '16px',
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(15px)',
+              marginLeft: '-250px',
+              width: '320px',
+              minHeight: '140px',
+              height: '160px',
+              transform: 'translateX(-40px)',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               zIndex: 3
             }}>
@@ -841,13 +862,18 @@ export default function Home() {
 
             {/* Card 4 - Bottom Right */}
             <div className="floating-card" style={{
+              gridArea: 'card4',
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
               padding: '25px 20px',
               borderRadius: '16px',
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(0)',
+              width: '320px',
+              minHeight: '140px',
+              height: '160px',
+              marginRight: '20px',
+              transform: 'translateX(290px)',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               zIndex: 3
             }}>
@@ -882,17 +908,20 @@ export default function Home() {
 
             {/* Central Feature Card */}
             <div className="floating-card central-card" style={{
-              background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
-              padding: '35px 30px',
-              borderRadius: '20px',
-              boxShadow: '0 20px 60px rgba(199, 154, 74, 0.3), 0 10px 25px rgba(199, 154, 74, 0.4)',
-              border: '2px solid rgba(255, 255, 255, 0.2)',
+              gridArea: 'card5',
+              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+              padding: '30px 25px',
+              borderRadius: '16px',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
+              border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'scale(1.02)',
+              transform: 'none',
               zIndex: 4,
               margin: '15px auto',
-              gridColumn: '1 / -1',
-              maxWidth: '450px'
+              transform: 'translateY(20px)',
+              width: '320px',
+              minHeight: '140px',
+              height: '160px'
             }}>
               <div style={{
                 position: 'absolute',
@@ -914,10 +943,10 @@ export default function Home() {
               </div>
               
               <div>
-                <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                   Investment-Led Advisory
                 </h3>
-                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.5', margin: 0 }}>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
                   Data-driven insights on growth potential, rental yields & market appreciation trends.
                 </p>
               </div>
@@ -942,8 +971,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
 
 
       <section id="what-we-offer" ref={timelineSectionRef} className="what-we-offer" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#1a1a1a' }}>
