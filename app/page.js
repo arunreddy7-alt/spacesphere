@@ -408,10 +408,10 @@ export default function Home() {
 
 <div
   id="mobile-brand"
-  className="flex items-center gap-2 text-xl md:text-2xl"
+  className={`flex items-center gap-2 text-xl md:text-2xl ${isScrolled ? 'visible' : ''}`}
 >
-  <span className="font-semibold" style={{ color: 'black' }}>SPACE</span>
-  <span className="opacity-80" style={{ color: 'black' }}>| SPHERE</span>
+  <span className="font-semibold" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>SPACE</span>
+  <span className="opacity-80" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>| SPHERE</span>
 </div>
 
 
@@ -463,7 +463,9 @@ export default function Home() {
           <div 
             className="md:hidden absolute top-full left-0 right-0 backdrop-blur-md shadow-lg z-40"
             style={{ 
-              background: 'rgba(245, 245, 240, 0.98)',
+              background: isScrolled ? 'rgba(245, 245, 240, 0.98)' : 'rgba(0, 0, 0, 0.3)',
+              backdropFilter: 'blur(10px)',
+              WebkitBackdropFilter: 'blur(10px)',
               animation: 'slideDown 0.3s ease-out',
               transformOrigin: 'top'
             }}
@@ -499,10 +501,10 @@ export default function Home() {
       "
       style={{ 
         cursor: "pointer", 
-        color: "#1a1a1a",
+        color: isScrolled ? "#1a1a1a" : "#f0ede6",
         fontWeight: 500,
         textAlign: "center",
-        border: "1px solid rgba(199, 154, 74, 0.1)"
+        border: "none"
       }}
     >
       {item.name}
@@ -567,33 +569,536 @@ export default function Home() {
             </div>
 
             <div className="hero-main">
-              <div className="hero">
-                <h1 className="hero-heading">
-                SPACE SPHERE
 
+
+
+            <div className="hero" style={{ 
+                textAlign: 'center', 
+                width: '100%',
+                position: 'relative',
+                padding: '25px 20px 15px',
+                maxWidth: '1200px',
+                margin: '0 auto',
+                overflow: 'hidden'
+              }}>
+                {/* Animated background particles */}
+                <div style={{
+                  position: 'absolute',
+                  top: '10%',
+                  left: '15%',
+                  width: '4px',
+                  height: '4px',
+                  background: 'rgba(199, 154, 74, 0.6)',
+                  borderRadius: '50%',
+                  boxShadow: '0 0 10px rgba(199, 154, 74, 0.8)',
+                  animation: 'float 12s ease-in-out infinite',
+                  pointerEvents: 'none'
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  top: '60%',
+                  right: '20%',
+                  width: '3px',
+                  height: '3px',
+                  background: 'rgba(199, 154, 74, 0.5)',
+                  borderRadius: '50%',
+                  boxShadow: '0 0 8px rgba(199, 154, 74, 0.6)',
+                  animation: 'float 15s ease-in-out infinite reverse',
+                  pointerEvents: 'none'
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  bottom: '20%',
+                  left: '25%',
+                  width: '5px',
+                  height: '5px',
+                  background: 'rgba(199, 154, 74, 0.4)',
+                  borderRadius: '50%',
+                  boxShadow: '0 0 12px rgba(199, 154, 74, 0.7)',
+                  animation: 'float 18s ease-in-out infinite',
+                  pointerEvents: 'none'
+                }} />
+
+                {/* Enhanced decorative accent line with glow */}
+                <div style={{
+                  position: 'relative',
+                  width: '120px',
+                  height: '2px',
+                  margin: '0 auto 40px',
+                  animation: 'fadeInUp 1s ease-out 0.3s both'
+                }}>
+                  <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    width: '100%',
+                    height: '2px',
+                    background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.4), rgba(199, 154, 74, 0.8), rgba(199, 154, 74, 0.4), transparent)',
+                    borderRadius: '2px',
+                    boxShadow: '0 0 15px rgba(199, 154, 74, 0.6)'
+                  }} />
+                  <div style={{
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '8px',
+                    height: '8px',
+                    background: 'rgba(199, 154, 74, 0.9)',
+                    borderRadius: '50%',
+                    boxShadow: '0 0 20px rgba(199, 154, 74, 0.8), 0 0 40px rgba(199, 154, 74, 0.4)',
+                    animation: 'pulse 3s ease-in-out infinite'
+                  }} />
+                </div>
+
+
+                {/* Main heading with enhanced gradient effect and glow */}
+                <h1 className="hero-heading" style={{ 
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: 'clamp(4rem, 7vw + 1.5rem, 6.5rem)',
+                  fontWeight: 700,
+                  letterSpacing: '0.1em',
+                  marginBottom: '20px',
+                  textAlign: 'center',
+                  lineHeight: '1.1',
+                  position: 'relative',
+                  display: 'inline-block',
+                  transform: 'translateY(15px)',
+                  animation: 'fadeInUp 1s ease-out 0.2s both',
+                  filter: 'drop-shadow(0 0 30px rgba(199, 154, 74, 0.3))'
+                }}>
+                  {/* Glow effect behind text */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    width: '120%',
+                    height: '120%',
+                    background: 'radial-gradient(ellipse at center, rgba(199, 154, 74, 0.15) 0%, transparent 70%)',
+                    zIndex: -1,
+                    animation: 'pulse 4s ease-in-out infinite'
+                  }} />
+                  
+                  <span style={{ 
+                    display: 'block',
+                    background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
+                    backgroundSize: '200% 200%',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    animation: 'shimmer 5s ease-in-out infinite',
+                    textShadow: '0 4px 30px rgba(0, 0, 0, 0.4), 0 0 60px rgba(199, 154, 74, 0.2)',
+                    position: 'relative',
+
+                    zIndex: 1
+                  }}>
+                    SPACE
+                  </span>
+                  <span style={{ 
+                    display: 'block',
+                    fontSize: '0.82em',
+                    marginTop: '-0.2em',
+                    letterSpacing: '0.15em',
+                    background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
+                    backgroundSize: '200% 200%',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    textShadow: '0 2px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(199, 154, 74, 0.15)',
+                    position: 'relative',
+                    zIndex: 1,
+                    animation: 'shimmer 3s ease-in-out infinite'
+                  }}>
+                    SPHERE
+                  </span>
                 </h1>
-                <p className="hero-subhead">
-                  Where Luxury Meets Location. Where Investments Become Legacies.
-                </p>
-                <p className="hero-subhead alt">
-                  
-                  
-                  Not just choices – curated excellence.
-                </p>
-                <div className="hero-cta-row">
+
+                {/* Enhanced elegant divider with animated elements */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '20px',
+                  margin: '40px auto 45px',
+                  width: 'fit-content',
+                  animation: 'fadeInUp 1s ease-out 0.4s both',
+                  position: 'relative'
+                }}>
+                  <div style={{
+                    width: '50px',
+                    height: '1px',
+                    background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.3), rgba(199, 154, 74, 0.7))',
+                    boxShadow: '0 0 8px rgba(199, 154, 74, 0.4)'
+                  }} />
+                  <div style={{
+                    position: 'relative',
+                    width: '10px',
+                    height: '10px'
+                  }}>
+                    <div style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: 'rgba(199, 154, 74, 0.9)',
+                      boxShadow: '0 0 15px rgba(199, 154, 74, 0.8), 0 0 30px rgba(199, 154, 74, 0.4)',
+                      animation: 'pulse 2.5s ease-in-out infinite'
+                    }} />
+                    <div style={{
+                      position: 'absolute',
+                      top: '50%',
+                      left: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      width: '16px',
+                      height: '16px',
+                      borderRadius: '50%',
+                      border: '1px solid rgba(199, 154, 74, 0.3)',
+                      animation: 'ripple 2.5s ease-out infinite'
+                    }} />
+                  </div>
+                  <div style={{
+                    width: '50px',
+                    height: '1px',
+                    background: 'linear-gradient(90deg, rgba(199, 154, 74, 0.7), rgba(199, 154, 74, 0.3), transparent)',
+                    boxShadow: '0 0 8px rgba(199, 154, 74, 0.4)'
+                  }} />
+                </div>
+
+
+                {/* Unique subheading with modern typography treatment */}
+                <div style={{ 
+                  position: 'relative', 
+                  marginBottom: '40px',
+                  padding: '0 10px'
+                }}>
+                  {/* Animated word-by-word display */}
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '0px',
+                    position: 'relative'
+                  }}>
+                    {/* First phrase - "Where Investments" */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'baseline',
+                      justifyContent: 'center',
+                      gap: '12px',
+                      flexWrap: 'wrap',
+                      animation: 'fadeInUp 1s ease-out 0.5s both',
+                      marginBottom: '0px'
+                    }}>
+                      <span style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: 'clamp(1.4rem, 2.2vw + 0.8rem, 2rem)',
+                        fontWeight: 400,
+                        color: 'rgba(245, 245, 240, 0.85)',
+                        fontStyle: 'italic',
+                        letterSpacing: '0.05em',
+                        textShadow: '0 2px 15px rgba(0, 0, 0, 0.4)'
+                      }}>
+                        Where
+                      </span>
+                      <span style={{
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: 'clamp(1.8rem, 3vw + 1rem, 2.6rem)',
+                        fontWeight: 600,
+                        background: 'linear-gradient(135deg, #ffffff 0%, rgba(199, 154, 74, 0.5) 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        letterSpacing: '0.08em',
+                        textShadow: '0 3px 20px rgba(0, 0, 0, 0.3)',
+                        position: 'relative'
+                      }}>
+                        Investments
+                      </span>
+                    </div>
+
+                    {/* Connecting element */}
+                    <div style={{
+                      width: '2px',
+                      height: '6px',
+                      background: 'linear-gradient(180deg, transparent, rgba(199, 154, 74, 0.5), transparent)',
+                      margin: '0px 0',
+                      animation: 'fadeInUp 1s ease-out 0.55s both'
+                    }} />
+
+                    {/* Second phrase - "Become Legacies" */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'baseline',
+                      justifyContent: 'center',
+                      gap: '12px',
+                      flexWrap: 'wrap',
+
+                      transform: 'translateX(20px)',
+                      animation: 'fadeInUp 1s ease-out 0.6s both'
+                    }}>
+                      <span style={{
+                        fontFamily: "'Inter', sans-serif",
+                        fontSize: 'clamp(1rem, 1.3vw + 0.6rem, 1.4rem)',
+                        fontWeight: 500,
+                        color: 'rgba(245, 245, 240, 0.9)',
+                        letterSpacing: '0.15em',
+                        textTransform: 'uppercase',
+                        textShadow: '0 2px 12px rgba(0, 0, 0, 0.4)'
+                      }}>
+                        Become
+                      </span>
+                      <span style={{
+                        fontFamily: "'Playfair Display', serif",
+                        fontSize: 'clamp(1.6rem, 2.5vw + 0.9rem, 2.2rem)',
+                        fontWeight: 700,
+                        background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.4) 0%, #ffffff 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        letterSpacing: '0.1em',
+                        textShadow: '0 3px 20px rgba(0, 0, 0, 0.3)',
+                        position: 'relative'
+                      }}>
+                        Legacies
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Modern decorative underline */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    margin: '30px auto 0',
+                    width: 'fit-content',
+                    animation: 'fadeInUp 1s ease-out 0.65s both'
+                  }}>
+                    <div style={{
+                      width: '25px',
+                      height: '1px',
+                      background: 'rgba(199, 154, 74, 0.4)'
+                    }} />
+                    <div style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: 'rgba(199, 154, 74, 0.7)',
+                      boxShadow: '0 0 10px rgba(199, 154, 74, 0.6)',
+                      animation: 'pulse 2.5s ease-in-out infinite'
+                    }} />
+                    <div style={{
+                      width: '60px',
+                      height: '1px',
+                      background: 'linear-gradient(90deg, rgba(199, 154, 74, 0.4), rgba(199, 154, 74, 0.7), rgba(199, 154, 74, 0.4))'
+                    }} />
+                    <div style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: 'rgba(199, 154, 74, 0.7)',
+                      boxShadow: '0 0 10px rgba(199, 154, 74, 0.6)',
+                      animation: 'pulse 2.5s ease-in-out infinite 0.5s'
+                    }} />
+                    <div style={{
+                      width: '25px',
+                      height: '1px',
+                      background: 'rgba(199, 154, 74, 0.4)'
+                    }} />
+                  </div>
+                </div>
+                
+
+
+                {/* Premium CTA buttons */}
+
+
+                <div className="hero-cta-row" style={{ 
+                  display: 'flex', 
+                  gap: '20px', 
+                  justifyContent: 'center',
+                  flexWrap: 'nowrap',
+                  animation: 'fadeInUp 1s ease-out 0.7s both',
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  width: '100%',
+                  maxWidth: '800px',
+                  margin: '10px auto 0',
+                  padding: '0 10px'
+                }}>
+<div className="hero-buttons"   style={{
+    display: 'flex',
+    gap: '20px',          // 👈 DESKTOP GAP BETWEEN BUTTONS
+    alignItems: 'center',
+    justifyContent: 'center'
+  }}
+>
                   <button
                     className="hero-primary"
                     onClick={() => setIsModalOpen(true)}
+                    style={{
+                      padding: '16px 32px',
+                      fontSize: '0.9rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.06em',
+                      background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.98) 0%, rgba(212, 175, 106, 0.95) 50%, rgba(199, 154, 74, 0.98) 100%)',
+                      backgroundSize: '200% 200%',
+                      color: '#ffffff',
+                      border: 'none',
+                      borderRadius: '50px',
+                      cursor: 'pointer',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      boxShadow: '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      textTransform: 'uppercase',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
+                      minWidth: 'fit-content'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.target.style.transform = 'translateY(-3px) scale(1.03)';
+                      e.target.style.boxShadow = '0 15px 40px rgba(199, 154, 74, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 0 60px rgba(199, 154, 74, 0.3)';
+                      e.target.style.backgroundPosition = '100% 0';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.transform = 'translateY(0) scale(1)';
+                      e.target.style.boxShadow = '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)';
+                      e.target.style.backgroundPosition = '0 0';
+                    }}
                   >
-                    Book a Private Consultation
+                    {/* Shimmer effect overlay */}
+                   
+                    <span style={{ position: 'relative', zIndex: 1, display: 'block' }}>
+                      Book a Private Consultation
+                    </span>
+                  </button>
+
+                  <button
+                    className="hero-secondary"
+                    onClick={() => {
+                      const edgeSection = document.getElementById('space-sphere-edge-section');
+                      if (edgeSection) {
+                        edgeSection.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    style={{
+                      padding: '16px 32px',
+                      fontSize: '0.9rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.06em',
+                      background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.98) 0%, rgba(212, 175, 106, 0.95) 50%, rgba(199, 154, 74, 0.98) 100%)',
+                      backgroundSize: '200% 200%',
+                      color: '#ffffff',
+                      border: 'none',
+                      borderRadius: '50px',
+                      cursor: 'pointer',
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      boxShadow: '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      textTransform: 'uppercase',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
+                      minWidth: 'fit-content'
+                    }}
+                    onMouseEnter={(e) => {
+                      const btn = e.currentTarget;
+                      btn.style.transform = 'translateY(-3px) scale(1.03)';
+                      btn.style.boxShadow =
+                        '0 15px 40px rgba(199, 154, 74, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 0 60px rgba(199, 154, 74, 0.3)';
+                      btn.style.backgroundPosition = '100% 0';
+                    }}
+                    
+                    onMouseLeave={(e) => {
+                      const btn = e.currentTarget;
+                      btn.style.transform = 'translateY(0) scale(1)';
+                      btn.style.boxShadow =
+                        '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)';
+                      btn.style.backgroundPosition = '0 0';
+                    }}
+>                    
+                    {/* Animated border glow */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '-2px',
+                      left: '-2px',
+                      right: '-2px',
+                      bottom: '-2px',
+                      background: 'linear-gradient(45deg, rgba(199, 154, 74, 0.3), rgba(255, 255, 255, 0.3), rgba(199, 154, 74, 0.3))',
+                      backgroundSize: '200% 200%',
+                      borderRadius: '50px',
+                      zIndex: -1,
+                      opacity: 0,
+                      transition: 'opacity 0.4s ease',
+                      animation: 'shimmer 3s ease-in-out infinite'
+                    }} />
+                    <span style={{ position: 'relative', zIndex: 1, display: 'block' }}>
+                      View Features
+                    </span>
                   </button>
                 </div>
+                </div>
+
+
+                {/* Enhanced decorative geometric elements */}
+                <div style={{
+                  position: 'absolute',
+                  top: '5%',
+                  left: '3%',
+                  width: '80px',
+                  height: '80px',
+                  border: '1px solid rgba(199, 154, 74, 0.2)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none',
+                  animation: 'float 10s ease-in-out infinite',
+                  boxShadow: '0 0 30px rgba(199, 154, 74, 0.1)'
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  bottom: '8%',
+                  right: '5%',
+                  width: '70px',
+                  height: '70px',
+                  border: '1px solid rgba(199, 154, 74, 0.18)',
+                  borderRadius: '50%',
+                  pointerEvents: 'none',
+                  animation: 'float 14s ease-in-out infinite',
+                  boxShadow: '0 0 35px rgba(199, 154, 74, 0.12)'
+                }} />
+                
+                {/* Corner accent lines */}
+                <div style={{
+                  position: 'absolute',
+                  top: '3%',
+                  right: '8%',
+                  width: '40px',
+                  height: '1px',
+                  background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.4))',
+                  transform: 'rotate(45deg)',
+                  pointerEvents: 'none'
+                }} />
+                <div style={{
+                  position: 'absolute',
+                  bottom: '5%',
+                  left: '8%',
+                  width: '35px',
+                  height: '1px',
+                  background: 'linear-gradient(90deg, rgba(199, 154, 74, 0.4), transparent)',
+                  transform: 'rotate(-45deg)',
+                  pointerEvents: 'none'
+                }} />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="slider-dots-bar" style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', padding: '8px 14px' }}>
+
+        <div className="slider-dots-bar" style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', padding: '4px 14px' }}>
           {heroImages.map((_, dot) => (
             <span
               key={dot}
@@ -794,9 +1299,11 @@ export default function Home() {
                         }
                       }
                       .connection-line {
-                        stroke-dasharray: 2 2;
+                        stroke-dasharray: 3 3;
                         animation: dashFlow 20s linear infinite;
                         vector-effect: non-scaling-stroke;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
                       }
                       @media (max-width: 1024px) {
                         .connection-lines {
@@ -806,44 +1313,48 @@ export default function Home() {
                     `}
                   </style>
                 </defs>
-                <g className="connection-lines" fill="none" stroke="url(#lineGradient)" strokeWidth="2">
+                <g className="connection-lines" fill="none" stroke="rgba(199, 154, 74, 0.8)" strokeWidth="2">
                   
                   {/* 
-                      Percentage-based Coordinates for 5-column grid layout
-                      Row 1 Cards (1, 2, 3) approx Y center: 20%
-                      Row 2 Cards (4, 5) approx Y center: 60%
+                      Grid Layout: 5 columns with gaps, 2 rows
+                      Based on gridTemplateAreas: "card1 . card2 . card3" / ". card4 . card5 ."
                       
-                      Col 1 (Card 1) Right: ~17% X
-                      Col 2 (Card 4) Top: ~29% X, Right: ~38% X
-                      Col 3 (Card 2) Bottom: ~50% X, Right: ~59% X
-                      Col 4 (Card 5) Top: ~71% X, Right: ~80% X
-                      Col 5 (Card 3) Bottom: ~92% X
+                      Each column is 20% width. Cards are centered in their columns.
+                      Row 1 (top): Cards 1, 2, 3 - Y center around 25%
+                      Row 2 (bottom): Cards 4, 5 - Y center around 75%
+                      
+                      Card centers:
+                      Card 1 (Col 1): ~10% X, ~25% Y
+                      Card 4 (Col 2): ~30% X, ~75% Y
+                      Card 2 (Col 3): ~50% X, ~25% Y
+                      Card 5 (Col 4): ~70% X, ~75% Y
+                      Card 3 (Col 5): ~90% X, ~25% Y
                   */}
 
 
-                  {/* Card 1 (Right Middle) -> Card 4 (Top Middle) 
-                      Start: ~19% X, 25% Y
-                      End: ~30% X, 55% Y
+                  {/* Card 1 -> Card 4 - Right then Down
+                      From Card 1 center (10%, 25%) to Card 4 center (30%, 75%)
+                      Path: Go right, then down
                   */}
-                  <path d="M 19 25 C 25 25, 25 55, 30 55" className="connection-line" />
+                  <path d="M 10 25 L 20 25 L 20 75 L 30 75" className="connection-line" />
                   
-                  {/* Card 4 (Right Middle) -> Card 2 (Bottom Middle) 
-                      Start: ~39% X, 55% Y
-                      End: ~50% X, 35% Y
+                  {/* Card 4 -> Card 2 - Right then Up
+                      From Card 4 center (30%, 75%) to Card 2 center (50%, 25%)
+                      Path: Go right, then up
                   */}
-                  <path d="M 39 55 C 45 55, 45 35, 50 35" className="connection-line" />
+                  <path d="M 30 75 L 40 75 L 40 25 L 50 25" className="connection-line" />
 
-                  {/* Card 2 (Right Middle) -> Card 5 (Top Middle) 
-                      Start: ~59% X, 25% Y
-                      End: ~70% X, 55% Y
+                  {/* Card 2 -> Card 5 - Right then Down
+                      From Card 2 center (50%, 25%) to Card 5 center (70%, 75%)
+                      Path: Go right, then down
                   */}
-                  <path d="M 59 25 C 65 25, 65 55, 70 55" className="connection-line" />
+                  <path d="M 50 25 L 60 25 L 60 75 L 70 75" className="connection-line" />
 
-                  {/* Card 5 (Right Middle) -> Card 3 (Bottom Middle) 
-                      Start: ~79% X, 55% Y
-                      End: ~90% X, 35% Y
+                  {/* Card 5 -> Card 3 - Right then Up
+                      From Card 5 center (70%, 75%) to Card 3 center (90%, 25%)
+                      Path: Go right, then up
                   */}
-                  <path d="M 79 55 C 85 55, 85 35, 90 35" className="connection-line" />
+                  <path d="M 70 75 L 80 75 L 80 25 L 90 25" className="connection-line" />
 
                 </g>
               </svg>
@@ -893,18 +1404,6 @@ export default function Home() {
                 </svg>
               </div>
 
-              {/* Dot: Right Middle */}
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                right: '-5px',
-                transform: 'translateY(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
 
               
               
@@ -958,31 +1457,6 @@ export default function Home() {
                 </svg>
               </div>
 
-              {/* Dot: Bottom Middle */}
-              <div style={{
-                position: 'absolute',
-                bottom: '-5px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
-
-              {/* Dot: Right Middle */}
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                right: '-5px',
-                transform: 'translateY(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
 
               <div style={{ marginTop: '18px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
@@ -1015,18 +1489,6 @@ export default function Home() {
               transition: 'all 0.35s ease',
               zIndex: 3
             }}>
-              {/* Single Dot */}
-              <div style={{
-                position: 'absolute',
-                top: '12px',
-                right: '12px',
-                width: '12px',
-                height: '12px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5,
-                boxShadow: '0 0 10px rgba(199, 154, 74, 0.5)'
-              }} />
 
               <div style={{
                 position: 'absolute',
@@ -1097,31 +1559,6 @@ export default function Home() {
                 </svg>
               </div>
 
-              {/* Dot: Top Middle */}
-              <div style={{
-                position: 'absolute',
-                top: '-5px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
-
-              {/* Dot: Right Middle */}
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                right: '-5px',
-                transform: 'translateY(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
 
               <div style={{ marginTop: '20px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
@@ -1171,31 +1608,6 @@ export default function Home() {
                 </svg>
               </div>
 
-              {/* Dot: Top Middle */}
-              <div style={{
-                position: 'absolute',
-                top: '-5px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
-
-              {/* Dot: Right Middle */}
-              <div style={{
-                position: 'absolute',
-                top: '50%',
-                right: '-5px',
-                transform: 'translateY(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
               
               <div>
                 <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
@@ -2968,4 +3380,4 @@ Invest with confidence. Live with pride.
       </footer>
     </main>
   );
-}
+  }

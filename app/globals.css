@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:wght@400;600&family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -2262,9 +2262,67 @@ body {
 .floating-card:nth-child(5) { animation-delay: 0.5s; }
 
 @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeAway {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes fadeAwayColor {
+  0%, 100% {
+    background-position: 0% 50%;
+    opacity: 1;
+    filter: brightness(1);
+  }
+  25% {
+    background-position: 50% 50%;
+    opacity: 0.8;
+    filter: brightness(0.9);
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.5;
+    filter: brightness(0.7);
+  }
+  75% {
+    background-position: 50% 50%;
+    opacity: 0.8;
+    filter: brightness(0.9);
   }
 }
 
@@ -4180,7 +4238,25 @@ section[id="contact"]:hover [style*="width: '60px'"] {
     align-items: flex-start !important;
     padding-top: 20px !important;
   }
+  .hero-buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+  }
   
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;   /* ⬅ forces 2 lines */
+      align-items: center;
+     
+    }
+  
+    .hero-secondary {
+      margin-top: 12px;         /* spacing for 2nd line */
+    }
+  }
+  
+
   /* Ensure cards don't overflow */
   .floating-card,
   .timeline-card,
