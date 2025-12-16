@@ -1225,8 +1225,28 @@ body {
   }
 }
 
+
 /* Mobile Responsive Styles - Only affects mobile, desktop unchanged */
 @media (max-width: 768px) {
+  /* Connect With Us Section Button Layout */
+  .premium-ctas {
+    flex-direction: column !important;
+    gap: 16px !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+  }
+  
+  .premium-ctas .primary-cta,
+  .premium-ctas .secondary-cta {
+    width: 100% !important;
+    max-width: 280px !important;
+    min-width: unset !important;
+    flex: none !important;
+    padding: 16px 24px !important;
+    font-size: 13px !important;
+    text-align: center !important;
+  }
   /* Hero Section Mobile */
   .serif-heading {
     font-size: 32px !important;

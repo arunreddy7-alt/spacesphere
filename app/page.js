@@ -1,4 +1,5 @@
 
+
 "use client";
 // Enable client features for hero slideshow
 
@@ -557,7 +558,6 @@ export default function Home() {
                 <p style={{ margin: 0, fontWeight: 600 }}>
                   Every project we represent is hand-evaluated for:
                 </p>
-
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '8px' }}>
                   <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
@@ -669,8 +669,7 @@ export default function Home() {
       </section>
 
     
-     
-      <section className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
+   <section className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
         {/* Geometric Background Elements */}
         <div style={{ 
           position: 'absolute', 
@@ -937,9 +936,10 @@ export default function Home() {
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateX(-50px) translateY(60px)',
+              transform: 'none',
               zIndex: 4,
               margin: '15px auto',
+              transform: 'translateY(20px)',
               width: '320px',
               minHeight: '140px',
               height: '160px'
@@ -992,8 +992,6 @@ export default function Home() {
           </div>
         </div>
       </section>
- 
-
 
 
       <section id="what-we-offer" ref={timelineSectionRef} className="what-we-offer" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#1a1a1a' }}>
@@ -2036,7 +2034,7 @@ export default function Home() {
         className="luxury-connect-section"
         style={{
           position: 'relative',
-          minHeight: '70vh',
+          minHeight: '60vh',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -2152,18 +2150,22 @@ export default function Home() {
 
          
 
+
           {/* Premium CTAs */}
           <div 
             className="premium-ctas"
             style={{
               display: 'flex',
-              flexDirection: 'column',
+              flexDirection: 'row',
               gap: '20px',
               alignItems: 'center',
-              maxWidth: '500px',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              maxWidth: '800px',
               margin: '0 auto'
             }}
           >
+
             {/* Primary CTA - Book a Private Consultation */}
             <button
               className="primary-cta"
@@ -2172,8 +2174,8 @@ export default function Home() {
                 background: 'transparent',
                 border: '2px solid #C79A4A',
                 color: '#ffffff',
-                padding: '18px 48px',
-                fontSize: '0.95rem',
+                padding: '18px 32px',
+                fontSize: '0.9rem',
                 fontWeight: 300,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
@@ -2183,9 +2185,11 @@ export default function Home() {
                 backdropFilter: 'blur(10px)',
                 position: 'relative',
                 overflow: 'hidden',
-                width: '100%',
-                maxWidth: '350px',
-                fontFamily: "'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', sans-serif"
+                minWidth: '280px',
+                flex: '1',
+                maxWidth: '320px',
+                fontFamily: "'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', sans-serif",
+                whiteSpace: 'nowrap'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-3px)';
@@ -2222,17 +2226,19 @@ export default function Home() {
                 backdropFilter: 'blur(10px)',
                 border: '1px solid rgba(255, 255, 255, 0.3)',
                 color: '#ffffff',
-                padding: '18px 48px',
-                fontSize: '0.95rem',
+                padding: '18px 32px',
+                fontSize: '0.9rem',
                 fontWeight: 400,
                 textTransform: 'uppercase',
                 letterSpacing: '0.08em',
                 borderRadius: '4px',
                 cursor: 'pointer',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                width: '100%',
-                maxWidth: '350px',
-                fontFamily: "'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', sans-serif"
+                minWidth: '280px',
+                flex: '1',
+                maxWidth: '320px',
+                fontFamily: "'Inter', 'Neue Haas Grotesk', 'Helvetica Neue', sans-serif",
+                whiteSpace: 'nowrap'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-2px)';
