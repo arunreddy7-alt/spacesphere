@@ -7,11 +7,11 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 
 const navLinks = [
-  { name: "HOME", href: "#home" },
-  { name: "ABOUT US", href: "#about" },
-  { name: "PORTFOLIO", href: "#portfolio" },
+  { name: "HOME", href: "#space-sphere-edge-section" },
   { name: "WHAT WE OFFER", href: "#what-we-offer" },
+  { name: "PORTFOLIO", href: "#portfolio" },
   { name: "PROJECTS", href: "#projects" },
+  { name: "ABOUT US", href: "#about" },
   { name: "CONTACT US", href: "#contact" },
 ];
 
@@ -503,8 +503,8 @@ export default function Home() {
                   Where Luxury Meets Location. Where Investments Become Legacies.
                 </p>
                 <p className="hero-subhead alt">
-                  Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
-                  <br />
+                  
+                  
                   Not just choices – curated excellence.
                 </p>
                 <div className="hero-cta-row">
@@ -536,140 +536,7 @@ export default function Home() {
 
 
       </section>
-
-      <section id="about" className="about-slab">
-        <div className="about-wrap">
-          <h2 className="about-hero-title">Welcome To Space Sphere</h2>
-          <div className="about-grid">
-            <div className="about-copy">
-              <p>
-                A Trusted Partner in Indian Real Estate, Space Sphere stands at the
-                intersection of expert advisory, premium property sourcing, and seamless
-                ownership experience. At Space Sphere, we believe a property is more than
-                real estate - it is a statement, an asset, a lifetime belonging. With elite
-                partnerships across premium developers in Pune, Hyderabad and surrounding
-                regions, we bring you access to refined spaces built for those who desire more.
-              </p>
-              <p>
-                Our strength lies in trust-driven relationships, transparent deals, and deep
-                market expertise. We deal only in spaces worthy of legacy.
-              </p>
-              <div style={{ display: 'grid', gap: '8px' }}>
-                <p style={{ margin: 0, fontWeight: 600 }}>
-                  Every project we represent is hand-evaluated for:
-                </p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '8px' }}>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                    <span>Design &amp; Architecture Value</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                    <span>Location Advantage &amp; Appreciation</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                    </svg>
-                    <span>Builder Credibility &amp; Delivery History</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                    </svg>
-                    <span>Lifestyle Amenities &amp; Luxury Quotient</span>
-                  </li>
-                </ul>
-              </div>
-              <button
-                className="about-button"
-                onClick={() => setIsModalOpen(true)}
-              >
-                Schedule a Site Experience 
-              </button>
-            </div>
-            <div className="about-image-frame">
-              <img src="/about1.jpg" alt="Luxury estate poolside" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="portfolio" className="office-section">
-        <div className="office-wrap">
-          <div className="office-header">
-            <h2>Portfolio</h2>
-            <h4 className="office-subheading">
-    A Selection Reserved for the Discerning Buyer
-  </h4>
-          </div>
-
-          <div className="office-grid">
-            <div className="office-card">
-              <div className="office-image">
-                <img src="/apartment.jpg" alt="Montecito coastline" />
-              </div>
-              <h3>Luxury Residential Apartments & High-Rise Towers</h3>
-            </div>
-            <div className="office-card">
-              <div className="office-image">
-                <img src="/villas2.jpg" alt="Santa Barbara city view" />
-              </div>
-              <h3>Signature Villas & Gated Communities</h3>
-            </div>
-            <div className="office-card">
-              <div className="office-image">
-                <img src="/plot1.jpg" alt="Santa Ynez vineyards" />
-              </div>
-              <h3>Premium Open Plots with Future Growth Vision</h3>
-            </div>
-            <div className="office-card">
-              <div className="office-image">
-                <img src="/commercial2.jpg" alt="Napa Valley estates" />
-              </div>
-              <h3>Commercial Spaces for High-Return Investors</h3>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-
-      {/* Blank Section with White Background and Parallax Effect */}
-
-      <section 
-        style={{ 
-          padding: '80px 0', 
-          background: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95))', 
-          minHeight: '40vh',
-          backgroundImage: `url('/villa1.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-          position: 'relative',
-          color: '#000000'
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-
-
-        <h4 className="office-subheading" style={{ color: 'white', fontSize: '40px', marginTop: '56px', fontWeight: '600'}} >
-        Connecting People With Properties That Matter.
-  </h4>
-          
-        </div>
-
-
-      </section>
-
-    
-   <section className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
+      <section id = "space-sphere-edge-section" className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
         {/* Geometric Background Elements */}
         <div style={{ 
           position: 'absolute', 
@@ -723,43 +590,43 @@ export default function Home() {
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
           <h2 className="about-hero-title">Welcome To Space Sphere</h2>
           <h4 className="office-subheading">
-    A Selection Reserved for the Discerning Buyer
+          Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
   </h4>
           
           </div>
 
-          {/* Floating Cards Grid */}
+          {/* Floating Cards Grid - refreshed design */}
           <div style={{ 
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, auto)',
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(5, minmax(240px, 1fr))',
             gridTemplateAreas: `
               "card1 . card2 . card3"
               ". card4 . card5 ."
             `,
-            gap: '30px',
+            gap: '28px',
             justifyContent: 'center',
             justifyItems: 'center',
             position: 'relative',
             marginTop: '40px'
           }}>
 
-            {/* Card 1 - Top Left */}
+            {/* Card 1 */}
+
             <div className="floating-card" style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
-              padding: '25px 20px',
-              borderRadius: '16px',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
-              border: '1px solid rgba(199, 154, 74, 0.2)',
+              gridArea: 'card1',
+              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
+              padding: '24px 22px',
+              borderRadius: '18px',
+              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
+              border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
-              width: '320px',
-              minHeight: '140px',
-              marginRight: '-250px',
-              height: '160px',
-              transform: 'translateX(190px)',
-              alignSelf: 'center',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              zIndex: 3,
-              flex: '0 1 calc((100% - 60px) / 3)'
+              width: '100%',
+              maxWidth: '450px',
+              minHeight: '160px',
+              height: '190px',
+              transform: 'none',
+              transition: 'all 0.35s ease',
+              zIndex: 3
             }}>
               <div style={{
                 position: 'absolute',
@@ -780,30 +647,32 @@ export default function Home() {
                 </svg>
               </div>
               
-              <div style={{ marginTop: '20px' }}>
+              <div style={{ marginTop: '18px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
-                  Personalized Curation
+                Personalized Curation
+
                 </h3>
                 <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                  Tailored to your taste & investment vision, every property is hand-selected for your unique lifestyle.
-                </p>
+                Tailored to your taste & investment vision, every property is hand-selected for your unique lifestyle.                </p>
               </div>
             </div>
 
-            {/* Card 2 - Top Right */}
+            {/* Card 2 */}
+
             <div className="floating-card" style={{
               gridArea: 'card2',
-              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
-              padding: '25px 20px',
-              borderRadius: '16px',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
-              border: '1px solid rgba(199, 154, 74, 0.2)',
+              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
+              padding: '24px 22px',
+              borderRadius: '18px',
+              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
+              border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
-              width: '320px',
-              minHeight: '140px',
-              height: '160px',
+              width: '100%',
+              maxWidth: '450px',
+              minHeight: '160px',
+              height: '190px',
               transform: 'none',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              transition: 'all 0.35s ease',
               zIndex: 3
             }}>
               <div style={{
@@ -825,7 +694,7 @@ export default function Home() {
                 </svg>
               </div>
               
-              <div style={{ marginTop: '20px' }}>
+              <div style={{ marginTop: '18px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                   Elite Developer Network
                 </h3>
@@ -835,21 +704,22 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Card 3 - Bottom Left */}
+            {/* Card 3 */}
+
             <div className="floating-card" style={{
               gridArea: 'card3',
-              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
-              padding: '25px 20px',
-              borderRadius: '16px',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
-              border: '1px solid rgba(199, 154, 74, 0.2)',
+              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
+              padding: '24px 22px',
+              borderRadius: '18px',
+              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
+              border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
-              marginLeft: '-250px',
-              width: '320px',
-              minHeight: '140px',
-              height: '160px',
-              transform: 'translateX(-40px)',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              width: '100%',
+              maxWidth: '450px',
+              minHeight: '160px',
+              height: '190px',
+              transform: 'none',
+              transition: 'all 0.35s ease',
               zIndex: 3
             }}>
               <div style={{
@@ -873,29 +743,31 @@ export default function Home() {
               
               <div style={{ marginTop: '20px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
-                  Complete Transparency
+                Complete Transparency
                 </h3>
                 <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                  No hidden costs, no inflated numbers. Pure, honest dealings with crystal-clear pricing.
-                </p>
+                No hidden costs, no inflated numbers. Pure, honest dealings with crystal-clear pricing.
+
+</p>
               </div>
             </div>
 
-            {/* Card 4 - Bottom Right */}
+            {/* Card 4 */}
+
             <div className="floating-card" style={{
               gridArea: 'card4',
-              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
-              padding: '25px 20px',
-              borderRadius: '16px',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
-              border: '1px solid rgba(199, 154, 74, 0.2)',
+              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
+              padding: '24px 22px',
+              borderRadius: '18px',
+              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
+              border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
-              width: '320px',
-              minHeight: '140px',
-              height: '160px',
-              marginRight: '20px',
-              transform: 'translateX(290px)',
-              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              width: '100%',
+              maxWidth: '450px',
+              minHeight: '160px',
+              height: '190px',
+              transform: 'none',
+              transition: 'all 0.35s ease',
               zIndex: 3
             }}>
               <div style={{
@@ -919,57 +791,56 @@ export default function Home() {
               
               <div style={{ marginTop: '20px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
-                  End-to-End Support
-                </h3>
+                End-to-End Support                </h3>
                 <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                  From search to keys, we guide you through every step of your property journey.
-                </p>
+                From search to keys, we guide you through every step of your property journey                </p>
               </div>
             </div>
 
             {/* Central Feature Card */}
+
             <div className="floating-card central-card" style={{
               gridArea: 'card5',
-              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
-              padding: '30px 25px',
-              borderRadius: '16px',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
-              border: '1px solid rgba(199, 154, 74, 0.2)',
+              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
+              padding: '24px 22px',
+              borderRadius: '18px',
+              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
+              border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
               transform: 'none',
               zIndex: 4,
-              margin: '15px auto',
-              transform: 'translateY(20px)',
-              width: '320px',
-              minHeight: '140px',
-              height: '160px'
+              margin: '1px auto',
+              width: '100%',
+              maxWidth: '450px',
+              minHeight: '160px',
+              height: '190px',
+              alignSelf: 'center'
             }}>
               <div style={{
                 position: 'absolute',
-                top: '-15px',
-                right: '30px',
-                width: '45px',
-                height: '45px',
-                background: 'linear-gradient(135deg, #fff, rgba(255, 255, 255, 0.9))',
+                top: '-10px',
+                left: '20px',
+                width: '35px',
+                height: '35px',
+                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: '0 8px 20px rgba(0, 0, 0, 0.2)',
-                animation: 'pulse 2s ease-in-out infinite'
+                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
+                animation: 'pulse 3s ease-in-out infinite 1.5s'
               }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="#c79a4a">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
                   <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
                 </svg>
               </div>
               
               <div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
-                  Investment-Led Advisory
+                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
+                Investment-Led Advisory
                 </h3>
-                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                  Data-driven insights on growth potential, rental yields & market appreciation trends.
-                </p>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
+                Data-driven insights on growth potential, rental yields & market appreciation trends. </p>
               </div>
             </div>
           </div>
@@ -991,9 +862,38 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </section>
+
+      <section 
+        style={{ 
+          paddingTop: '120px',
+          paddingRight: '80px',
+          paddingBottom: '90px',
+          paddingLeft: '80px',
+          background: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95))', 
+          minHeight: '40vh',
+          backgroundImage: `url('/villa1.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
+          color: '#000000'
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+
+
+
+<h4 className="office-subheading" style={{ color: 'white', fontSize: '40px', marginTop: '26px', fontWeight: '600', textAlign: 'center'}} >
+        Connecting People With Properties That Matter.
+  </h4>
+          
+        </div>
+
+
+      
+
       </section>
-
-
       <section id="what-we-offer" ref={timelineSectionRef} className="what-we-offer" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#1a1a1a' }}>
         {/* Background Decorative Elements */}
         <div style={{ 
@@ -1391,16 +1291,15 @@ export default function Home() {
               <div style={{ flex: '1', paddingRight: '50px', textAlign: 'right' }}>
                 <div className="timeline-card" style={{
                   display: 'inline-block',
-                  background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
+                  background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))',
                   padding: '35px 20px',
                   borderRadius: '16px',
-                  boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3)',
-                  border: '2px solid rgba(255, 255, 255, 0.25)',
+                  boxShadow: '0 15px 35px rgba(0, 0, 0, 0.4)',
+                  border: '1px solid rgba(199, 154, 74, 0.4)',
                   maxWidth: '350px',
                   position: 'relative',
                   transform: 'scale(1.02)',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                  boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3), 0 0 30px rgba(199, 154, 74, 0.2)'
                 }}>
                   
                   
@@ -1464,25 +1363,27 @@ export default function Home() {
             }}>
               <div style={{
                 padding: '30px',
-                background: 'linear-gradient(135deg, rgba(42, 42, 42, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%)',
+                background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
                 borderRadius: '16px',
-                border: '1px solid rgba(199, 154, 74, 0.3)',
-                boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
+                boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3)',
+                border: '2px solid rgba(255, 255, 255, 0.25)',
+                boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3), 0 0 30px rgba(199, 154, 74, 0.2)',
                 backdropFilter: 'blur(10px)'
               }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#c79a4a', marginBottom: '8px' }}>Effortless</h3>
-                <p style={{ fontSize: '16px', color: '#b8b3a8', margin: 0 }}>Your journey is seamless</p>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: 'black', marginBottom: '8px' }}>Effortless</h3>
+                <p style={{ fontSize: '16px', color: 'white', margin: 0 }}>Your journey is seamless</p>
               </div>
               <div style={{
                 padding: '30px',
-                background: 'linear-gradient(135deg, rgba(42, 42, 42, 0.9) 0%, rgba(31, 31, 31, 0.9) 100%)',
+                background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
                 borderRadius: '16px',
-                border: '1px solid rgba(199, 154, 74, 0.3)',
-                boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3), 0 5px 15px rgba(199, 154, 74, 0.15)',
+                boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3)',
+                border: '2px solid rgba(255, 255, 255, 0.25)',
+                boxShadow: '0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3), 0 0 30px rgba(199, 154, 74, 0.2)',
                 backdropFilter: 'blur(10px)'
               }}>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#c79a4a', marginBottom: '8px' }}>Exceptional</h3>
-                <p style={{ fontSize: '16px', color: '#b8b3a8', margin: 0 }}>The destination is extraordinary</p>
+                <h3 style={{ fontSize: '24px', fontWeight: 700, color: 'black', marginBottom: '8px' }}>Exceptional</h3>
+                <p style={{ fontSize: '16px', color: 'white', margin: 0 }}>The destination is extraordinary</p>
               </div>
             </div>
             
@@ -1492,289 +1393,405 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section id="portfolio" className="office-section">
+        <div className="office-wrap">
+          <div className="office-header">
+            <h2>Portfolio</h2>
+            <h4 className="office-subheading">
+    A Selection Reserved for the Discerning Buyer
+  </h4>
+          </div>
 
+          <div className="office-grid">
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/apartment.jpg" alt="Montecito coastline" />
+              </div>
+              <h3>Luxury Residential Apartments & High-Rise Towers</h3>
+            </div>
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/villas2.jpg" alt="Santa Barbara city view" />
+              </div>
+              <h3>Signature Villas & Gated Communities</h3>
+            </div>
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/plot1.jpg" alt="Santa Ynez vineyards" />
+              </div>
+              <h3>Premium Open Plots with Future Growth Vision</h3>
+            </div>
+            <div className="office-card">
+              <div className="office-image">
+                <img src="/commercial2.jpg" alt="Napa Valley estates" />
+              </div>
+              <h3>Commercial Spaces for High-Return Investors</h3>
+            </div>
+          </div>
+        </div>
+
+      </section>
       <section id="projects" style={{ padding: '80px 24px', background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.05) 0%, rgba(199, 154, 74, 0.02) 100%)' }}>
 
-        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-        <h2 className="about-hero-title" style={{ textAlign: 'center' }}>Featured Premium Properties</h2>
-          <h4 className="office-subheading">
-    Invest with confidence. Live with pride.
-  </h4>
+<div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+<h2 className="about-hero-title" style={{ textAlign: 'center' }}>Featured Premium Properties</h2>
+  <h4 className="office-subheading">
+Invest with confidence. Live with pride.
+</h4>
 
 {/* Ultra-Luxury Vineyard Estate Hero Section */}
-          <div style={{ 
-            position: 'relative', 
-            borderRadius: '20px',
-            marginTop: '37px', 
-            overflow: 'hidden',
-            boxShadow: '0 25px 80px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.1)',
-            aspectRatio: '16/9',
-            minHeight: '600px',
-            background: '#1a1a1a'
+  <div style={{ 
+    position: 'relative', 
+    borderRadius: '20px',
+    marginTop: '37px', 
+    overflow: 'hidden',
+    boxShadow: '0 25px 80px rgba(0,0,0,0.15), 0 10px 30px rgba(0,0,0,0.1)',
+    aspectRatio: '16/9',
+    minHeight: '600px',
+    background: '#1a1a1a'
+  }}>
+    {/* Hero Image with Cinematic Overlay */}
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      backgroundImage: 'url("/avinea.png")',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      filter: 'brightness(1.02) contrast(1.05) saturate(1.1)'
+    }} />
+    
+    {/* Premium Gradient Overlays - Golden Hour Effect */}
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.4) 0%, transparent 50%, rgba(199, 154, 74, 0.15) 100%)'
+    }} />
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      background: 'linear-gradient(to top, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.4) 35%, transparent 60%)'
+    }} />
+    <div style={{
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      height: '200px',
+      background: 'linear-gradient(to bottom, rgba(26, 26, 26, 0.3) 0%, transparent 100%)'
+    }} />
+    
+    {/* Subtle Warm Light Accent */}
+    <div style={{
+      position: 'absolute',
+      top: '20%',
+      right: '-10%',
+      width: '400px',
+      height: '400px',
+      background: 'radial-gradient(circle, rgba(212, 175, 106, 0.12) 0%, transparent 70%)',
+      pointerEvents: 'none'
+    }} />
+
+
+
+
+
+
+
+
+
+
+    {/* Content Container with Ample Negative Space */}
+    <div style={{
+      position: 'absolute',
+      inset: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      padding: '0px 0 0px 0',
+      color: 'white'
+    }}>
+
+      {/* Top Badge */}
+      <div style={{
+        position: 'absolute',
+        top: '100px',
+        left: '60px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px'
+      }}>
+        <div style={{
+          width: '40px',
+          height: '2px',
+          background: 'linear-gradient(90deg, #c79a4a, #d4af6a)'
+        }} />
+        <span style={{
+          fontSize: '11px',
+          fontWeight: 600,
+          textTransform: 'uppercase',
+          letterSpacing: '0.2em',
+          color: 'rgba(255, 255, 255, 0.7)'
+        }}>
+          Exclusive Collection
+        </span>
+      </div>
+
+
+
+      {/* Main Content Area */}
+      <div style={{ 
+        maxWidth: '800px',
+        margin: '0 0 60px 60px',
+        textAlign: 'left'
+      }}>
+        {/* Category Tag */}
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '10px',
+          marginBottom: '20px',
+          padding: '8px 16px',
+          background: 'rgba(199, 154, 74, 0.15)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '50px',
+          border: '1px solid rgba(199, 154, 74, 0.3)'
+        }}>
+          <div style={{
+            width: '6px',
+            height: '6px',
+            borderRadius: '50%',
+            background: '#d4af6a',
+            boxShadow: '0 0 10px rgba(212, 175, 106, 0.5)'
+          }} />
+          <span style={{
+            fontSize: '12px',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.15em',
+            color: '#d4af6a'
           }}>
-            {/* Hero Image with Cinematic Overlay */}
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'url("/avinea.png")',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              filter: 'brightness(1.02) contrast(1.05) saturate(1.1)'
-            }} />
-            
-            {/* Premium Gradient Overlays - Golden Hour Effect */}
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(135deg, rgba(26, 26, 26, 0.4) 0%, transparent 50%, rgba(199, 154, 74, 0.15) 100%)'
-            }} />
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to top, rgba(26, 26, 26, 0.85) 0%, rgba(26, 26, 26, 0.4) 35%, transparent 60%)'
-            }} />
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              height: '200px',
-              background: 'linear-gradient(to bottom, rgba(26, 26, 26, 0.3) 0%, transparent 100%)'
-            }} />
-            
-            {/* Subtle Warm Light Accent */}
-            <div style={{
-              position: 'absolute',
-              top: '20%',
-              right: '-10%',
-              width: '400px',
-              height: '400px',
-              background: 'radial-gradient(circle, rgba(212, 175, 106, 0.12) 0%, transparent 70%)',
-              pointerEvents: 'none'
-            }} />
+            Featured Estate
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 style={{
+          fontSize: 'clamp(36px, 5vw, 52px)',
+          fontWeight: 700,
+          color: '#ffffff',
+          marginBottom: '16px',
+          fontFamily: "'Playfair Display', serif",
+          lineHeight: 1.1,
+          letterSpacing: '-0.02em',
+          textShadow: '0 2px 20px rgba(0,0,0,0.3)',
+        }}>
+          Avinea Estate
+        </h3>
+
+        {/* Subtitle */}
+        <p style={{
+          fontSize: '18px',
+          color: 'rgba(255, 255, 255, 0.85)',
+          marginBottom: '12px',
+          fontWeight: 500,
+          letterSpacing: '0.01em'
+        }}>
+          Modern Luxury Living with Premium Amenities
+        </p>
+
+        {/* Description */}
+        <p style={{
+          fontSize: '15px',
+          color: '#ffffff',
+          marginBottom: '32px',
+          lineHeight: 1.7,
+          maxWidth: '500px'
+        }}>
+          Experience contemporary architecture with thoughtful design, expansive layouts, and world-class amenities in an exclusive gated community.
+        </p>
+
+        {/* CTA Buttons */}
+        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+          <a 
+            href="https://www.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ 
+              background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
+              border: 'none',
+              color: 'white',
+              padding: '16px 36px',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: 600,
+              cursor: 'pointer',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: '0 8px 25px rgba(199, 154, 74, 0.35)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-3px)';
+              e.currentTarget.style.boxShadow = '0 15px 40px rgba(199, 154, 74, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 8px 25px rgba(199, 154, 74, 0.35)';
+            }}
+          >
+            Explore Estate
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          
+          <a 
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsModalOpen(true);
+            }}
+            style={{ 
+              background: 'rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              color: 'white',
+              padding: '16px 32px',
+              borderRadius: '4px',
+              fontSize: '13px',
+              fontWeight: 500,
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+            }}
+          >
+            Schedule Visit
+          </a>
+        </div>
+      </div>
+
+
+      {/* Bottom Stats Bar */}
+      <div style={{
+        position: 'absolute',
+        bottom: '60px',
+        right: '60px',
+        display: 'flex',
+        gap: '40px',
+        alignItems: 'center'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>50+</p>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Units</p>
+        </div>
+        <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
+        <div style={{ textAlign: 'center' }}>
+          <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2-5</p>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>BHK</p>
+        </div>
+        <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
+        <div style={{ textAlign: 'center' }}>
+          <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2028</p>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Ready</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 
 
 
-
-            {/* Content Container with Ample Negative Space */}
-            <div style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'flex-end',
-              padding: '0 0 100px 0',
-              color: 'white'
-            }}>
-
-              {/* Top Badge */}
-              <div style={{
-                position: 'absolute',
-                top: '100px',
-                left: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px'
-              }}>
-                <div style={{
-                  width: '40px',
-                  height: '2px',
-                  background: 'linear-gradient(90deg, #c79a4a, #d4af6a)'
-                }} />
-                <span style={{
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.2em',
-                  color: 'rgba(255, 255, 255, 0.7)'
-                }}>
-                  Exclusive Collection
-                </span>
-              </div>
-
-
-
-              {/* Main Content Area */}
-              <div style={{ 
-                maxWidth: '800px',
-                margin: '0 0 60px 60px',
-                textAlign: 'left'
-              }}>
-                {/* Category Tag */}
-                <div style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                  marginBottom: '20px',
-                  padding: '8px 16px',
-                  background: 'rgba(199, 154, 74, 0.15)',
-                  backdropFilter: 'blur(10px)',
-                  borderRadius: '50px',
-                  border: '1px solid rgba(199, 154, 74, 0.3)'
-                }}>
-                  <div style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: '#d4af6a',
-                    boxShadow: '0 0 10px rgba(212, 175, 106, 0.5)'
-                  }} />
-                  <span style={{
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.15em',
-                    color: '#d4af6a'
-                  }}>
-                    Featured Estate
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 style={{
-                  fontSize: 'clamp(36px, 5vw, 52px)',
-                  fontWeight: 700,
-                  color: '#ffffff',
-                  marginBottom: '16px',
-                  fontFamily: "'Playfair Display', serif",
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.02em',
-                  textShadow: '0 2px 20px rgba(0,0,0,0.3)'
-                }}>
-                  Avinea Estate
-                </h3>
-
-                {/* Subtitle */}
-                <p style={{
-                  fontSize: '18px',
-                  color: 'rgba(255, 255, 255, 0.85)',
-                  marginBottom: '12px',
-                  fontWeight: 500,
-                  letterSpacing: '0.01em'
-                }}>
-                  Modern Luxury Living with Premium Amenities
+      <section id="about" className="about-slab">
+        <div className="about-wrap">
+          <h2 className="about-hero-title">About Us</h2>
+          <div className="about-grid">
+            <div className="about-copy">
+              <p>
+                A Trusted Partner in Indian Real Estate, Space Sphere stands at the
+                intersection of expert advisory, premium property sourcing, and seamless
+                ownership experience. At Space Sphere, we believe a property is more than
+                real estate - it is a statement, an asset, a lifetime belonging. With elite
+                partnerships across premium developers in Pune, Hyderabad and surrounding
+                regions, we bring you access to refined spaces built for those who desire more.
+              </p>
+              <p>
+                Our strength lies in trust-driven relationships, transparent deals, and deep
+                market expertise. We deal only in spaces worthy of legacy.
+              </p>
+              <div style={{ display: 'grid', gap: '8px' }}>
+                <p style={{ margin: 0, fontWeight: 600 }}>
+                  Every project we represent is hand-evaluated for:
                 </p>
-
-                {/* Description */}
-                <p style={{
-                  fontSize: '15px',
-                  color: 'rgba(255, 255, 255, 0.6)',
-                  marginBottom: '32px',
-                  lineHeight: 1.7,
-                  maxWidth: '500px'
-                }}>
-                  Experience contemporary architecture with thoughtful design, expansive layouts, and world-class amenities in an exclusive gated community.
-                </p>
-
-                {/* CTA Buttons */}
-                <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-                  <a 
-                    href="https://www.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ 
-                      background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
-                      border: 'none',
-                      color: 'white',
-                      padding: '16px 36px',
-                      borderRadius: '4px',
-                      fontSize: '13px',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      boxShadow: '0 8px 25px rgba(199, 154, 74, 0.35)',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.12em',
-                      textDecoration: 'none'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-3px)';
-                      e.currentTarget.style.boxShadow = '0 15px 40px rgba(199, 154, 74, 0.5)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(199, 154, 74, 0.35)';
-                    }}
-                  >
-                    Explore Estate
-                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '8px' }}>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
-                  </a>
-                  
-                  <a 
-                    href="#contact"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsModalOpen(true);
-                    }}
-                    style={{ 
-                      background: 'rgba(255, 255, 255, 0.08)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      color: 'white',
-                      padding: '16px 32px',
-                      borderRadius: '4px',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.1em',
-                      textDecoration: 'none'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.15)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                    }}
-                  >
-                    Schedule Visit
-                  </a>
-                </div>
+                    <span>Design &amp; Architecture Value</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span>Location Advantage &amp; Appreciation</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                    <span>Builder Credibility &amp; Delivery History</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                    <span>Lifestyle Amenities &amp; Luxury Quotient</span>
+                  </li>
+                </ul>
               </div>
-
-
-              {/* Bottom Stats Bar */}
-              <div style={{
-                position: 'absolute',
-                bottom: '60px',
-                right: '60px',
-                display: 'flex',
-                gap: '40px',
-                alignItems: 'center'
-              }}>
-                <div style={{ textAlign: 'center' }}>
-                  <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>50+</p>
-                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Units</p>
-                </div>
-                <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
-                <div style={{ textAlign: 'center' }}>
-                  <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>3-5</p>
-                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>BHK</p>
-                </div>
-                <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
-                <div style={{ textAlign: 'center' }}>
-                  <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2024</p>
-                  <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Ready</p>
-                </div>
-              </div>
+              <button
+                className="about-button"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Schedule a Site Experience 
+              </button>
+            </div>
+            <div className="about-image-frame">
+              <img src="/about1.jpg" alt="Luxury estate poolside" />
             </div>
           </div>
         </div>
       </section>
 
 
-      <section style={{ padding: '60px 24px', background: '', position: 'relative', overflow: 'hidden' }}>
+      
+      {/* Blank Section with White Background and Parallax Effect */}
+
+    
+     
+
+     
+
+
+      <section style={{ padding: '30px 24px', background: '', position: 'relative', overflow: 'hidden' }}>
         {/* Decorative background elements */}
         <div style={{ 
           position: 'absolute', 
@@ -1819,7 +1836,7 @@ export default function Home() {
           }}>
             {/* Featured Testimonial - Left Side */}
             <div style={{ 
-              padding: '32px 28px', 
+              padding: '22px 18px', 
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)', 
               borderRadius: '16px', 
               boxShadow: '0 6px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(199, 154, 74, 0.1)',
@@ -1861,7 +1878,7 @@ export default function Home() {
               </div>
               
               <p style={{ 
-                fontSize: '16px', 
+                fontSize: '18px', 
                 lineHeight: '1.7', 
                 color: '#1a1a1a', 
                 fontStyle: 'italic', 
@@ -1904,14 +1921,15 @@ export default function Home() {
             
             {/* Second Testimonial - Right Side (Smaller, Offset) */}
             <div style={{ 
-              padding: '28px 24px', 
+              padding: '20px 16px', 
               background: 'white', 
               borderRadius: '16px', 
               boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
               border: '1px solid rgba(199, 154, 74, 0.1)',
               position: 'relative',
               transform: 'translateY(30px)',
-              zIndex: 1
+              zIndex: 2,
+              marginTop: '-10px'
             }}>
               {/* Decorative line accent */}
               <div style={{
@@ -1958,7 +1976,7 @@ export default function Home() {
               </div>
               
               <p style={{ 
-                fontSize: '16px', 
+                fontSize: '18px', 
                 lineHeight: '1.7', 
                 color: '#1a1a1a', 
                 fontStyle: 'italic', 
@@ -2016,7 +2034,7 @@ export default function Home() {
               border: '1px solid rgba(199, 154, 74, 0.15)'
             }}>
               <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c79a4a' }}></div>
-              <p style={{ fontSize: '12px', color: '#666', margin: 0, fontStyle: 'italic' }}>
+              <p style={{ fontSize: '18px', color: '#666', margin: 0, fontStyle: 'italic' }} >
                 Trusted by discerning clients across Pune & Hyderabad
               </p>
               <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#c79a4a' }}></div>
