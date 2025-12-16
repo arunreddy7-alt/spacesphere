@@ -557,11 +557,32 @@ export default function Home() {
                 <p style={{ margin: 0, fontWeight: 600 }}>
                   Every project we represent is hand-evaluated for:
                 </p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '6px' }}>
-                  <li>🔸 Design &amp; Architecture Value</li>
-                  <li>🔸 Location Advantage &amp; Appreciation</li>
-                  <li>🔸 Builder Credibility &amp; Delivery History</li>
-                  <li>🔸 Lifestyle Amenities &amp; Luxury Quotient</li>
+
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '8px' }}>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span>Design &amp; Architecture Value</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span>Location Advantage &amp; Appreciation</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+                    </svg>
+                    <span>Builder Credibility &amp; Delivery History</span>
+                  </li>
+                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+                    </svg>
+                    <span>Lifestyle Amenities &amp; Luxury Quotient</span>
+                  </li>
                 </ul>
               </div>
               <button
@@ -572,7 +593,7 @@ export default function Home() {
               </button>
             </div>
             <div className="about-image-frame">
-              <img src="/villas1.jpg" alt="Luxury estate poolside" />
+              <img src="/about1.jpg" alt="Luxury estate poolside" />
             </div>
           </div>
         </div>
@@ -591,7 +612,7 @@ export default function Home() {
           <div className="office-grid">
             <div className="office-card">
               <div className="office-image">
-                <img src="/apartment1.jpg" alt="Montecito coastline" />
+                <img src="/apartment.jpg" alt="Montecito coastline" />
               </div>
               <h3>Luxury Residential Apartments & High-Rise Towers</h3>
             </div>
@@ -648,6 +669,7 @@ export default function Home() {
       </section>
 
     
+     
       <section className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
         {/* Geometric Background Elements */}
         <div style={{ 
@@ -709,9 +731,15 @@ export default function Home() {
 
           {/* Floating Cards Grid */}
           <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+            display: 'grid',
+            gridTemplateColumns: 'repeat(5, auto)',
+            gridTemplateAreas: `
+              "card1 . card2 . card3"
+              ". card4 . card5 ."
+            `,
             gap: '30px',
+            justifyContent: 'center',
+            justifyItems: 'center',
             position: 'relative',
             marginTop: '40px'
           }}>
@@ -724,9 +752,15 @@ export default function Home() {
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(0)',
+              width: '320px',
+              minHeight: '140px',
+              marginRight: '-250px',
+              height: '160px',
+              transform: 'translateX(190px)',
+              alignSelf: 'center',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              zIndex: 3
+              zIndex: 3,
+              flex: '0 1 calc((100% - 60px) / 3)'
             }}>
               <div style={{
                 position: 'absolute',
@@ -759,13 +793,17 @@ export default function Home() {
 
             {/* Card 2 - Top Right */}
             <div className="floating-card" style={{
+              gridArea: 'card2',
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
               padding: '25px 20px',
               borderRadius: '16px',
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(-15px)',
+              width: '320px',
+              minHeight: '140px',
+              height: '160px',
+              transform: 'none',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               zIndex: 3
             }}>
@@ -800,13 +838,18 @@ export default function Home() {
 
             {/* Card 3 - Bottom Left */}
             <div className="floating-card" style={{
+              gridArea: 'card3',
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
               padding: '25px 20px',
               borderRadius: '16px',
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(15px)',
+              marginLeft: '-250px',
+              width: '320px',
+              minHeight: '140px',
+              height: '160px',
+              transform: 'translateX(-40px)',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               zIndex: 3
             }}>
@@ -841,13 +884,18 @@ export default function Home() {
 
             {/* Card 4 - Bottom Right */}
             <div className="floating-card" style={{
+              gridArea: 'card4',
               background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
               padding: '25px 20px',
               borderRadius: '16px',
               boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
               border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'translateY(0)',
+              width: '320px',
+              minHeight: '140px',
+              height: '160px',
+              marginRight: '20px',
+              transform: 'translateX(290px)',
               transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
               zIndex: 3
             }}>
@@ -882,17 +930,19 @@ export default function Home() {
 
             {/* Central Feature Card */}
             <div className="floating-card central-card" style={{
-              background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
-              padding: '35px 30px',
-              borderRadius: '20px',
-              boxShadow: '0 20px 60px rgba(199, 154, 74, 0.3), 0 10px 25px rgba(199, 154, 74, 0.4)',
-              border: '2px solid rgba(255, 255, 255, 0.2)',
+              gridArea: 'card5',
+              background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 100%)',
+              padding: '30px 25px',
+              borderRadius: '16px',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.08), 0 5px 15px rgba(199, 154, 74, 0.15)',
+              border: '1px solid rgba(199, 154, 74, 0.2)',
               position: 'relative',
-              transform: 'scale(1.02)',
+              transform: 'translateX(-50px) translateY(60px)',
               zIndex: 4,
               margin: '15px auto',
-              gridColumn: '1 / -1',
-              maxWidth: '450px'
+              width: '320px',
+              minHeight: '140px',
+              height: '160px'
             }}>
               <div style={{
                 position: 'absolute',
@@ -914,10 +964,10 @@ export default function Home() {
               </div>
               
               <div>
-                <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#ffffff', marginBottom: '12px', fontFamily: "'Playfair Display', serif" }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                   Investment-Led Advisory
                 </h3>
-                <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.5', margin: 0 }}>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
                   Data-driven insights on growth potential, rental yields & market appreciation trends.
                 </p>
               </div>
@@ -942,7 +992,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+ 
 
 
 
