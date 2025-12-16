@@ -996,6 +996,7 @@ export default function Home() {
 
 
 
+
             {/* Card 3 */}
 
             <div className="floating-card" style={{
@@ -1014,6 +1015,19 @@ export default function Home() {
               transition: 'all 0.35s ease',
               zIndex: 3
             }}>
+              {/* Single Dot */}
+              <div style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                width: '12px',
+                height: '12px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5,
+                boxShadow: '0 0 10px rgba(199, 154, 74, 0.5)'
+              }} />
+
               <div style={{
                 position: 'absolute',
                 top: '-10px',
@@ -1032,19 +1046,6 @@ export default function Home() {
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
-
-              {/* Dot: Bottom Middle */}
-              <div style={{
-                position: 'absolute',
-                bottom: '-5px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '10px',
-                height: '10px',
-                background: 'rgba(199, 154, 74, 0.9)',
-                borderRadius: '50%',
-                zIndex: 5
-              }} />
 
               <div style={{ marginTop: '20px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
