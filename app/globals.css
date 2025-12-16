@@ -160,12 +160,50 @@ body {
 
 .hero-brand {
   display: inline-flex;
+  margin-top: 9px; 
   align-items: center;
   gap: 6px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 0.95rem;
 }
+/*project*/
+@media (max-width: 768px) {
+  .exclusive-collection {
+    transform: translateX(-88px); /* adjust as needed */
+  }
+}
+@media (max-width: 768px) {
+  .exclusive-collection1 {
+    transform: translateX(-58px); /* adjust as needed */
+  }
+}
+@media (max-width: 768px) {
+  .exclusive-collection2 {
+    transform: translateX(-118px); /* adjust as needed */
+  }
+}
+@media (max-width: 768px) {
+  .exclusive-collection3 {
+    transform: translateX(-65px); /* adjust as needed */
+  }
+}
+@media (max-width: 768px) {
+  .exclusive-collection4 {
+    transform: translateX(-66px) translateY(-19px);
+  }
+}
+@media (max-width: 768px) {
+  .exclusive-collection5 {
+    transform: translateX(-55px); /* adjust as needed */
+  }
+}
+@media (max-width: 768px) {
+  .hero-stats2 {
+    display: none !important;
+  }
+}
+
 
 .hero-nav {
   justify-self: center;
@@ -202,13 +240,58 @@ body {
   background: rgba(0, 0, 0, 0.45);
   transform: translateY(-1px);
 }
-
+/* =========================
+   📱 MOBILE ONLY
+   ========================= */
+   @media (max-width: 768px) {
+    .hero-nav {
+      max-width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .hero-nav::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 480px) {
+    .hero-nav {
+      padding-left: 12px;
+      padding-right: 12px;
+    }
+  }
+  
 .hero-actions {
   display: inline-flex;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
 }
+@media (max-width: 768px) {
+  .hero-chat {
+    display: none;
+  }
+}
+
+/* Hide only on mobile initially */
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+  #mobile-brand {
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  #mobile-brand.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
 
 .hero-phone {
   display: inline-flex;
@@ -573,10 +656,51 @@ body {
 .about-copy {
   display: grid;
   gap: 18px;
-  font-size: 16px;
+  font-size: 19px;
   line-height: 1.8;
   color: #5b5347;
 }
+/*edge*/
+.cards-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* SVG layer */
+.card-connectors {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Connector lines */
+.card-connectors line {
+  stroke: #c79a4a;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+  opacity: 0.6;
+  animation: dashFlow 6s linear infinite;
+}
+
+@keyframes dashFlow {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+/* Cards must stay above lines */
+.floating-card {
+  position: relative;
+  z-index: 3;
+}
+/*dots*/ 
+@media (max-width: 768px) {
+  .connections-group {
+    display: none; /* hides all lines and dots */
+  }
+}
+
 
 .about-button {
   margin-top: 12px;
@@ -1387,94 +1511,9 @@ body {
   }
 
 
-  /* Featured Properties Section Mobile */
-  section[id="projects"] {
-    padding: 40px 12px !important;
-  }
+  /* Featured Properties Section Mobile - Legacy styles removed, using enhanced styles below */
 
-  section[id="projects"] > div {
-    padding: 0 4px !important;
-  }
-
-  section[id="projects"] h2 {
-    font-size: 22px !important;
-    padding: 0 12px !important;
-    text-align: center !important;
-    margin-bottom: 12px !important;
-  }
-
-  section[id="projects"] > div > p {
-    font-size: 14px !important;
-    padding: 0 16px !important;
-    margin-bottom: 24px !important;
-    text-align: center !important;
-    font-style: italic !important;
-  }
-
-  section[id="projects"] > div > div {
-    border-radius: 8px !important;
-    overflow: hidden !important;
-  }
-
-  section[id="projects"] [style*="position: 'relative'"] {
-    position: relative !important;
-  }
-
-  section[id="projects"] [style*="bottom: 0"] {
-    position: absolute !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    padding: 20px 16px !important;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent) !important;
-  }
-
-  section[id="projects"] [style*="padding: '40px'"] {
-    padding: 20px 16px !important;
-  }
-
-  section[id="projects"] [style*="fontSize: '18px'"] {
-    font-size: 12px !important;
-    margin-bottom: 6px !important;
-  }
-
-  section[id="projects"] [style*="fontSize: '32px'"] {
-    font-size: 18px !important;
-    margin-bottom: 8px !important;
-    line-height: 1.3 !important;
-  }
-
-  section[id="projects"] [style*="fontSize: '16px'"] {
-    font-size: 13px !important;
-    margin-bottom: 16px !important;
-    line-height: 1.4 !important;
-  }
-
-  /* Explore More Button Mobile Styles */
-  section[id="projects"] a[style*="padding: 14px 32px"] {
-    padding: 12px 20px !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    border-radius: 6px !important;
-    min-width: 140px !important;
-    text-align: center !important;
-    display: inline-flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    gap: 6px !important;
-    margin-top: 4px !important;
-    margin-bottom: 8px !important;
-  }
-
-  section[id="projects"] a[style*="padding: 14px 32px"]:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: 0 8px 20px rgba(199, 154, 74, 0.4) !important;
-  }
-
-  section[id="projects"] a[style*="padding: 14px 32px"] svg {
-    width: 14px !important;
-    height: 14px !important;
-  }
+  /* Legacy styles removed - using comprehensive enhanced styles in Enhanced Property/Projects Section Mobile section */
 
   /* Testimonials Section Mobile */
   section[style*="padding: '100px 24px'"] {
@@ -3226,157 +3265,228 @@ section[id="contact"]:hover [style*="width: '60px'"] {
 }
 
 
-/* Enhanced Property/Projects Section Mobile - FIXED */
+/* Enhanced Property/Projects Section Mobile - FIXED ALIGNMENT */
 @media (max-width: 768px) {
   /* Featured Properties Section Container */
   section[id="projects"] {
     padding: 40px 16px !important;
   }
   
+  /* Section wrapper container - ensure proper centering */
+  section[id="projects"] > div[style*="maxWidth"] {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+  }
+  
+  /* Section heading alignment */
+  section[id="projects"] h2 {
+    text-align: center !important;
+    margin: 0 auto 12px !important;
+    padding: 0 16px !important;
+  }
+  
+  /* Section subheading alignment */
+  section[id="projects"] h4 {
+    text-align: center !important;
+    margin: 0 auto 24px !important;
+    padding: 0 16px !important;
+  }
+  
   /* Main Hero Property Card - Target the exact container */
-  section[id="projects"] > div > div[style*="position: 'relative'"][style*="borderRadius: '20px'"] {
-    margin-top: 20px !important;
+  section[id="projects"] > div > div[style*="position: 'relative'"],
+  section[id="projects"] > div > div[style*="borderRadius: '20px'"] {
+    margin-top: 24px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     border-radius: 16px !important;
     aspect-ratio: 16/10 !important;
-    min-height: 350px !important;
-    max-height: 450px !important;
+    min-height: 400px !important;
+    max-height: 500px !important;
+    width: 100% !important;
+    position: relative !important;
   }
   
   /* Background Image Container */
-  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="position: 'absolute'"][style*="inset: 0"] {
-    position: relative !important;
-    inset: auto !important;
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="position: 'absolute'"][style*="inset: 0"],
+  section[id="projects"] > div > div[style*="backgroundImage"] {
+    position: absolute !important;
+    inset: 0 !important;
     background-size: cover !important;
     background-position: center center !important;
-    filter: none !important;
   }
   
-  /* All gradient overlays */
+  /* All gradient overlays - keep them absolute */
   section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="background: 'linear-gradient'"] {
     position: absolute !important;
     inset: 0 !important;
     z-index: 1 !important;
   }
   
-  /* Main Content Container */
-  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="display: 'flex'"][style*="justifyContent: 'flex-end'"] {
-    position: relative !important;
-    inset: auto !important;
+  /* Top Badge Container - center it on mobile */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="position: 'absolute'"][style*="top: '100px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="top"][style*="left"] {
+    position: absolute !important;
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    right: auto !important;
+    justify-content: center !important;
+    display: flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    z-index: 3 !important;
+  }
+  
+  /* Main Content Container - properly positioned */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="display: 'flex'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="justifyContent: 'flex-end'"] {
+    position: absolute !important;
+    inset: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: flex-end !important;
     align-items: center !important;
-    padding: 30px 20px 60px 20px !important;
+    padding: 20px 16px 30px 16px !important;
     text-align: center !important;
     color: white !important;
     z-index: 2 !important;
   }
   
-  /* Top Badge Container */
-  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="position: 'absolute'"][style*="top: '100px'"] {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    margin-bottom: 20px !important;
-    justify-content: center !important;
-    display: flex !important;
-    align-items: center !important;
-  }
-  
-  /* Main Content Wrapper */
-  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="max-width: '800px'"] {
+  /* Main Content Wrapper - center align */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="max-width: '800px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="maxWidth"] {
     max-width: 100% !important;
-    margin: 0 !important;
+    width: 100% !important;
+    margin: 0 auto !important;
     text-align: center !important;
-    padding: 0 10px !important;
+    padding: 0 !important;
   }
   
-  /* Category Tag */
-  section[id="projects"] > div > div[style*="position: 'relative'"] [style*="display: 'inline-flex'"] {
+  /* Category Tag - center align */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div[style*="display: 'inline-flex'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div[style*="inline-flex"] {
+    display: inline-flex !important;
     justify-content: center !important;
-    margin-bottom: 16px !important;
+    margin: 0 auto 16px auto !important;
   }
   
-  /* Main Title - Avinea Estate */
-  section[id="projects"] > div > div[style*="position: 'relative'"] h3[style*="fontSize: 'clamp(36px, 5vw, 52px)'"] {
-    font-size: clamp(22px, 8vw, 32px) !important;
+  /* Main Title - Avinea Estate - center and size */
+  section[id="projects"] > div > div[style*="position: 'relative'"] h3,
+  section[id="projects"] h3 {
+    font-size: clamp(24px, 8vw, 36px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     margin-bottom: 12px !important;
     line-height: 1.2 !important;
+    text-align: center !important;
+    width: 100% !important;
   }
   
-  /* Subtitle */
-  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '18px'"] {
+  /* Subtitle - center align, adjust margin since description is hidden */
+  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '18px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] p:nth-of-type(1) {
     font-size: 15px !important;
-    margin-bottom: 10px !important;
-  }
-  
-  /* Description */
-  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '15px'"] {
-    font-size: 13px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
     margin-bottom: 24px !important;
-    line-height: 1.6 !important;
-    max-width: 100% !important;
+    text-align: center !important;
+    width: 100% !important;
   }
   
-  /* CTA Buttons Container */
-  section[id="projects"] > div > div[style*="position: 'relative'"] div[style*="display: 'flex'"][style*="gap: '16px'"] {
+  /* Description - hide on mobile, keep only heading and buttons */
+  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '15px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '15px'"][style*="maxWidth"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > p[style*="fontSize: '15px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > p[style*="maxWidth: '500px'"] {
+    display: none !important;
+  }
+  
+  /* CTA Buttons Container - center and stack */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div[style*="display: 'flex'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div[style*="gap: '16px'"] {
     flex-direction: column !important;
     align-items: center !important;
+    justify-content: center !important;
     gap: 12px !important;
     width: 100% !important;
+    margin: 0 auto !important;
   }
   
-  /* Primary CTA Button */
-  section[id="projects"] > div > div[style*="position: 'relative'"] a[style*="background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)'"] {
+  /* Primary CTA Button - center and full width on mobile */
+  section[id="projects"] a[style*="background: 'linear-gradient(135deg, #c79a4a"],
+  section[id="projects"] a[style*="linear-gradient"] {
     width: 100% !important;
     max-width: 280px !important;
     padding: 14px 24px !important;
     font-size: 12px !important;
     text-align: center !important;
-    margin-bottom: 8px !important;
+    margin: 0 auto 8px auto !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
-  /* Secondary CTA Button */
-  section[id="projects"] > div > div[style*="position: 'relative'"] a[style*="background: 'rgba(255, 255, 255, 0.08)'"] {
+  /* Secondary CTA Button - center and full width */
+  section[id="projects"] a[style*="background: 'rgba(255, 255, 255, 0.08)'"],
+  section[id="projects"] a[style*="rgba(255, 255, 255"] {
     width: 100% !important;
     max-width: 280px !important;
     padding: 14px 24px !important;
     font-size: 12px !important;
     text-align: center !important;
+    margin: 0 auto !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
   }
   
-  /* Bottom Stats Bar */
-  section[id="projects"] > div > div[style*="position: 'relative'"] div[style*="position: 'absolute'"][style*="bottom: '60px'"] {
-    position: relative !important;
-    bottom: auto !important;
+  /* Bottom Stats Bar - center align */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="position: 'absolute'"][style*="bottom: '60px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="bottom"][style*="right"] {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 50% !important;
     right: auto !important;
+    transform: translateX(-50%) !important;
     display: flex !important;
     justify-content: center !important;
-    gap: 20px !important;
-    margin-top: 30px !important;
+    align-items: center !important;
+    gap: 16px !important;
     flex-wrap: wrap !important;
+    margin: 0 !important;
+    width: auto !important;
+    z-index: 3 !important;
   }
   
-  /* Stats Items */
-  section[id="projects"] > div > div[style*="position: 'relative'"] div[style*="textAlign: 'center'"] {
+  /* Stats Items - center align */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div[style*="textAlign: 'center'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div {
     text-align: center !important;
-    min-width: 60px !important;
+    min-width: 50px !important;
+    margin: 0 !important;
   }
   
   /* Stats Numbers */
-  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '28px'"] {
-    font-size: 18px !important;
-    margin-bottom: 4px !important;
+  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '28px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div > p:first-child {
+    font-size: 20px !important;
+    margin: 0 auto 4px auto !important;
+    text-align: center !important;
   }
   
   /* Stats Labels */
-  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '11px'"] {
+  section[id="projects"] > div > div[style*="position: 'relative'"] p[style*="fontSize: '11px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div > p:last-child {
     font-size: 9px !important;
     line-height: 1.3 !important;
+    margin: 0 auto !important;
+    text-align: center !important;
   }
   
-  /* Stats Divider Lines */
-  section[id="projects"] > div > div[style*="position: 'relative'"] div[style*="width: '1px'"] {
+  /* Stats Divider Lines - hide on mobile */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div[style*="width: '1px'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div[style*="height: '40px'"] {
     display: none !important;
   }
 }
@@ -3387,45 +3497,83 @@ section[id="contact"]:hover [style*="width: '60px'"] {
     padding: 30px 12px !important;
   }
   
-  section[id="projects"] [style*="position: 'relative'"] {
+  /* Section wrapper */
+  section[id="projects"] > div[style*="maxWidth"] {
+    padding: 0 !important;
+  }
+  
+  /* Section headings */
+  section[id="projects"] h2 {
+    font-size: clamp(20px, 7vw, 28px) !important;
+    padding: 0 8px !important;
+  }
+  
+  section[id="projects"] h4 {
+    font-size: clamp(11px, 3vw, 13px) !important;
+    padding: 0 8px !important;
+  }
+  
+  /* Main hero card */
+  section[id="projects"] > div > div[style*="position: 'relative'"],
+  section[id="projects"] > div > div[style*="borderRadius"] {
     aspect-ratio: 16/12 !important;
-    min-height: 350px !important;
+    min-height: 380px !important;
     border-radius: 12px !important;
-  }
-  
-  section[id="projects"] [style*="display: 'flex'"][style*="justifyContent: 'center'"] {
-    padding: 30px 15px !important;
-  }
-  
-  section[id="projects"] [style*="fontSize: 'clamp(24px, 8vw, 36px)'"] {
-    font-size: clamp(20px, 10vw, 28px) !important;
-  }
-  
-  section[id="projects"] [style*="fontSize: '16px'"] {
-    font-size: 14px !important;
-  }
-  
-  section[id="projects"] [style*="fontSize: '14px'"] {
-    font-size: 13px !important;
-    line-height: 1.5 !important;
-  }
-  
-  section[id="projects"] [style*="padding: '14px 24px'"] {
-    padding: 12px 20px !important;
-    font-size: 11px !important;
-  }
-  
-  section[id="projects"] [style*="justify-content: center"] {
-    gap: 10px !important;
     margin-top: 20px !important;
   }
   
-  section[id="projects"] [style*="fontSize: '20px'"] {
+  /* Content container padding */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="display: 'flex'"],
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="justifyContent"] {
+    padding: 16px 12px 24px 12px !important;
+  }
+  
+  /* Top badge */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="top"] {
+    top: 16px !important;
+    padding: 0 8px !important;
+  }
+  
+  /* Title */
+  section[id="projects"] h3 {
+    font-size: clamp(20px, 8vw, 28px) !important;
+    margin-bottom: 10px !important;
+  }
+  
+  /* Subtitle - adjust margin since description is hidden */
+  section[id="projects"] > div > div[style*="position: 'relative'"] p:nth-of-type(1) {
+    font-size: 14px !important;
+    margin-bottom: 20px !important;
+  }
+  
+  /* Description - hide on mobile */
+  section[id="projects"] > div > div[style*="position: 'relative'"] p:nth-of-type(2),
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > p[style*="fontSize: '15px'"] {
+    display: none !important;
+  }
+  
+  /* CTA buttons */
+  section[id="projects"] a[style*="linear-gradient"],
+  section[id="projects"] a[style*="rgba(255"] {
+    padding: 12px 20px !important;
+    font-size: 11px !important;
+    max-width: 100% !important;
+  }
+  
+  /* Stats bar */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div[style*="bottom"] {
+    bottom: 16px !important;
+    gap: 12px !important;
+  }
+  
+  /* Stats numbers */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div > p:first-child {
     font-size: 18px !important;
   }
   
-  section[id="projects"] [style*="fontSize: '10px'"] {
-    font-size: 9px !important;
+  /* Stats labels */
+  section[id="projects"] > div > div[style*="position: 'relative'"] > div > div > p:last-child {
+    font-size: 8px !important;
   }
 }
 
@@ -3699,4 +3847,347 @@ section[id="contact"]:hover [style*="width: '60px'"] {
 .timeline-step img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+}
+
+/* ========================================= */
+/* COMPREHENSIVE MOBILE RESPONSIVE STYLES */
+/* Ensuring all sections are fully responsive */
+/* ========================================= */
+
+@media (max-width: 768px) {
+  /* Hero Phone Button - Hide on mobile if shown, or make it smaller */
+  .hero-phone {
+    display: none !important;
+  }
+
+  /* Space Sphere Edge Section - Floating Cards Grid Mobile */
+  .space-sphere-edge-section {
+    padding: 60px 0 !important;
+  }
+  
+  /* Target the grid container with inline styles - multiple selector patterns to catch React inline styles */
+  .space-sphere-edge-section > div > div[style*="gridTemplateColumns"],
+  .space-sphere-edge-section > div > div[style*="grid-template-columns"],
+  .space-sphere-edge-section > div > div[style*="display: 'grid'"],
+  .space-sphere-edge-section > div > div[style*="display:grid"],
+  .space-sphere-edge-section > div[style*="maxWidth"] > div[style*="display"] {
+    grid-template-columns: 1fr !important;
+    grid-template-areas: 
+      "card1"
+      "card2"
+      "card3"
+      "card4"
+      "card5" !important;
+    gap: 20px !important;
+    padding: 0 16px !important;
+    margin-top: 30px !important;
+  }
+  
+  /* Target all floating cards within the grid - override grid-area */
+  .space-sphere-edge-section .floating-card[style*="gridArea"],
+  .space-sphere-edge-section .floating-card[style*="grid-area"],
+  .space-sphere-edge-section .floating-card {
+    grid-area: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Central card specific adjustments */
+  .space-sphere-edge-section .central-card {
+    grid-area: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Floating cards in Space Sphere Edge section */
+  .space-sphere-edge-section .floating-card {
+    grid-area: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding: 20px 18px !important;
+  }
+  
+  /* Central card adjustments */
+  .space-sphere-edge-section .central-card {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Hide icons in floating cards on mobile only - desktop unchanged */
+  /* Hide all SVG icons within floating cards */
+  .space-sphere-edge-section .floating-card svg {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  
+  /* Hide icon container divs - first child divs that are absolutely positioned and contain SVGs */
+  /* Icon containers: position: absolute, top: -10px, width: 35px, height: 35px */
+  .space-sphere-edge-section .floating-card > div:first-child {
+    display: none !important;
+  }
+  
+  /* Show content divs (they are second child divs) and remove their margin-top */
+  .space-sphere-edge-section .floating-card > div:nth-child(2) {
+    margin-top: 0 !important;
+  }
+
+  /* Header navigation mobile adjustments */
+  header {
+    padding: 12px 16px !important;
+  }
+  
+  /* Mobile menu enhanced styling */
+  .mobile-menu {
+    max-height: 70vh !important;
+    overflow-y: auto !important;
+  }
+  
+  /* Hero section text adjustments for very small screens */
+  .hero-heading {
+    font-size: clamp(1.8rem, 8vw, 2.8rem) !important;
+    line-height: 1.1 !important;
+  }
+  
+  /* Hero card padding adjustments */
+  .hero-card {
+    padding: 18px 16px !important;
+  }
+
+  /* Ensure all sections have proper padding on mobile */
+  section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  
+  /* Space Sphere Edge section title adjustments */
+  .space-sphere-edge-section h2 {
+    font-size: clamp(24px, 6vw, 32px) !important;
+    padding: 0 16px !important;
+  }
+  
+  .space-sphere-edge-section h4 {
+    font-size: clamp(12px, 3vw, 14px) !important;
+    padding: 0 16px !important;
+  }
+
+  /* What We Offer section - ensure timeline is properly responsive */
+  #what-we-offer {
+    padding: 60px 0 !important;
+  }
+  
+  #what-we-offer > div {
+    padding: 0 16px !important;
+  }
+
+  /* Portfolio section header */
+  #portfolio {
+    padding: 60px 16px !important;
+  }
+
+  /* Contact section form adjustments */
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+  }
+
+  /* Modal mobile adjustments */
+  .modal-overlay {
+    padding: 16px !important;
+  }
+  
+  .modal-content {
+    max-height: calc(100vh - 32px) !important;
+    overflow-y: auto !important;
+  }
+
+  /* Footer mobile - ensure proper stacking */
+  .footer > div {
+    gap: 32px !important;
+  }
+
+  /* Ensure all geometric shapes in Space Sphere Edge are hidden or smaller on mobile */
+  .space-sphere-edge-section > div[style*="position: 'absolute'"] {
+    display: none !important;
+  }
+
+  /* Stats bar in projects section mobile */
+  section[id="projects"] div[style*="position: 'absolute'"][style*="bottom"] {
+    position: relative !important;
+    bottom: auto !important;
+    margin-top: 20px !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small mobile adjustments */
+  .hero-shell {
+    padding: 16px 12px 70px !important;
+  }
+  
+  .hero-actions {
+    gap: 8px !important;
+  }
+  
+  .hero-chat {
+    padding: 8px 14px !important;
+    font-size: 11px !important;
+  }
+  
+  /* Space Sphere Edge cards - smaller padding */
+  .space-sphere-edge-section .floating-card {
+    padding: 16px 14px !important;
+    min-height: 140px !important;
+  }
+  
+  .space-sphere-edge-section .central-card {
+    padding: 24px 20px !important;
+  }
+
+  /* Project cards - ensure they're full width */
+  .project-card {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* All section titles - consistent sizing */
+  h2 {
+    font-size: clamp(20px, 7vw, 28px) !important;
+  }
+  
+  /* All section subtitles */
+  h4, .office-subheading {
+    font-size: clamp(11px, 3vw, 13px) !important;
+  }
+
+  /* Contact info blocks */
+  .contact-info {
+    gap: 20px !important;
+  }
+  
+  .contact-block {
+    padding: 16px !important;
+  }
+
+  /* Floating WhatsApp button - ensure it's accessible */
+  .floating-whatsapp {
+    right: 12px !important;
+    bottom: 12px !important;
+    min-width: 120px !important;
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  /* Very small devices - minimal padding and font sizes */
+  .hero-shell {
+    padding: 12px 8px 60px !important;
+  }
+  
+  .hero-card {
+    padding: 14px 12px !important;
+  }
+  
+  .hero-heading {
+    font-size: clamp(1.5rem, 10vw, 2.2rem) !important;
+  }
+  
+  .space-sphere-edge-section .floating-card,
+  .space-sphere-edge-section .central-card {
+    padding: 14px 12px !important;
+  }
+  
+  /* Ensure buttons are still tappable */
+  button,
+  a[role="button"],
+  .hero-primary,
+  .hero-chat,
+  .primary-cta,
+  .secondary-cta {
+    min-height: 44px !important; /* Minimum touch target */
+    padding: 12px 16px !important;
+  }
+  
+  /* Footer - compact spacing */
+  .footer {
+    padding: 40px 12px 24px !important;
+  }
+}
+
+/* Ensure horizontal scroll is prevented on mobile */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden !important;
+  }
+  
+  /* Prevent horizontal overflow while allowing necessary elements */
+  * {
+    max-width: 100% !important;
+  }
+  
+  /* Allow specific elements to be wider if needed */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Ensure text is readable and doesn't overflow */
+  p, span, h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  
+  /* Better line heights for mobile readability */
+  p {
+    line-height: 1.6 !important;
+  }
+  
+  /* Ensure all buttons and links have adequate touch targets */
+  button, 
+  a[role="button"],
+  .hero-primary,
+  .hero-chat,
+  .hero-select,
+  .primary-cta,
+  .secondary-cta,
+  .about-button,
+  .submit-button {
+    min-height: 44px !important; /* iOS recommended minimum */
+    min-width: 44px !important;
+  }
+  
+  /* Better spacing for form elements */
+  input, 
+  select, 
+  textarea {
+    font-size: 16px !important; /* Prevents zoom on iOS */
+    padding: 12px !important;
+  }
+  
+  /* Modal improvements */
+  .modal-overlay {
+    padding: 0 !important;
+    align-items: flex-start !important;
+    padding-top: 20px !important;
+  }
+  
+  /* Ensure cards don't overflow */
+  .floating-card,
+  .timeline-card,
+  .project-card,
+  .office-card,
+  .contact-card {
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
 }

@@ -79,8 +79,10 @@ export default function Home() {
   const [poolImageIndex, setPoolImageIndex] = useState(0);
   const [experienceImageIndex, setExperienceImageIndex] = useState(0);
 
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -208,14 +210,27 @@ export default function Home() {
   }, []);
 
 
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       setIsScrolled(scrollPosition > 100);
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    // Set initial mobile state
+    setIsMobile(window.innerWidth < 768);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
 
@@ -310,6 +325,7 @@ export default function Home() {
     };
   }, []);
 
+
   // Contact section intersection observer for animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -336,6 +352,38 @@ export default function Home() {
     };
   }, []);
 
+  // Card connection dots animation states
+  const [cardPositions, setCardPositions] = useState({});
+  const [isAnimationActive, setIsAnimationActive] = useState(false);
+  //jjjj
+  useEffect(() => {
+    const brand = document.getElementById("mobile-brand");
+    if (!brand) return;
+  
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+  
+    if (!isMobile) return;
+  
+    // Force hidden on load
+    brand.classList.remove("visible");
+  
+    const handleScroll = () => {
+      if (window.scrollY > 80) {
+        brand.classList.add("visible");
+      } else {
+        brand.classList.remove("visible");
+      }
+    };
+  
+    // Run once in case page loads scrolled
+    handleScroll();
+  
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
+   
+
   // Easing function for smooth animation
   const easeInOutCubic = (t) => {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -346,18 +394,27 @@ export default function Home() {
   return (
     <main className="bg-white text-foreground">
       {/* Sticky Navbar that appears on scroll */}
+
+
+
       <header 
         className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 transition-all duration-300 ${
-          isScrolled ? 'translate-y-0 opacity-100 backdrop-blur-md shadow-lg' : '-translate-y-full opacity-0'
+          isScrolled ? 'translate-y-0 opacity-100 backdrop-blur-md shadow-lg' : 'md:-translate-y-full md:opacity-0'
         }`}
         style={{
           background: isScrolled ? 'rgba(245, 245, 240, 0.95)' : 'transparent',
         }}
       >
 
-        <div className="flex items-center gap-2 text-xl md:text-2xl">
-        <span className="font-semibold" style={{color: 'black'}}>SPACE</span>
-        <span className="opacity-80" style={{color: 'black'}}>| SPHERE</span>  </div>
+<div
+  id="mobile-brand"
+  className="flex items-center gap-2 text-xl md:text-2xl"
+>
+  <span className="font-semibold" style={{ color: 'black' }}>SPACE</span>
+  <span className="opacity-80" style={{ color: 'black' }}>| SPHERE</span>
+</div>
+
+
 
         <nav className="hidden items-center gap-10 mr-10 text-sm uppercase tracking-[0.08em] md:flex">
           {navLinks.map((item) => (
@@ -373,6 +430,8 @@ export default function Home() {
                   element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
               }}
+
+
               style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer', color: isScrolled ? '#1a1a1a' : '#f0ede6' }}
             >
               {item.name}
@@ -385,6 +444,8 @@ export default function Home() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="block md:hidden p-2 z-50"
           aria-label="Toggle menu"
+
+
           style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}
         >
           <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -395,6 +456,7 @@ export default function Home() {
             )}
           </svg>
         </button>
+
 
         {/* Mobile Menu - Only visible on mobile */}
         {isMobileMenuOpen && (
@@ -407,7 +469,7 @@ export default function Home() {
             }}
           >
            <nav
-  className="flex flex-row flex-nowrap px-6 py-4 gap-6 overflow-x-auto w-full"
+  className="flex flex-col px-6 py-4 gap-2 w-full"
 >
   {navLinks.map((item) => (
     <a
@@ -426,11 +488,22 @@ export default function Home() {
         text-sm 
         uppercase 
         tracking-wide 
-        px-6 
-        py-2 
-        whitespace-nowrap
+        px-4 
+        py-3 
+        rounded-lg
+        transition-all
+        duration-200
+        hover:bg-white
+        hover:shadow-sm
+        active:scale-95
       "
-      style={{ cursor: "pointer", color: "#1a1a1a" }}
+      style={{ 
+        cursor: "pointer", 
+        color: "#1a1a1a",
+        fontWeight: 500,
+        textAlign: "center",
+        border: "1px solid rgba(199, 154, 74, 0.1)"
+      }}
     >
       {item.name}
     </a>
@@ -532,10 +605,86 @@ export default function Home() {
             />
           ))}
         </div>
-
-
-
       </section>
+
+      <section id="about" className="about-slab">
+        <div className="about-wrap">
+        <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+          <h2 className="about-hero-title">Welcome To Space Sphere</h2>
+          <h4 className="office-subheading">
+          Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
+  </h4>
+          
+          </div>
+          <div className="about-grid">
+            <div className="about-copy">
+              <p>
+                A Trusted Partner in Indian Real Estate, Space Sphere stands at the
+                intersection of expert advisory, premium property sourcing, and seamless
+                ownership experience. At Space Sphere, we believe a property is more than
+                real estate - it is a statement, an asset, a lifetime belonging. With elite
+                partnerships across premium developers in Pune, Hyderabad and surrounding
+                regions, we bring you access to refined spaces built for those who desire more.
+              </p>
+             
+              <div style={{ display: 'grid', gap: '8px' }}>
+                <p style={{ margin: 0, fontWeight: 600 }}>
+                  With Us You Get :
+                </p>
+                <ul
+  style={{
+    listStyle: 'none',
+    padding: 0,
+    margin: 0,
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    gap: '14px 24px', // row gap | column gap
+  }}
+>
+  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+    <span>Design &amp; Architecture Value</span>
+  </li>
+
+  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+    </svg>
+    <span>Location Advantage &amp; Appreciation</span>
+  </li>
+
+  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+    </svg>
+    <span>Builder Credibility &amp; Delivery History</span>
+  </li>
+
+  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
+      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+    </svg>
+    <span>Lifestyle Amenities &amp; Luxury Quotient</span>
+  </li>
+</ul>
+
+              </div>
+              <button
+                className="about-button"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Schedule a Site Experience 
+              </button>
+            </div>
+            <div className="about-image-frame">
+              <img src="/about1.jpg" alt="Luxury estate poolside" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id = "space-sphere-edge-section" className="space-sphere-edge-section" style={{ padding: '80px 0', position: 'relative', overflow: 'hidden', background: '#ffffff', color: '#ffffff' }}>
         {/* Geometric Background Elements */}
         <div style={{ 
@@ -587,13 +736,15 @@ export default function Home() {
         }}></div>
 
         <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 2 }}>
+
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-          <h2 className="about-hero-title">Welcome To Space Sphere</h2>
+          <h2 className="about-hero-title">The Space Sphere Edge</h2>
           <h4 className="office-subheading">
-          Exclusive Homes. Investment-worthy Properties. Prestigious Addresses.
+          Because Luxury Deserves Precision.
   </h4>
           
           </div>
+
 
           {/* Floating Cards Grid - refreshed design */}
           <div style={{ 
@@ -609,6 +760,101 @@ export default function Home() {
             position: 'relative',
             marginTop: '40px'
           }}>
+
+
+
+            {/* SVG Connections Overlay */}
+            <div style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              pointerEvents: 'none',
+              zIndex: 1
+            }}>
+              <svg 
+                width="100%" 
+                height="100%" 
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+                style={{ overflow: 'visible' }}
+              >
+                <defs>
+                  <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="rgba(199, 154, 74, 0.4)" />
+                    <stop offset="50%" stopColor="rgba(212, 175, 106, 0.8)" />
+                    <stop offset="100%" stopColor="rgba(199, 154, 74, 0.4)" />
+                  </linearGradient>
+                  <style>
+                    {`
+                      @keyframes dashFlow {
+                        to {
+                          stroke-dashoffset: -100;
+                        }
+                      }
+                      .connection-line {
+                        stroke-dasharray: 2 2;
+                        animation: dashFlow 20s linear infinite;
+                        vector-effect: non-scaling-stroke;
+                      }
+                      @media (max-width: 1024px) {
+                        .connection-lines {
+                          display: none;
+                        }
+                      }
+                    `}
+                  </style>
+                </defs>
+                <g className="connection-lines" fill="none" stroke="url(#lineGradient)" strokeWidth="2">
+                  
+                  {/* 
+                      Percentage-based Coordinates for 5-column grid layout
+                      Row 1 Cards (1, 2, 3) approx Y center: 20%
+                      Row 2 Cards (4, 5) approx Y center: 60%
+                      
+                      Col 1 (Card 1) Right: ~17% X
+                      Col 2 (Card 4) Top: ~29% X, Right: ~38% X
+                      Col 3 (Card 2) Bottom: ~50% X, Right: ~59% X
+                      Col 4 (Card 5) Top: ~71% X, Right: ~80% X
+                      Col 5 (Card 3) Bottom: ~92% X
+                  */}
+
+
+                  {/* Card 1 (Right Middle) -> Card 4 (Top Middle) 
+                      Start: ~19% X, 25% Y
+                      End: ~30% X, 55% Y
+                  */}
+                  <path d="M 19 25 C 25 25, 25 55, 30 55" className="connection-line" />
+                  
+                  {/* Card 4 (Right Middle) -> Card 2 (Bottom Middle) 
+                      Start: ~39% X, 55% Y
+                      End: ~50% X, 35% Y
+                  */}
+                  <path d="M 39 55 C 45 55, 45 35, 50 35" className="connection-line" />
+
+                  {/* Card 2 (Right Middle) -> Card 5 (Top Middle) 
+                      Start: ~59% X, 25% Y
+                      End: ~70% X, 55% Y
+                  */}
+                  <path d="M 59 25 C 65 25, 65 55, 70 55" className="connection-line" />
+
+                  {/* Card 5 (Right Middle) -> Card 3 (Bottom Middle) 
+                      Start: ~79% X, 55% Y
+                      End: ~90% X, 35% Y
+                  */}
+                  <path d="M 79 55 C 85 55, 85 35, 90 35" className="connection-line" />
+
+                </g>
+              </svg>
+            </div>
+
+
+
+
+
+
+
 
             {/* Card 1 */}
 
@@ -646,6 +892,21 @@ export default function Home() {
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
               </div>
+
+              {/* Dot: Right Middle */}
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                right: '-5px',
+                transform: 'translateY(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
+
+              
               
               <div style={{ marginTop: '18px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
@@ -656,6 +917,9 @@ export default function Home() {
                 Tailored to your taste & investment vision, every property is hand-selected for your unique lifestyle.                </p>
               </div>
             </div>
+
+
+
 
             {/* Card 2 */}
 
@@ -693,7 +957,33 @@ export default function Home() {
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
               </div>
-              
+
+              {/* Dot: Bottom Middle */}
+              <div style={{
+                position: 'absolute',
+                bottom: '-5px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
+
+              {/* Dot: Right Middle */}
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                right: '-5px',
+                transform: 'translateY(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
+
               <div style={{ marginTop: '18px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                   Elite Developer Network
@@ -703,6 +993,8 @@ export default function Home() {
                 </p>
               </div>
             </div>
+
+
 
             {/* Card 3 */}
 
@@ -740,7 +1032,20 @@ export default function Home() {
                   <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
-              
+
+              {/* Dot: Bottom Middle */}
+              <div style={{
+                position: 'absolute',
+                bottom: '-5px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
+
               <div style={{ marginTop: '20px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                 Complete Transparency
@@ -751,6 +1056,8 @@ export default function Home() {
 </p>
               </div>
             </div>
+
+
 
             {/* Card 4 */}
 
@@ -788,7 +1095,33 @@ export default function Home() {
                   <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
               </div>
-              
+
+              {/* Dot: Top Middle */}
+              <div style={{
+                position: 'absolute',
+                top: '-5px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
+
+              {/* Dot: Right Middle */}
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                right: '-5px',
+                transform: 'translateY(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
+
               <div style={{ marginTop: '20px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                 End-to-End Support                </h3>
@@ -796,6 +1129,8 @@ export default function Home() {
                 From search to keys, we guide you through every step of your property journey                </p>
               </div>
             </div>
+
+
 
             {/* Central Feature Card */}
 
@@ -834,6 +1169,32 @@ export default function Home() {
                   <path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.18-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.47 10 9.99 10 3.31 0 6.24-1.61 8.06-4.09l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/>
                 </svg>
               </div>
+
+              {/* Dot: Top Middle */}
+              <div style={{
+                position: 'absolute',
+                top: '-5px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
+
+              {/* Dot: Right Middle */}
+              <div style={{
+                position: 'absolute',
+                top: '50%',
+                right: '-5px',
+                transform: 'translateY(-50%)',
+                width: '10px',
+                height: '10px',
+                background: 'rgba(199, 154, 74, 0.9)',
+                borderRadius: '50%',
+                zIndex: 5
+              }} />
               
               <div>
                 <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
@@ -1520,12 +1881,12 @@ Invest with confidence. Live with pride.
         alignItems: 'center',
         gap: '12px'
       }}>
-        <div style={{
+        <div className="exclusive-collection" style={{
           width: '40px',
           height: '2px',
           background: 'linear-gradient(90deg, #c79a4a, #d4af6a)'
         }} />
-        <span style={{
+        <span className="exclusive-collection" style={{
           fontSize: '11px',
           fontWeight: 600,
           textTransform: 'uppercase',
@@ -1545,7 +1906,7 @@ Invest with confidence. Live with pride.
         textAlign: 'left'
       }}>
         {/* Category Tag */}
-        <div style={{
+        <div className="exclusive-collection1" style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: '10px',
@@ -1556,14 +1917,14 @@ Invest with confidence. Live with pride.
           borderRadius: '50px',
           border: '1px solid rgba(199, 154, 74, 0.3)'
         }}>
-          <div style={{
+          <div   style={{
             width: '6px',
             height: '6px',
             borderRadius: '50%',
             background: '#d4af6a',
             boxShadow: '0 0 10px rgba(212, 175, 106, 0.5)'
           }} />
-          <span style={{
+          <span  style={{
             fontSize: '12px',
             fontWeight: 600,
             textTransform: 'uppercase',
@@ -1575,7 +1936,7 @@ Invest with confidence. Live with pride.
         </div>
 
         {/* Title */}
-        <h3 style={{
+        <h3 className="exclusive-collection2" style={{
           fontSize: 'clamp(36px, 5vw, 52px)',
           fontWeight: 700,
           color: '#ffffff',
@@ -1589,7 +1950,7 @@ Invest with confidence. Live with pride.
         </h3>
 
         {/* Subtitle */}
-        <p style={{
+        <p className="exclusive-collection3" style={{
           fontSize: '18px',
           color: 'rgba(255, 255, 255, 0.85)',
           marginBottom: '12px',
@@ -1600,7 +1961,7 @@ Invest with confidence. Live with pride.
         </p>
 
         {/* Description */}
-        <p style={{
+        <p className="exclusive-collection4" style={{
           fontSize: '15px',
           color: '#ffffff',
           marginBottom: '32px',
@@ -1611,7 +1972,7 @@ Invest with confidence. Live with pride.
         </p>
 
         {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="exclusive-collection5" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
           <a 
             href="https://www.google.com"
             target="_blank"
@@ -1689,7 +2050,7 @@ Invest with confidence. Live with pride.
 
 
       {/* Bottom Stats Bar */}
-      <div style={{
+      <div className="hero-stats2" style={{
         position: 'absolute',
         bottom: '60px',
         right: '60px',
@@ -1704,7 +2065,7 @@ Invest with confidence. Live with pride.
         <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
         <div style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2-5</p>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>BHK</p>
+          <p className="hero-stats2" style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>BHK</p>
         </div>
         <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
         <div style={{ textAlign: 'center' }}>
@@ -1716,79 +2077,6 @@ Invest with confidence. Live with pride.
   </div>
 </div>
 </section>
-
-
-
-      <section id="about" className="about-slab">
-        <div className="about-wrap">
-          <h2 className="about-hero-title">About Us</h2>
-          <div className="about-grid">
-            <div className="about-copy">
-              <p>
-                A Trusted Partner in Indian Real Estate, Space Sphere stands at the
-                intersection of expert advisory, premium property sourcing, and seamless
-                ownership experience. At Space Sphere, we believe a property is more than
-                real estate - it is a statement, an asset, a lifetime belonging. With elite
-                partnerships across premium developers in Pune, Hyderabad and surrounding
-                regions, we bring you access to refined spaces built for those who desire more.
-              </p>
-              <p>
-                Our strength lies in trust-driven relationships, transparent deals, and deep
-                market expertise. We deal only in spaces worthy of legacy.
-              </p>
-              <div style={{ display: 'grid', gap: '8px' }}>
-                <p style={{ margin: 0, fontWeight: 600 }}>
-                  Every project we represent is hand-evaluated for:
-                </p>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '8px' }}>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
-                    <span>Design &amp; Architecture Value</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                    </svg>
-                    <span>Location Advantage &amp; Appreciation</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
-                    </svg>
-                    <span>Builder Credibility &amp; Delivery History</span>
-                  </li>
-                  <li style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#c79a4a" style={{ flexShrink: 0 }}>
-                      <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
-                    </svg>
-                    <span>Lifestyle Amenities &amp; Luxury Quotient</span>
-                  </li>
-                </ul>
-              </div>
-              <button
-                className="about-button"
-                onClick={() => setIsModalOpen(true)}
-              >
-                Schedule a Site Experience 
-              </button>
-            </div>
-            <div className="about-image-frame">
-              <img src="/about1.jpg" alt="Luxury estate poolside" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      
-      {/* Blank Section with White Background and Parallax Effect */}
-
-    
-     
-
-     
 
 
       <section style={{ padding: '30px 24px', background: '', position: 'relative', overflow: 'hidden' }}>
@@ -2240,18 +2528,20 @@ Invest with confidence. Live with pride.
               className="secondary-cta"
               onClick={() => setIsModalOpen(true)}
               style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
+                background: 'transparent',
+                border: '2px solid #C79A4A',
                 color: '#ffffff',
                 padding: '18px 32px',
                 fontSize: '0.9rem',
-                fontWeight: 400,
+                fontWeight: 300,
                 textTransform: 'uppercase',
-                letterSpacing: '0.08em',
+                letterSpacing: '0.1em',
                 borderRadius: '4px',
                 cursor: 'pointer',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                backdropFilter: 'blur(10px)',
+                position: 'relative',
+                overflow: 'hidden',
                 minWidth: '280px',
                 flex: '1',
                 maxWidth: '320px',
@@ -2259,16 +2549,14 @@ Invest with confidence. Live with pride.
                 whiteSpace: 'nowrap'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 15px 40px rgba(199, 154, 74, 0.4)';
+                e.currentTarget.style.borderColor = '#D4AF6A';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
                 e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = '#C79A4A';
               }}
             >
               Schedule a Site Experience
