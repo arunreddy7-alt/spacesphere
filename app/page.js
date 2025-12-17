@@ -1133,12 +1133,7 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-copy">
               <p>
-                A Trusted Partner in Indian Real Estate, Space Sphere stands at the
-                intersection of expert advisory, premium property sourcing, and seamless
-                ownership experience. At Space Sphere, we believe a property is more than
-                real estate - it is a statement, an asset, a lifetime belonging. With elite
-                partnerships across premium developers in Pune, Hyderabad and surrounding
-                regions, we bring you access to refined spaces built for those who desire more.
+              Space Sphere is a trusted partner in Indian real estate, bringing together expert advisory, premium property sourcing, and a seamless ownership experience. We believe a property is more than real estate - it’s a statement, an asset, and a lifetime belonging. With elite partnerships across premium developers in Pune, Hyderabad, and surrounding regions, we offer access to refined spaces for those who desire more.
               </p>
              
               <div style={{ display: 'grid', gap: '8px' }}>
@@ -2716,9 +2711,9 @@ Invest with confidence. Live with pride.
                   fontSize: '18px',
                   fontWeight: 700,
                   flexShrink: 0
-                }}>SC</div>
+                }}>VP</div>
                 <div>
-                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Satisfied Client</p>
+                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Venkat Prasad V</p>
                   <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>Premium Property Owner</p>
                 </div>
               </div>
@@ -2814,9 +2809,9 @@ Invest with confidence. Live with pride.
                   fontSize: '18px',
                   fontWeight: 700,
                   flexShrink: 0
-                }}>VC</div>
+                }}>PM</div>
                 <div>
-                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Valued Customer</p>
+                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Prathamesh Mhatre</p>
                   <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>Investment Partner</p>
                 </div>
               </div>
