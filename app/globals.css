@@ -195,7 +195,7 @@ body {
 }
 @media (max-width: 768px) {
   .exclusive-collection5 {
-    transform: translateX(-55px); /* adjust as needed */
+    transform: translateX(-35px); /* adjust as needed */
   }
 }
 @media (max-width: 768px) {
@@ -1350,6 +1350,8 @@ body {
 }
 
 
+
+
 /* Mobile Responsive Styles - Only affects mobile, desktop unchanged */
 @media (max-width: 768px) {
   /* Connect With Us Section Button Layout */
@@ -1370,6 +1372,72 @@ body {
     padding: 16px 24px !important;
     font-size: 13px !important;
     text-align: center !important;
+  }
+
+
+
+
+  /* What We Offer Timeline Mobile Layout - Card then Image alternating sequence */
+  .timeline-step {
+    flex-direction: column !important;
+    gap: 20px !important;
+    margin-bottom: 60px !important;
+    text-align: center !important;
+  }
+  
+  /* Odd steps (1st, 3rd, 5th) - Card first then Image */
+  .timeline-step:nth-child(odd) > div:first-child {
+    order: 1 !important;
+    padding-right: 0 !important;
+    text-align: center !important;
+    margin-bottom: 20px !important;
+  }
+  
+  .timeline-step:nth-child(odd) > div:last-child {
+    order: 2 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Even steps (2nd, 4th) - Image first then Card */
+  .timeline-step:nth-child(even) > div:first-child {
+    order: 2 !important;
+    padding-right: 0 !important;
+    text-align: center !important;
+    margin-top: 20px !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .timeline-step:nth-child(even) > div:last-child {
+    order: 1 !important;
+    padding-left: 0 !important;
+    width: 100% !important;
+    max-width: 350px !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Hide timeline nodes on mobile */
+  .timeline-step > div:nth-child(2) {
+    order: 3 !important;
+    margin: 10px 0 !important;
+    display: none !important; /* Hide timeline nodes on mobile */
+  }
+  
+  /* Timeline card adjustments */
+  .timeline-step .timeline-card {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  
+  /* Image container adjustments */
+  .timeline-step > div > div[style*="width: '350px'"] {
+    width: 100% !important;
+    max-width: 350px !important;
+    margin: 0 auto !important;
   }
   /* Hero Section Mobile */
   .serif-heading {
@@ -1427,7 +1495,12 @@ body {
     text-align: center !important;
     padding: 0 8px !important;
   }
-
+  @media (max-width: 768px) {
+    .hero-primary-text {
+      transform: translateX(-10px); /* adjust: -4px to -10px */
+    }
+  }
+  
   .projects-subtitle {
     font-size: 14px !important;
     padding: 0 16px !important;
@@ -4226,7 +4299,7 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   
   /* Better spacing for form elements */
   input, 
-  select, 
+ ha select, 
   textarea {
     font-size: 16px !important; /* Prevents zoom on iOS */
     padding: 12px !important;
