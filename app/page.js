@@ -581,45 +581,11 @@ export default function Home() {
                 margin: '0 auto',
                 overflow: 'hidden'
               }}>
-                {/* Animated background particles */}
-                <div style={{
-                  position: 'absolute',
-                  top: '10%',
-                  left: '15%',
-                  width: '4px',
-                  height: '4px',
-                  background: 'rgba(199, 154, 74, 0.6)',
-                  borderRadius: '50%',
-                  boxShadow: '0 0 10px rgba(199, 154, 74, 0.8)',
-                  animation: 'float 12s ease-in-out infinite',
-                  pointerEvents: 'none'
-                }} />
-                <div style={{
-                  position: 'absolute',
-                  top: '60%',
-                  right: '20%',
-                  width: '3px',
-                  height: '3px',
-                  background: 'rgba(199, 154, 74, 0.5)',
-                  borderRadius: '50%',
-                  boxShadow: '0 0 8px rgba(199, 154, 74, 0.6)',
-                  animation: 'float 15s ease-in-out infinite reverse',
-                  pointerEvents: 'none'
-                }} />
-                <div style={{
-                  position: 'absolute',
-                  bottom: '20%',
-                  left: '25%',
-                  width: '5px',
-                  height: '5px',
-                  background: 'rgba(199, 154, 74, 0.4)',
-                  borderRadius: '50%',
-                  boxShadow: '0 0 12px rgba(199, 154, 74, 0.7)',
-                  animation: 'float 18s ease-in-out infinite',
-                  pointerEvents: 'none'
-                }} />
 
-                {/* Enhanced decorative accent line with glow */}
+
+
+
+                {/* Enhanced decorative accent line */}
                 <div style={{
                   position: 'relative',
                   width: '120px',
@@ -636,18 +602,6 @@ export default function Home() {
                     background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.4), rgba(199, 154, 74, 0.8), rgba(199, 154, 74, 0.4), transparent)',
                     borderRadius: '2px',
                     boxShadow: '0 0 15px rgba(199, 154, 74, 0.6)'
-                  }} />
-                  <div style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '8px',
-                    height: '8px',
-                    background: 'rgba(199, 154, 74, 0.9)',
-                    borderRadius: '50%',
-                    boxShadow: '0 0 20px rgba(199, 154, 74, 0.8), 0 0 40px rgba(199, 154, 74, 0.4)',
-                    animation: 'pulse 3s ease-in-out infinite'
                   }} />
                 </div>
 
@@ -680,38 +634,52 @@ export default function Home() {
                     animation: 'pulse 4s ease-in-out infinite'
                   }} />
                   
-                  <span style={{ 
-                    display: 'block',
-                    background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
-                    backgroundSize: '200% 200%',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    animation: 'shimmer 5s ease-in-out infinite',
-                    textShadow: '0 4px 30px rgba(0, 0, 0, 0.4), 0 0 60px rgba(199, 154, 74, 0.2)',
-                    position: 'relative',
+                  <span
+  style={{
+    display: 'block',
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '1.1em',
+    background:
+      'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
+    backgroundSize: '200% 200%',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    animation: 'shimmer 5s ease-in-out infinite',
+    textShadow:
+      '0 4px 30px rgba(0, 0, 0, 0.4), 0 0 60px rgba(199, 154, 74, 0.2)',
+    position: 'relative',
+    zIndex: 1,
+  }}
+>
+  SPACE
+</span>
 
-                    zIndex: 1
-                  }}>
-                    SPACE
-                  </span>
-                  <span style={{ 
-                    display: 'block',
-                    fontSize: '0.82em',
-                    marginTop: '-0.2em',
-                    letterSpacing: '0.15em',
-                    background: 'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
-                    backgroundSize: '200% 200%',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    textShadow: '0 2px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(199, 154, 74, 0.15)',
-                    position: 'relative',
-                    zIndex: 1,
-                    animation: 'shimmer 3s ease-in-out infinite'
-                  }}>
-                    SPHERE
-                  </span>
+<span
+  style={{
+    display: 'block',
+    fontFamily: 'Poppins, sans-serif',
+    fontSize: '0.82em',
+    marginTop: '-0.2em',
+    letterSpacing: '0.15em',
+    background:
+      'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
+    backgroundSize: '200% 200%',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    backgroundClip: 'text',
+    textShadow:
+      '0 2px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(199, 154, 74, 0.15)',
+    position: 'relative',
+    zIndex: 1,
+    animation: 'shimmer 3s ease-in-out infinite',
+  }}
+>
+  SPHERE
+</span>
+
+
+
                 </h1>
 
                 {/* Enhanced elegant divider with animated elements */}
@@ -1045,31 +1013,8 @@ export default function Home() {
                 </div>
 
 
-                {/* Enhanced decorative geometric elements */}
-                <div style={{
-                  position: 'absolute',
-                  top: '5%',
-                  left: '3%',
-                  width: '80px',
-                  height: '80px',
-                  border: '1px solid rgba(199, 154, 74, 0.2)',
-                  borderRadius: '50%',
-                  pointerEvents: 'none',
-                  animation: 'float 10s ease-in-out infinite',
-                  boxShadow: '0 0 30px rgba(199, 154, 74, 0.1)'
-                }} />
-                <div style={{
-                  position: 'absolute',
-                  bottom: '8%',
-                  right: '5%',
-                  width: '70px',
-                  height: '70px',
-                  border: '1px solid rgba(199, 154, 74, 0.18)',
-                  borderRadius: '50%',
-                  pointerEvents: 'none',
-                  animation: 'float 14s ease-in-out infinite',
-                  boxShadow: '0 0 35px rgba(199, 154, 74, 0.12)'
-                }} />
+
+
                 
                 {/* Corner accent lines */}
                 <div style={{
@@ -1137,7 +1082,8 @@ export default function Home() {
               </p>
              
               <div style={{ display: 'grid', gap: '8px' }}>
-                <p style={{ margin: 0, fontWeight: 600 }}>
+                <p   className="text-center md:text-center"
+ style={{ margin: 0, fontWeight: 600 }}>
                   With Us You Get :
                 </p>
                 <ul
@@ -3519,18 +3465,57 @@ Invest with confidence. Live with pride.
               © {new Date().getFullYear()} SpaceSphere Realty. All rights reserved.
             </p>
 
-            <div style={{ 
-              display: 'flex', 
-              gap: '24px', 
-              flexWrap: 'wrap', 
-              justifyContent: isMobile ? 'flex-start' : 'center' 
-            }}>
-              <a href="#" style={{ color: '#8a857a', textDecoration: 'none', fontSize: '13px', transition: 'color 0.3s ease' }}>Privacy Policy</a>
-              <span style={{ color: '#8a857a' }}>|</span>
-              <a href="#" style={{ color: '#8a857a', textDecoration: 'none', fontSize: '13px', transition: 'color 0.3s ease' }}>Terms & Conditions</a>
-              <span style={{ color: '#8a857a' }}>|</span>
-              <a href="#" style={{ color: '#8a857a', textDecoration: 'none', fontSize: '13px', transition: 'color 0.3s ease' }}>Disclaimer</a>
-            </div>
+            <div
+  style={{
+    display: 'flex',
+    gap: '24px',
+    flexWrap: 'wrap',
+    justifyContent: isMobile ? 'flex-start' : 'center',
+    textAlign: isMobile ? 'left' : 'center',
+    width: '100%'
+  }}
+>
+  <a
+    href="#"
+    style={{
+      color: '#8a857a',
+      textDecoration: 'none',
+      fontSize: '13px',
+      transition: 'color 0.3s ease'
+    }}
+  >
+    Privacy Policy
+  </a>
+
+  <span style={{ color: '#8a857a' }}>|</span>
+
+  <a
+    href="#"
+    style={{
+      color: '#8a857a',
+      textDecoration: 'none',
+      fontSize: '13px',
+      transition: 'color 0.3s ease'
+    }}
+  >
+    Terms & Conditions
+  </a>
+
+  <span style={{ color: '#8a857a' }}>|</span>
+
+  <a
+    href="#"
+    style={{
+      color: '#8a857a',
+      textDecoration: 'none',
+      fontSize: '13px',
+      transition: 'color 0.3s ease'
+    }}
+  >
+    Disclaimer
+  </a>
+</div>
+
           </div>
         </div>
       </footer>
