@@ -86,6 +86,8 @@ export default function Home() {
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState('consultation'); // 'consultation' or 'schedule'
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [timelineScrollProgress, setTimelineScrollProgress] = useState(0);
   const timelineSectionRef = useRef(null);
   
@@ -561,7 +563,9 @@ export default function Home() {
                 
                 <button
                   className="hero-chat"
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => {
+                    setIsInquiryModalOpen(true);
+                  }}
                 >
                   Enquire Now
                 </button>
@@ -905,9 +909,11 @@ export default function Home() {
     justifyContent: 'center'
   }}
 >
-                  <button
-  className="hero-secondary mobile-shift"
-  onClick={() => setIsModalOpen(true)}
+                <button
+                  className="hero-secondary mobile-shift"
+                  onClick={() => {
+                    setIsInquiryModalOpen(true);
+                  }}
                     style={{
                       padding: '16px 32px',
                       fontSize: '0.9rem',
@@ -949,10 +955,7 @@ export default function Home() {
                   <button
                      className="hero-secondary mobile-shift"
                     onClick={() => {
-                      const edgeSection = document.getElementById('projects');
-                      if (edgeSection) {
-                        edgeSection.scrollIntoView({ behavior: 'smooth' });
-                      }
+                      setIsInquiryModalOpen(true);
                     }}
                     style={{
                       padding: '16px 32px',
@@ -1006,7 +1009,7 @@ export default function Home() {
                       animation: 'shimmer 3s ease-in-out infinite'
                     }} />
                     <span style={{ position: 'relative', zIndex: 1, display: 'block' }}>
-                      View listings
+                      Schedule Site Visit
                     </span>
                   </button>
                 </div>
@@ -1156,7 +1159,9 @@ export default function Home() {
               </div>
               <button
                 className="about-button"
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => {
+                  setIsInquiryModalOpen(true);
+                }}
               >
                 Schedule a Site Experience 
               </button>
@@ -2431,7 +2436,7 @@ Invest with confidence. Live with pride.
         {/* CTA Buttons */}
         <div className="exclusive-collection5" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
           <a 
-            href="https://www.google.com"
+            href="https://avinea.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ 
@@ -2522,7 +2527,7 @@ Invest with confidence. Live with pride.
         </div>
         <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
         <div style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2-5</p>
+          <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2-6</p>
           <p className="hero-stats2" style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>BHK</p>
         </div>
         <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
@@ -2933,7 +2938,9 @@ Invest with confidence. Live with pride.
             {/* Primary CTA - Book a Private Consultation */}
             <button
               className="primary-cta"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setIsInquiryModalOpen(true);
+              }}
               style={{
                 background: 'transparent',
                 border: '2px solid #C79A4A',
@@ -2984,7 +2991,9 @@ Invest with confidence. Live with pride.
             {/* Secondary CTA - Schedule a Site Experience */}
             <button
               className="secondary-cta"
-              onClick={() => setIsModalOpen(true)}
+              onClick={() => {
+                setIsInquiryModalOpen(true);
+              }}
               style={{
                 background: 'transparent',
                 border: '2px solid #C79A4A',
@@ -3384,11 +3393,58 @@ Invest with confidence. Live with pride.
                 />
               </div>
               
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                    Preferred Date *
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      border: '1px solid #ddd',
+                      borderRadius: '8px',
+                      fontSize: '15px',
+                      transition: 'border-color 0.2s ease',
+                      boxSizing: 'border-box',
+                      color: 'black'
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = 'black'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = 'black'}
+                  />
+                </div>
+                
+                <div>
+                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                    Preferred Time *
+                  </label>
+                  <input
+                    type="time"
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      border: '1px solid #ddd',
+                      borderRadius: '8px',
+                      fontSize: '15px',
+                      transition: 'border-color 0.2s ease',
+                      boxSizing: 'border-box',
+                      color:'black'
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                  />
+                </div>
+              </div>
+              
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
                   Interested In
                 </label>
                 <select
+                  required
                   style={{
                     width: '100%',
                     padding: '12px 16px',
@@ -3403,21 +3459,188 @@ Invest with confidence. Live with pride.
                   onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
                 >
-                  <option value="" style={{ color: '#000000' }}>Select an option</option>
-                  <option value="residential" style={{ color: '#000000' }}>Luxury Residential Apartments</option>
-                  <option value="villas" style={{ color: '#000000' }}>Signature Villas & Gated Communities</option>
-                  <option value="plots" style={{ color: '#000000' }}>Premium Open Plots</option>
-                  <option value="commercial" style={{ color: '#000000' }}>Commercial Spaces</option>
-                  <option value="consultation" style={{ color: '#000000' }}>General Consultation</option>
-                </select>
+                  <option value="" style={{ color: '#000000' }}>Select apartment type</option>
+                  <option value="2bhk" style={{ color: '#000000' }}>2 BHK</option>
+                  <option value="3bhk" style={{ color: '#000000' }}>3 BHK</option>
+                  <option value="4bhk" style={{ color: '#000000' }}>4 BHK</option>
+                  <option value="5bhk" style={{ color: '#000000' }}>5 BHK</option>
+                  <option value="6bhk" style={{ color: '#000000' }}>6 BHK</option>
+                   </select>
+              </div>
+              
+              
+              <button
+                type="submit"
+                className="cta-button"
+                style={{ 
+                  width: '100%', 
+                  padding: '14px 26px', 
+                  marginTop: '8px',
+                  fontSize: '16px'
+                }}
+              >
+                Schedule Site Visit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Inquiry Form Modal */}
+      {isInquiryModalOpen && (
+        <div 
+          className="inquiry-modal-overlay"
+          onClick={() => setIsInquiryModalOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.7)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            padding: '20px',
+            animation: 'fadeIn 0.3s ease-out'
+          }}
+        >
+          <div 
+            className="inquiry-modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '40px',
+              maxWidth: '500px',
+              width: '100%',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+              animation: 'slideUp 0.3s ease-out',
+              position: 'relative'
+            }}
+          >
+            <button
+              onClick={() => setIsInquiryModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                background: 'transparent',
+                border: 'none',
+                fontSize: '24px',
+                cursor: 'pointer',
+                color: '#666',
+                width: '32px',
+                height: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: '50%',
+                transition: 'background 0.2s ease'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+            >
+              ×
+            </button>
+            
+            <h2 style={{ 
+              fontSize: '28px', 
+              fontWeight: 700, 
+              color: '#1a1a1a', 
+              marginBottom: '8px',
+              fontFamily: "'Playfair Display', serif"
+            }}>
+              Schedule a Consultation
+            </h2>
+            <p style={{ fontSize: '16px', color: '#666', marginBottom: '32px' }}>
+              Let us understand your requirements better. Please fill out the form below.
+            </p>
+            
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                // Handle form submission here
+                alert('Thank you for your inquiry! Our team will contact you soon to schedule your private consultation.');
+                setIsInquiryModalOpen(false);
+              }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+            >
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Full Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                />
               </div>
               
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
-                  Message
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                />
+              </div>
+              
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Phone Number *
+                </label>
+                <input
+                  type="tel"
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    border: '1px solid #ddd',
+                    borderRadius: '8px',
+                    fontSize: '15px',
+                    transition: 'border-color 0.2s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                />
+              </div>
+              
+              
+             
+              
+              <div>
+                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  Additional Message
                 </label>
                 <textarea
-                  rows={4}
+                  rows="3"
                   style={{
                     width: '100%',
                     padding: '12px 16px',
@@ -3427,10 +3650,12 @@ Invest with confidence. Live with pride.
                     transition: 'border-color 0.2s ease',
                     boxSizing: 'border-box',
                     resize: 'vertical',
-                    fontFamily: 'inherit'
+                    fontFamily: 'inherit',
+                    color:'black'
                   }}
                   onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
+                  placeholder="Tell us more about your requirements..."
                 />
               </div>
               
