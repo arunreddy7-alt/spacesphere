@@ -140,32 +140,46 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  padding: 32px 20px 110px;
-  gap: 48px;
+  padding: clamp(20px, 5vw, 32px) clamp(16px, 4vw, 20px) clamp(60px, 12vw, 110px);
+  gap: clamp(24px, 5vw, 48px);
 }
 
 @media (min-width: 768px) {
   .hero-shell {
-    padding: 48px 64px 140px;
+    padding: clamp(32px, 6vw, 48px) clamp(40px, 8vw, 64px) clamp(80px, 15vw, 140px);
   }
 }
 
 .hero-topbar {
   display: grid;
-  grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr);
+  grid-template-columns: minmax(100px, 1fr) auto minmax(100px, 1fr);
   align-items: center;
-  gap: 18px;
+  gap: clamp(8px, 3vw, 18px);
   color: #f7f7f7;
+}
+
+@media (min-width: 768px) {
+  .hero-topbar {
+    grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr);
+    gap: 18px;
+  }
 }
 
 .hero-brand {
   display: inline-flex;
-  margin-top: 9px; 
+  margin-top: clamp(4px, 1vw, 9px); 
   align-items: center;
-  gap: 6px;
+  gap: clamp(4px, 1vw, 6px);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 0.95rem;
+  font-size: clamp(0.75rem, 2vw, 0.95rem);
+}
+
+@media (min-width: 768px) {
+  .hero-brand {
+    font-size: 0.95rem;
+    gap: 6px;
+  }
 }
 /*project*/
 @media (max-width: 768px) {
@@ -208,15 +222,23 @@ body {
 .hero-nav {
   justify-self: center;
   display: inline-flex;
-  gap: 14px;
-  padding: 10px 16px;
+  gap: clamp(8px, 2vw, 14px);
+  padding: clamp(6px, 1.5vw, 10px) clamp(10px, 2vw, 16px);
   background: rgba(0, 0, 0, 0.35);
-  border-radius: 14px;
+  border-radius: clamp(8px, 2vw, 14px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(6px);
   white-space: nowrap;
   min-width: max-content;
   overflow-x: auto;
+}
+
+@media (min-width: 768px) {
+  .hero-nav {
+    gap: 14px;
+    padding: 10px 16px;
+    border-radius: 14px;
+  }
 }
 
 .hero-nav::-webkit-scrollbar {
@@ -228,11 +250,19 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 600;
-  font-size: 0.88rem;
-  padding: 8px 8px;
-  border-radius: 10px;
+  font-size: clamp(0.7rem, 2vw, 0.88rem);
+  padding: clamp(4px, 1vw, 8px) clamp(4px, 1.5vw, 8px);
+  border-radius: clamp(6px, 1.5vw, 10px);
   transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
   white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .hero-nav-link {
+    font-size: 0.88rem;
+    padding: 8px 8px;
+    border-radius: 10px;
+  }
 }
 
 .hero-nav-link:hover {
@@ -267,7 +297,7 @@ body {
   display: inline-flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 12px;
+  gap: clamp(8px, 2vw, 12px);
 }
 @media (max-width: 768px) {
   .hero-chat {

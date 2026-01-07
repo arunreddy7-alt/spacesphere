@@ -1707,7 +1707,7 @@ export default function Home() {
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
+          backgroundAttachment: isMobile ? 'scroll' : 'fixed',
           color: '#000000'
         }}
       >
