@@ -391,6 +391,15 @@ export default function Home() {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   };
 
+  // Auto-open inquiry modal after 5 seconds on page load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInquiryModalOpen(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const activeImage = heroImages[currentSlide];
 
   return (
@@ -3224,10 +3233,7 @@ Invest with confidence. Live with pride.
 
                   <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
                     <div style={{ color: '#b8b3a8', fontSize: '15px', lineHeight: '1.6', marginBottom: '8px' }}>
-                      <strong style={{ color: '#F2C66E' }}>Hyderabad</strong> – Registered Headquarters
-                    </div>
-                    <div style={{ color: '#b8b3a8', fontSize: '15px', lineHeight: '1.6' }}>
-                      <strong style={{ color: '#F2C66E' }}>Pune</strong> – CP Network & Operations
+204 Sapphire Chambers, First Floor, Suite 1186, Baner Road, Baner, Pune 411045
                     </div>
                   </div>
                 </li>
@@ -3235,13 +3241,13 @@ Invest with confidence. Live with pride.
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                   </svg>
-                  <a href="tel:+91XXXXXXXXXX" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>+91 XXXXX XXXXX</a>
+                  <a href="tel:+919121772320" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>+91 9121772320</a>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                   </svg>
-                  <a href="mailto:contact@spacesphere.com" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>contact@spacesphere.com</a>
+                  <a href="mailto:crm@spacesphere.in" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>crm@spacesphere.in</a>
                 </li>
               </ul>
             </div>
@@ -3249,7 +3255,7 @@ Invest with confidence. Live with pride.
 
       {/* Popup Modal Form */}
       {isModalOpen && (
-        <div 
+        <div
           className="modal-overlay"
           onClick={() => setIsModalOpen(false)}
           style={{
@@ -3258,7 +3264,9 @@ Invest with confidence. Live with pride.
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'rgba(0, 0, 0, 0.7)',
+            background: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(5px)',
+            WebkitBackdropFilter: 'blur(5px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -3488,7 +3496,7 @@ Invest with confidence. Live with pride.
 
       {/* Inquiry Form Modal */}
       {isInquiryModalOpen && (
-        <div 
+        <div
           className="inquiry-modal-overlay"
           onClick={() => setIsInquiryModalOpen(false)}
           style={{
@@ -3497,7 +3505,9 @@ Invest with confidence. Live with pride.
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'rgba(0, 0, 0, 0.7)',
+            background: 'rgba(0, 0, 0, 0.5)',
+            backdropFilter: 'blur(5px)',
+            WebkitBackdropFilter: 'blur(5px)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
