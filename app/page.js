@@ -137,6 +137,12 @@ export default function Home() {
     consent: true
   });
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   // Load saved form data from localStorage on component mount
   useEffect(() => {
     const savedData = localStorage.getItem('spacesphere_contact_form');
@@ -456,31 +462,34 @@ export default function Home() {
 
 
       <header 
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 transition-all duration-300 ${
-          isScrolled ? 'translate-y-0 opacity-100 backdrop-blur-md shadow-lg' : 'md:-translate-y-full md:opacity-0'
-        }`}
-        style={{
-          background: isScrolled ? 'rgba(245, 245, 240, 0.95)' : 'transparent',
-        }}
-      >
+  className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 transition-all duration-300 ${
+    isScrolled
+      ? 'translate-y-0 opacity-100 backdrop-blur-md shadow-lg'
+      : 'translate-y-0 opacity-100 md:-translate-y-full md:opacity-0'
+  }`}
+  style={{
+    background: isScrolled ? 'rgba(245, 245, 240, 0.95)' : 'transparent',
+  }}
+>
+
 
 <div
   id="mobile-brand"
   className={`flex items-center gap-2 ml-3 md:ml-10 ${isScrolled ? 'visible' : ''}`}
 >
-<img 
-  src="/logo2.png" 
-  alt="Space Sphere Logo" 
-  className="hidden md:block object-contain transition-all duration-300"
-  style={{ 
+<img
+  src="/logo2.png"
+  alt="Space Sphere Logo"
+  className="md:block object-contain transition-all duration-300"
+  style={{
     maxHeight: '60px',
     maxWidth: '180px',
     width: 'auto',
-    filter: 'brightness(0) saturate(100%)',
-    transform: 'scale(1.8) translateY(2px) translateX(10px)',   // combine both
+    filter: isMobile ?  'none':'brightness(0) saturate(100%)' ,
+    transform: isMobile ?  'scale(1.4) translateY(5px) translateX(-3px)':'scale(1.8) translateY(2px) translateX(10px)',   // combine both
     transformOrigin: 'center left',
     transition: 'transform 0.3s ease, filter 0.3s ease',
-  }} 
+  }}
 />
 
 
@@ -519,9 +528,7 @@ export default function Home() {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="block md:hidden p-2 z-50"
           aria-label="Toggle menu"
-
-
-          style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}
+          style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6', marginLeft: 'auto', marginRight: '11px' }}
         >
           <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             {isMobileMenuOpen ? (
@@ -765,7 +772,7 @@ export default function Home() {
   style={{
     marginTop: isMobile ? "68px" : "48px",
     paddingLeft: isMobile ? "0px" : "18px",
-    transform:isMobile ? "none" : "translateY(15px)",
+    transform:isMobile ? "translateX(56px)" : "translateY(15px)",
     borderLeft: isMobile ? "2px solid #F5C36A" : "3px solid #F5C36A",
   }}
 >
@@ -918,8 +925,14 @@ export default function Home() {
   <path d="M17 7h1M17 10h1M17 13h1M17 16h1"/>
 </svg>
 
-    <span>Design & Architecture Value    </span>
-
+<span
+    style={{
+      fontSize: isMobile ? "16px" : "19px",   // smaller on mobile
+      lineHeight: "1.4",
+    }}
+  >
+    Design & Architecture Value
+  </span>
   </li>
 
   <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -932,7 +945,11 @@ export default function Home() {
 </svg>
 
 
-    <span>Location Edge & Appreciation</span>
+    <span style={{
+      fontSize: isMobile ? "15px" : "19px",   // smaller on mobile
+      lineHeight: "1.4",
+    }}
+  >Location Edge & Appreciation</span>
   </li>
 
   <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -946,7 +963,11 @@ export default function Home() {
 </svg>
 
 
-    <span>Builder Credibility & Delivery    </span>
+    <span style={{
+      fontSize: isMobile ? "15px" : "19px",   // smaller on mobile
+      lineHeight: "1.4",
+    }}
+  >Builder Credibility & Delivery    </span>
   </li>
 
   <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -960,7 +981,11 @@ export default function Home() {
 </svg>
 
 
-    <span>Luxury Lifestyle Amenities     </span>
+    <span style={{
+      fontSize: isMobile ? "15px" : "19px",   // smaller on mobile
+      lineHeight: "1.4",
+    }}
+  >Luxury Lifestyle Amenities     </span>
   </li>
 </ul>
 
@@ -1217,264 +1242,383 @@ export default function Home() {
 
 
             {/* Card 1 */}
+{/* CARD 1 */}
+<div
+  
+  style={{
+    gridArea: "card1",
+    background: "linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)",
+    padding: isMobile ? "20px 18px" : "24px 22px",
+    borderRadius: "18px",
+    boxShadow: "0 14px 40px rgba(0,0,0,0.08)",
+    border: "1px solid rgba(199,154,74,0.25)",
+    position: "relative",
+    width: "100%",
+    maxWidth: isMobile ? "100%" : "450px",
+    height: "auto",
+    overflow: "visible",
+    zIndex: 3,
+    marginBottom: isMobile ? "22px" : "18px" 
+  }}
+>
+  {/* Icon */}
+  <div
+    style={{
+      position: "absolute",
+      top: isMobile ? "-16px" : "-10px",
+      left: "20px",
+      width: isMobile ? "34px" : "38px",
+      height: isMobile ? "34px" : "38px",
+      background: "linear-gradient(135deg,#c79a4a,#d4af6a)",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 5px 15px rgba(199,154,74,0.4)",
+      zIndex: 20
+    }}
+  >
+    <svg
+      width={isMobile ? 18 : 20}
+      height={isMobile ? 18 : 20}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  </div>
 
-            <div className="floating-card" style={{
-              gridArea: 'card1',
-              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: isMobile ? '12px 16px' : '24px 22px',
-              borderRadius: '18px',
-              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
-              border: '1px solid rgba(199, 154, 74, 0.25)',
-              position: 'relative',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '450px',
-              minHeight: isMobile ? undefined : '160px',
-              height: isMobile ? 'auto' : '160px',
-              transform: 'none',
-              transition: 'all 0.35s ease',
-              zIndex: 3
-            }}>
+  {/* Content */}
+  <div
+    style={{
+      marginTop: isMobile ? "42px" : "20px"
+    }}
+  >
+    <h3
+      style={{
+        fontSize: isMobile ? "20px" : "18px",
+        fontWeight: 700,
+        color: "#1a1a1a",
+        marginTop: isMobile ? "-19px" : "28px",
+        marginBottom: isMobile ? "20px" : "16px",
+        fontFamily: "'Playfair Display', serif",
+        lineHeight: "0.3"
+      }}
+    >
+      Personalized Curation
+    </h3>
 
-              <div style={{
-                position: 'absolute',
-                top: '-10px',
-                left: '20px',
-                width: '35px',
-                height: '35px',
-                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
-                animation: 'pulse 3s ease-in-out infinite'
-              }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
-              </div>
-
-
-              
-              
-              <div style={{ marginTop: isMobile ? '24px' : '11px' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '7px', fontFamily: "'Playfair Display', serif" }}>
-                Personalized Curation
-
-                </h3>
-                <p style={{ fontSize: '17px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                Tailored to taste & investment vision</p>
-                              </div>
-            </div>
-
-
-
-
-            {/* Card 2 */}
-
-            <div className="floating-card" style={{
-              gridArea: 'card2',
-              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: isMobile ? '12px 16px' : '24px 22px',
-              borderRadius: '18px',
-              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
-              border: '1px solid rgba(199, 154, 74, 0.25)',
-              position: 'relative',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '450px',
-              minHeight: isMobile ? undefined : '160px',
-              height: isMobile ? 'auto' : '160px',
-              transform: 'none',
-              transition: 'all 0.35s ease',
-              zIndex: 3
-            }}>
-
-              <div style={{
-                position: 'absolute',
-                top: '-10px',
-                left: '20px',
-                width: '35px',
-                height: '35px',
-                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
-                animation: 'pulse 3s ease-in-out infinite 0.5s'
-              }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M9 12l2 2 4-4"/>
-                  <circle cx="12" cy="12" r="10"/>
-                </svg>
-              </div>
+    <p
+      style={{
+        fontSize: isMobile ? "17px" : "16px",
+        color: "#4a4a4a",
+        margin: 0,
+        lineHeight: isMobile ? "1.6" : "1.5"
+      }}
+    >
+      Tailored to taste & investment vision
+    </p>
+  </div>
+</div>
 
 
-              <div style={{ marginTop: isMobile ? '22px' : '6px' }}>
-                <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#1a1a1a', marginBottom: '5px', fontFamily: "'Playfair Display', serif" }}>
-                  Elite Developer Network
-                </h3>
-                <p style={{ fontSize: '16px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                Access to Elite Developers across Pune & Hyderabad
-                                </p>
-              </div>
-            </div>
-
-
-
-
-            {/* Card 3 */}
-
-            <div className="floating-card" style={{
-              gridArea: 'card3',
-              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: isMobile ? '12px 16px' : '24px 22px',
-              borderRadius: '18px',
-              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
-              border: '1px solid rgba(199, 154, 74, 0.25)',
-              position: 'relative',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '450px',
-              minHeight: isMobile ? undefined : '160px',
-              height: isMobile ? 'auto' : '160px',
-              transform: 'none',
-              transition: 'all 0.35s ease',
-              zIndex: 3
-            }}>
-
-
-              <div style={{
-                position: 'absolute',
-                top: '-10px',
-                left: '20px',
-                width: '35px',
-                height: '35px',
-                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
-                animation: 'pulse 3s ease-in-out infinite 1s'
-              }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  <path d="M9 12l2 2 4-4"/>
-                </svg>
-              </div>
-
-              <div style={{ marginTop: isMobile ? '24px' : '13px' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
-                Complete Transparency
-                </h3>
-                <p style={{ fontSize: '16px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                No grey lines, no inflated numbers
-</p>
-              </div>
-            </div>
-
-
-
-            {/* Card 4 */}
-
-            <div className="floating-card" style={{
-              gridArea: 'card4',
-              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: isMobile ? '12px 16px' : '24px 22px',
-              borderRadius: '18px',
-              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
-              border: '1px solid rgba(199, 154, 74, 0.25)',
-              position: 'relative',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '450px',
-              minHeight: isMobile ? undefined : '160px',
-              height: isMobile ? 'auto' : '160px',
-              transform: 'none',
-              transition: 'all 0.35s ease',
-              zIndex: 3
-            }}>
-
+{/* CARD 2 */}
 <div style={{
-                position: 'absolute',
-                top: '-10px',
-                left: '20px',
-                width: '35px',
-                height: '35px',
-                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
-                animation: 'pulse 3s ease-in-out infinite 1.5s'
-              }}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-                </svg>
-              </div>
+  gridArea: "card2",
+  background: "linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)",
+  padding: isMobile ? "20px 18px" : "24px 22px",
+  borderRadius: "18px",
+  boxShadow: "0 14px 40px rgba(0,0,0,0.08)",
+  border: "1px solid rgba(199,154,74,0.25)",
+  position: "relative",
+  width: "100%",
+  maxWidth: isMobile ? "100%" : "450px",
+  height: "auto",
+  overflow: "visible",
+  zIndex: 3,
+  marginBottom: isMobile ? "22px" : "18px" 
+}}>
+  <div style={{
+    position: "absolute",
+    top: isMobile ? "-16px" : "-10px",
+    left: "20px",
+    width: isMobile ? "34px" : "38px",
+    height: isMobile ? "34px" : "38px",
+    background: "linear-gradient(135deg,#c79a4a,#d4af6a)",
+    borderRadius: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    boxShadow: "0 5px 15px rgba(199,154,74,0.4)",
+    zIndex: 20
+  }}>
+    <svg width={isMobile ? 18 : 20} height={isMobile ? 18 : 20} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+      <path d="M9 12l2 2 4-4" />
+      <circle cx="12" cy="12" r="10" />
+    </svg>
+  </div>
+
+  <div style={{ marginTop: isMobile ? "42px" : "20px" }}>
+    <h3 style={{
+      fontSize: isMobile ? "20px" : "18px",
+      fontWeight: 700,
+      color: "#1a1a1a",
+      marginTop: isMobile ? "-19px" : "28px",
+      marginBottom: isMobile ? "20px" : "16px",
+      fontFamily: "'Playfair Display', serif",
+      lineHeight: "0.3"
+    }}>
+      Elite Developer Network
+    </h3>
+    <p style={{
+      fontSize: isMobile ? "17px" : "16px",
+      color: "#4a4a4a",
+      margin: 0,
+      lineHeight: isMobile ? "1.6" : "1.5"
+    }}>
+      Access to elite developers across Pune & Hyderabad
+    </p>
+  </div>
+</div>
 
 
-              <div style={{ marginTop: isMobile ? '24px' : '10px' }}>
-              <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
-              End-to-End Support                </h3>
-                <p style={{ fontSize: '17px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
-                Till the moment you hold your keys              </p>
-              </div>
-            </div>
+{/* CARD 3 */}
+<div
+  style={{
+    gridArea: "card3",
+    background: "linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)",
+    padding: isMobile ? "20px 18px" : "24px 22px",
+    borderRadius: "18px",
+    boxShadow: "0 14px 40px rgba(0,0,0,0.08)",
+    border: "1px solid rgba(199,154,74,0.25)",
+    position: "relative",
+    width: "100%",
+    maxWidth: isMobile ? "100%" : "450px",
+    height: "auto",
+    overflow: "visible",
+    zIndex: 3,
+    marginBottom: isMobile ? "22px" : "18px" 
+  }}
+>
+  <div
+    style={{
+      position: "absolute",
+      top: isMobile ? "-16px" : "-10px",
+      left: "20px",
+      width: isMobile ? "34px" : "38px",
+      height: isMobile ? "34px" : "38px",
+      background: "linear-gradient(135deg,#c79a4a,#d4af6a)",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 5px 15px rgba(199,154,74,0.4)",
+      zIndex: 20
+    }}
+  >
+    <svg
+      width={isMobile ? 18 : 20}
+      height={isMobile ? 18 : 20}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      <path d="M9 12l2 2 4-4" />
+    </svg>
+  </div>
+
+  <div style={{ marginTop: isMobile ? "42px" : "20px" }}>
+    <h3
+      style={{
+        fontSize: isMobile ? "20px" : "18px",
+        fontWeight: 700,
+        color: "#1a1a1a",
+        marginTop: isMobile ? "-29px" : "28px",
+        marginBottom: isMobile ? "15px" : "16px",
+        fontFamily: "'Playfair Display', serif",
+        lineHeight: "1.1"
+      }}
+    >
+      Complete Transparency
+    </h3>
+
+    <p
+      style={{
+        fontSize: isMobile ? "17px" : "16px",
+        color: "#4a4a4a",
+        margin: 0,
+        lineHeight: isMobile ? "1.6" : "1.5"
+      }}
+    >
+      No grey lines, no inflated numbers
+    </p>
+  </div>
+</div>
 
 
 
-            {/* Central Feature Card */}
+{/* CARD 4 */}
+<div
+  style={{
+    gridArea: "card4",
+    background: "linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)",
+    padding: isMobile ? "20px 18px" : "24px 22px",
+    borderRadius: "18px",
+    boxShadow: "0 14px 40px rgba(0,0,0,0.08)",
+    border: "1px solid rgba(199,154,74,0.25)",
+    position: "relative",
+    width: "100%",
+    maxWidth: isMobile ? "100%" : "450px",
+    height: "auto",
+    overflow: "visible",
+    zIndex: 3,
+    marginBottom: isMobile ? "22px" : "18px" 
+  }}
+>
+  <div
+    style={{
+      position: "absolute",
+      top: isMobile ? "-16px" : "-10px",
+      left: "20px",
+      width: isMobile ? "34px" : "38px",
+      height: isMobile ? "34px" : "38px",
+      background: "linear-gradient(135deg,#c79a4a,#d4af6a)",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 5px 15px rgba(199,154,74,0.4)",
+      zIndex: 20
+    }}
+  >
+    <svg
+      width={isMobile ? 18 : 20}
+      height={isMobile ? 18 : 20}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l7.78-7.78a5.5 5.5 0 0 0 0-7.78z" />
+    </svg>
+  </div>
 
-            <div className="floating-card central-card" style={{
-              gridArea: 'card5',
-              background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: isMobile ? '12px 16px' : '24px 22px',
-              borderRadius: '18px',
-              boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
-              border: '1px solid rgba(199, 154, 74, 0.25)',
-              position: 'relative',
-              transform: 'none',
-              zIndex: 4,
-              margin: isMobile ? '0' : '1px auto',
-              width: '100%',
-              maxWidth: isMobile ? '100%' : '450px',
-              minHeight: isMobile ? '80px' : '160px',
-              height: isMobile ? '10px' : '10px',
-              alignSelf: isMobile ? 'auto' : 'center'
-            }}>
+  <div style={{ marginTop: isMobile ? "42px" : "20px" }}>
+    <h3
+      style={{
+        fontSize: isMobile ? "20px" : "18px",
+        fontWeight: 700,
+        color: "#1a1a1a",
+        marginTop: isMobile ? "-27px" : "28px",
+        marginBottom: isMobile ? "17px" : "16px",
+        fontFamily: "'Playfair Display', serif",
+        lineHeight: "1.1"
+      }}
+    >
+      End-to-End Support
+    </h3>
 
-              <div style={{
-                position: 'absolute',
-                top: '-10px',
-                left: '20px',
-                width: '35px',
-                height: '35px',
-                background: 'linear-gradient(135deg, #c79a4a, #d4af6a)',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 5px 15px rgba(199, 154, 74, 0.4)',
-                animation: 'pulse 3s ease-in-out infinite 1.5s'
-              }}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
-                </svg>
-              </div>
+    <p
+      style={{
+        fontSize: isMobile ? "17px" : "16px",
+        color: "#4a4a4a",
+        margin: 0,
+        lineHeight: isMobile ? "1.6" : "1.5"
+      }}
+    >
+      Till the moment you hold your keys
+    </p>
+  </div>
+</div>
 
-              <div style={{ marginTop: isMobile ? '24px' : '3px' }}>
-              <div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '4px', fontFamily: "'Playfair Display', serif" }}>
-                Investment-Led Advisory
-                </h3>
-                <p style={{ fontSize: '17px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
-                Growth, rental yield & appreciation insights </p>
-              </div>
-            </div>
-            </div>
-          </div>
 
+
+{/* CENTRAL CARD */}
+<div
+  style={{
+    gridArea: "card5",
+    background: "linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)",
+    padding: isMobile ? "22px 18px" : "28px 22px",
+    borderRadius: "18px",
+    boxShadow: "0 14px 40px rgba(0,0,0,0.08)",
+    border: "1px solid rgba(199,154,74,0.25)",
+    position: "relative",
+    width: "100%",
+    maxWidth: isMobile ? "100%" : "480px",
+    height: "auto",
+    overflow: "visible",
+    zIndex: 4
+  }}
+>
+  <div
+    style={{
+      position: "absolute",
+      top: isMobile ? "-18px" : "-12px",
+      left: "20px",
+      width: isMobile ? "36px" : "40px",
+      height: isMobile ? "36px" : "40px",
+      background: "linear-gradient(135deg,#c79a4a,#d4af6a)",
+      borderRadius: "50%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      boxShadow: "0 6px 18px rgba(199,154,74,0.45)",
+      zIndex: 30
+    }}
+  >
+    <svg
+      width={isMobile ? 20 : 22}
+      height={isMobile ? 20 : 22}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  </div>
+
+  <div style={{ marginTop: isMobile ? "46px" : "24px" }}>
+    <h3
+      style={{
+        fontSize: isMobile ? "22px" : "20px",
+        fontWeight: 700,
+        color: "#1a1a1a",
+        marginTop: isMobile ? "-32px" : "22px",
+        marginBottom: isMobile ? "18px" : "18px",
+        fontFamily: "'Playfair Display', serif",
+        lineHeight: "1.1"
+      }}
+    >
+      Investment-Led Advisory
+    </h3>
+
+    <p
+      style={{
+        fontSize: isMobile ? "18px" : "17px",
+        color: "#4a4a4a",
+        margin: 0,
+        lineHeight: isMobile ? "1.6" : "1.5"
+      }}
+    >
+      Growth, rental yield & appreciation insights
+    </p>
+  </div>
+</div>
+
+</div>
           {/* Bottom Quote */}
           <div style={{ textAlign: 'center', marginTop: '50px', position: 'relative' }}>
             <div style={{
@@ -1496,12 +1640,12 @@ export default function Home() {
 
       <section 
         style={{ 
-          paddingTop: '120px',
+          paddingTop: '80px',
           paddingRight: '80px',
-          paddingBottom: '90px',
+          paddingBottom: '60px',
           paddingLeft: '80px',
           background: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95))', 
-          minHeight: '40vh',
+          minHeight: '30vh',
           backgroundImage: `url('/villa1.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
@@ -1510,16 +1654,23 @@ export default function Home() {
           color: '#000000'
         }}
       >
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-
-
-
-<h4 className="office-subheading" style={{ color: 'white', fontSize: '40px', marginTop: '26px', fontWeight: '600', textAlign: 'center'}} >
-        Connecting People With Properties That Matter.
+      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
+      <h4
+    style={{
+      color: "white",
+      fontSize: isMobile ? "clamp(120px, 38vw, 50px)" : "47px",
+      marginTop: "26px",
+      fontWeight: 600,
+      textAlign: "center",
+      lineHeight: "1",
+      textShadow: "0 4px 30px rgba(0,0,0,0.6), 0 1px 0 rgba(0,0,0,0.3)",
+      
+      transition: "font-size 0.3s ease"
+    }}
+  >
+    Connecting People With Properties That Matter.
   </h4>
-          
-        </div>
-
+</div>
 
       
 
@@ -2687,6 +2838,24 @@ Invest with confidence. Live with pride.
           }}
         >
           {/* Primary Heading */}
+          {/* Schedule a Consultation Heading */}
+          <h1 
+            className="consultation-heading"
+            style={{
+              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontWeight: 700,
+              color: '#F2C66E',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em',
+              margin: '0 0 24px 0',
+              fontFamily: "'Playfair Display', serif",
+              textShadow: '0 2px 15px rgba(0, 0, 0, 0.5)',
+              lineHeight: 1.2
+            }}
+          >
+            Schedule a Consultation
+          </h1>
+
           <h1 
             className="connect-heading"
             style={{
@@ -2882,9 +3051,28 @@ Invest with confidence. Live with pride.
           }}>
 
             <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
-              <div style={{ margin: '0 0 20px 0' }}>
-                <img src="/logo2.png" alt="Space Sphere Logo" style={{ height: '120px', width: 'auto',marginLeft: '90px', }} />
-              </div>
+            <div style={{ marginTop: '0', marginRight: '0', marginBottom: '20px', marginLeft: '0' }}>
+  <img 
+  src="/logo2.png"
+  alt="Space Sphere Logo"
+  style={{ 
+    height: isMobile ? '50px' : '120px',
+    maxHeight: isMobile ? '90px' : '120px',
+    maxWidth: isMobile ? '90px' : '180px',
+    width: 'auto',
+    display: 'block',
+
+    /* Replace margin shorthand with individual values */
+    marginTop: '0px',
+    marginRight: isMobile ? 'auto' : '0px',
+    marginBottom: isMobile ? '10px' : '20px',
+    marginLeft: isMobile ? '-16px' : '90px',
+
+    transition: 'all 0.3s ease'
+  }} 
+/>
+</div>
+
               <p
   style={{
     fontSize: "17px",
@@ -3087,7 +3275,7 @@ Invest with confidence. Live with pride.
               padding: '40px',
               maxWidth: '500px',
               width: '100%',
-              maxHeight: '90vh',
+              maxHeight: '95vh',
               overflowY: 'auto',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
               animation: 'slideUp 0.3s ease-out',
@@ -3098,7 +3286,7 @@ Invest with confidence. Live with pride.
               onClick={() => setIsModalOpen(false)}
               style={{
                 position: 'absolute',
-                top: '16px',
+                top: '8px',
                 right: '16px',
                 background: 'transparent',
                 border: 'none',
@@ -3164,13 +3352,13 @@ Invest with confidence. Live with pride.
                                                 required
                                                 className="w-full px-4 py-3 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
                                             />
-                                            <div className="grid grid-cols-2 gap-3">
+                                            <div className="grid grid-cols-1 gap-2 md:grid-cols-2 md:gap-3">
                                                 {/* Mobile: Dropdown Time */}
                                                 <div className="relative block md:hidden">
                                                     <select
                                                         required
                                                         defaultValue=""
-                                                        className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
+                                                        className="w-full px-2 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
                                                     >
                                                         <option value="" disabled className="bg-black text-black">Time</option>
                                                         <option value="09:00" className="bg-black text-black">09:00 AM</option>
@@ -3201,7 +3389,7 @@ Invest with confidence. Live with pride.
                                                     <select
                                                         required
                                                         defaultValue=""
-                                                        className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
+                                                        className="w-full px-2 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
                                                     >
                                                         <option value="" disabled className="bg-black text-black">Date</option>
                                                         {dateOptions.map((opt) => (
@@ -3337,10 +3525,10 @@ Invest with confidence. Live with pride.
             style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: isMobile ? '20px' : '40px',
-              maxWidth: isMobile ? '90vw' : '500px',
+              padding: isMobile ? '3px' : '40px',
+              maxWidth: isMobile ? '65vw' : '500px',
               width: '100%',
-              maxHeight: '90vh',
+              maxHeight: '95vh',
               overflowY: 'auto',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
               animation: 'slideUp 0.3s ease-out',
@@ -3351,8 +3539,8 @@ Invest with confidence. Live with pride.
               onClick={() => setIsInquiryModalOpen(false)}
               style={{
                 position: 'absolute',
-                top: isMobile ? "0px" : "16px",
-right: isMobile ? "2px" : "16px",
+                top: isMobile ? "-1px" : "8px",
+right: isMobile ? "1px" : "16px",
 
                 background: 'transparent',
                 border: 'none',
@@ -3375,22 +3563,22 @@ right: isMobile ? "2px" : "16px",
       
             <h2
   style={{
-    fontSize: isMobile ? "24px" : "28px",
+    fontSize: isMobile ? "20px" : "28px",
     fontWeight: 700,
     color: "#1a1a1a",
     marginBottom: "8px",
     fontFamily: "'Playfair Display', serif"
   }}
 >
-  Schedule a Consultation
+  Get In Touch
 </h2>
 
 <p
   style={{
     fontSize: "16px",
     color: "#666",
-    marginBottom: "32px",
-    marginTop: isMobile ? "0px" : "0px"   // move down only on mobile
+    marginBottom: isMobile ? "20px" : "35px",
+    marginTop: isMobile ? "10px" : "0px"   // move down only on mobile
   }}
 >
   Let us understand your requirements better. Please fill out the form below.
