@@ -1,5 +1,3 @@
-
-
 "use client";
 // Enable client features for hero slideshow
 
@@ -18,8 +16,8 @@ const navLinks = [
 
 const heroImages = [
   "/villa.jpg",
-  "/apartment.jpg",
   "/GalleryDown.jpg",
+  "/aprtment.jpg",
   "/commercial.jpg",
 ];
 
@@ -72,6 +70,10 @@ const experienceCenterImages = [
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [nextSlide, setNextSlide] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const currentSlideRef = useRef(0);
+  const nextSlideRef = useRef(1);
   const [currentProjectSlide, setCurrentProjectSlide] = useState(0);
   const [projectImageIndices, setProjectImageIndices] = useState(
     projects.map(() => 0)
@@ -90,7 +92,7 @@ export default function Home() {
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [timelineScrollProgress, setTimelineScrollProgress] = useState(0);
   const timelineSectionRef = useRef(null);
-  
+
   // Contact section animation states
   const [contactSectionInView, setContactSectionInView] = useState(false);
   const contactSectionRef = useRef(null);
@@ -165,13 +167,32 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
+  // Hero slideshow - cross-fade transition
   useEffect(() => {
-    const id = setInterval(
-      () => setCurrentSlide((prev) => (prev + 1) % heroImages.length),
-      4500
-    );
-    return () => clearInterval(id);
+    const FADE_DURATION = 2800; // must match CSS transition
+    const SLIDE_INTERVAL = 3000; // always greater than fade duration
+  
+    const advanceSlide = () => {
+      setIsTransitioning(true);
+  
+      setTimeout(() => {
+        const newCurrent = nextSlideRef.current;
+        const newNext = (newCurrent + 1) % heroImages.length;
+  
+        setCurrentSlide(newCurrent);
+        setNextSlide(newNext);
+  
+        currentSlideRef.current = newCurrent;
+        nextSlideRef.current = newNext;
+  
+        setIsTransitioning(false);
+      }, FADE_DURATION);
+    };
+  
+    const intervalId = setInterval(advanceSlide, SLIDE_INTERVAL);
+    return () => clearInterval(intervalId);
   }, []);
+  
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -216,7 +237,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 100);
+      setIsScrolled(scrollPosition > 200);
     };
 
     const handleResize = () => {
@@ -400,8 +421,6 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-  const activeImage = heroImages[currentSlide];
-
   return (
     <main className="bg-white text-foreground">
       {/* Sticky Navbar that appears on scroll */}
@@ -419,10 +438,18 @@ export default function Home() {
 
 <div
   id="mobile-brand"
-  className={`flex items-center gap-2 text-xl md:text-2xl ${isScrolled ? 'visible' : ''}`}
+  className={`flex items-center gap-2 ml-3 md:ml-10 ${isScrolled ? 'visible' : ''}`}
 >
-  <span className="font-semibold" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>SPACE</span>
-  <span className="opacity-80" style={{ color: isScrolled ? '#1a1a1a' : '#f0ede6' }}>| SPHERE</span>
+<img
+  src="/logo2.png"
+  alt="Space Sphere Logo"
+  className="h-16 sm:h-12 md:h-14 lg:h-16 max-w-[160px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[200px] object-contain transition-all duration-300"
+  style={{
+    transition: 'height 0.3s ease, max-width 0.3s ease',
+  }}
+/>
+
+
 </div>
 
 
@@ -528,21 +555,39 @@ export default function Home() {
       </header>
 
       <section id="home" className="relative min-h-screen hero-bg text-white">
+        {/* Current slide layer - always visible */}
         <div
-          className="hero-image"
+          className="hero-fade-layer hero-fade-current"
           style={{
-            // CSS var consumed in globals for layering gradient + photo
-            ["--hero-url"]: `url("${activeImage}")`,
+            ["--hero-url"]: `url("${heroImages[currentSlide]}")`,
           }}
         />
+        
+        {/* Next slide layer - fades in over current */}
+        <div
+          className={`hero-fade-layer hero-fade-next ${isTransitioning ? 'hero-fade-active' : ''}`}
+          style={{
+            ["--hero-url"]: `url("${heroImages[nextSlide]}")`,
+          }}
+        />
+        
         <div className="hero-overlay" />
 
         <div className="relative z-10 flex min-h-screen flex-col">
           <div className="hero-shell">
             <div className="hero-topbar">
-              <div className="hero-brand">
-                <span className="font-semibold">SPACE</span>
-                <span className="opacity-80">| SPHERE</span>
+<div className="hero-brand ml-4 sm:ml-6 md:ml-10">
+                <img 
+                  src="/logo2.png" 
+                  alt="Space Sphere Logo" 
+                  className="hidden md:block h-14 sm:h-16 md:h-20 lg:h-24 max-w-[100px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[220px] object-contain transition-all duration-300"
+                  style={{ 
+                    height: '60px',
+                    maxWidth: '100px',
+                    width: 'auto',
+                    transition: 'height 0.3s ease, max-width 0.3s ease',
+                  }} 
+                />
               </div>
 
               <nav className="hero-nav">
@@ -576,497 +621,193 @@ export default function Home() {
                     setIsInquiryModalOpen(true);
                   }}
                 >
-                  Enquire Now
+                  Get In Touch
                 </button>
               </div>
             </div>
 
-            <div className="hero-main">
-
-
-
-            <div className="hero" style={{ 
-                textAlign: 'center', 
-                width: '100%',
-                position: 'relative',
-                padding: '25px 20px 15px',
-                maxWidth: '1200px',
-                margin: '0 auto',
-                overflow: 'hidden'
-              }}>
-
-
-
-
-                {/* Enhanced decorative accent line */}
-                <div style={{
-                  position: 'relative',
-                  width: '120px',
-                  height: '2px',
-                  margin: '0 auto 40px',
-                  animation: 'fadeInUp 1s ease-out 0.3s both'
-                }}>
-                  <div style={{
-                    position: 'absolute',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '100%',
-                    height: '2px',
-                    background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.4), rgba(199, 154, 74, 0.8), rgba(199, 154, 74, 0.4), transparent)',
-                    borderRadius: '2px',
-                    boxShadow: '0 0 15px rgba(199, 154, 74, 0.6)'
-                  }} />
-                </div>
-
-
-                {/* Main heading with enhanced gradient effect and glow */}
-                <h1 className="hero-heading" style={{ 
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: 'clamp(4rem, 7vw + 1.5rem, 6.5rem)',
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
-                  marginBottom: '20px',
-                  textAlign: 'center',
-                  lineHeight: '1.1',
-                  position: 'relative',
-                  display: 'inline-block',
-                  transform: 'translateY(15px)',
-                  animation: 'fadeInUp 1s ease-out 0.2s both',
-                  filter: 'drop-shadow(0 0 30px rgba(199, 154, 74, 0.3))'
-                }}>
-                  {/* Glow effect behind text */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    width: '120%',
-                    height: '120%',
-                    background: 'radial-gradient(ellipse at center, rgba(199, 154, 74, 0.15) 0%, transparent 70%)',
-                    zIndex: -1,
-                    animation: 'pulse 4s ease-in-out infinite'
-                  }} />
-                  
-                  <span
+            <div
+  className="hero-main"
   style={{
-    display: 'block',
-    fontFamily: 'Poppins, sans-serif',
-    fontSize: '1.1em',
-    background:
-      'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
-    backgroundSize: '200% 200%',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    animation: 'shimmer 5s ease-in-out infinite',
-    textShadow:
-      '0 4px 30px rgba(0, 0, 0, 0.4), 0 0 60px rgba(199, 154, 74, 0.2)',
-    position: 'relative',
-    zIndex: 1,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    padding: "100px 20px 90px",
   }}
 >
-  SPACE
-</span>
-
-<span
+<div
   style={{
-    display: 'block',
-    fontFamily: 'Poppins, sans-serif',
-    fontSize: '0.82em',
-    marginTop: '-0.2em',
-    letterSpacing: '0.15em',
-    background:
-      'linear-gradient(135deg, #ffffff 0%, #f5f5f0 40%, rgba(199, 154, 74, 0.4) 60%, #ffffff 100%)',
-    backgroundSize: '200% 200%',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-    textShadow:
-      '0 2px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(199, 154, 74, 0.15)',
-    position: 'relative',
-    zIndex: 1,
-    animation: 'shimmer 3s ease-in-out infinite',
+    maxWidth: "900px",
+    width: "100%",
+    margin: "0 auto",
+    textAlign: isMobile ? "center" : "left",
   }}
 >
-  SPHERE
-</span>
+  {/* Top line */}
+  <p
+    style={{
+      fontSize: isMobile ? "15px" : "15px",
+      letterSpacing: isMobile ? "0.22em" : "0.3em",
+      fontWeight: 600,
+      marginBottom: isMobile ? "12px" : "18px",
+      textTransform: "uppercase",
+      color: "#ffffff",
+      paddingLeft: isMobile ? "0" : "6px",
+    }}
+  >
+    CONNECTING PEOPLE
+  </p>
+
+  {/* Heading block */}
+  <div
+    style={{
+      display: "inline-block",
+      textAlign: isMobile ? "center" : "left",
+    }}
+  >
+    <h1
+      style={{
+        fontFamily: "'Cormorant Garamond', serif",
+        fontSize: isMobile
+          ? "clamp(2.9rem, 8vw, 3.2rem)"
+          : "clamp(4rem, 6.5vw, 5.8rem)",
+        fontWeight: 600,
+        lineHeight: "1.05",
+        margin: "0",
+        color: "#ffffff",
+        textShadow:
+          "0 4px 30px rgba(0,0,0,0.6), 0 1px 0 rgba(0,0,0,0.3)",
+      }}
+    >
+      With Properties
+    </h1>
+
+    {/* Subtitle */}
+    <div
+      style={{
+        textAlign: isMobile ? "center" : "right",
+        marginTop: isMobile ? "4px" : "6px",
+      }}
+    >
+      <span
+        style={{
+          display: "block",
+          fontSize: isMobile ? "15px" : "15px",
+          fontWeight: 1000,
+          marginTop: isMobile ? "10px" : "14px",
+          letterSpacing: isMobile ? "0.22em" : "0.3em",
+          fontFamily: "inherit",
+          textTransform: "uppercase",
+        }}
+      >
+        That Matter
+      </span>
+    </div>
+  </div>
 
 
-
-                </h1>
-
-                {/* Enhanced elegant divider with animated elements */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '20px',
-                  margin: '40px auto 45px',
-                  width: 'fit-content',
-                  animation: 'fadeInUp 1s ease-out 0.4s both',
-                  position: 'relative'
-                }}>
-                  <div style={{
-                    width: '50px',
-                    height: '1px',
-                    background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.3), rgba(199, 154, 74, 0.7))',
-                    boxShadow: '0 0 8px rgba(199, 154, 74, 0.4)'
-                  }} />
-                  <div style={{
-                    position: 'relative',
-                    width: '10px',
-                    height: '10px'
-                  }}>
-                    <div style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '50%',
-                      background: 'rgba(199, 154, 74, 0.9)',
-                      boxShadow: '0 0 15px rgba(199, 154, 74, 0.8), 0 0 30px rgba(199, 154, 74, 0.4)',
-                      animation: 'pulse 2.5s ease-in-out infinite'
-                    }} />
-                    <div style={{
-                      position: 'absolute',
-                      top: '50%',
-                      left: '50%',
-                      transform: 'translate(-50%, -50%)',
-                      width: '16px',
-                      height: '16px',
-                      borderRadius: '50%',
-                      border: '1px solid rgba(199, 154, 74, 0.3)',
-                      animation: 'ripple 2.5s ease-out infinite'
-                    }} />
-                  </div>
-                  <div style={{
-                    width: '50px',
-                    height: '1px',
-                    background: 'linear-gradient(90deg, rgba(199, 154, 74, 0.7), rgba(199, 154, 74, 0.3), transparent)',
-                    boxShadow: '0 0 8px rgba(199, 154, 74, 0.4)'
-                  }} />
-                </div>
-
-
-                {/* Unique subheading with modern typography treatment */}
-                <div style={{ 
-                  position: 'relative', 
-                  marginBottom: '40px',
-                  padding: '0 10px'
-                }}>
-                  {/* Animated word-by-word display */}
-                  <div style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    gap: '0px',
-                    position: 'relative'
-                  }}>
-                    {/* First phrase - "Where Investments" */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      justifyContent: 'center',
-                      gap: '12px',
-                      flexWrap: 'wrap',
-                      animation: 'fadeInUp 1s ease-out 0.5s both',
-                      marginBottom: '0px'
-                    }}>
-                      <span style={{
-                        fontFamily: "'Cormorant Garamond', serif",
-                        fontSize: 'clamp(1.4rem, 2.2vw + 0.8rem, 2rem)',
-                        fontWeight: 400,
-                        color: 'rgba(245, 245, 240, 0.85)',
-                        fontStyle: 'italic',
-                        letterSpacing: '0.05em',
-                        textShadow: '0 2px 15px rgba(0, 0, 0, 0.4)'
-                      }}>
-                        Where
-                      </span>
-                      <span style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: 'clamp(1.8rem, 3vw + 1rem, 2.6rem)',
-                        fontWeight: 600,
-                        background: 'linear-gradient(135deg, #ffffff 0%, rgba(199, 154, 74, 0.5) 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        letterSpacing: '0.08em',
-                        textShadow: '0 3px 20px rgba(0, 0, 0, 0.3)',
-                        position: 'relative'
-                      }}>
-                        Investments
-                      </span>
-                    </div>
-
-                    {/* Connecting element */}
-                    <div style={{
-                      width: '2px',
-                      height: '6px',
-                      background: 'linear-gradient(180deg, transparent, rgba(199, 154, 74, 0.5), transparent)',
-                      margin: '0px 0',
-                      animation: 'fadeInUp 1s ease-out 0.55s both'
-                    }} />
-
-                    {/* Second phrase - "Become Legacies" */}
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'baseline',
-                      justifyContent: 'center',
-                      gap: '12px',
-                      flexWrap: 'wrap',
-
-                      transform: 'translateX(20px)',
-                      animation: 'fadeInUp 1s ease-out 0.6s both'
-                    }}>
-                      <span style={{
-                        fontFamily: "'Inter', sans-serif",
-                        fontSize: 'clamp(1rem, 1.3vw + 0.6rem, 1.4rem)',
-                        fontWeight: 500,
-                        color: 'rgba(245, 245, 240, 0.9)',
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        textShadow: '0 2px 12px rgba(0, 0, 0, 0.4)'
-                      }}>
-                        Become
-                      </span>
-                      <span style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: 'clamp(1.6rem, 2.5vw + 0.9rem, 2.2rem)',
-                        fontWeight: 700,
-                        background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.4) 0%, #ffffff 100%)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                        letterSpacing: '0.1em',
-                        textShadow: '0 3px 20px rgba(0, 0, 0, 0.3)',
-                        position: 'relative'
-                      }}>
-                        Legacies
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Modern decorative underline */}
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px',
-                    margin: '30px auto 0',
-                    width: 'fit-content',
-                    animation: 'fadeInUp 1s ease-out 0.65s both'
-                  }}>
-                    <div style={{
-                      width: '25px',
-                      height: '1px',
-                      background: 'rgba(199, 154, 74, 0.4)'
-                    }} />
-                    <div style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: 'rgba(199, 154, 74, 0.7)',
-                      boxShadow: '0 0 10px rgba(199, 154, 74, 0.6)',
-                      animation: 'pulse 2.5s ease-in-out infinite'
-                    }} />
-                    <div style={{
-                      width: '60px',
-                      height: '1px',
-                      background: 'linear-gradient(90deg, rgba(199, 154, 74, 0.4), rgba(199, 154, 74, 0.7), rgba(199, 154, 74, 0.4))'
-                    }} />
-                    <div style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: 'rgba(199, 154, 74, 0.7)',
-                      boxShadow: '0 0 10px rgba(199, 154, 74, 0.6)',
-                      animation: 'pulse 2.5s ease-in-out infinite 0.5s'
-                    }} />
-                    <div style={{
-                      width: '25px',
-                      height: '1px',
-                      background: 'rgba(199, 154, 74, 0.4)'
-                    }} />
-                  </div>
-                </div>
-                
-
-
-                {/* Premium CTA buttons */}
-
-
-                <div className="hero-cta-row" style={{ 
-                  display: 'flex', 
-                  gap: '20px', 
-                  justifyContent: 'center',
-                  flexWrap: 'nowrap',
-                  animation: 'fadeInUp 1s ease-out 0.7s both',
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  width: '100%',
-                  maxWidth: '800px',
-                  margin: '10px auto 0',
-                  padding: '0 10px'
-                }}>
-<div className="hero-buttons"   style={{
-    display: 'flex',
-    gap: '20px',          // 👈 DESKTOP GAP BETWEEN BUTTONS
-    alignItems: 'center',
-    justifyContent: 'center'
+    {/* Bottom text */}
+    <div
+  style={{
+    marginTop: isMobile ? "68px" : "48px",
+    paddingLeft: isMobile ? "0px" : "18px",
+    borderLeft: isMobile ? "2px solid #F5C36A" : "3px solid #F5C36A",
   }}
 >
-                <button
-                  className="hero-secondary mobile-shift"
-                  onClick={() => {
-                    setIsInquiryModalOpen(true);
-                  }}
-                    style={{
-                      padding: '16px 32px',
-                      fontSize: '0.9rem',
-                      fontWeight: 600,
-                      letterSpacing: '0.06em',
-                      background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.98) 0%, rgba(212, 175, 106, 0.95) 50%, rgba(199, 154, 74, 0.98) 100%)',
-                      backgroundSize: '200% 200%',
-                      color: '#ffffff',
-                      border: 'none',
-                      borderRadius: '50px',
-                      cursor: 'pointer',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      boxShadow: '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      textTransform: 'uppercase',
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0,
-                      minWidth: 'fit-content'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-3px) scale(1.03)';
-                      e.target.style.boxShadow = '0 15px 40px rgba(199, 154, 74, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 0 60px rgba(199, 154, 74, 0.3)';
-                      e.target.style.backgroundPosition = '100% 0';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0) scale(1)';
-                      e.target.style.boxShadow = '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)';
-                      e.target.style.backgroundPosition = '0 0';
-                    }}
-                  >
-                    {/* Shimmer effect overlay */}
-                   
-                    <span className="hero-primary-text" style={{ position: 'relative', zIndex: 1, display: 'block' }}>
-  Book a Private Consultation
-</span>
-                  </button>
+  <p
+    style={{
+      margin: 0,
+      marginLeft: isMobile ? "-58px" : "0px",   // stronger pull
+      fontSize: isMobile ? "1.05rem" : "1.4rem",
+      fontWeight: 500,
+      color: "#ffffff",
+      letterSpacing: "0.04em",
+    }}
+  >
+    Discover{" "}
+    <span style={{ color: "#F5C36A", fontWeight: 600 }}>
+      Your Space
+    </span>
+  </p>
 
-                  <button
-                     className="hero-secondary mobile-shift"
-                    onClick={() => {
-                      setIsInquiryModalOpen(true);
-                    }}
-                    style={{
-                      padding: '16px 32px',
-                      fontSize: '0.9rem',
-                      fontWeight: 600,
-                      letterSpacing: '0.06em',
-                      background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.98) 0%, rgba(212, 175, 106, 0.95) 50%, rgba(199, 154, 74, 0.98) 100%)',
-                      backgroundSize: '200% 200%',
-                      color: '#ffffff',
-                      border: 'none',
-                      borderRadius: '50px',
-                      cursor: 'pointer',
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      boxShadow: '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      textTransform: 'uppercase',
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0,
-                      minWidth: 'fit-content'
-                    }}
-                    onMouseEnter={(e) => {
-                      const btn = e.currentTarget;
-                      btn.style.transform = 'translateY(-3px) scale(1.03)';
-                      btn.style.boxShadow =
-                        '0 15px 40px rgba(199, 154, 74, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 0 60px rgba(199, 154, 74, 0.3)';
-                      btn.style.backgroundPosition = '100% 0';
-                    }}
-                    
-                    onMouseLeave={(e) => {
-                      const btn = e.currentTarget;
-                      btn.style.transform = 'translateY(0) scale(1)';
-                      btn.style.boxShadow =
-                        '0 10px 30px rgba(199, 154, 74, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset, 0 0 40px rgba(199, 154, 74, 0.2)';
-                      btn.style.backgroundPosition = '0 0';
-                    }}
->                    
-                    {/* Animated border glow */}
-                    <div style={{
-                      position: 'absolute',
-                      top: '-2px',
-                      left: '-2px',
-                      right: '-2px',
-                      bottom: '-2px',
-                      background: 'linear-gradient(45deg, rgba(199, 154, 74, 0.3), rgba(255, 255, 255, 0.3), rgba(199, 154, 74, 0.3))',
-                      backgroundSize: '200% 200%',
-                      borderRadius: '50px',
-                      zIndex: -1,
-                      opacity: 0,
-                      transition: 'opacity 0.4s ease',
-                      animation: 'shimmer 3s ease-in-out infinite'
-                    }} />
-                    <span style={{ position: 'relative', zIndex: 1, display: 'block' }}>
-                      Schedule Site Visit
-                    </span>
-                  </button>
-                </div>
-                </div>
+  <p
+    style={{
+      margin: isMobile ? "6px 0 0" : "10px 0 0",
+      fontSize: isMobile ? "1.05rem" : "1.4rem",
+      fontWeight: 500,
+    }}
+  />
 
+  <p
+    style={{
+      margin: 0,
+      marginLeft: isMobile ? "-58px" : "0px",   // same pull here
+      fontSize: isMobile ? "1.05rem" : "1.4rem",
+      fontWeight: 500,
+      color: "#ffffff",
+      letterSpacing: "0.04em",
+    }}
+  >
+    Expand{" "}
+    <span style={{ color: "#F5C36A", fontWeight: 600 }}>
+      Your Sphere
+    </span>
+  </p>
 
+  <p
+    style={{
+      margin: isMobile ? "6px 0 0" : "10px 0 0",
+      fontSize: isMobile ? "1.05rem" : "1.4rem",
+      fontWeight: 500,
+    }}
+  />
+</div>
 
+<div
+  style={{
+    marginTop: isMobile ? "32px" : "48px",
+    display: "flex",
+    justifyContent: "center",
+  }}
+>
+  <button
+    style={{
+      padding: isMobile ? "14px 26px" : "16px 42px",
+      fontSize: isMobile ? "12px" : "14px",
+      fontWeight: 700,
+      letterSpacing: isMobile ? "0.14em" : "0.18em",
+      textTransform: "uppercase",
+      color: "#0e0e0e",
+      backgroundColor: "#ffd36a",
+      border: "none",
+      borderRadius: "999px",
+      cursor: "pointer",
+      boxShadow: "0 10px 35px rgba(0,0,0,0.45)",
+      transition: "transform 0.25s ease, box-shadow 0.25s ease",
+      whiteSpace: "nowrap",
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = "translateY(-3px)";
+      e.currentTarget.style.boxShadow =
+        "0 16px 45px rgba(0,0,0,0.55)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = "translateY(0)";
+      e.currentTarget.style.boxShadow =
+        "0 10px 35px rgba(0,0,0,0.45)";
+    }}
+    onClick={() => {
+      setIsInquiryModalOpen(true);
+    }}
+  >
+    Book a Private Consultation
+  </button>
+</div>
 
-                
-                {/* Corner accent lines */}
-                <div style={{
-                  position: 'absolute',
-                  top: '3%',
-                  right: '8%',
-                  width: '40px',
-                  height: '1px',
-                  background: 'linear-gradient(90deg, transparent, rgba(199, 154, 74, 0.4))',
-                  transform: 'rotate(45deg)',
-                  pointerEvents: 'none'
-                }} />
-                <div style={{
-                  position: 'absolute',
-                  bottom: '5%',
-                  left: '8%',
-                  width: '35px',
-                  height: '1px',
-                  background: 'linear-gradient(90deg, rgba(199, 154, 74, 0.4), transparent)',
-                  transform: 'rotate(-45deg)',
-                  pointerEvents: 'none'
-                }} />
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div className="slider-dots-bar" style={{ display: 'flex', gap: '12px', alignItems: 'center', justifyContent: 'center', padding: '4px 14px' }}>
-          {heroImages.map((_, dot) => (
-            <span
-              key={dot}
-              className={`slider-dot ${dot === currentSlide ? "active" : ""}`}
-              aria-label={`Slide ${dot + 1}`}
-              onClick={() => setCurrentSlide(dot)}
-              role="button"
-              tabIndex={0}
-            />
-          ))}
-        </div>
+</div>
+</div>
+</div>
+</div>
       </section>
 
       <section id="about" className="about-slab">
@@ -1090,7 +831,7 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-copy">
               <p>
-              Space Sphere is a trusted partner in Indian real estate, bringing together expert advisory, premium property sourcing, and a seamless ownership experience. We believe a property is more than real estate - it’s a statement, an asset, and a lifetime belonging. With elite partnerships across premium developers in Pune, Hyderabad, and surrounding regions, we offer access to refined spaces for those who desire more.
+              Space Sphere is a trusted partner in Indian real estate, bringing together expert advisory, premium property sourcing, and a seamless ownership experience. With elite partnerships across premium developers in Pune, Hyderabad, and surrounding regions, we offer access to refined spaces for those who desire more.
               </p>
              
               <div style={{ display: 'grid', gap: '8px' }}>
@@ -1172,7 +913,7 @@ export default function Home() {
                   setIsInquiryModalOpen(true);
                 }}
               >
-                Schedule a Site Experience 
+                Get in touch 
               </button>
             </div>
 
@@ -1302,16 +1043,16 @@ export default function Home() {
 
 
           {/* Floating Cards Grid - refreshed design */}
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(5, minmax(240px, 1fr))',
-            gridTemplateAreas: `
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(5, minmax(240px, 1fr))',
+            gridTemplateAreas: isMobile ? '"card1" "card2" "card3" "card4" "card5"' : `
               "card1 . card2 . card3"
               ". card4 . card5 ."
             `,
-            gap: '28px',
-            justifyContent: 'center',
-            justifyItems: 'center',
+            gap: isMobile ? '20px' : '28px',
+            justifyContent: isMobile ? 'stretch' : 'center',
+            justifyItems: isMobile ? 'stretch' : 'center',
             position: 'relative',
             marginTop: '40px'
           }}>
@@ -1422,15 +1163,15 @@ export default function Home() {
             <div className="floating-card" style={{
               gridArea: 'card1',
               background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: '24px 22px',
+              padding: isMobile ? '12px 16px' : '24px 22px',
               borderRadius: '18px',
               boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
               border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
               width: '100%',
-              maxWidth: '450px',
-              minHeight: '160px',
-              height: '190px',
+              maxWidth: isMobile ? '100%' : '450px',
+              minHeight: isMobile ? undefined : '160px',
+              height: isMobile ? 'auto' : '160px',
               transform: 'none',
               transition: 'all 0.35s ease',
               zIndex: 3
@@ -1458,14 +1199,14 @@ export default function Home() {
 
               
               
-              <div style={{ marginTop: '18px' }}>
+              <div style={{ marginTop: isMobile ? '24px' : '18px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                 Personalized Curation
 
                 </h3>
                 <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                Tailored to your taste & investment vision, every property is hand-selected for your unique lifestyle.                </p>
-              </div>
+                Tailored to taste & investment vision</p>
+                              </div>
             </div>
 
 
@@ -1476,15 +1217,15 @@ export default function Home() {
             <div className="floating-card" style={{
               gridArea: 'card2',
               background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: '24px 22px',
+              padding: isMobile ? '12px 16px' : '24px 22px',
               borderRadius: '18px',
               boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
               border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
               width: '100%',
-              maxWidth: '450px',
-              minHeight: '160px',
-              height: '190px',
+              maxWidth: isMobile ? '100%' : '450px',
+              minHeight: isMobile ? undefined : '160px',
+              height: isMobile ? 'auto' : '160px',
               transform: 'none',
               transition: 'all 0.35s ease',
               zIndex: 3
@@ -1511,13 +1252,13 @@ export default function Home() {
               </div>
 
 
-              <div style={{ marginTop: '18px' }}>
+              <div style={{ marginTop: isMobile ? '22px' : '18px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                   Elite Developer Network
                 </h3>
                 <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                  Exclusive partnerships across premium developers in Pune & Hyderabad region.
-                </p>
+                Access to Elite Developers across Pune & Hyderabad
+                                </p>
               </div>
             </div>
 
@@ -1529,15 +1270,15 @@ export default function Home() {
             <div className="floating-card" style={{
               gridArea: 'card3',
               background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: '24px 22px',
+              padding: isMobile ? '12px 16px' : '24px 22px',
               borderRadius: '18px',
               boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
               border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
               width: '100%',
-              maxWidth: '450px',
-              minHeight: '160px',
-              height: '190px',
+              maxWidth: isMobile ? '100%' : '450px',
+              minHeight: isMobile ? undefined : '160px',
+              height: isMobile ? 'auto' : '160px',
               transform: 'none',
               transition: 'all 0.35s ease',
               zIndex: 3
@@ -1564,13 +1305,12 @@ export default function Home() {
                 </svg>
               </div>
 
-              <div style={{ marginTop: '20px' }}>
+              <div style={{ marginTop: isMobile ? '24px' : '20px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                 Complete Transparency
                 </h3>
                 <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                No hidden costs, no inflated numbers. Pure, honest dealings with crystal-clear pricing.
-
+                No grey lines, no inflated numbers
 </p>
               </div>
             </div>
@@ -1582,21 +1322,21 @@ export default function Home() {
             <div className="floating-card" style={{
               gridArea: 'card4',
               background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: '24px 22px',
+              padding: isMobile ? '12px 16px' : '24px 22px',
               borderRadius: '18px',
               boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
               border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
               width: '100%',
-              maxWidth: '450px',
-              minHeight: '160px',
-              height: '190px',
+              maxWidth: isMobile ? '100%' : '450px',
+              minHeight: isMobile ? undefined : '160px',
+              height: isMobile ? 'auto' : '160px',
               transform: 'none',
               transition: 'all 0.35s ease',
               zIndex: 3
             }}>
 
-              <div style={{
+<div style={{
                 position: 'absolute',
                 top: '-10px',
                 left: '20px',
@@ -1616,11 +1356,11 @@ export default function Home() {
               </div>
 
 
-              <div style={{ marginTop: '20px' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
-                End-to-End Support                </h3>
-                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
-                From search to keys, we guide you through every step of your property journey                </p>
+              <div style={{ marginTop: isMobile ? '24px' : '20px' }}>
+              <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
+              End-to-End Support                </h3>
+                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
+                Till the moment you hold your keys              </p>
               </div>
             </div>
 
@@ -1631,19 +1371,19 @@ export default function Home() {
             <div className="floating-card central-card" style={{
               gridArea: 'card5',
               background: 'linear-gradient(135deg, #ffffff 0%, #faf7f1 100%)',
-              padding: '24px 22px',
+              padding: isMobile ? '12px 16px' : '24px 22px',
               borderRadius: '18px',
               boxShadow: '0 14px 40px rgba(0, 0, 0, 0.08)',
               border: '1px solid rgba(199, 154, 74, 0.25)',
               position: 'relative',
               transform: 'none',
               zIndex: 4,
-              margin: '1px auto',
+              margin: isMobile ? '0' : '1px auto',
               width: '100%',
-              maxWidth: '450px',
-              minHeight: '160px',
-              height: '190px',
-              alignSelf: 'center'
+              maxWidth: isMobile ? '100%' : '450px',
+              minHeight: isMobile ? '80px' : '160px',
+              height: isMobile ? '10px' : '10px',
+              alignSelf: isMobile ? 'auto' : 'center'
             }}>
 
               <div style={{
@@ -1671,7 +1411,7 @@ export default function Home() {
                 Investment-Led Advisory
                 </h3>
                 <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
-                Data-driven insights on growth potential, rental yields & market appreciation trends. </p>
+                Growth, rental yield & appreciation insights </p>
               </div>
             </div>
           </div>
@@ -1843,8 +1583,7 @@ export default function Home() {
                     Discovery Consultation
                   </h3>
                   <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
-                    We understand your lifestyle, investment goals, and preferences to create a personalized property roadmap.
-                  </p>
+                  Define requirements, expectations & aspirations                  </p>
                 </div>
               </div>
               
@@ -1954,8 +1693,7 @@ export default function Home() {
                     Curated Project Showcase
                   </h3>
                   <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
-                    Exclusive access to handpicked premium properties that align perfectly with your vision and investment strategy.
-                  </p>
+                  Only premium & value-aligned options                  </p>
                 </div>
               </div>
             </div>
@@ -1991,8 +1729,7 @@ export default function Home() {
                     Guided Site Tours
                   </h3>
                   <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
-                    Experience luxury firsthand with our expert-guided tours of premium developments and lifestyle amenities.
-                  </p>
+                  Experience spaces before deciding                  </p>
                 </div>
               </div>
               
@@ -2102,7 +1839,7 @@ export default function Home() {
                     Negotiation & Closure
                   </h3>
                   <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
-                    Expert negotiation to secure the best terms, followed by seamless documentation and transparent deal closure.
+                  Transparent & confident pricing
                   </p>
                 </div>
               </div>
@@ -2138,8 +1875,7 @@ export default function Home() {
                     Complete Assistance
                   </h3>
                   <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.5', margin: 0 }}>
-                    End-to-end support including paperwork, loan assistance, and handover until you receive your keys.
-                  </p>
+                  We simplify everything                  </p>
                 </div>
               </div>
               
@@ -2237,7 +1973,7 @@ export default function Home() {
           <div className="office-grid">
             <div className="office-card">
               <div className="office-image">
-                <img src="/apartment.jpg" alt="Montecito coastline" />
+                <img src="/apartment1.png" alt="Montecito coastline" />
               </div>
               <h3>Luxury Residential Apartments & High-Rise Towers</h3>
             </div>
@@ -2249,7 +1985,7 @@ export default function Home() {
             </div>
             <div className="office-card">
               <div className="office-image">
-                <img src="/plot1.jpg" alt="Santa Ynez vineyards" />
+                <img src="/plot1.png" alt="Santa Ynez vineyards" />
               </div>
               <h3>Premium Open Plots with Future Growth Vision</h3>
             </div>
@@ -2346,7 +2082,7 @@ Invest with confidence. Live with pride.
       {/* Top Badge */}
       <div style={{
         position: 'absolute',
-        top: '100px',
+        top: isMobile ? "70px" : "120px", 
         left: '60px',
         display: 'flex',
         alignItems: 'center',
@@ -2531,7 +2267,7 @@ Invest with confidence. Live with pride.
         alignItems: 'center'
       }}>
         <div style={{ textAlign: 'center' }}>
-          <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>50+</p>
+          <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>1100+</p>
           <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Units</p>
         </div>
         <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
@@ -2542,7 +2278,7 @@ Invest with confidence. Live with pride.
         <div style={{ width: '1px', height: '40px', background: 'rgba(255,255,255,0.15)' }} />
         <div style={{ textAlign: 'center' }}>
           <p style={{ fontSize: '28px', fontWeight: 700, color: '#d4af6a', margin: 0, fontFamily: "'Playfair Display', serif" }}>2028</p>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Ready</p>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>Onwards</p>
         </div>
       </div>
     </div>
@@ -3231,7 +2967,7 @@ Invest with confidence. Live with pride.
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                   </svg>
 
-                  <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
+                  <div style={{ textAlign: isMobile ? 'left' : 'left' }}>
                     <div style={{ color: '#b8b3a8', fontSize: '15px', lineHeight: '1.6', marginBottom: '8px' }}>
 204 Sapphire Chambers, First Floor, Suite 1186, Baner Road, Baner, Pune 411045
                     </div>
@@ -3516,14 +3252,14 @@ Invest with confidence. Live with pride.
             animation: 'fadeIn 0.3s ease-out'
           }}
         >
-          <div 
+          <div
             className="inquiry-modal-content"
             onClick={(e) => e.stopPropagation()}
             style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: '40px',
-              maxWidth: '500px',
+              padding: isMobile ? '20px' : '40px',
+              maxWidth: isMobile ? '90vw' : '500px',
               width: '100%',
               maxHeight: '90vh',
               overflowY: 'auto',
@@ -3536,8 +3272,9 @@ Invest with confidence. Live with pride.
               onClick={() => setIsInquiryModalOpen(false)}
               style={{
                 position: 'absolute',
-                top: '16px',
-                right: '16px',
+                top: isMobile ? "0px" : "16px",
+right: isMobile ? "2px" : "16px",
+
                 background: 'transparent',
                 border: 'none',
                 fontSize: '24px',
@@ -3556,19 +3293,30 @@ Invest with confidence. Live with pride.
             >
               ×
             </button>
-            
-            <h2 style={{ 
-              fontSize: '28px', 
-              fontWeight: 700, 
-              color: '#1a1a1a', 
-              marginBottom: '8px',
-              fontFamily: "'Playfair Display', serif"
-            }}>
-              Schedule a Consultation
-            </h2>
-            <p style={{ fontSize: '16px', color: '#666', marginBottom: '32px' }}>
-              Let us understand your requirements better. Please fill out the form below.
-            </p>
+      
+            <h2
+  style={{
+    fontSize: isMobile ? "24px" : "28px",
+    fontWeight: 700,
+    color: "#1a1a1a",
+    marginBottom: "8px",
+    fontFamily: "'Playfair Display', serif"
+  }}
+>
+  Schedule a Consultation
+</h2>
+
+<p
+  style={{
+    fontSize: "16px",
+    color: "#666",
+    marginBottom: "32px",
+    marginTop: isMobile ? "0px" : "0px"   // move down only on mobile
+  }}
+>
+  Let us understand your requirements better. Please fill out the form below.
+</p>
+
             
             <form 
               onSubmit={(e) => {
@@ -3577,7 +3325,7 @@ Invest with confidence. Live with pride.
                 alert('Thank you for your inquiry! Our team will contact you soon to schedule your private consultation.');
                 setIsInquiryModalOpen(false);
               }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
             >
               <div>
                 <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
@@ -3650,10 +3398,10 @@ Invest with confidence. Live with pride.
                   Additional Message
                 </label>
                 <textarea
-                  rows="3"
+                  rows={isMobile ? 1 : 3}
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: '0px 5px',
                     border: '1px solid #ddd',
                     borderRadius: '8px',
                     fontSize: '15px',
@@ -3665,7 +3413,7 @@ Invest with confidence. Live with pride.
                   }}
                   onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
-                  placeholder="Tell us more about your requirements..."
+                  placeholder="Tell us about your requirements"
                 />
               </div>
               

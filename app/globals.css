@@ -123,7 +123,125 @@ body {
   background-position: center;
   transform: scale(1.01);
   filter: saturate(1.05);
-  transition: background-image 0.6s ease;
+  opacity: 1;
+    animation: heroImageFade 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  
+    will-change: opacity, transform, filter;
+}
+
+/* Dual-layer hero image for smooth fade transitions */
+.hero-image-layer {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(120deg, rgba(0, 0, 0, 0.78) 18%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.82) 100%),
+    var(--hero-url, url("https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1800&q=80"));
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.01);
+  filter: saturate(1.05);
+  opacity: 1;
+}
+
+/* Single hero image with smooth fade animation */
+.hero-image-animated {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(120deg, rgba(0, 0, 0, 0.78) 18%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.82) 100%),
+    var(--hero-url);
+  background-size: cover;
+  background-position: center;
+}
+
+/* Cross-fade hero layers */
+.hero-fade-layer {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%),
+    var(--hero-url);
+  background-size: cover;
+  background-position: center;
+  will-change: opacity;
+}
+
+/* Current slide - always visible underneath */
+.hero-fade-current {
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Next slide - fades in over current */
+.hero-fade-next {
+  z-index: 2;
+  opacity: 0;
+  transition: none;
+}
+
+/* When active, next slide fades in */
+.hero-fade-active {
+  opacity: 1;
+  transition: opacity 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes heroImageFade {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+@keyframes smoothChange {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  10% {
+    opacity: 0.1;
+    transform: scale(1.09);
+  }
+  20% {
+    opacity: 0.2;
+    transform: scale(1.08);
+  }
+  30% {
+    opacity: 0.3;
+    transform: scale(1.07);
+  }
+  40% {
+    opacity: 0.4;
+    transform: scale(1.06);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  60% {
+    opacity: 0.6;
+    transform: scale(1.04);
+  }
+  70% {
+    opacity: 0.7;
+    transform: scale(1.03);
+  }
+  80% {
+    opacity: 0.8;
+    transform: scale(1.02);
+  }
+  90% {
+    opacity: 0.9;
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .hero-overlay {
@@ -184,27 +302,28 @@ body {
 /*project*/
 @media (max-width: 768px) {
   .exclusive-collection {
-    transform: translateX(-88px); /* adjust as needed */
+    transform: translateX(-68px); /* adjust as needed */
   }
 }
 @media (max-width: 768px) {
   .exclusive-collection1 {
-    transform: translateX(-58px); /* adjust as needed */
+    transform: translateX(-57px) translateY(-20px);
+     /* adjust as needed */
   }
 }
 @media (max-width: 768px) {
   .exclusive-collection2 {
-    transform: translateX(-118px); /* adjust as needed */
+    transform: translateX(-118px) translateY(-22px); /* adjust as needed */
   }
 }
 @media (max-width: 768px) {
   .exclusive-collection3 {
-    transform: translateX(-65px); /* adjust as needed */
+    transform: translateX(-65px) translateY(-15px); /* adjust as needed */
   }
 }
 @media (max-width: 768px) {
   .exclusive-collection4 {
-    transform: translateX(-66px) translateY(-19px);
+    transform: translateX(-66px) translateY(-27px);
   }
 }
 @media (max-width: 768px) {
@@ -253,7 +372,6 @@ body {
   font-size: clamp(0.7rem, 2vw, 0.88rem);
   padding: clamp(4px, 1vw, 8px) clamp(4px, 1.5vw, 8px);
   border-radius: clamp(6px, 1.5vw, 10px);
-  transition: color 150ms ease, background-color 150ms ease, transform 150ms ease;
   white-space: nowrap;
 }
 
@@ -308,19 +426,19 @@ body {
 /* Hide only on mobile initially */
 /* MOBILE ONLY */
 @media (max-width: 768px) {
-  #mobile-brand {
-    opacity: 0;
-    transform: translateY(-6px);
-    pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.35s ease;
-  }
+  /* Mobile hero top logo */
+  
 
-  #mobile-brand.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  /* Mobile sticky logo */
+  #mobile-brand img {
+    height: 66px !important;
+    max-width: 140px !important;
+    max-height: none !important;
+    width: auto !important;
+    object-fit: contain;
   }
 }
+
 
 
 .hero-phone {
@@ -334,7 +452,6 @@ body {
   color: #f7f7f7;
   font-weight: 600;
   letter-spacing: 0.02em;
-  transition: transform 150ms ease, border-color 150ms ease, background-color 150ms ease;
 }
 
 .hero-phone:hover {
@@ -351,7 +468,6 @@ body {
   color: #1a1207;
   font-weight: 700;
   letter-spacing: 0.02em;
-  transition: transform 150ms ease, box-shadow 150ms ease;
 }
 
 .hero-chat:hover {
@@ -468,7 +584,6 @@ body {
   backdrop-filter: blur(6px);
   letter-spacing: 0.02em;
   font-weight: 700;
-  transition: transform 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
 }
 
 .hero-select {
@@ -497,7 +612,6 @@ body {
   align-items: center;
   gap: 6px;
   color: #f0ede6;
-  transition: color 160ms ease, opacity 160ms ease;
 }
 
 .nav-link:hover {
@@ -540,7 +654,6 @@ body {
   letter-spacing: 0.02em;
   border-radius: 10px;
   border: 1px solid #e8d7a3;
-  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .cta-button:hover {
@@ -745,7 +858,6 @@ body {
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: background-color 150ms ease, color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
 }
 
 .about-button:hover {
@@ -845,11 +957,6 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 20px;
   color: #2f2f2f;
-}
-
-.about-content {
-  display: grid;
-  gap: 18px;
 }
 
 .eyebrow {
@@ -1328,7 +1435,6 @@ body {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 160ms ease, transform 160ms ease;
 }
 
 .submit-button:hover {
