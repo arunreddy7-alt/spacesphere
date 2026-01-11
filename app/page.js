@@ -97,6 +97,34 @@ export default function Home() {
   const [contactSectionInView, setContactSectionInView] = useState(false);
   const contactSectionRef = useRef(null);
 
+  // Generate dynamic date options starting from tomorrow
+  const getDateOptions = () => {
+    const options = [];
+    const today = new Date();
+    const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    for (let i = 1; i <= 7; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      const dateStr = date.toISOString().split('T')[0];
+      const dayName = dayNames[date.getDay()];
+      const monthName = monthNames[date.getMonth()];
+      const dayNum = date.getDate();
+
+      let label;
+      if (i === 1) {
+        label = "Tomorrow";
+      } else {
+        label = `${monthName} ${dayNum}, ${dayName}`;
+      }
+      options.push({ value: dateStr, label });
+    }
+    return options;
+  };
+
+  const dateOptions = getDateOptions();
+
   // Contact form state management with localStorage
   const [formData, setFormData] = useState({
     name: '',
@@ -321,7 +349,7 @@ export default function Home() {
     const handleParallaxScroll = () => {
       const scrolled = window.pageYOffset;
       const parallaxElements = document.querySelectorAll('.parallax-bg');
-      
+
       parallaxElements.forEach(element => {
         const speed = 0.5; // Slower than foreground for parallax effect
         const yPos = -(scrolled * speed);
@@ -3074,157 +3102,169 @@ Invest with confidence. Live with pride.
               }}
               style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
             >
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    border: '1px solid #ddd',
-                    borderRadius: '8px',
-                    fontSize: '15px',
-                    transition: 'border-color 0.2s ease',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
-                />
-              </div>
-              
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    border: '1px solid #ddd',
-                    borderRadius: '8px',
-                    fontSize: '15px',
-                    transition: 'border-color 0.2s ease',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
-                />
-              </div>
-              
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
-                  Phone Number *
-                </label>
-                <input
-                  type="tel"
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    border: '1px solid #ddd',
-                    borderRadius: '8px',
-                    fontSize: '15px',
-                    transition: 'border-color 0.2s ease',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
-                />
-              </div>
-              
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
-                    Preferred Date *
-                  </label>
-                  <input
-                    type="date"
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '1px solid #ddd',
-                      borderRadius: '8px',
-                      fontSize: '15px',
-                      transition: 'border-color 0.2s ease',
-                      boxSizing: 'border-box',
-                      color: 'black'
-                    }}
-                    onFocus={(e) => e.currentTarget.style.borderColor = 'black'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = 'black'}
-                  />
-                </div>
-                
-                <div>
-                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
-                    Preferred Time *
-                  </label>
-                  <input
-                    type="time"
-                    required
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '1px solid #ddd',
-                      borderRadius: '8px',
-                      fontSize: '15px',
-                      transition: 'border-color 0.2s ease',
-                      boxSizing: 'border-box',
-                      color:'black'
-                    }}
-                    onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
-                    onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
-                  Interested In
-                </label>
-                <select
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '12px 16px',
-                    border: '1px solid #ddd',
-                    borderRadius: '8px',
-                    fontSize: '15px',
-                    transition: 'border-color 0.2s ease',
-                    boxSizing: 'border-box',
-                    background: '#fff',
-                    color: '#000000'
-                  }}
-                  onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
-                  onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
-                >
-                  <option value="" style={{ color: '#000000' }}>Select apartment type</option>
-                  <option value="2bhk" style={{ color: '#000000' }}>2 BHK</option>
-                  <option value="3bhk" style={{ color: '#000000' }}>3 BHK</option>
-                  <option value="4bhk" style={{ color: '#000000' }}>4 BHK</option>
-                  <option value="5bhk" style={{ color: '#000000' }}>5 BHK</option>
-                  <option value="6bhk" style={{ color: '#000000' }}>6 BHK</option>
-                   </select>
-              </div>
-              
-              
-              <button
-                type="submit"
-                className="cta-button"
-                style={{ 
-                  width: '100%', 
-                  padding: '14px 26px', 
-                  marginTop: '8px',
-                  fontSize: '16px'
-                }}
-              >
-                Schedule Site Visit
-              </button>
+              <input
+                                                type="text"
+                                                placeholder="Full Name"
+                                                required
+                                                className="w-full px-4 py-3 text-black bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
+                                            />
+                                            <input
+                                                type="tel"
+                                                placeholder="Phone Number"
+                                                required
+                                                className="w-full px-4 py-3 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
+                                            />
+                                            <input
+                                                type="tel"
+                                                placeholder="WhatsApp Number"
+                                                className="w-full px-4 py-3 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
+                                            />
+                                            <input
+                                                type="email"
+                                                placeholder="Email Address"
+                                                required
+                                                className="w-full px-4 py-3 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
+                                            />
+                                            <div className="grid grid-cols-2 gap-3">
+                                                {/* Mobile: Dropdown Time */}
+                                                <div className="relative block md:hidden">
+                                                    <select
+                                                        required
+                                                        defaultValue=""
+                                                        className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
+                                                    >
+                                                        <option value="" disabled className="bg-black text-black">Time</option>
+                                                        <option value="09:00" className="bg-black text-black">09:00 AM</option>
+                                                        <option value="10:00" className="bg-black text-black">10:00 AM</option>
+                                                        <option value="11:00" className="bg-black text-black">11:00 AM</option>
+                                                        <option value="12:00" className="bg-black text-black">12:00 PM</option>
+                                                        <option value="14:00" className="bg-black text-black">02:00 PM</option>
+                                                        <option value="15:00" className="bg-black text-black">03:00 PM</option>
+                                                        <option value="16:00" className="bg-black text-black">04:00 PM</option>
+                                                        <option value="17:00" className="bg-black text-black">05:00 PM</option>
+                                                    </select>
+                                                    <svg
+  className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 pointer-events-none"
+  fill="none"
+  stroke="black"
+  viewBox="0 0 24 24"
+>
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    d="M19 9l-7 7-7-7"
+  />
+</svg>
+</div>
+                                                {/* Mobile: Dropdown Date */}
+                                                <div className="relative block md:hidden">
+                                                    <select
+                                                        required
+                                                        defaultValue=""
+                                                        className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
+                                                    >
+                                                        <option value="" disabled className="bg-black text-black">Date</option>
+                                                        {dateOptions.map((opt) => (
+                                                            <option key={opt.value} value={opt.value} className="bg-black text-black">
+                                                                {opt.label}
+                                                            </option>
+                                                        ))}
+                                                    </select>
+                                                    <svg
+  className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 pointer-events-none"
+  fill="none"
+  stroke="black"
+  viewBox="0 0 24 24"
+>
+  <path
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    d="M19 9l-7 7-7-7"
+  />
+</svg>
+
+                                                </div>
+                                                {/* Desktop: Native Time */}
+                                                <div className="relative hidden md:block">
+                                                <input
+  type="time"
+  required
+  className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm"
+/>
+                                                </div>
+                                                {/* Desktop: Native Date */}
+                                                <div className="relative hidden md:block">
+                                                <input
+  type="date"
+  required
+  className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm"
+/>
+                                                </div>
+                                            </div>
+                                            <div className="p-4 bg-black/5 border border-black/10 rounded-lg">
+                                                <p className="text-xs font-bold uppercase tracking-widest text-black mb-3">Interests</p>
+                                                <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                                                {["2 BHK", "3 BHK", "4 BHK", "5 BHK", "6 BHK"].map((item, index) => (
+  <label
+    key={item}
+    className="flex items-center gap-2 cursor-pointer group select-none"
+  >
+    <div className="relative w-4 h-4 border border-black/30 flex items-center justify-center transition-colors">
+      <input
+        type="checkbox"
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+        onChange={(e) => {
+          const box = e.target.nextSibling;
+          const check = box.nextSibling;
+          if (e.target.checked) {
+            box.style.opacity = "1";
+            check.style.opacity = "1";
+          } else {
+            box.style.opacity = "0";
+            check.style.opacity = "0";
+          }
+        }}
+      />
+
+      {/* Background fill */}
+      <div
+        
+      />
+
+      {/* Check icon */}
+      <svg
+        style={{
+          position: "absolute",
+          width: "12px",
+          height: "12px",
+          color: "black",
+          opacity: 0,
+          transition: "opacity 0.2s ease",
+        }}
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path strokeWidth="3" strokeLinecap="round" d="M5 12l5 5L20 7" />
+      </svg>
+    </div>
+
+    <span className="text-sm text-black/70 truncate">{item}</span>
+  </label>
+))}
+
+                                                  
+                                                </div>
+                                            </div>
+                                            <button
+                                                type="submit"
+                                                className="w-full py-3 md:py-4 bg-gradient-to-r from-[#997B29] via-[#FFF5B2] to-[#997B29] bg-[length:200%_auto] animate-flow text-black font-bold uppercase tracking-widest rounded-full transition-all duration-500 hover:scale-105 text-xs"
+                                            >
+                                                Submit
+                                            </button>
+
             </form>
           </div>
         </div>

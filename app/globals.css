@@ -959,6 +959,13 @@ body {
   color: #2f2f2f;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0);
+  opacity: 0.6;
+}
+
+
 .eyebrow {
   font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 3vw, 42px);
