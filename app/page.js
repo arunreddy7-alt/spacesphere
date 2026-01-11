@@ -468,14 +468,23 @@ export default function Home() {
   id="mobile-brand"
   className={`flex items-center gap-2 ml-3 md:ml-10 ${isScrolled ? 'visible' : ''}`}
 >
-<img
-  src="/logo2.png"
-  alt="Space Sphere Logo"
-  className="h-16 sm:h-12 md:h-14 lg:h-16 max-w-[160px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[200px] object-contain transition-all duration-300"
-  style={{
-    transition: 'height 0.3s ease, max-width 0.3s ease',
-  }}
+<img 
+  src="/logo2.png" 
+  alt="Space Sphere Logo" 
+  className="hidden md:block object-contain transition-all duration-300"
+  style={{ 
+    maxHeight: '60px',
+    maxWidth: '180px',
+    width: 'auto',
+    filter: 'brightness(0) saturate(100%)',
+    transform: 'scale(1.8) translateY(2px) translateX(10px)',   // combine both
+    transformOrigin: 'center left',
+    transition: 'transform 0.3s ease, filter 0.3s ease',
+  }} 
 />
+
+
+
 
 
 </div>
@@ -604,54 +613,67 @@ export default function Home() {
         <div className="relative z-10 flex min-h-screen flex-col">
           <div className="hero-shell">
             <div className="hero-topbar">
-<div className="hero-brand ml-4 sm:ml-6 md:ml-10">
-                <img 
-                  src="/logo2.png" 
-                  alt="Space Sphere Logo" 
-                  className="hidden md:block h-14 sm:h-16 md:h-20 lg:h-24 max-w-[100px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[220px] object-contain transition-all duration-300"
-                  style={{ 
-                    height: '60px',
-                    maxWidth: '100px',
-                    width: 'auto',
-                    transition: 'height 0.3s ease, max-width 0.3s ease',
-                  }} 
-                />
+<div className="hero-brand ml-4 sm:ml-6 md:ml-10 ">
+<img 
+  src="/logo2.png" 
+  alt="Space Sphere Logo" 
+  className="hidden md:block h-14 sm:h-16 md:h-20 lg:h-24 max-w-[100px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[220px] object-contain transition-all duration-300"
+  style={{ 
+    height: '140px',
+    maxWidth: '220px',
+    width: 'auto',
+    transform: 'translateY(-35px)',   // moves image up slightly
+    transition: 'height 0.3s ease, max-width 0.3s ease, transform 0.3s ease',
+  }} 
+/>
+
               </div>
 
-              <nav className="hero-nav">
-                {navLinks.map((item) => (
-                  <a
-                    key={item.name}
-                    className="hero-nav-link"
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsMobileMenuOpen(false);
-                      const element = document.querySelector(item.href);
-                      if (element) {
-                        element.scrollIntoView({
-                          behavior: "smooth",
-                          block: "start",
-                        });
-                      }
-                    }}
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </nav>
+              <nav
+  className="hero-nav"
+  style={{
+    transform: "translateY(-35px)",   // move a little up
+    transition: "transform 0.3s ease"
+  }}
+>
+  {navLinks.map((item) => (
+    <a
+      key={item.name}
+      className="hero-nav-link"
+      href={item.href}
+      onClick={(e) => {
+        e.preventDefault();
+        setIsMobileMenuOpen(false);
+        const element = document.querySelector(item.href);
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }}
+    >
+      {item.name}
+    </a>
+  ))}
+</nav>
 
-              <div className="hero-actions">
-                
-                <button
-                  className="hero-chat"
-                  onClick={() => {
-                    setIsInquiryModalOpen(true);
-                  }}
-                >
-                  Get In Touch
-                </button>
-              </div>
+<div
+  className="hero-actions"
+  style={{
+    transform: "translateY(-35px)",   // same upward shift
+    transition: "transform 0.3s ease"
+  }}
+>
+  <button
+    className="hero-chat"
+    onClick={() => {
+      setIsInquiryModalOpen(true);
+    }}
+  >
+    Get In Touch
+  </button>
+</div>
             </div>
 
             <div
@@ -659,14 +681,17 @@ export default function Home() {
   style={{
     width: "100%",
     display: "flex",
+    transform: "translateY(-45px)",
     justifyContent: "center",
     padding: "100px 20px 90px",
+    
   }}
 >
 <div
   style={{
     maxWidth: "900px",
     width: "100%",
+    
     margin: "0 auto",
     textAlign: isMobile ? "center" : "left",
   }}
@@ -680,7 +705,7 @@ export default function Home() {
       marginBottom: isMobile ? "12px" : "18px",
       textTransform: "uppercase",
       color: "#ffffff",
-      paddingLeft: isMobile ? "0" : "6px",
+      paddingLeft: isMobile ? "0" : "17px",
     }}
   >
     CONNECTING PEOPLE
@@ -703,6 +728,7 @@ export default function Home() {
         lineHeight: "1.05",
         margin: "0",
         color: "#ffffff",
+        fontStyle: "italic",
         textShadow:
           "0 4px 30px rgba(0,0,0,0.6), 0 1px 0 rgba(0,0,0,0.3)",
       }}
@@ -739,6 +765,7 @@ export default function Home() {
   style={{
     marginTop: isMobile ? "68px" : "48px",
     paddingLeft: isMobile ? "0px" : "18px",
+    transform:isMobile ? "none" : "translateY(15px)",
     borderLeft: isMobile ? "2px solid #F5C36A" : "3px solid #F5C36A",
   }}
 >
@@ -749,11 +776,12 @@ export default function Home() {
       fontSize: isMobile ? "1.05rem" : "1.4rem",
       fontWeight: 500,
       color: "#ffffff",
+      fontStyle: "italic",
       letterSpacing: "0.04em",
     }}
   >
     Discover{" "}
-    <span style={{ color: "#F5C36A", fontWeight: 600 }}>
+    <span style={{ color: "#F5C36A", fontWeight: 600, fontStyle: "italic" }}>
       Your Space
     </span>
   </p>
@@ -773,11 +801,12 @@ export default function Home() {
       fontSize: isMobile ? "1.05rem" : "1.4rem",
       fontWeight: 500,
       color: "#ffffff",
+      fontStyle: "italic",
       letterSpacing: "0.04em",
     }}
   >
     Expand{" "}
-    <span style={{ color: "#F5C36A", fontWeight: 600 }}>
+    <span style={{ color: "#F5C36A", fontWeight: 600, fontStyle: "italic" }}>
       Your Sphere
     </span>
   </p>
@@ -793,8 +822,9 @@ export default function Home() {
 
 <div
   style={{
-    marginTop: isMobile ? "32px" : "48px",
+    marginTop: isMobile ? "32px" : "58px",
     display: "flex",
+    transform: isMobile ? "none" : "translateX(-140px)",
     justifyContent: "center",
   }}
 >
@@ -888,7 +918,7 @@ export default function Home() {
   <path d="M17 7h1M17 10h1M17 13h1M17 16h1"/>
 </svg>
 
-    <span>Design &amp; Architecture Value</span>
+    <span>Design & Architecture Value    </span>
 
   </li>
 
@@ -902,7 +932,7 @@ export default function Home() {
 </svg>
 
 
-    <span>Location Advantage &amp; Appreciation</span>
+    <span>Location Edge & Appreciation</span>
   </li>
 
   <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -916,7 +946,7 @@ export default function Home() {
 </svg>
 
 
-    <span>Builder Credibility &amp; Delivery History</span>
+    <span>Builder Credibility & Delivery    </span>
   </li>
 
   <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -930,7 +960,7 @@ export default function Home() {
 </svg>
 
 
-    <span>Lifestyle Amenities &amp; Luxury Quotient</span>
+    <span>Luxury Lifestyle Amenities     </span>
   </li>
 </ul>
 
@@ -1227,12 +1257,12 @@ export default function Home() {
 
               
               
-              <div style={{ marginTop: isMobile ? '24px' : '18px' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+              <div style={{ marginTop: isMobile ? '24px' : '11px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '7px', fontFamily: "'Playfair Display', serif" }}>
                 Personalized Curation
 
                 </h3>
-                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                <p style={{ fontSize: '17px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
                 Tailored to taste & investment vision</p>
                               </div>
             </div>
@@ -1280,11 +1310,11 @@ export default function Home() {
               </div>
 
 
-              <div style={{ marginTop: isMobile ? '22px' : '18px' }}>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+              <div style={{ marginTop: isMobile ? '22px' : '6px' }}>
+                <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#1a1a1a', marginBottom: '5px', fontFamily: "'Playfair Display', serif" }}>
                   Elite Developer Network
                 </h3>
-                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                <p style={{ fontSize: '16px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
                 Access to Elite Developers across Pune & Hyderabad
                                 </p>
               </div>
@@ -1333,11 +1363,11 @@ export default function Home() {
                 </svg>
               </div>
 
-              <div style={{ marginTop: isMobile ? '24px' : '20px' }}>
+              <div style={{ marginTop: isMobile ? '24px' : '13px' }}>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                 Complete Transparency
                 </h3>
-                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
+                <p style={{ fontSize: '16px', color: '#4a4a4a', lineHeight: '1.5', margin: 0 }}>
                 No grey lines, no inflated numbers
 </p>
               </div>
@@ -1384,10 +1414,10 @@ export default function Home() {
               </div>
 
 
-              <div style={{ marginTop: isMobile ? '24px' : '20px' }}>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
+              <div style={{ marginTop: isMobile ? '24px' : '10px' }}>
+              <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
               End-to-End Support                </h3>
-                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
+                <p style={{ fontSize: '17px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
                 Till the moment you hold your keys              </p>
               </div>
             </div>
@@ -1433,14 +1463,15 @@ export default function Home() {
                 </svg>
               </div>
 
-              
+              <div style={{ marginTop: isMobile ? '24px' : '3px' }}>
               <div>
-                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#1a1a1a', marginBottom: '10px', fontFamily: "'Playfair Display', serif" }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#1a1a1a', marginBottom: '4px', fontFamily: "'Playfair Display', serif" }}>
                 Investment-Led Advisory
                 </h3>
-                <p style={{ fontSize: '14px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
+                <p style={{ fontSize: '17px', color: '#4a4a4a', lineHeight: '1.6', margin: 0 }}>
                 Growth, rental yield & appreciation insights </p>
               </div>
+            </div>
             </div>
           </div>
 
@@ -1455,7 +1486,7 @@ export default function Home() {
               boxShadow: '0 10px 25px rgba(0, 0, 0, 0.08)',
               backdropFilter: 'blur(10px)'
             }}>
-              <p style={{ fontSize: '16px', color: '#1a1a1a', fontStyle: 'italic', fontWeight: 500, margin: 0, fontFamily: "'Playfair Display', serif" }}>
+              <p style={{ fontSize: '18px', color: '#1a1a1a', fontStyle: 'italic', fontWeight: 500, margin: 0, fontFamily: "'Playfair Display', serif" }}>
                 "Luxury begins with clarity. We deliver both."
               </p>
             </div>
@@ -1607,10 +1638,10 @@ export default function Home() {
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Discovery Consultation
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '16px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                   Define requirements, expectations & aspirations                  </p>
                 </div>
               </div>
@@ -1717,10 +1748,10 @@ export default function Home() {
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Curated Project Showcase
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '16px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                   Only premium & value-aligned options                  </p>
                 </div>
               </div>
@@ -1753,10 +1784,10 @@ export default function Home() {
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Guided Site Tours
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '16px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                   Experience spaces before deciding                  </p>
                 </div>
               </div>
@@ -1863,10 +1894,10 @@ export default function Home() {
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#f5f5f5', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Negotiation & Closure
                   </h3>
-                  <p style={{ fontSize: '14px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '16px', color: '#b8b3a8', lineHeight: '1.5', margin: 0 }}>
                   Transparent & confident pricing
                   </p>
                 </div>
@@ -1899,10 +1930,10 @@ export default function Home() {
                 }}>
                   
                   
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginBottom: '8px', fontFamily: "'Playfair Display', serif" }}>
                     Complete Assistance
                   </h3>
-                  <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.5', margin: 0 }}>
+                  <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.5', margin: 0 }}>
                   We simplify everything                  </p>
                 </div>
               </div>
@@ -1966,7 +1997,7 @@ export default function Home() {
                 backdropFilter: 'blur(10px)'
               }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, color: 'black', marginBottom: '8px' }}>Effortless</h3>
-                <p style={{ fontSize: '16px', color: 'white', margin: 0 }}>Your journey is seamless</p>
+                <p style={{ fontSize: '20px', color: 'white', margin: 0 }}>Your journey is seamless</p>
               </div>
               <div style={{
                 padding: '30px',
@@ -1978,7 +2009,7 @@ export default function Home() {
                 backdropFilter: 'blur(10px)'
               }}>
                 <h3 style={{ fontSize: '24px', fontWeight: 700, color: 'black', marginBottom: '8px' }}>Exceptional</h3>
-                <p style={{ fontSize: '16px', color: 'white', margin: 0 }}>The destination is extraordinary</p>
+                <p style={{ fontSize: '20px', color: 'white', margin: 0 }}>The destination is extraordinary</p>
               </div>
             </div>
             
@@ -2186,7 +2217,7 @@ Invest with confidence. Live with pride.
 
         {/* Subtitle */}
         <p className="exclusive-collection3" style={{
-          fontSize: '18px',
+          fontSize: '20px',
           color: 'rgba(255, 255, 255, 0.85)',
           marginBottom: '12px',
           fontWeight: 500,
@@ -2197,7 +2228,7 @@ Invest with confidence. Live with pride.
 
         {/* Description */}
         <p className="exclusive-collection4" style={{
-          fontSize: '15px',
+          fontSize: '17px',
           color: '#ffffff',
           marginBottom: '32px',
           lineHeight: 1.7,
@@ -2437,8 +2468,8 @@ Invest with confidence. Live with pride.
                   flexShrink: 0
                 }}>VP</div>
                 <div>
-                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Venkat Prasad V</p>
-                  <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>Premium Property Owner</p>
+                  <p style={{ fontSize: '17px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Venkat Prasad V</p>
+                  <p style={{ fontSize: '15px', color: '#666', margin: 0 }}>Premium Property Owner</p>
                 </div>
               </div>
             </div>
@@ -2535,8 +2566,8 @@ Invest with confidence. Live with pride.
                   flexShrink: 0
                 }}>PM</div>
                 <div>
-                  <p style={{ fontSize: '14px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Prathamesh Mhatre</p>
-                  <p style={{ fontSize: '12px', color: '#666', margin: 0 }}>Investment Partner</p>
+                  <p style={{ fontSize: '17px', color: '#1a1a1a', fontWeight: 600, margin: '0 0 4px 0' }}>Prathamesh Mhatre</p>
+                  <p style={{ fontSize: '15px', color: '#666', margin: 0 }}>Investment Partner</p>
                 </div>
               </div>
             </div>
@@ -2851,13 +2882,21 @@ Invest with confidence. Live with pride.
           }}>
 
             <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '28px', fontWeight: 700, color: '#c79a4a', margin: '0 0 20px 0' }}>
-                SpaceSphere
-              </h3>
-              <p style={{ fontSize: '15px', lineHeight: '1.7', color: '#b8b3a8', margin: '0 0 16px 0' }}>
-                Where Luxury Meets Location. Where Investments Become Legacies.
-              </p>
-              <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#8a857a', margin: '0 0 24px 0', fontStyle: 'italic' }}>
+              <div style={{ margin: '0 0 20px 0' }}>
+                <img src="/logo2.png" alt="Space Sphere Logo" style={{ height: '120px', width: 'auto',marginLeft: '90px', }} />
+              </div>
+              <p
+  style={{
+    fontSize: "17px",
+    lineHeight: "1.7",
+    color: "#b8b3a8",
+    margin: "0 0 16px 0",
+    transform: "translateY(-15px)",
+  }}
+>
+  Where Luxury Meets Location. Where Investments Become Legacies.
+</p>
+              <p style={{ fontSize: '15px', lineHeight: '1.6', color: '#8a857a', margin: '0 0 24px 0', fontStyle: 'italic', transform: "translateY(-15px)"}}>
                 Your Trusted Partner for Smart Real Estate Choices.
               </p>
 
@@ -2891,7 +2930,7 @@ Invest with confidence. Live with pride.
 
 
             <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
-              <h4 style={{ fontSize: '18px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <h4 style={{ fontSize: '20px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Quick Links
               </h4>
               <ul style={{ 
@@ -2911,7 +2950,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Home</a></li>
                 <li><a 
                   href="#about" 
@@ -2922,7 +2961,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >About Us</a></li>
                 <li><a 
                   href="#projects" 
@@ -2933,7 +2972,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Projects</a></li>
                 <li><a 
                   href="#contact" 
@@ -2944,14 +2983,14 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Contact Us</a></li>
               </ul>
             </div>
 
 
             <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
-              <h4 style={{ fontSize: '18px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <h4 style={{ fontSize: '20px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Projects
               </h4>
               <ul style={{ 
@@ -2971,7 +3010,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Avinea by Vyom-Sigma</a></li>
               </ul>
             </div>
@@ -2979,7 +3018,7 @@ Invest with confidence. Live with pride.
 
             <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
   
-              <h4 className="office-subheading" style={{ fontSize: '18px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <h4 className="office-subheading" style={{ fontSize: '20px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
     Contact Info
   </h4>
               <ul style={{ 
@@ -2991,12 +3030,12 @@ Invest with confidence. Live with pride.
                 textAlign: isMobile ? 'left' : 'center'
               }}>
                 <li style={{ display: 'flex', alignItems: 'start', gap: '12px' }}>
-                  <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ marginTop: '2px', flexShrink: 0 }}>
+                  <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ marginTop: '5px', flexShrink: 0 }}>
                     <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                   </svg>
 
                   <div style={{ textAlign: isMobile ? 'left' : 'left' }}>
-                    <div style={{ color: '#b8b3a8', fontSize: '15px', lineHeight: '1.6', marginBottom: '8px' }}>
+                    <div style={{ color: '#b8b3a8', fontSize: '17px', lineHeight: '1.6', marginBottom: '8px' }}>
 204 Sapphire Chambers, First Floor, Suite 1186, Baner Road, Baner, Pune 411045
                     </div>
                   </div>
@@ -3005,13 +3044,13 @@ Invest with confidence. Live with pride.
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                   </svg>
-                  <a href="tel:+919121772320" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>+91 9121772320</a>
+                  <a href="tel:+919121772320" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px' }}>+91 9121772320</a>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                   </svg>
-                  <a href="mailto:crm@spacesphere.in" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '15px' }}>crm@spacesphere.in</a>
+                  <a href="mailto:crm@spacesphere.in" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px' }}>crm@spacesphere.in</a>
                 </li>
               </ul>
             </div>
@@ -3484,7 +3523,7 @@ right: isMobile ? "2px" : "16px",
             alignItems: isMobile ? 'flex-start' : 'center', 
             textAlign: isMobile ? 'left' : 'center' 
           }}>
-            <p style={{ color: '#8a857a', fontSize: '14px', margin: 0 }}>
+            <p style={{ color: '#8a857a', fontSize: '16px', margin: 0 }}>
               © {new Date().getFullYear()} SpaceSphere Realty. All rights reserved.
             </p>
 
@@ -3503,7 +3542,7 @@ right: isMobile ? "2px" : "16px",
     style={{
       color: '#8a857a',
       textDecoration: 'none',
-      fontSize: '13px',
+      fontSize: '16px',
       transition: 'color 0.3s ease'
     }}
   >
@@ -3517,7 +3556,7 @@ right: isMobile ? "2px" : "16px",
     style={{
       color: '#8a857a',
       textDecoration: 'none',
-      fontSize: '13px',
+      fontSize: '16px',
       transition: 'color 0.3s ease'
     }}
   >
@@ -3531,7 +3570,7 @@ right: isMobile ? "2px" : "16px",
     style={{
       color: '#8a857a',
       textDecoration: 'none',
-      fontSize: '13px',
+      fontSize: '16px',
       transition: 'color 0.3s ease'
     }}
   >
