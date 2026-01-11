@@ -295,7 +295,7 @@ body {
 
 @media (min-width: 768px) {
   .hero-brand {
-    font-size: 0.95rem;
+    font-size: 0.1rem;
     gap: 6px;
   }
 }
@@ -905,9 +905,16 @@ body {
 .office-header h2 {
   letter-spacing: 0.2em;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 3vw, 42px);
+  font-size: clamp(36px, 4vw, 52px);
   color: #b67e5b;
-  
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+  .office-header h2 {
+    font-size: clamp(58px, 17vw, 82px); /* bigger on mobile */
+    letter-spacing: 0.15em;           /* slightly tighter for readability */
+  }
 }
 
 .office-header p {
@@ -4468,19 +4475,19 @@ section[id="contact"]:hover [style*="width: '60px'"] {
     gap: 18px;
     justify-content: center;
   }
-  
+
   @media (max-width: 768px) {
     .hero-buttons {
       flex-direction: column;   /* ⬅ forces 2 lines */
       align-items: center;
-     
+
     }
-  
+
     .hero-secondary {
       margin-top: 12px;         /* spacing for 2nd line */
     }
   }
-  
+
 
   /* Ensure cards don't overflow */
   .floating-card,
@@ -4491,4 +4498,19 @@ section[id="contact"]:hover [style*="width: '60px'"] {
     box-sizing: border-box !important;
     overflow: hidden !important;
   }
+}
+
+/* Slow Zoom Animation for Contact Section Background */
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+/* Parallax Zoom Effect - Continuous slow zoom for all devices */
+.parallax-zoom {
+  animation: slowZoom 20s ease-in-out infinite alternate;
 }

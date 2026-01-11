@@ -485,8 +485,8 @@ export default function Home() {
     maxHeight: '60px',
     maxWidth: '180px',
     width: 'auto',
-    filter: isMobile ?  'none':'brightness(0) saturate(100%)' ,
-    transform: isMobile ?  'scale(1.4) translateY(5px) translateX(-3px)':'scale(1.8) translateY(2px) translateX(10px)',   // combine both
+    filter: isMobile ? (isScrolled ? 'brightness(0) saturate(100%)' : 'none') : 'brightness(0) saturate(100%)',
+    transform: isMobile ? 'scale(1.9) translateY(3px) translateX(-9px)' : 'scale(1.8) translateY(2px) translateX(10px)',
     transformOrigin: 'center left',
     transition: 'transform 0.3s ease, filter 0.3s ease',
   }}
@@ -778,8 +778,8 @@ export default function Home() {
   <p
     style={{
       margin: 0,
-      marginLeft: isMobile ? "-58px" : "0px",   // stronger pull
-      fontSize: isMobile ? "1.05rem" : "1.4rem",
+      marginLeft: isMobile ? "-55px" : "0px",   // stronger pull
+      fontSize: isMobile ? "1.1rem" : "1.4rem",
       fontWeight: 500,
       color: "#ffffff",
       letterSpacing: "0.04em",
@@ -802,8 +802,8 @@ export default function Home() {
   <p
     style={{
       margin: 0,
-      marginLeft: isMobile ? "-58px" : "0px",   // same pull here
-      fontSize: isMobile ? "1.05rem" : "1.4rem",
+      marginLeft: isMobile ? "-55px" : "0px",   // same pull here
+      fontSize: isMobile ? "1.1rem" : "1.4rem",
       fontWeight: 500,
       color: "#ffffff",
       letterSpacing: "0.04em",
@@ -1652,21 +1652,21 @@ export default function Home() {
         }}
       >
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
-      <h4
-    style={{
-      color: "white",
-      fontSize: isMobile ? "clamp(120px, 38vw, 50px)" : "47px",
-      marginTop: "26px",
-      fontWeight: 600,
-      textAlign: "center",
-      lineHeight: "1",
-      textShadow: "0 4px 30px rgba(0,0,0,0.6), 0 1px 0 rgba(0,0,0,0.3)",
-      
-      transition: "font-size 0.3s ease"
-    }}
-  >
-    Connecting People With Properties That Matter.
-  </h4>
+<h4
+  style={{
+    color: "white",
+    fontSize: isMobile ? "clamp(1.8rem, 8vw, 3rem)" : "47px",
+    marginTop: "26px",
+    fontWeight: 600,
+    textAlign: "center",
+    lineHeight: "1.1",
+    textShadow: "0 4px 30px rgba(0,0,0,0.6), 0 1px 0 rgba(0,0,0,0.3)",
+    transition: "font-size 0.3s ease",
+    whiteSpace: "normal"
+  }}
+>
+  Connecting People With Properties That Matter.
+</h4>
 </div>
 
       
@@ -2364,26 +2364,36 @@ Invest with confidence. Live with pride.
         </h3>
 
         {/* Subtitle */}
-        <p className="exclusive-collection3" style={{
-          fontSize: '20px',
-          color: 'rgba(255, 255, 255, 0.85)',
-          marginBottom: '12px',
-          fontWeight: 500,
-          letterSpacing: '0.01em'
-        }}>
+        <p
+  style={{fontSize: isMobile ? "29px" : "19px",   // readable but clearly bigger on mobile
+    color: "#ffffff",
+    transform: isMobile
+      ? "translateX(-64px) translateY(-18px)"   // remove shift on mobile
+      : "translateX(-65px) translateY(-27px)",
+    marginBottom: "32px",
+    lineHeight: isMobile ? 1.5 : 1.7,
+    maxWidth: "500px"
+  }}
+>
           Modern Luxury Living with Premium Amenities
         </p>
 
         {/* Description */}
-        <p className="exclusive-collection4" style={{
-          fontSize: '17px',
-          color: '#ffffff',
-          marginBottom: '32px',
-          lineHeight: 1.7,
-          maxWidth: '500px'
-        }}>
-          Experience contemporary architecture with thoughtful design, expansive layouts, and world-class amenities in an exclusive gated community.
-        </p>
+        <p
+  style={{
+    fontSize: isMobile ? "27px" : "19px",   // readable but clearly bigger on mobile
+    color: "#ffffff",
+    transform: isMobile
+      ? "translateX(-64px) translateY(-29px)"   // remove shift on mobile
+      : "translateX(-65px) translateY(-27px)",
+    marginBottom: "32px",
+    lineHeight: isMobile ? 1.5 : 1.7,
+    maxWidth: "500px"
+  }}
+>
+  Experience contemporary architecture with thoughtful design, expansive layouts, and world-class amenities in an exclusive gated community.
+</p>
+
 
         {/* CTA Buttons */}
         <div className="exclusive-collection5" style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -3135,7 +3145,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none',  fontSize: isMobile ? '27px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Home</a></li>
                 <li><a 
                   href="#about" 
@@ -3146,7 +3156,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '24px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >About Us</a></li>
                 <li><a 
                   href="#projects" 
@@ -3157,7 +3167,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '24px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Projects</a></li>
                 <li><a 
                   href="#contact" 
@@ -3168,7 +3178,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '24px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Contact Us</a></li>
               </ul>
             </div>
@@ -3195,7 +3205,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                   style={{ color: '#b8b3a8', fontSize: '17px', lineHeight: '1.6', marginBottom: '8px' }}
                 >Avinea by Vyom-Sigma</a></li>
               </ul>
             </div>
