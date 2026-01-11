@@ -735,7 +735,6 @@ export default function Home() {
         lineHeight: "1.05",
         margin: "0",
         color: "#ffffff",
-        fontStyle: "italic",
         textShadow:
           "0 4px 30px rgba(0,0,0,0.6), 0 1px 0 rgba(0,0,0,0.3)",
       }}
@@ -783,12 +782,11 @@ export default function Home() {
       fontSize: isMobile ? "1.05rem" : "1.4rem",
       fontWeight: 500,
       color: "#ffffff",
-      fontStyle: "italic",
       letterSpacing: "0.04em",
     }}
   >
     Discover{" "}
-    <span style={{ color: "#F5C36A", fontWeight: 600, fontStyle: "italic" }}>
+    <span style={{ color: "#F5C36A", fontStyle: "italic",fontWeight: 600, fontStyle: "italic" }}>
       Your Space
     </span>
   </p>
@@ -808,12 +806,11 @@ export default function Home() {
       fontSize: isMobile ? "1.05rem" : "1.4rem",
       fontWeight: 500,
       color: "#ffffff",
-      fontStyle: "italic",
       letterSpacing: "0.04em",
     }}
   >
     Expand{" "}
-    <span style={{ color: "#F5C36A", fontWeight: 600, fontStyle: "italic" }}>
+    <span style={{ color: "#F5C36A", fontStyle: "italic",fontWeight: 600, fontStyle: "italic" }}>
       Your Sphere
     </span>
   </p>
@@ -2853,7 +2850,7 @@ Invest with confidence. Live with pride.
               lineHeight: 1.2
             }}
           >
-            Schedule a Consultation
+          
           </h1>
 
           <h1 
@@ -3056,8 +3053,8 @@ Invest with confidence. Live with pride.
   src="/logo2.png"
   alt="Space Sphere Logo"
   style={{ 
-    height: isMobile ? '50px' : '120px',
-    maxHeight: isMobile ? '90px' : '120px',
+    height: isMobile ? '50px' : '140px',
+    maxHeight: isMobile ? '90px' : '160px',
     maxWidth: isMobile ? '90px' : '180px',
     width: 'auto',
     display: 'block',
@@ -3066,7 +3063,7 @@ Invest with confidence. Live with pride.
     marginTop: '0px',
     marginRight: isMobile ? 'auto' : '0px',
     marginBottom: isMobile ? '10px' : '20px',
-    marginLeft: isMobile ? '-16px' : '90px',
+    marginLeft: isMobile ? '-16px' : '83px',
 
     transition: 'all 0.3s ease'
   }} 
