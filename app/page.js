@@ -3525,8 +3525,8 @@ Invest with confidence. Live with pride.
             style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: isMobile ? '3px' : '40px',
-              maxWidth: isMobile ? '65vw' : '500px',
+              padding: isMobile ? '20px' : '48px',
+              maxWidth: isMobile ? '90vw' : '600px',
               width: '100%',
               maxHeight: '95vh',
               overflowY: 'auto',
