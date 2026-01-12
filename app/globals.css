@@ -3410,7 +3410,7 @@ section[id="contact"]:hover [style*="width: '60px'"] {
 /* Connecting People heading - larger on mobile */
 @media (max-width: 768px) {
   .connecting-people-heading {
-    font-size: clamp(1.9rem, 10vw, 1rem) !important;
+    font-size: clamp(1.8rem, 10vw, 1rem) !important;
   }
 }
 

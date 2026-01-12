@@ -1657,7 +1657,7 @@ export default function Home() {
   style={{
     color: "white",
     fontSize: isMobile ? "clamp(2.5rem, 12vw, 4rem)" : "47px",
-    marginTop: isMobile ? "15px" : "26px",
+    marginTop: isMobile ? "9px" : "26px",
     fontWeight: 600,
     textAlign: "center",
     lineHeight: "1.1",
