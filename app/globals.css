@@ -3156,7 +3156,7 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   }
   
   .office-header h2 {
-    font-size: clamp(24px, 5vw, 32px) !important;
+    font-size: clamp(45px, 8vw, 56px) !important;
     margin-bottom: 8px !important;
   }
   
@@ -3429,7 +3429,7 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   }
   
   .footer h4 {
-    font-size: 16px !important;
+    font-size: 22px !important;
     margin-bottom: 16px !important;
   }
   
@@ -3444,6 +3444,23 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   
   .footer a {
     font-size: 14px !important;
+  }
+  
+  /* Footer contact links - larger on mobile */
+  .footer a[href^="tel:"],
+  .footer a[href^="mailto:"] {
+    font-size: 16px !important;
+  }
+  
+  /* Footer navigation links - 17px on mobile using classes */
+  .footer .footer-nav-link {
+    font-size: 19px !important;
+  }
+  
+  .footer .footer-nav-link-first,
+  .footer .footer-nav-link.footer-nav-link-first,
+  .footer ul li:first-child a.footer-nav-link-first {
+    font-size: 17px !important;
   }
   
   .footer > div > div:last-child {
@@ -3933,10 +3950,13 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   }
   
   .about-hero-title,
-  .office-header h2,
   .space-sphere-edge-section h2,
   .what-we-offer h2 {
     font-size: clamp(20px, 6vw, 28px) !important;
+  }
+  
+  .office-header h2 {
+    font-size: clamp(40px, 8vw, 56px) !important;
   }
   
   .about-image-frame img {

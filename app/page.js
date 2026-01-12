@@ -2365,11 +2365,11 @@ Invest with confidence. Live with pride.
 
         {/* Subtitle */}
         <p
-  style={{fontSize: isMobile ? "29px" : "19px",   // readable but clearly bigger on mobile
+  style={{fontSize: isMobile ? "32px" : "19px",   // readable but clearly bigger on mobile
     color: "#ffffff",
     transform: isMobile
       ? "translateX(-64px) translateY(-18px)"   // remove shift on mobile
-      : "translateX(-65px) translateY(-27px)",
+      : "translateX(-1px) translateY(-2px)",   // moved down and right on desktop
     marginBottom: "32px",
     lineHeight: isMobile ? 1.5 : 1.7,
     maxWidth: "500px"
@@ -2381,11 +2381,11 @@ Invest with confidence. Live with pride.
         {/* Description */}
         <p
   style={{
-    fontSize: isMobile ? "27px" : "19px",   // readable but clearly bigger on mobile
+    fontSize: isMobile ? "30px" : "19px",   // readable but clearly bigger on mobile
     color: "#ffffff",
     transform: isMobile
       ? "translateX(-64px) translateY(-29px)"   // remove shift on mobile
-      : "translateX(-65px) translateY(-27px)",
+      : "translateX(-1px) translateY(-22px)",   // moved down and right on desktop
     marginBottom: "32px",
     lineHeight: isMobile ? 1.5 : 1.7,
     maxWidth: "500px"
@@ -3063,8 +3063,8 @@ Invest with confidence. Live with pride.
   src="/logo2.png"
   alt="Space Sphere Logo"
   style={{ 
-    height: isMobile ? '50px' : '140px',
-    maxHeight: isMobile ? '90px' : '160px',
+    height: isMobile ? '60px' : '140px',
+    maxHeight: isMobile ? '140px' : '160px',
     maxWidth: isMobile ? '90px' : '180px',
     width: 'auto',
     display: 'block',
@@ -3073,7 +3073,7 @@ Invest with confidence. Live with pride.
     marginTop: '0px',
     marginRight: isMobile ? 'auto' : '0px',
     marginBottom: isMobile ? '10px' : '20px',
-    marginLeft: isMobile ? '-16px' : '83px',
+    marginLeft: isMobile ? '-24px' : '83px',
 
     transition: 'all 0.3s ease'
   }} 
@@ -3125,7 +3125,7 @@ Invest with confidence. Live with pride.
 
 
             <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
-              <h4 style={{ fontSize: '20px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <h4 style={{ fontSize: isMobile ? '22px' : '20px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Quick Links
               </h4>
               <ul style={{ 
@@ -3138,6 +3138,7 @@ Invest with confidence. Live with pride.
               }}>
                 <li><a 
                   href="#home" 
+                  className="footer-nav-link footer-nav-link-first"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.querySelector('#home');
@@ -3145,10 +3146,11 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none',  fontSize: isMobile ? '27px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Home</a></li>
                 <li><a 
                   href="#about" 
+                  className="footer-nav-link"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.querySelector('#about');
@@ -3156,10 +3158,11 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '24px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '17px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >About Us</a></li>
                 <li><a 
                   href="#projects" 
+                  className="footer-nav-link"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.querySelector('#projects');
@@ -3167,10 +3170,11 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '24px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '17px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Projects</a></li>
                 <li><a 
                   href="#contact" 
+                  className="footer-nav-link"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.querySelector('#contact');
@@ -3178,14 +3182,14 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '24px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
+                  style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '17px' : '17px', transition: 'color 0.3s ease', cursor: 'pointer' }}
                 >Contact Us</a></li>
               </ul>
             </div>
 
 
             <div style={{ textAlign: isMobile ? 'left' : 'center' }}>
-              <h4 style={{ fontSize: '20px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <h4 style={{ fontSize: isMobile ? '22px' : '20px', fontWeight: 600, color: '#F2C66E', margin: '0 0 20px 0', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 Projects
               </h4>
               <ul style={{ 
@@ -3198,6 +3202,7 @@ Invest with confidence. Live with pride.
               }}>
                 <li><a 
                   href="#projects" 
+                  className="footer-nav-link"
                   onClick={(e) => {
                     e.preventDefault();
                     const element = document.querySelector('#projects');
@@ -3205,7 +3210,7 @@ Invest with confidence. Live with pride.
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
                   }}
-                   style={{ color: '#b8b3a8', fontSize: '17px', lineHeight: '1.6', marginBottom: '8px' }}
+                   style={{ color: '#b8b3a8', fontSize: isMobile ? '17px' : '17px', lineHeight: '1.6', marginBottom: '8px' }}
                 >Avinea by Vyom-Sigma</a></li>
               </ul>
             </div>
@@ -3239,13 +3244,13 @@ Invest with confidence. Live with pride.
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                   </svg>
-                  <a href="tel:+919121772320" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px' }}>+91 9121772320</a>
+                  <a href="tel:+919121772320" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '21px' : '17px' }}>+91 9121772320</a>
                 </li>
                 <li style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <svg width="18" height="18" fill="#c79a4a" viewBox="0 0 24 24" style={{ flexShrink: 0 }}>
                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                   </svg>
-                  <a href="mailto:crm@spacesphere.in" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: '17px' }}>crm@spacesphere.in</a>
+                  <a href="mailto:crm@spacesphere.in" style={{ color: '#b8b3a8', textDecoration: 'none', fontSize: isMobile ? '21px' : '17px' }}>crm@spacesphere.in</a>
                 </li>
               </ul>
             </div>
