@@ -3407,6 +3407,13 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   }
 }
 
+/* Connecting People heading - larger on mobile */
+@media (max-width: 768px) {
+  .connecting-people-heading {
+    font-size: clamp(1.9rem, 10vw, 1rem) !important;
+  }
+}
+
 /* Enhanced Footer Mobile */
 @media (max-width: 768px) {
   .footer {
@@ -3454,7 +3461,7 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   
   /* Footer navigation links - 17px on mobile using classes */
   .footer .footer-nav-link {
-    font-size: 19px !important;
+    font-size: 18px !important;
   }
   
   .footer .footer-nav-link-first,

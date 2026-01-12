@@ -1653,10 +1653,11 @@ export default function Home() {
       >
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
 <h4
+  className="connecting-people-heading"
   style={{
     color: "white",
-    fontSize: isMobile ? "clamp(1.8rem, 8vw, 3rem)" : "47px",
-    marginTop: "26px",
+    fontSize: isMobile ? "clamp(2.5rem, 12vw, 4rem)" : "47px",
+    marginTop: isMobile ? "15px" : "26px",
     fontWeight: 600,
     textAlign: "center",
     lineHeight: "1.1",
