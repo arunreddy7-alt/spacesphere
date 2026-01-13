@@ -15,10 +15,10 @@ const navLinks = [
 
 
 const heroImages = [
-  "/villa.jpg",
-  "/GalleryDown.jpg",
-  "/aprtment.jpg",
-  "/commercial.jpg",
+  "/villa.webp",
+  "/GalleryDown.webp",
+  "/aprtment.webp",
+  "/commercial.webp",
 ];
 
 const projects = [
@@ -886,7 +886,7 @@ export default function Home() {
           
           {/* Mobile-only image after subheading */}
           <div className="about-image-frame md:hidden" style={{ margin: '20px auto 0', maxWidth: '300px' }}>
-            <img src="/about1.jpg" alt="Luxury estate poolside" />
+            <img src="/about1.webp" alt="Luxury estate poolside" />
           </div>
           
           </div>
@@ -998,7 +998,7 @@ export default function Home() {
             </div>
 
             <div className="about-image-frame hidden md:block">
-              <img src="/about1.jpg" alt="Luxury estate poolside" />
+              <img src="/about1.webp" alt="Luxury estate poolside" />
             </div>
           </div>
         </div>
@@ -1643,7 +1643,7 @@ export default function Home() {
           paddingLeft: '80px',
           background: 'linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95))', 
           minHeight: '30vh',
-          backgroundImage: `url('/villa1.jpg')`,
+          backgroundImage: `url('/villa1.webp')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
@@ -1819,7 +1819,7 @@ export default function Home() {
                   background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
-                    src="/1.jpg" 
+                    src="/1.webp" 
                     alt="Consultation Meeting"
                     style={{
                       width: '100%',
@@ -1857,7 +1857,7 @@ export default function Home() {
                   background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
-                    src="/2.jpg" 
+                    src="/2.webp" 
                     alt="Premium Villa Properties"
                     style={{
                       width: '100%',
@@ -1965,7 +1965,7 @@ export default function Home() {
                   background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
-                    src="/3.jpg" 
+                    src="/3.webp" 
                     alt="Luxury Apartment Tour"
                     style={{
                       width: '100%',
@@ -2003,7 +2003,7 @@ export default function Home() {
                   background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
-                    src="/4.jpg" 
+                    src="/4.webp" 
                     alt="Commercial Property Negotiation"
                     style={{
                       width: '100%',
@@ -2112,7 +2112,7 @@ export default function Home() {
                   background: 'linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))'
                 }}>
                   <img 
-                    src="/5.jpg" 
+                    src="/5.webp" 
                     alt="Property Handover & Keys"
                     style={{
                       width: '100%',
@@ -2181,25 +2181,25 @@ export default function Home() {
           <div className="office-grid">
             <div className="office-card">
               <div className="office-image">
-                <img src="/apartment1.png" alt="Montecito coastline" />
+                <img src="/apartment1.webp" alt="Montecito coastline" />
               </div>
               <h3>Luxury Residential Apartments & High-Rise Towers</h3>
             </div>
             <div className="office-card">
               <div className="office-image">
-                <img src="/villas2.jpg" alt="Santa Barbara city view" />
+                <img src="/villas2.webp" alt="Santa Barbara city view" />
               </div>
               <h3>Signature Villas & Gated Communities</h3>
             </div>
             <div className="office-card">
               <div className="office-image">
-                <img src="/plot1.png" alt="Santa Ynez vineyards" />
+                <img src="/plot1.webp" alt="Santa Ynez vineyards" />
               </div>
               <h3>Premium Open Plots with Future Growth Vision</h3>
             </div>
             <div className="office-card">
               <div className="office-image">
-                <img src="/commercial2.jpg" alt="Napa Valley estates" />
+                <img src="/commercial2.webp" alt="Napa Valley estates" />
               </div>
               <h3>Commercial Spaces for High-Return Investors</h3>
             </div>
@@ -2230,7 +2230,7 @@ Invest with confidence. Live with pride.
     <div style={{
       position: 'absolute',
       inset: 0,
-      backgroundImage: 'url("/avinea.png")',
+      backgroundImage: 'url("/avinea.webp")',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       filter: 'brightness(1.02) contrast(1.05) saturate(1.1)'
@@ -2770,7 +2770,7 @@ Invest with confidence. Live with pride.
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundImage: 'url("/contact.jpg")',
+          backgroundImage: 'url("/contact.webp")',
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
@@ -2787,7 +2787,7 @@ Invest with confidence. Live with pride.
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundImage: 'url("/villa1.jpg")',
+            backgroundImage: 'url("/villa1.webp")',
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
             backgroundRepeat: 'no-repeat',
@@ -3274,12 +3274,13 @@ Invest with confidence. Live with pride.
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            zIndex: 9999,
+            zIndex: 100000,
             padding: '20px',
-            animation: 'fadeIn 0.3s ease-out'
+            animation: 'fadeIn 0.3s ease-out',
+            pointerEvents: 'auto'
           }}
         >
-          <div 
+            <div
             className="modal-content"
             onClick={(e) => e.stopPropagation()}
             style={{
@@ -3292,7 +3293,9 @@ Invest with confidence. Live with pride.
               overflowY: 'auto',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
               animation: 'slideUp 0.3s ease-out',
-              position: 'relative'
+              position: 'relative',
+              zIndex: 100001,
+              pointerEvents: 'auto'
             }}
           >
             <button
@@ -3333,34 +3336,65 @@ Invest with confidence. Live with pride.
               Fill out the form below and we'll get back to you shortly.
             </p>
             
-            <form 
-              onSubmit={(e) => {
+            <form
+              action="https://formspree.io/f/xaqqylqe"
+              method="POST"
+              onSubmit={async (e) => {
+                console.log('Form submit triggered');
                 e.preventDefault();
-                // Handle form submission here
-                alert('Thank you for your inquiry! We will contact you soon.');
-                setIsModalOpen(false);
+                const formData = new FormData(e.currentTarget);
+                console.log('FormData entries:');
+                for (let [key, value] of formData.entries()) {
+                  console.log(`${key}: ${value}`);
+                }
+                try {
+                  console.log('Sending request to Formspree...');
+                  const response = await fetch('https://formspree.io/f/xaqqylqe', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                      'Accept': 'application/json'
+                    }
+                  });
+                  console.log('Response status:', response.status);
+                  if (response.ok) {
+                    console.log('Form submitted successfully!');
+                    alert('Thank you for your inquiry! We will contact you soon.');
+                    setIsModalOpen(false);
+                  } else {
+                    console.error('Formspree error response:', response);
+                    alert('Something went wrong. Please try again.');
+                  }
+                } catch (error) {
+                  console.error('Fetch error:', error);
+                  alert('Something went wrong. Please try again.');
+                }
               }}
               style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
             >
               <input
                                                 type="text"
+                                                name="fullName"
                                                 placeholder="Full Name"
                                                 required
                                                 className="w-full px-4 py-3 text-black bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
                                             />
                                             <input
                                                 type="tel"
+                                                name="phoneNumber"
                                                 placeholder="Phone Number"
                                                 required
                                                 className="w-full px-4 py-3 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
                                             />
                                             <input
                                                 type="tel"
+                                                name="whatsappNumber"
                                                 placeholder="WhatsApp Number"
                                                 className="w-full px-4 py-3 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
                                             />
                                             <input
                                                 type="email"
+                                                name="email"
                                                 placeholder="Email Address"
                                                 required
                                                 className="w-full px-4 py-3 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none placeholder:text-black/30 text-black rounded-lg transition-colors text-sm"
@@ -3369,6 +3403,7 @@ Invest with confidence. Live with pride.
                                                 {/* Mobile: Dropdown Time */}
                                                 <div className="relative block md:hidden">
                                                     <select
+                                                        name="preferredTime"
                                                         required
                                                         defaultValue=""
                                                         className="w-full px-2 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
@@ -3400,6 +3435,7 @@ Invest with confidence. Live with pride.
                                                 {/* Mobile: Dropdown Date */}
                                                 <div className="relative block md:hidden">
                                                     <select
+                                                        name="preferredDate"
                                                         required
                                                         defaultValue=""
                                                         className="w-full px-2 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm appearance-none cursor-pointer"
@@ -3430,6 +3466,7 @@ Invest with confidence. Live with pride.
                                                 <div className="relative hidden md:block">
                                                 <input
   type="time"
+  name="preferredTime"
   required
   className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm"
 />
@@ -3438,6 +3475,7 @@ Invest with confidence. Live with pride.
                                                 <div className="relative hidden md:block">
                                                 <input
   type="date"
+  name="preferredDate"
   required
   className="w-full px-2.5 py-2 bg-black/5 border border-black/10 focus:border-[#997B29] focus:outline-none text-black rounded-lg transition-colors text-sm"
 />
@@ -3454,6 +3492,8 @@ Invest with confidence. Live with pride.
     <div className="relative w-4 h-4 border border-black/30 flex items-center justify-center transition-colors">
       <input
         type="checkbox"
+        name="interests"
+        value={item}
         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
         onChange={(e) => {
           const box = e.target.nextSibling;
@@ -3504,8 +3544,7 @@ Invest with confidence. Live with pride.
                                             >
                                                 Submit
                                             </button>
-
-            </form>
+</form>
           </div>
         </div>
       )}
@@ -3527,9 +3566,10 @@ Invest with confidence. Live with pride.
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            zIndex: 9999,
+            zIndex: 100000,
             padding: '20px',
-            animation: 'fadeIn 0.3s ease-out'
+            animation: 'fadeIn 0.3s ease-out',
+            pointerEvents: 'auto'
           }}
         >
           <div
@@ -3545,7 +3585,9 @@ Invest with confidence. Live with pride.
               overflowY: 'auto',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
               animation: 'slideUp 0.3s ease-out',
-              position: 'relative'
+              position: 'relative',
+              zIndex: 100001,
+              pointerEvents: 'auto'
             }}
           >
             <button
@@ -3568,10 +3610,16 @@ right: isMobile ? "1px" : "16px",
                 borderRadius: '50%',
                 transition: 'background 0.2s ease'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0, 0, 0, 0.1)'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 8px 20px rgba(199, 154, 74, 0.4)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
-              ×
+              
             </button>
       
             <h2
@@ -3599,11 +3647,29 @@ right: isMobile ? "1px" : "16px",
 
             
             <form 
-              onSubmit={(e) => {
+              action="https://formspree.io/f/xaqqylqe"
+              method="POST"
+              onSubmit={async (e) => {
                 e.preventDefault();
-                // Handle form submission here
-                alert('Thank you for your inquiry! Our team will contact you soon to schedule your private consultation.');
-                setIsInquiryModalOpen(false);
+                const formData = new FormData(e.currentTarget);
+                try {
+                  const response = await fetch('https://formspree.io/f/xaqqylqe', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                      'Accept': 'application/json'
+                    }
+                  });
+                  if (response.ok) {
+                    alert('Thank you for your inquiry! Our team will contact you soon to schedule your private consultation.');
+                    setIsInquiryModalOpen(false);
+                  } else {
+                    alert('Something went wrong. Please try again.');
+                  }
+                } catch (error) {
+                  console.error('Error:', error);
+                  alert('Something went wrong. Please try again.');
+                }
               }}
               style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}
             >
@@ -3613,6 +3679,7 @@ right: isMobile ? "1px" : "16px",
                 </label>
                 <input
                   type="text"
+                  name="fullName"
                   required
                   style={{
                     width: '100%',
@@ -3621,7 +3688,8 @@ right: isMobile ? "1px" : "16px",
                     borderRadius: '8px',
                     fontSize: '15px',
                     transition: 'border-color 0.2s ease',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    color:'black'
                   }}
                   onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
@@ -3634,6 +3702,7 @@ right: isMobile ? "1px" : "16px",
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
                   style={{
                     width: '100%',
@@ -3642,7 +3711,8 @@ right: isMobile ? "1px" : "16px",
                     borderRadius: '8px',
                     fontSize: '15px',
                     transition: 'border-color 0.2s ease',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    color:'black'
                   }}
                   onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
@@ -3655,6 +3725,7 @@ right: isMobile ? "1px" : "16px",
                 </label>
                 <input
                   type="tel"
+                  name="phoneNumber"
                   required
                   style={{
                     width: '100%',
@@ -3663,7 +3734,8 @@ right: isMobile ? "1px" : "16px",
                     borderRadius: '8px',
                     fontSize: '15px',
                     transition: 'border-color 0.2s ease',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    color:'black'
                   }}
                   onFocus={(e) => e.currentTarget.style.borderColor = '#c79a4a'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#ddd'}
@@ -3678,6 +3750,7 @@ right: isMobile ? "1px" : "16px",
                   Additional Message
                 </label>
                 <textarea
+                  name="message"
                   rows={isMobile ? 1 : 3}
                   style={{
                     width: '100%',
@@ -3700,11 +3773,26 @@ right: isMobile ? "1px" : "16px",
               <button
                 type="submit"
                 className="cta-button"
-                style={{ 
-                  width: '100%', 
-                  padding: '14px 26px', 
+                style={{
+                  width: '100%',
+                  padding: '14px 26px',
                   marginTop: '8px',
-                  fontSize: '16px'
+                  fontSize: '16px',
+                  cursor: 'pointer',
+                  background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  color: 'white',
+                  fontWeight: 600,
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 20px rgba(199, 154, 74, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 Submit Inquiry
