@@ -3286,10 +3286,10 @@ Invest with confidence. Live with pride.
             style={{
               background: '#ffffff',
               borderRadius: '16px',
-              padding: '40px',
-              maxWidth: '500px',
+              padding: isMobile ? '12px' : '40px',
+              maxWidth: isMobile ? '95vw' : '500px',
               width: '100%',
-              maxHeight: '95vh',
+              maxHeight: isMobile ? '95vh' : '95vh',
               overflowY: 'auto',
               boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
               animation: 'slideUp 0.3s ease-out',
@@ -3324,15 +3324,15 @@ Invest with confidence. Live with pride.
             </button>
             
             <h2 style={{ 
-              fontSize: '28px', 
+              fontSize: isMobile ? '18px' : '28px', 
               fontWeight: 700, 
               color: '#1a1a1a', 
-              marginBottom: '8px',
+              marginBottom: isMobile ? '4px' : '8px',
               fontFamily: "'Playfair Display', serif"
             }}>
               Get In Touch
             </h2>
-            <p style={{ fontSize: '16px', color: '#666', marginBottom: '32px' }}>
+            <p style={{ fontSize: isMobile ? '12px' : '16px', color: '#666', marginBottom: isMobile ? '10px' : '32px' }}>
               Fill out the form below and we'll get back to you shortly.
             </p>
             
@@ -3387,7 +3387,7 @@ Invest with confidence. Live with pride.
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                <label style={{ display: 'block', fontSize: isMobile ? '11px' : '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: isMobile ? '2px' : '8px' }}>
                   Email Address *
                 </label>
                 <input
@@ -3396,10 +3396,10 @@ Invest with confidence. Live with pride.
                   required
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: isMobile ? '8px 10px' : '12px 16px',
                     border: '1px solid #ddd',
                     borderRadius: '8px',
-                    fontSize: '15px',
+                    fontSize: isMobile ? '13px' : '15px',
                     transition: 'border-color 0.2s ease',
                     boxSizing: 'border-box',
                     color:'black'
@@ -3410,7 +3410,7 @@ Invest with confidence. Live with pride.
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                <label style={{ display: 'block', fontSize: isMobile ? '11px' : '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: isMobile ? '2px' : '8px' }}>
                   Phone Number *
                 </label>
                 <input
@@ -3419,10 +3419,10 @@ Invest with confidence. Live with pride.
                   required
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: isMobile ? '8px 10px' : '12px 16px',
                     border: '1px solid #ddd',
                     borderRadius: '8px',
-                    fontSize: '15px',
+                    fontSize: isMobile ? '13px' : '15px',
                     transition: 'border-color 0.2s ease',
                     boxSizing: 'border-box',
                     color:'black'
@@ -3433,7 +3433,7 @@ Invest with confidence. Live with pride.
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                <label style={{ display: 'block', fontSize: isMobile ? '11px' : '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: isMobile ? '2px' : '8px' }}>
                   WhatsApp Number
                 </label>
                 <input
@@ -3441,10 +3441,10 @@ Invest with confidence. Live with pride.
                   name="whatsappNumber"
                   style={{
                     width: '100%',
-                    padding: '12px 16px',
+                    padding: isMobile ? '8px 10px' : '12px 16px',
                     border: '1px solid #ddd',
                     borderRadius: '8px',
-                    fontSize: '15px',
+                    fontSize: isMobile ? '13px' : '15px',
                     transition: 'border-color 0.2s ease',
                     boxSizing: 'border-box',
                     color:'black'
@@ -3454,9 +3454,9 @@ Invest with confidence. Live with pride.
                 />
               </div>
               
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '4px' : '12px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  <label style={{ display: 'block', fontSize: isMobile ? '11px' : '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: isMobile ? '2px' : '8px' }}>
                     Preferred Time *
                   </label>
                   {isMobile ? (
@@ -3466,10 +3466,10 @@ Invest with confidence. Live with pride.
                       defaultValue=""
                       style={{
                         width: '100%',
-                        padding: '12px 16px',
+                        padding: isMobile ? '8px 10px' : '12px 16px',
                         border: '1px solid #ddd',
                         borderRadius: '8px',
-                        fontSize: '15px',
+                        fontSize: isMobile ? '13px' : '15px',
                         transition: 'border-color 0.2s ease',
                         boxSizing: 'border-box',
                         color: 'black',
@@ -3497,10 +3497,10 @@ Invest with confidence. Live with pride.
                       required
                       style={{
                         width: '100%',
-                        padding: '12px 16px',
+                        padding: isMobile ? '8px 10px' : '12px 16px',
                         border: '1px solid #ddd',
                         borderRadius: '8px',
-                        fontSize: '15px',
+                        fontSize: isMobile ? '13px' : '15px',
                         transition: 'border-color 0.2s ease',
                         boxSizing: 'border-box',
                         color: 'black'
@@ -3512,7 +3512,7 @@ Invest with confidence. Live with pride.
                 </div>
                 
                 <div>
-                  <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                  <label style={{ display: 'block', fontSize: isMobile ? '11px' : '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: isMobile ? '2px' : '8px' }}>
                     Preferred Date *
                   </label>
                   {isMobile ? (
@@ -3522,10 +3522,10 @@ Invest with confidence. Live with pride.
                       defaultValue=""
                       style={{
                         width: '100%',
-                        padding: '12px 16px',
+                        padding: isMobile ? '8px 10px' : '12px 16px',
                         border: '1px solid #ddd',
                         borderRadius: '8px',
-                        fontSize: '15px',
+                        fontSize: isMobile ? '13px' : '15px',
                         transition: 'border-color 0.2s ease',
                         boxSizing: 'border-box',
                         color: 'black',
@@ -3550,10 +3550,10 @@ Invest with confidence. Live with pride.
                       required
                       style={{
                         width: '100%',
-                        padding: '12px 16px',
+                        padding: isMobile ? '8px 10px' : '12px 16px',
                         border: '1px solid #ddd',
                         borderRadius: '8px',
-                        fontSize: '15px',
+                        fontSize: isMobile ? '13px' : '15px',
                         transition: 'border-color 0.2s ease',
                         boxSizing: 'border-box',
                         color: 'black'
@@ -3566,17 +3566,17 @@ Invest with confidence. Live with pride.
               </div>
               
               <div>
-                <label style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: '8px' }}>
+                <label style={{ display: 'block', fontSize: isMobile ? '11px' : '14px', fontWeight: 600, color: '#1a1a1a', marginBottom: isMobile ? '2px' : '8px' }}>
                   Interests
                 </label>
                 <div style={{ 
-                  padding: '16px', 
+                  padding: isMobile ? '8px' : '16px', 
                   backgroundColor: 'rgba(0, 0, 0, 0.05)', 
                   border: '1px solid #ddd', 
                   borderRadius: '8px',
                   display: 'grid',
                   gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
-                  gap: '12px'
+                  gap: isMobile ? '6px' : '12px'
                 }}>
                   {["2 BHK", "3 BHK", "4 BHK", "5 BHK", "6 BHK"].map((item) => (
                     <label
@@ -3584,9 +3584,9 @@ Invest with confidence. Live with pride.
                       style={{ 
                         display: 'flex', 
                         alignItems: 'center', 
-                        gap: '8px', 
+                        gap: isMobile ? '4px' : '8px', 
                         cursor: 'pointer',
-                        fontSize: '14px',
+                        fontSize: isMobile ? '11px' : '14px',
                         color: '#1a1a1a'
                       }}
                     >
@@ -3595,8 +3595,8 @@ Invest with confidence. Live with pride.
                         name="interests"
                         value={item}
                         style={{ 
-                          width: '16px', 
-                          height: '16px', 
+                          width: isMobile ? '12px' : '16px', 
+                          height: isMobile ? '12px' : '16px', 
                           cursor: 'pointer',
                           accentColor: '#c79a4a'
                         }}
@@ -3612,9 +3612,9 @@ Invest with confidence. Live with pride.
                 className="cta-button"
                 style={{
                   width: '100%',
-                  padding: '14px 26px',
-                  marginTop: '8px',
-                  fontSize: '16px',
+                  padding: isMobile ? '10px 16px' : '14px 26px',
+                  marginTop: isMobile ? '4px' : '8px',
+                  fontSize: isMobile ? '13px' : '16px',
                   cursor: 'pointer',
                   background: 'linear-gradient(135deg, #c79a4a 0%, #d4af6a 100%)',
                   border: 'none',
