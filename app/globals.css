@@ -499,6 +499,16 @@ body {
 .hero-card .hero-heading {
   text-align: left;
 }
+.office-subheading5 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 2.2px;
+  color: #000000;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 12px;
+}
 
 .hero-card .hero-subhead,
 .hero-card .hero-subhead.alt {
@@ -3954,6 +3964,16 @@ section[id="contact"]:hover [style*="width: '60px'"] {
   .space-sphere-edge-section,
   .what-we-offer {
     padding: 40px 16px !important;
+  }
+  .office-subheading5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2.2px;
+    color: #000000;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 12px;
   }
   
   .about-hero-title,
