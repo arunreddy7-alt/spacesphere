@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import Header from "../components/Header";
 import HeroSection from "../components/HeroSection";
 import AboutSection from "../components/AboutSection";
+import SpaceSphereEdge from "../components/SpaceSphereEdge";
 import WhatWeOfferSection from "../components/WhatWeOfferSection";
 import PortfolioSection from "../components/PortfolioSection";
 import ProjectsSection from "../components/ProjectsSection";
@@ -403,6 +404,8 @@ export default function Home() {
         isMobile={isMobile}
         setIsInquiryModalOpen={setIsInquiryModalOpen}
       />
+      <SpaceSphereEdge isMobile={false} />
+
 
       <WhatWeOfferSection
         isMobile={isMobile}
@@ -438,3 +441,4 @@ export default function Home() {
     </main>
   );
 }
+
