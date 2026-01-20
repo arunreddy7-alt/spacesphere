@@ -1,4 +1,4 @@
-// SpaceSphereEdge.js
+"use client";
 import React from "react";
 import {
   FaStar,
@@ -269,3 +269,4 @@ const styles = {
     textAlign: "left",
   },
 };
+
