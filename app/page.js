@@ -404,7 +404,7 @@ export default function Home() {
         isMobile={isMobile}
         setIsInquiryModalOpen={setIsInquiryModalOpen}
       />
-      <SpaceSphereEdge isMobile={false} />
+      <SpaceSphereEdge />
 
 
       <WhatWeOfferSection
