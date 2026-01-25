@@ -51,6 +51,7 @@ body {
       #e8edf3 40%,
       #cfd8e3 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
 }

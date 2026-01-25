@@ -8,73 +8,90 @@ const WhatWeOfferSection = React.memo(({
 }) => {
   const sectionRef = React.useRef(null);
   const lineRef = React.useRef(null);
+  const bannerRef = React.useRef(null);
+  const bannerBgRef = React.useRef(null);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current || !lineRef.current) return;
+      // 1. Timeline Fill Logic
+      if (sectionRef.current && lineRef.current) {
+        const sectionTop = sectionRef.current.offsetTop;
+        const sectionHeight = sectionRef.current.offsetHeight;
+        const scrolled = window.scrollY;
+        const windowHeight = window.innerHeight;
 
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
+        const startTrigger = sectionTop - windowHeight / 2;
+        const endTrigger = sectionTop + sectionHeight - windowHeight;
 
-      // Start filling when section comes into view (bottom of screen)
-      // Reach 100% when nearing end of section
-      // Adjust trigger point: 60% down the screen seems natural for reading
-      const triggerPoint = windowHeight * 0.6;
+        const scrollProgress = Math.max(0, Math.min(1, (scrolled - startTrigger) / (endTrigger - startTrigger)));
 
-      // Calculate how far the section top is from the trigger point
-      // When rect.top > triggerPoint, progress is 0
-      // When rect.top is negative (scrolled past), progress increases
+        lineRef.current.style.height = `${scrollProgress * 100}%`;
+      }
 
-      // rect.top is distance from viewport top
-      // distance traveled = triggerPoint - rect.top
-
-      const sectionHeight = rect.height;
-      const fillableHeight = sectionHeight * 0.85; // Fill most of the section but stop before very end padding
-
-      let progress = (triggerPoint - rect.top) / fillableHeight;
-      progress = Math.max(0, Math.min(1, progress));
-
-      lineRef.current.style.height = `${progress * 100}%`;
+      // 2. Parallax Logic for Banner (Pseudo-Fixed)
+      if (bannerRef.current && bannerBgRef.current) {
+        const rect = bannerRef.current.getBoundingClientRect();
+        // Move bg opposite to the section's movement to keep it fixed in viewport
+        bannerBgRef.current.style.transform = `translateY(${-rect.top}px)`;
+      }
     };
 
-    let rafId;
-    const onScroll = () => {
-      cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(handleScroll);
-    };
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    handleScroll(); // Initial check
+    // Initial calculation to prevent jump
+    handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, []);
 
   return (
     <>
       <section
+        ref={bannerRef}
         style={{
           paddingTop: "80px",
           paddingRight: "80px",
           paddingBottom: "60px",
           paddingLeft: "80px",
-          background:
-            "linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95))",
-          minHeight: "30vh",
-          backgroundImage: `url('/villa1.webp')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-          backgroundRepeat: "no-repeat",
-          backgroundAttachment: "scroll",
-          color: "#000000",
+          minHeight: "40vh",
+          position: "relative",
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
+        {/* Fixed Background Layer */}
+        <div
+          ref={bannerBgRef}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100vh", // Full viewport height for fixed effect
+            zIndex: 0,
+            willChange: "transform",
+            pointerEvents: "none",
+          }}
+        >
+          <Image
+            src="/villa1.webp"
+            alt="Property Background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+
         <div
           style={{
+            position: "relative",
+            zIndex: 1,
             maxWidth: "1000px",
             margin: "0 auto",
             padding: "0 24px",
