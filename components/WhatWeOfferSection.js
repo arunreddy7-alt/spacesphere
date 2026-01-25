@@ -6,6 +6,54 @@ const WhatWeOfferSection = React.memo(({
   isMobile,
   setIsModalOpen
 }) => {
+  const sectionRef = React.useRef(null);
+  const lineRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current || !lineRef.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Start filling when section comes into view (bottom of screen)
+      // Reach 100% when nearing end of section
+      // Adjust trigger point: 60% down the screen seems natural for reading
+      const triggerPoint = windowHeight * 0.6;
+
+      // Calculate how far the section top is from the trigger point
+      // When rect.top > triggerPoint, progress is 0
+      // When rect.top is negative (scrolled past), progress increases
+
+      // rect.top is distance from viewport top
+      // distance traveled = triggerPoint - rect.top
+
+      const sectionHeight = rect.height;
+      const fillableHeight = sectionHeight * 0.85; // Fill most of the section but stop before very end padding
+
+      let progress = (triggerPoint - rect.top) / fillableHeight;
+      progress = Math.max(0, Math.min(1, progress));
+
+      lineRef.current.style.height = `${progress * 100}%`;
+    };
+
+    let rafId;
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(handleScroll);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <>
       <section
@@ -57,6 +105,7 @@ const WhatWeOfferSection = React.memo(({
 
       <section
         id="what-we-offer"
+        ref={sectionRef}
         className="what-we-offer"
         style={{
           padding: "80px 0",
@@ -133,20 +182,22 @@ const WhatWeOfferSection = React.memo(({
               }}
             ></div>
 
-            {/* Central Timeline Line - Static Gold Line */}
+            {/* Central Timeline Line - Dynamic Fill Line */}
             <div
+              ref={lineRef}
               style={{
                 position: "absolute",
                 left: "50%",
                 top: "0",
-                bottom: "0",
                 width: "4px",
+                height: "0%", // Controlled by JS
                 background:
                   "linear-gradient(180deg, rgba(199, 154, 74, 0.8) 0%, rgba(212, 175, 106, 0.9) 50%, rgba(199, 154, 74, 0.8) 100%)",
                 transform: "translateX(-50%)",
                 borderRadius: "2px",
                 zIndex: 2,
                 boxShadow: "0 0 12px rgba(199, 154, 74, 0.3)",
+                transition: "height 0.1s linear", // Smooth out tiny jitter
               }}
             />
 
