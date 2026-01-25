@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const Header = React.memo(({
   isScrolled,
@@ -23,14 +24,18 @@ const Header = React.memo(({
         className={`flex items-center gap-2 ml-3 md:ml-10 ${isScrolled ? "visible" : ""
           }`}
       >
-        <img
+        <Image
           src="/logo2.png"
           alt="Space Sphere Logo"
+          width={180}
+          height={60}
+          priority
           className="md:block object-contain transition-all duration-300"
           style={{
             maxHeight: "60px",
             maxWidth: "180px",
             width: "auto",
+            height: "auto",
             filter: isMobile
               ? isScrolled
                 ? "brightness(0) saturate(100%)"

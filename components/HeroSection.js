@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 const HeroSection = React.memo(({
   heroImages,
@@ -66,9 +67,12 @@ const HeroSection = React.memo(({
         <div className="hero-shell">
           <div className="hero-topbar">
             <div className="hero-brand ml-4 sm:ml-6 md:ml-10 ">
-              <img
+              <Image
                 src="/logo2.png"
                 alt="Space Sphere Logo"
+                width={220}
+                height={140}
+                priority
                 className="hidden md:block h-14 sm:h-16 md:h-20 lg:h-24 max-w-[100px] sm:max-w-[140px] md:max-w-[180px] lg:max-w-[220px] object-contain transition-all duration-300"
                 style={{
                   height: "140px",

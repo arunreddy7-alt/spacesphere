@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const FooterSection = React.memo(({
   isMobile,
@@ -43,9 +44,11 @@ const FooterSection = React.memo(({
                   marginLeft: "0",
                 }}
               >
-                <img
+                <Image
                   src="/logo2.png"
                   alt="Space Sphere Logo"
+                  width={180}
+                  height={160}
                   style={{
                     height: isMobile ? "60px" : "140px",
                     maxHeight: isMobile ? "140px" : "160px",

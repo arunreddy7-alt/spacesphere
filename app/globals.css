@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Crimson+Text:wght@400;600&family=Cormorant+Garamond:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
+/* MOBILE PERFORMANCE: Pause animations on mobile to improve scroll */
+@media (max-width: 768px) {
+
+  *,
+  *::before,
+  *::after {
+    animation-play-state: paused !important;
+    animation: none !important;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -146,23 +157,21 @@ body {
 .hero-image-animated {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(120deg, rgba(0, 0, 0, 0.78) 18%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 0.82) 100%),
-    var(--hero-url);
-  background-size: cover;
-  background-position: center;
+  background-color: #000;
+  overflow: hidden;
 }
 
 /* Cross-fade hero layers */
 .hero-fade-layer {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%),
-    var(--hero-url);
+  background-image: var(--hero-url);
   background-size: cover;
   background-position: center;
-  will-change: opacity;
+  background-image: var(--hero-url);
+  background-size: cover;
+  background-position: center;
+  will-change: opacity, transform;
 }
 
 /* Current slide - always visible underneath */
@@ -175,13 +184,16 @@ body {
 .hero-fade-next {
   z-index: 2;
   opacity: 0;
+  transform: scale(1.08);
+  /* Start slightly zoomed in */
   transition: none;
 }
 
 /* When active, next slide fades in */
 .hero-fade-active {
   opacity: 1;
-  transition: opacity 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+  transition: opacity 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 2.8s ease-out;
 }
 
 @keyframes heroImageFade {
@@ -257,9 +269,12 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 35%),
+  background:
+    linear-gradient(135deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.7) 100%),
+    radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.08) 0%, transparent 35%),
     radial-gradient(circle at 80% 10%, rgba(255, 215, 0, 0.12) 0%, transparent 30%);
   pointer-events: none;
+  z-index: 5;
 }
 
 .hero-shell {
@@ -912,15 +927,18 @@ body {
   justify-self: end;
   width: 120%;
   max-width: 550px;
+  height: 440px;
   transform: translate(56px, -20px);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.12);
+  position: relative;
+  /* Ensure relative positioning for fill */
 }
 
 .about-image-frame img {
   width: 100%;
-  height: 440px;
+  height: 100%;
   display: block;
   object-fit: cover;
   /* move up */

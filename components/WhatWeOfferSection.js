@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const WhatWeOfferSection = React.memo(({
   isMobile,
@@ -249,12 +250,12 @@ const WhatWeOfferSection = React.memo(({
                       "linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))",
                   }}
                 >
-                  <img
+                  <Image
                     src="/1.webp"
                     alt="Consultation Meeting"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 350px"
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover",
                       filter:
                         "brightness(1.05) contrast(1.05) saturate(1.1)",
@@ -296,12 +297,12 @@ const WhatWeOfferSection = React.memo(({
                       "linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))",
                   }}
                 >
-                  <img
+                  <Image
                     src="/2.webp"
                     alt="Premium Villa Properties"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 350px"
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover",
                       filter:
                         "brightness(1.05) contrast(1.05) saturate(1.1)",
@@ -475,12 +476,12 @@ const WhatWeOfferSection = React.memo(({
                       "linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))",
                   }}
                 >
-                  <img
+                  <Image
                     src="/3.webp"
                     alt="Luxury Apartment Tour"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 350px"
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover",
                       filter:
                         "brightness(1.05) contrast(1.05) saturate(1.1)",
@@ -524,12 +525,12 @@ const WhatWeOfferSection = React.memo(({
                       "linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))",
                   }}
                 >
-                  <img
+                  <Image
                     src="/4.webp"
                     alt="Commercial Property Negotiation"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 350px"
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover",
                       filter:
                         "brightness(1.05) contrast(1.05) saturate(1.1)",
@@ -704,12 +705,12 @@ const WhatWeOfferSection = React.memo(({
                       "linear-gradient(135deg, rgba(199, 154, 74, 0.1), rgba(199, 154, 74, 0.05))",
                   }}
                 >
-                  <img
+                  <Image
                     src="/5.webp"
                     alt="Property Handover & Keys"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 350px"
                     style={{
-                      width: "100%",
-                      height: "100%",
                       objectFit: "cover",
                       filter:
                         "brightness(1.05) contrast(1.05) saturate(1.1)",

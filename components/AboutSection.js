@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const AboutSection = React.memo(({ isMobile, setIsInquiryModalOpen }) => {
   return (
@@ -14,10 +15,10 @@ const AboutSection = React.memo(({ isMobile, setIsInquiryModalOpen }) => {
 
           {/* Mobile-only image after subheading */}
           <div
-            className="about-image-frame md:hidden"
-            style={{ margin: "20px auto 0", maxWidth: "300px" }}
+            className="about-image-frame md:hidden relative"
+            style={{ margin: "20px auto 0", maxWidth: "300px", height: "300px" }}
           >
-            <img src="/about1.webp" alt="Luxury estate poolside" />
+            <Image src="/about1.webp" alt="Luxury estate poolside" fill className="object-cover" />
           </div>
         </div>
 
@@ -175,8 +176,8 @@ const AboutSection = React.memo(({ isMobile, setIsInquiryModalOpen }) => {
             </button>
           </div>
 
-          <div className="about-image-frame hidden md:block">
-            <img src="/about1.webp" alt="Luxury estate poolside" />
+          <div className="about-image-frame hidden md:block relative">
+            <Image src="/about1.webp" alt="Luxury estate poolside" fill className="object-cover" />
           </div>
         </div>
       </div>

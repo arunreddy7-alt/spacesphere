@@ -21,7 +21,6 @@ const ConnectWithUsSection = React.memo(({
         backgroundSize: "cover",
         backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
         overflow: "hidden",
       }}
     >
@@ -38,9 +37,7 @@ const ConnectWithUsSection = React.memo(({
           backgroundSize: "cover",
           backgroundPosition: "center center",
           backgroundRepeat: "no-repeat",
-          backgroundAttachment: "fixed",
           transform: "translateZ(0)",
-          willChange: "transform",
         }}
       />
 
