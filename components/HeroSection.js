@@ -1,16 +1,46 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 
-const HeroSection = ({
+const HeroSection = React.memo(({
   heroImages,
-  currentSlide,
-  nextSlide,
-  isTransitioning,
   isMobile,
   navLinks,
   setIsMobileMenuOpen,
   setIsInquiryModalOpen,
 }) => {
+  // Internal slideshow state - no longer from props
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [nextSlide, setNextSlide] = useState(1);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const currentSlideRef = useRef(0);
+  const nextSlideRef = useRef(1);
+
+  // Slideshow interval - runs entirely within this component
+  useEffect(() => {
+    const FADE_DURATION = 2800;
+    const SLIDE_INTERVAL = 3000;
+
+    const advanceSlide = () => {
+      setIsTransitioning(true);
+
+      setTimeout(() => {
+        const newCurrent = nextSlideRef.current;
+        const newNext = (newCurrent + 1) % heroImages.length;
+
+        setCurrentSlide(newCurrent);
+        setNextSlide(newNext);
+
+        currentSlideRef.current = newCurrent;
+        nextSlideRef.current = newNext;
+
+        setIsTransitioning(false);
+      }, FADE_DURATION);
+    };
+
+    const intervalId = setInterval(advanceSlide, SLIDE_INTERVAL);
+    return () => clearInterval(intervalId);
+  }, [heroImages.length]);
+
   return (
     <section id="home" className="relative min-h-screen hero-bg text-white">
       {/* Current slide layer - always visible */}
@@ -23,9 +53,8 @@ const HeroSection = ({
 
       {/* Next slide layer - fades in over current */}
       <div
-        className={`hero-fade-layer hero-fade-next ${
-          isTransitioning ? "hero-fade-active" : ""
-        }`}
+        className={`hero-fade-layer hero-fade-next ${isTransitioning ? "hero-fade-active" : ""
+          }`}
         style={{
           ["--hero-url"]: `url("${heroImages[nextSlide]}")`,
         }}
@@ -45,7 +74,7 @@ const HeroSection = ({
                   height: "140px",
                   maxWidth: "220px",
                   width: "auto",
-                  transform: "translateY(-35px)", // moves image up slightly
+                  transform: "translateY(-35px)",
                   transition:
                     "height 0.3s ease, max-width 0.3s ease, transform 0.3s ease",
                 }}
@@ -55,7 +84,7 @@ const HeroSection = ({
             <nav
               className="hero-nav"
               style={{
-                transform: "translateY(-35px)", // move a little up
+                transform: "translateY(-35px)",
                 transition: "transform 0.3s ease",
               }}
             >
@@ -84,7 +113,7 @@ const HeroSection = ({
             <div
               className="hero-actions"
               style={{
-                transform: "translateY(-35px)", // same upward shift
+                transform: "translateY(-35px)",
                 transition: "transform 0.3s ease",
               }}
             >
@@ -195,7 +224,7 @@ const HeroSection = ({
                 <p
                   style={{
                     margin: 0,
-                    marginLeft: isMobile ? "-55px" : "0px", // stronger pull
+                    marginLeft: isMobile ? "-55px" : "0px",
                     fontSize: isMobile ? "1.1rem" : "1.4rem",
                     fontWeight: 500,
                     color: "#ffffff",
@@ -225,7 +254,7 @@ const HeroSection = ({
                 <p
                   style={{
                     margin: 0,
-                    marginLeft: isMobile ? "-55px" : "0px", // same pull here
+                    marginLeft: isMobile ? "-55px" : "0px",
                     fontSize: isMobile ? "1.1rem" : "1.4rem",
                     fontWeight: 500,
                     color: "#ffffff",
@@ -301,6 +330,9 @@ const HeroSection = ({
       </div>
     </section>
   );
-};
+});
+
+HeroSection.displayName = "HeroSection";
 
 export default HeroSection;
+

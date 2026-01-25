@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const AboutSection = ({ isMobile, setIsInquiryModalOpen }) => {
+const AboutSection = React.memo(({ isMobile, setIsInquiryModalOpen }) => {
   return (
     <section id="about" className="about-slab">
       <div className="about-wrap">
@@ -182,7 +182,8 @@ const AboutSection = ({ isMobile, setIsInquiryModalOpen }) => {
       </div>
     </section>
   );
-};
+});
+
+AboutSection.displayName = "AboutSection";
 
 export default AboutSection;
-

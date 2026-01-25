@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const ConnectWithUsSection = ({
+const ConnectWithUsSection = React.memo(({
   contactSectionRef,
   contactSectionInView,
   setIsInquiryModalOpen,
@@ -53,9 +53,7 @@ const ConnectWithUsSection = ({
           left: 0,
           right: 0,
           bottom: 0,
-          background: "rgba(15, 15, 15, 0.4)",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
+          background: "rgba(15, 15, 15, 0.75)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -166,7 +164,7 @@ const ConnectWithUsSection = ({
               setIsInquiryModalOpen(true);
             }}
             style={{
-              background: "transparent",
+              background: "rgba(0, 0, 0, 0.6)",
               border: "2px solid #C79A4A",
               color: "#ffffff",
               padding: "18px 32px",
@@ -177,7 +175,6 @@ const ConnectWithUsSection = ({
               borderRadius: "4px",
               cursor: "pointer",
               transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-              backdropFilter: "blur(10px)",
               position: "relative",
               overflow: "hidden",
               minWidth: "280px",
@@ -224,7 +221,7 @@ const ConnectWithUsSection = ({
               setIsInquiryModalOpen(true);
             }}
             style={{
-              background: "transparent",
+              background: "rgba(0, 0, 0, 0.6)",
               border: "2px solid #C79A4A",
               color: "#ffffff",
               padding: "18px 32px",
@@ -235,7 +232,6 @@ const ConnectWithUsSection = ({
               borderRadius: "4px",
               cursor: "pointer",
               transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-              backdropFilter: "blur(10px)",
               position: "relative",
               overflow: "hidden",
               minWidth: "280px",
@@ -295,6 +291,8 @@ const ConnectWithUsSection = ({
       />
     </section>
   );
-};
+});
+
+ConnectWithUsSection.displayName = "ConnectWithUsSection";
 
 export default ConnectWithUsSection;

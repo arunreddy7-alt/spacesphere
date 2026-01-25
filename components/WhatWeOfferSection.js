@@ -1,11 +1,9 @@
 "use client";
 import React from "react";
 
-const WhatWeOfferSection = React.memo(({ 
-  isMobile, 
-  timelineScrollProgress, 
-  timelineSectionRef, 
-  setIsModalOpen 
+const WhatWeOfferSection = React.memo(({
+  isMobile,
+  setIsModalOpen
 }) => {
   return (
     <>
@@ -58,7 +56,6 @@ const WhatWeOfferSection = React.memo(({
 
       <section
         id="what-we-offer"
-        ref={timelineSectionRef}
         className="what-we-offer"
         style={{
           padding: "80px 0",
@@ -135,32 +132,22 @@ const WhatWeOfferSection = React.memo(({
               }}
             ></div>
 
-            {/* Central Timeline Line - Dynamic Filled Portion */}
+            {/* Central Timeline Line - Static Gold Line */}
             <div
               style={{
                 position: "absolute",
                 left: "50%",
                 top: "0",
+                bottom: "0",
                 width: "4px",
-                height: `${timelineScrollProgress * 100}%`,
                 background:
                   "linear-gradient(180deg, rgba(199, 154, 74, 0.8) 0%, rgba(212, 175, 106, 0.9) 50%, rgba(199, 154, 74, 0.8) 100%)",
                 transform: "translateX(-50%)",
                 borderRadius: "2px",
                 zIndex: 2,
-                boxShadow:
-  timelineScrollProgress > 0
-    ? "0 0 12px rgba(199, 154, 74, 0.3)"
-    : "none",
-
-                transition: "height 0.1s ease-out",
-                overflow: "hidden",
-                willChange: "height, transform",
+                boxShadow: "0 0 12px rgba(199, 154, 74, 0.3)",
               }}
-            >
-                           
-                
-            </div>
+            />
 
             {/* Step 1 - Discovery Consultation */}
             <div
@@ -197,7 +184,6 @@ const WhatWeOfferSection = React.memo(({
                     transform: "translateX(0)",
                     transition:
                       "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                    backdropFilter: "blur(10px)",
                   }}
                 >
                   <h3
@@ -362,7 +348,6 @@ const WhatWeOfferSection = React.memo(({
                     transform: "translateX(0)",
                     transition:
                       "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                    backdropFilter: "blur(10px)",
                   }}
                 >
                   <h3
@@ -426,7 +411,6 @@ const WhatWeOfferSection = React.memo(({
                     transform: "translateX(0)",
                     transition:
                       "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                    backdropFilter: "blur(10px)",
                   }}
                 >
                   <h3
@@ -592,7 +576,6 @@ const WhatWeOfferSection = React.memo(({
                     transform: "translateX(0)",
                     transition:
                       "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                    backdropFilter: "blur(10px)",
                   }}
                 >
                   <h3
@@ -764,7 +747,6 @@ const WhatWeOfferSection = React.memo(({
                     "0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3), 0 0 30px rgba(199, 154, 74, 0.2)",
                   border:
                     "2px solid rgba(255, 255, 255, 0.25)",
-                  backdropFilter: "blur(10px)",
                 }}
               >
                 <h3
@@ -797,7 +779,6 @@ const WhatWeOfferSection = React.memo(({
                     "0 20px 40px rgba(199, 154, 74, 0.4), 0 10px 25px rgba(199, 154, 74, 0.3), 0 0 30px rgba(199, 154, 74, 0.2)",
                   border:
                     "2px solid rgba(255, 255, 255, 0.25)",
-                  backdropFilter: "blur(10px)",
                 }}
               >
                 <h3
