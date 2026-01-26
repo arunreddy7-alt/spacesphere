@@ -61,18 +61,7 @@ const experienceCenterImages = [
 ];
 
 export default function Home() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [nextSlide, setNextSlide] = useState(1);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const currentSlideRef = useRef(0);
-  const nextSlideRef = useRef(1);
-  const [currentProjectSlide, setCurrentProjectSlide] = useState(0);
-  const [projectImageIndices, setProjectImageIndices] = useState(
-    projects.map(() => 0)
-  );
-  const [poolImageIndex, setPoolImageIndex] = useState(0);
-  const [experienceImageIndex, setExperienceImageIndex] = useState(0);
-
+  // Simplified state - hero slideshow now handled internally by HeroSection
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -80,8 +69,6 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState("consultation");
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
-  const [timelineScrollProgress, setTimelineScrollProgress] = useState(0);
-  const timelineSectionRef = useRef(null);
 
   const [contactSectionInView, setContactSectionInView] = useState(false);
   const contactSectionRef = useRef(null);
@@ -163,81 +150,27 @@ export default function Home() {
     );
   }, [formData]);
 
-  // slideshow + scroll logic (same as original)
+  // Removed: Hero slideshow interval - now handled inside HeroSection component
+  // Removed: Project/pool/experience intervals - were unused
+
+
+  // Optimized scroll handler - only updates state when threshold is crossed
   useEffect(() => {
-    const FADE_DURATION = 2800;
-    const SLIDE_INTERVAL = 3000;
+    let lastScrolledState = false;
 
-    const advanceSlide = () => {
-      setIsTransitioning(true);
-
-      setTimeout(() => {
-        const newCurrent = nextSlideRef.current;
-        const newNext = (newCurrent + 1) % heroImages.length;
-
-        setCurrentSlide(newCurrent);
-        setNextSlide(newNext);
-
-        currentSlideRef.current = newCurrent;
-        nextSlideRef.current = newNext;
-
-        setIsTransitioning(false);
-      }, FADE_DURATION);
-    };
-
-    const intervalId = setInterval(advanceSlide, SLIDE_INTERVAL);
-    return () => clearInterval(intervalId);
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setCurrentProjectSlide((prev) => (prev + 1) % projects.length);
-    }, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setProjectImageIndices((prev) =>
-        prev.map((idx, i) => {
-          const nextIdx = idx + 1;
-          if (nextIdx >= projects[i].images.length) {
-            return 0;
-          }
-          return nextIdx;
-        })
-      );
-    }, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setPoolImageIndex((prev) => (prev + 1) % poolImages.length);
-    }, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setExperienceImageIndex(
-        (prev) => (prev + 1) % experienceCenterImages.length
-      );
-    }, 4000);
-    return () => clearInterval(id);
-  }, []);
-
-  useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 200);
+      const isNowScrolled = window.scrollY > 200;
+      if (isNowScrolled !== lastScrolledState) {
+        lastScrolledState = isNowScrolled;
+        setIsScrolled(isNowScrolled);
+      }
     };
 
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
 
     setIsMobile(window.innerWidth < 768);
@@ -247,65 +180,7 @@ export default function Home() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  const easeInOutCubic = (t) => {
-    return t < 0.5
-      ? 4 * t * t * t
-      : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  };
-
-  useEffect(() => {
-    const handleTimelineScroll = () => {
-      if (!timelineSectionRef.current) return;
-
-      const section = timelineSectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const sectionTop = rect.top + window.scrollY;
-      const sectionHeight = rect.height;
-      const windowHeight = window.innerHeight;
-      const scrollPosition = window.scrollY;
-
-      const startPoint = sectionTop - windowHeight * 0.8;
-      const endPoint =
-        sectionTop + sectionHeight - windowHeight * 0.2;
-
-      let progress = 0;
-
-      if (scrollPosition <= startPoint) {
-        progress = 0;
-      } else if (scrollPosition >= endPoint) {
-        progress = 1;
-      } else {
-        progress =
-          (scrollPosition - startPoint) / (endPoint - startPoint);
-        progress = Math.max(0, Math.min(1, progress));
-      }
-
-      const easedProgress = easeInOutCubic(progress);
-      setTimelineScrollProgress(easedProgress);
-    };
-
-    let ticking = false;
-    const throttledHandleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleTimelineScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener("scroll", throttledHandleScroll, {
-      passive: true,
-    });
-
-    handleTimelineScroll();
-
-    return () => {
-      window.removeEventListener("scroll", throttledHandleScroll);
-    };
-  }, []);
+  // Removed: Timeline scroll handler - was causing re-renders on every scroll frame
 
   useEffect(() => {
     const scrolled = window.pageYOffset;
@@ -391,9 +266,6 @@ export default function Home() {
 
       <HeroSection
         heroImages={heroImages}
-        currentSlide={currentSlide}
-        nextSlide={nextSlide}
-        isTransitioning={isTransitioning}
         isMobile={isMobile}
         navLinks={navLinks}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
@@ -409,8 +281,6 @@ export default function Home() {
 
       <WhatWeOfferSection
         isMobile={isMobile}
-        timelineScrollProgress={timelineScrollProgress}
-        timelineSectionRef={timelineSectionRef}
         setIsModalOpen={setIsModalOpen}
       />
 

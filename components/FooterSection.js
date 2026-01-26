@@ -1,14 +1,15 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
-export default function FooterSection({
+const FooterSection = React.memo(({
   isMobile,
   isModalOpen,
   setIsModalOpen,
   isInquiryModalOpen,
   setIsInquiryModalOpen,
   dateOptions,
-})  {
+}) => {
   return (
     <>
       <footer
@@ -43,9 +44,11 @@ export default function FooterSection({
                   marginLeft: "0",
                 }}
               >
-                <img
+                <Image
                   src="/logo2.png"
                   alt="Space Sphere Logo"
+                  width={180}
+                  height={160}
                   style={{
                     height: isMobile ? "60px" : "140px",
                     maxHeight: isMobile ? "140px" : "160px",
@@ -439,9 +442,7 @@ export default function FooterSection({
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(0, 0, 0, 0.5)",
-            backdropFilter: "blur(5px)",
-            WebkitBackdropFilter: "blur(5px)",
+            background: "rgba(0, 0, 0, 0.75)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -758,8 +759,7 @@ export default function FooterSection({
                             (_, h, m) =>
                               `${(+h % 12 || 12)
                                 .toString()
-                                .padStart(2, "0")}:${m} ${
-                                +h < 12 ? "AM" : "PM"
+                                .padStart(2, "0")}:${m} ${+h < 12 ? "AM" : "PM"
                               }`
                           )}
                         </option>
@@ -965,9 +965,7 @@ export default function FooterSection({
             left: 0,
             right: 0,
             bottom: 0,
-            background: "rgba(0, 0, 0, 0.5)",
-            backdropFilter: "blur(5px)",
-            WebkitBackdropFilter: "blur(5px)",
+            background: "rgba(0, 0, 0, 0.75)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -1264,4 +1262,8 @@ export default function FooterSection({
       )}
     </>
   );
-};
+});
+
+FooterSection.displayName = "FooterSection";
+
+export default FooterSection;

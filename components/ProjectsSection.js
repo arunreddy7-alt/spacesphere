@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 
-const ProjectsSection = ({ isMobile, setIsModalOpen }) => {
+const ProjectsSection = React.memo(({ isMobile, setIsModalOpen }) => {
   return (
     <section
       id="projects"
@@ -149,8 +149,7 @@ const ProjectsSection = ({ isMobile, setIsModalOpen }) => {
                   gap: "10px",
                   marginBottom: "20px",
                   padding: "8px 16px",
-                  background: "rgba(199, 154, 74, 0.15)",
-                  backdropFilter: "blur(10px)",
+                  background: "rgba(199, 154, 74, 0.25)",
                   borderRadius: "50px",
                   border: "1px solid rgba(199, 154, 74, 0.3)",
                 }}
@@ -299,8 +298,7 @@ const ProjectsSection = ({ isMobile, setIsModalOpen }) => {
                     setIsModalOpen(true);
                   }}
                   style={{
-                    background: "rgba(255, 255, 255, 0.08)",
-                    backdropFilter: "blur(10px)",
+                    background: "rgba(255, 255, 255, 0.15)",
                     border: "1px solid rgba(255, 255, 255, 0.2)",
                     color: "white",
                     padding: "16px 32px",
@@ -337,6 +335,8 @@ const ProjectsSection = ({ isMobile, setIsModalOpen }) => {
       </div>
     </section>
   );
-};
+});
+
+ProjectsSection.displayName = "ProjectsSection";
 
 export default ProjectsSection;

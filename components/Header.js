@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
-const Header = ({
+const Header = React.memo(({
   isScrolled,
   isMobile,
   isMobileMenuOpen,
@@ -10,29 +11,31 @@ const Header = ({
 }) => {
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 transition-all duration-300 ${
-        isScrolled
-          ? "translate-y-0 opacity-100 backdrop-blur-md shadow-lg"
-          : "translate-y-0 opacity-100 md:-translate-y-full md:opacity-0"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 md:px-12 md:py-5 transition-all duration-300 ${isScrolled
+        ? "translate-y-0 opacity-100 shadow-lg"
+        : "translate-y-0 opacity-100 md:-translate-y-full md:opacity-0"
+        }`}
       style={{
         background: isScrolled ? "rgba(245, 245, 240, 0.95)" : "transparent",
       }}
     >
       <div
         id="mobile-brand"
-        className={`flex items-center gap-2 ml-3 md:ml-10 ${
-          isScrolled ? "visible" : ""
-        }`}
+        className={`flex items-center gap-2 ml-3 md:ml-10 ${isScrolled ? "visible" : ""
+          }`}
       >
-        <img
+        <Image
           src="/logo2.png"
           alt="Space Sphere Logo"
+          width={180}
+          height={60}
+          priority
           className="md:block object-contain transition-all duration-300"
           style={{
             maxHeight: "60px",
             maxWidth: "180px",
             width: "auto",
+            height: "auto",
             filter: isMobile
               ? isScrolled
                 ? "brightness(0) saturate(100%)"
@@ -113,13 +116,11 @@ const Header = ({
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div
-          className="md:hidden absolute top-full left-0 right-0 backdrop-blur-md shadow-lg z-40"
+          className="md:hidden absolute top-full left-0 right-0 shadow-lg z-40"
           style={{
             background: isScrolled
               ? "rgba(245, 245, 240, 0.98)"
-              : "rgba(0, 0, 0, 0.3)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
+              : "rgba(0, 0, 0, 0.95)",
             animation: "slideDown 0.3s ease-out",
             transformOrigin: "top",
           }}
@@ -170,6 +171,8 @@ const Header = ({
       )}
     </header>
   );
-};
+});
+
+Header.displayName = "Header";
 
 export default Header;
